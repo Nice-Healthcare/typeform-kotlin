@@ -1,0 +1,45 @@
+name: Gradle Test
+
+on:
+  workflow_dispatch:
+  pull_request:
+
+jobs:
+  Test-Analyze:
+
+    runs-on: ubuntu-latest
+
+    permissions:
+#      actions: read # CodeQL
+      contents: read # Test Results (private repo); CodeQL
+      issues: read  # Test Results (private repos)
+      checks: write # Test Results
+      pull-requests: write # Test Results
+#      security-events: write # CodeQL
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up JDK 17
+      uses: actions/setup-java@v3
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
+        settings-path: ${{ github.workspace }} # location for the settings.xml file
+
+    - name: Test with Gradle
+      uses: gradle/gradle-build-action@v2.9.0
+      with:
+        arguments: testDebugUnitTest
+
+    - name: Publish Test Results
+      uses: EnricoMi/publish-unit-test-result-action@v2
+      with:
+        files: |
+          typeform/build/test-results/testDebugUnitTest/*.xml
+
+#    - name: Perform CodeQL Analysis
+#      uses: github/codeql-action/analyze@v2
+#      with:
+#        category: "/language:java"
