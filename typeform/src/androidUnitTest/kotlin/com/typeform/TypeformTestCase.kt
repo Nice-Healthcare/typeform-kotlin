@@ -157,8 +157,11 @@ open class TypeformTestCase {
     val json: String
     val form: Form
 
+    open val jsonResource: String
+        get() = "MedicalIntake23.json"
+
     init {
-        val formBytes = resources.contentOfResource("MedicalIntake23.json")
+        val formBytes = resources.contentOfResource(jsonResource)
         json = String(formBytes)
         val formAdapter = moshi.adapter(Form::class.java)
         form = assertUnwrap(formAdapter.fromJson(json))

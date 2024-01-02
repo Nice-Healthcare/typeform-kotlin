@@ -32,16 +32,16 @@ data class Condition(
                 true
             }
             Op.AND -> {
-                !satisfied.contains(false)
+                satisfied.isNotEmpty() && !satisfied.contains(false)
             }
             Op.OR -> {
-                satisfied.contains(true)
+                satisfied.isNotEmpty() && satisfied.contains(true)
             }
             Op.IS -> {
-                !satisfied.contains(false)
+                satisfied.isNotEmpty() && !satisfied.contains(false)
             }
             Op.IS_NOT -> {
-                !satisfied.contains(true)
+                satisfied.isNotEmpty() && !satisfied.contains(true)
             }
             Op.EQUAL -> {
                 null
