@@ -139,3 +139,15 @@ fun Responses.invalidResponseValuesGiven(fields: List<Field>): List<String> {
         ref
     }
 }
+
+internal fun Responses.responseRequiredFor(field: Field): Boolean {
+    if (field.validations == null) {
+        return false
+    }
+
+    if (!field.validations.required) {
+        return false
+    }
+
+    return this[field.ref] == null
+}
