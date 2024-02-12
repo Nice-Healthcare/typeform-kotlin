@@ -26,43 +26,46 @@ import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.tooling.preview.Preview
-import com.typeform.models.Response
 import com.typeform.models.ResponseValue
-import com.typeform.models.Responses
 import com.typeform.schema.Choice
 import com.typeform.schema.Dropdown
 import com.typeform.schema.Validations
+import com.typeform.ui.models.ResponseState
 import com.typeform.ui.models.Settings
 
 @Composable
 internal fun DropdownView(
     settings: Settings,
-    ref: String,
     properties: Dropdown,
-    responses: Responses,
-    responseHandler: Response,
+    responseState: ResponseState,
     validations: Validations?,
-    validationHandler: ((Boolean) -> Unit)?,
+    stateHandler: (ResponseState) -> Unit,
 ) {
     val focusRequester = remember { FocusRequester() }
     val focusManager = LocalFocusManager.current
-    var selected by remember { mutableStateOf(responses[ref]?.asChoice()) }
+    var selected by remember { mutableStateOf(responseState.response?.asChoice()) }
     var expanded by remember { mutableStateOf(false) }
     var focused by remember { mutableStateOf(false) }
 
     val choices = properties.orderedChoices()
 
-    fun determineValidity() {
-        if (validationHandler == null) {
-            return
+    fun updateState() {
+        var state = responseState
+
+        val selection = selected
+        state = if (selection != null) {
+            state.copy(response = ResponseValue.ChoiceValue(selection))
+        } else {
+            state.copy(response = null)
         }
 
-        if (validations == null || !validations.required) {
-            validationHandler(true)
-            return
+        state = if (validations != null && validations.required) {
+            state.copy(invalid = selection == null)
+        } else {
+            state.copy(invalid = false)
         }
 
-        validationHandler(selected != null)
+        stateHandler(state)
     }
 
     fun select(choice: Choice?) {
@@ -70,13 +73,7 @@ internal fun DropdownView(
         expanded = false
         focusManager.clearFocus()
 
-        if (choice != null) {
-            responseHandler(ref, ResponseValue.ChoiceValue(choice))
-        } else {
-            responseHandler(ref, null)
-        }
-
-        determineValidity()
+        updateState()
     }
 
     Column {
@@ -143,7 +140,7 @@ internal fun DropdownView(
         }
     }
 
-    determineValidity()
+    updateState()
 }
 
 @Composable
@@ -177,15 +174,13 @@ private fun DropdownChoiceRow(
 private fun DropdownViewPreview() {
     DropdownView(
         settings = Settings(),
-        ref = "",
         properties = Dropdown(
             choices = emptyList(),
             randomize = false,
             alphabetical_order = false,
         ),
-        responses = mutableMapOf(),
-        responseHandler = { _, _ -> },
+        responseState = ResponseState(),
         validations = null,
-        validationHandler = null,
-    )
+    ) {
+    }
 }

@@ -12,17 +12,18 @@ import androidx.compose.material3.DatePickerDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.rememberDatePickerState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.typeform.models.Response
 import com.typeform.models.ResponseValue
-import com.typeform.models.Responses
 import com.typeform.schema.DateStamp
 import com.typeform.schema.Validations
 import com.typeform.ui.components.StyledTextView
+import com.typeform.ui.models.ResponseState
 import com.typeform.ui.models.Settings
 import java.util.Date
 
@@ -30,40 +31,40 @@ import java.util.Date
 @Composable
 internal fun DateView(
     settings: Settings,
-    ref: String,
     properties: DateStamp,
-    responses: Responses,
-    responseHandler: Response,
+    responseState: ResponseState,
     validations: Validations?,
-    validationHandler: ((Boolean) -> Unit)?,
+    stateHandler: (ResponseState) -> Unit
 ) {
-    val pickerState = rememberDatePickerState((responses[ref]?.asDate() ?: Date()).time)
+    val pickerState = rememberDatePickerState((responseState.response?.asDate() ?: Date()).time)
+    var milliseconds by remember { mutableStateOf(responseState.response?.asDate()?.time) }
+    var isNotSure by remember { mutableStateOf(false) }
+
     val isOptional = validations?.required != true
-    val isNotSure = remember { mutableStateOf(false) }
 
-    fun determineValidity() {
-        if (validationHandler == null) {
-            return
+    fun updateState() {
+        var state = responseState
+
+        val millis = milliseconds
+        state = if (millis != null && !isNotSure) {
+            state.copy(response = ResponseValue.DateValue(Date(millis)))
+        } else {
+            state.copy(response = null)
         }
 
-        if (validations == null || !validations.required) {
-            validationHandler(true)
-            return
+        state = if (validations != null && validations.required) {
+            state.copy(invalid = state.response == null)
+        } else {
+            state.copy(invalid = false)
         }
 
-        val date = if (pickerState.selectedDateMillis != null) Date(pickerState.selectedDateMillis!!) else null
-
-        validationHandler(date != null)
+        stateHandler(state)
     }
 
-    fun select(milliseconds: Long?) {
-        if (milliseconds != null) {
-            responseHandler(ref, ResponseValue.DateValue(Date(milliseconds)))
-        } else {
-            responseHandler(ref, null)
-        }
+    fun select(millis: Long?) {
+        milliseconds = millis
 
-        determineValidity()
+        updateState()
     }
 
     Column(
@@ -91,15 +92,14 @@ internal fun DateView(
 
                 if (isOptional) {
                     Switch(
-                        checked = isNotSure.value,
+                        checked = isNotSure,
                         onCheckedChange = {
-                            if (isNotSure.value) {
+                            isNotSure = !isNotSure
+                            if (isNotSure) {
                                 select(null)
                             } else {
-                                select(Date().time)
+                                select(pickerState.selectedDateMillis ?: Date().time)
                             }
-
-                            isNotSure.value = !isNotSure.value
                         },
                         colors = SwitchDefaults.colors(
                             checkedThumbColor = MaterialTheme.colors.primary,
@@ -109,11 +109,11 @@ internal fun DateView(
                 }
             }
 
-            if (!isOptional || !isNotSure.value) {
+            if (!isOptional || !isNotSure) {
                 DatePicker(
                     state = pickerState,
-                    dateValidator = { milliseconds ->
-                        select(milliseconds)
+                    dateValidator = {
+                        select(it)
                         true
                     },
                     title = null,
@@ -132,7 +132,7 @@ internal fun DateView(
         }
     }
 
-    determineValidity()
+    updateState()
 }
 
 @Preview(showBackground = true, showSystemUi = true)
@@ -140,15 +140,13 @@ internal fun DateView(
 private fun DateViewPreview() {
     DateView(
         settings = Settings(),
-        ref = "",
         properties = DateStamp(
             separator = "",
             structure = "",
             description = null,
         ),
-        responses = mutableMapOf(),
-        responseHandler = { _, _ -> },
+        responseState = ResponseState(),
         validations = null,
-        validationHandler = null,
-    )
+    ) {
+    }
 }

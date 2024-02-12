@@ -8,59 +8,56 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.TextFieldDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.typeform.models.Response
 import com.typeform.models.ResponseValue
-import com.typeform.models.Responses
 import com.typeform.schema.LongText
 import com.typeform.schema.Validations
 import com.typeform.ui.components.StyledTextView
+import com.typeform.ui.models.ResponseState
 import com.typeform.ui.models.Settings
 
 @Composable
 internal fun LongTextView(
     settings: Settings,
-    ref: String,
     properties: LongText,
-    responses: Responses,
-    responseHandler: Response,
+    responseState: ResponseState,
     validations: Validations?,
-    validationHandler: ((Boolean) -> Unit)?,
+    stateHandler: (ResponseState) -> Unit,
 ) {
-    val selected: MutableState<String> = remember { mutableStateOf(responses[ref]?.asString() ?: "") }
+    var selected: String by remember { mutableStateOf(responseState.response?.asString() ?: "") }
 
-    fun determineValidity() {
-        if (validationHandler == null) {
-            return
+    fun updateState() {
+        var state = responseState
+
+        state = if (selected.isNotEmpty()) {
+            state.copy(response = ResponseValue.StringValue(selected))
+        } else {
+            state.copy(response = null)
         }
 
-        if (validations == null || !validations.required) {
-            validationHandler(true)
-            return
+        state = if (validations != null && validations.required) {
+            state.copy(invalid = selected.isEmpty())
+        } else {
+            state.copy(invalid = false)
         }
 
-        validationHandler(selected.value.isNotEmpty())
+        stateHandler(state)
     }
 
     fun select(value: String) {
-        selected.value = value
+        selected = value
 
-        if (value.isNotEmpty()) {
-            responseHandler(ref, ResponseValue.StringValue(value))
-        } else {
-            responseHandler(ref, null)
-        }
-
-        determineValidity()
+        updateState()
     }
 
     Column(
-        verticalArrangement = Arrangement.spacedBy(20.dp),
+        verticalArrangement = Arrangement.spacedBy(settings.presentation.descriptionContentVerticalSpacing),
     ) {
         properties.description?.let {
             StyledTextView(
@@ -70,7 +67,7 @@ internal fun LongTextView(
         }
 
         OutlinedTextField(
-            value = selected.value,
+            value = selected,
             onValueChange = { value ->
                 select(value)
             },
@@ -85,7 +82,7 @@ internal fun LongTextView(
         )
     }
 
-    determineValidity()
+    updateState()
 }
 
 @Preview(showBackground = true, showSystemUi = true)
@@ -93,13 +90,11 @@ internal fun LongTextView(
 private fun LongTextViewPreview() {
     LongTextView(
         settings = Settings(),
-        ref = "",
         properties = LongText(
             description = null
         ),
-        responses = mutableMapOf(),
-        responseHandler = { _, _ -> },
+        responseState = ResponseState(),
         validations = null,
-        validationHandler = null,
-    )
+    ) {
+    }
 }

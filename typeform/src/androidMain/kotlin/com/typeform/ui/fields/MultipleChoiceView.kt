@@ -4,52 +4,59 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
-import com.typeform.models.Response
 import com.typeform.models.ResponseValue
-import com.typeform.models.Responses
 import com.typeform.schema.Choice
 import com.typeform.schema.MultipleChoice
 import com.typeform.schema.Validations
 import com.typeform.ui.components.ChoiceButtonView
 import com.typeform.ui.components.StyledTextView
+import com.typeform.ui.models.ResponseState
 import com.typeform.ui.models.Settings
 
 @Composable
 internal fun MultipleChoiceView(
     settings: Settings,
-    ref: String,
     properties: MultipleChoice,
-    responses: Responses,
-    responseHandler: Response,
+    responseState: ResponseState,
     validations: Validations?,
-    validationHandler: ((Boolean) -> Unit)?,
+    stateHandler: (ResponseState) -> Unit,
 ) {
-    val selected: MutableState<List<Choice>> = remember { mutableStateOf(responses[ref]?.asChoices() ?: emptyList()) }
+    var selected: List<Choice> by remember { mutableStateOf(responseState.response?.asChoices() ?: emptyList()) }
 
     val choices = properties.orderedChoices()
     val allowMultiple = properties.allow_multiple_selection
 
-    fun determineValidity() {
-        if (validationHandler == null) {
-            return
+    fun updateState() {
+        var state = responseState
+
+        state = if (selected.isEmpty()) {
+            state.copy(response = null)
+        } else {
+            if (allowMultiple) {
+                state.copy(response = ResponseValue.ChoicesValue(selected))
+            } else {
+                state.copy(response = ResponseValue.ChoiceValue(selected.first()))
+            }
         }
 
-        if (validations == null || !validations.required) {
-            validationHandler(true)
-            return
+        state = if (validations != null && validations.required) {
+            state.copy(invalid = selected.isEmpty())
+        } else {
+            state.copy(invalid = false)
         }
 
-        validationHandler(selected.value.isNotEmpty())
+        stateHandler(state)
     }
 
     fun toggle(choice: Choice) {
-        val selections = selected.value.toMutableList()
+        val selections = selected.toMutableList()
 
         val index = selections.indexOf(choice)
 
@@ -66,19 +73,9 @@ internal fun MultipleChoiceView(
             }
         }
 
-        selected.value = selections
+        selected = selections
 
-        if (selections.isEmpty()) {
-            responseHandler(ref, null)
-        } else {
-            if (allowMultiple) {
-                responseHandler(ref, ResponseValue.ChoicesValue(selections))
-            } else {
-                responseHandler(ref, ResponseValue.ChoiceValue(selections.first()))
-            }
-        }
-
-        determineValidity()
+        updateState()
     }
 
     Column(
@@ -99,7 +96,7 @@ internal fun MultipleChoiceView(
                     settings = settings,
                     text = choice.label,
                     allowMultiple = allowMultiple,
-                    selected = selected.value.contains(choice),
+                    selected = selected.contains(choice),
                 ) {
                     toggle(choice)
                 }
@@ -107,7 +104,7 @@ internal fun MultipleChoiceView(
         }
     }
 
-    determineValidity()
+    updateState()
 }
 
 @Preview(showBackground = true)
@@ -117,7 +114,6 @@ private fun MultipleChoiceViewPreview(
 ) {
     MultipleChoiceView(
         settings = Settings(),
-        ref = reference,
         properties = MultipleChoice(
             choices = emptyList(),
             randomize = false,
@@ -126,11 +122,10 @@ private fun MultipleChoiceViewPreview(
             vertical_alignment = true,
             description = null,
         ),
-        responses = mutableMapOf(),
-        responseHandler = { _, _ -> },
+        responseState = ResponseState(),
         validations = null,
-        validationHandler = null,
-    )
+    ) {
+    }
 }
 
 private class MultipleChoiceParameterProvider : PreviewParameterProvider<String> {

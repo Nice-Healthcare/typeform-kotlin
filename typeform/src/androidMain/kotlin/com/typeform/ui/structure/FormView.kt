@@ -22,9 +22,10 @@ import androidx.compose.material.TextButton
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.ArrowBack
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateMapOf
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -36,7 +37,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.typeform.models.Position
-import com.typeform.models.ResponseValue
+import com.typeform.models.Responses
 import com.typeform.schema.Form
 import com.typeform.ui.components.StyledTextView
 import com.typeform.ui.models.Conclusion
@@ -51,24 +52,34 @@ import com.typeform.ui.preview.preview
 fun FormView(
     form: Form,
     settings: Settings = Settings(),
+    responses: Responses = mutableMapOf(),
     conclusion: (Conclusion) -> Unit,
     header: (@Composable () -> Unit)? = null,
 ) {
     val navController = rememberNavController()
-    val showBackNavigation = remember { mutableStateOf(false) }
-    val showConfirmCancel = remember { mutableStateOf(false) }
-
-    val responses = remember { mutableStateMapOf<String, ResponseValue>() }
+    var showBackNavigation by remember { mutableStateOf(false) }
+    var showConfirmCancel by remember { mutableStateOf(false) }
 
     val startDestination = remember {
-        val welcomeScreen = form.firstScreen
-        val firstField = form.fields.firstOrNull()
-        return@remember if (welcomeScreen != null && !settings.presentation.skipWelcomeScreen) {
-            Pair(TypeformRoute.screen, welcomeScreen.id)
-        } else if (firstField != null) {
-            Pair(TypeformRoute.field, firstField.id)
-        } else {
-            Pair(TypeformRoute.rejected, "")
+        val firstPosition: Position? = try {
+            form.firstPosition(
+                skipWelcomeScreen = settings.presentation.skipWelcomeScreen,
+                responses = responses
+            )
+        } catch (_: Exception) {
+            null
+        }
+
+        return@remember when (firstPosition) {
+            is Position.ScreenPosition -> {
+                Pair(TypeformRoute.screen, firstPosition.screen.id)
+            }
+            is Position.FieldPosition -> {
+                Pair(TypeformRoute.field, firstPosition.field.id)
+            }
+            else -> {
+                Pair(TypeformRoute.rejected, "")
+            }
         }
     }
 
@@ -110,7 +121,7 @@ fun FormView(
                             modifier = Modifier.heightIn(min = 48.dp),
                             verticalAlignment = Alignment.CenterVertically,
                         ) {
-                            if (showBackNavigation.value) {
+                            if (showBackNavigation) {
                                 Icon(
                                     imageVector = Icons.Outlined.ArrowBack,
                                     contentDescription = null,
@@ -131,7 +142,7 @@ fun FormView(
                                     if (responses.isEmpty()) {
                                         conclusion(Conclusion.Canceled)
                                     } else {
-                                        showConfirmCancel.value = true
+                                        showConfirmCancel = true
                                     }
                                 },
                                 color = MaterialTheme.colors.primary,
@@ -160,14 +171,15 @@ fun FormView(
                     },
                 ),
             ) {
-                showBackNavigation.value = false
+                showBackNavigation = false
                 val id = it.arguments?.getString("id") ?: form.firstScreen?.id
                 if (id == null) {
                     RejectedView(
                         scaffoldPadding = scaffoldPadding,
                         settings = settings,
-                    ) {
-                        conclusion(Conclusion.Rejected(responses))
+                        responses = responses
+                    ) { rejection ->
+                        conclusion(rejection)
                     }
                     return@composable
                 }
@@ -177,8 +189,9 @@ fun FormView(
                     RejectedView(
                         scaffoldPadding = scaffoldPadding,
                         settings = settings,
-                    ) {
-                        conclusion(Conclusion.Rejected(responses))
+                        responses = responses,
+                    ) { rejection ->
+                        conclusion(rejection)
                     }
                     return@composable
                 }
@@ -206,25 +219,27 @@ fun FormView(
             ) {
                 val fieldId = it.arguments?.getString("id") ?: form.fields.firstOrNull()?.id
                 if (fieldId == null) {
-                    showBackNavigation.value = false
+                    showBackNavigation = false
                     RejectedView(
                         scaffoldPadding = scaffoldPadding,
                         settings = settings,
-                    ) {
-                        conclusion(Conclusion.Rejected(responses))
+                        responses = responses,
+                    ) { rejection ->
+                        conclusion(rejection)
                     }
                     return@composable
                 }
 
-                showBackNavigation.value = (startDestination.first != TypeformRoute.field || startDestination.second != fieldId)
+                showBackNavigation = (startDestination.first != TypeformRoute.field || startDestination.second != fieldId)
 
                 val field = form.fieldWithId(fieldId)
                 if (field == null) {
                     RejectedView(
                         scaffoldPadding = scaffoldPadding,
                         settings = settings,
-                    ) {
-                        conclusion(Conclusion.Rejected(responses))
+                        responses = responses,
+                    ) { rejection ->
+                        conclusion(rejection)
                     }
                     return@composable
                 }
@@ -249,22 +264,23 @@ fun FormView(
             composable(
                 route = TypeformRoute.rejected,
             ) {
-                showBackNavigation.value = false
+                showBackNavigation = false
 
                 RejectedView(
                     scaffoldPadding = scaffoldPadding,
                     settings = settings,
-                ) {
-                    conclusion(Conclusion.Rejected(responses))
+                    responses = responses,
+                ) { rejection ->
+                    conclusion(rejection)
                 }
             }
         }
     }
 
-    if (showConfirmCancel.value) {
+    if (showConfirmCancel) {
         AlertDialog(
             onDismissRequest = {
-                showConfirmCancel.value = false
+                showConfirmCancel = false
             },
             buttons = {
                 Row(
@@ -287,7 +303,7 @@ fun FormView(
 
                     TextButton(
                         onClick = {
-                            showConfirmCancel.value = false
+                            showConfirmCancel = false
                         },
                     ) {
                         StyledTextView(

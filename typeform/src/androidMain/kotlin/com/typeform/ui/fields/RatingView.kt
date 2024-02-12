@@ -13,31 +13,29 @@ import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.outlined.Cloud
 import androidx.compose.material.icons.outlined.Star
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.typeform.models.Response
 import com.typeform.models.ResponseValue
-import com.typeform.models.Responses
 import com.typeform.schema.Rating
 import com.typeform.schema.Validations
 import com.typeform.ui.components.StyledTextView
+import com.typeform.ui.models.ResponseState
 import com.typeform.ui.models.Settings
 
 @Composable
 internal fun RatingView(
     settings: Settings,
-    ref: String,
     properties: Rating,
-    responses: Responses,
-    responseHandler: Response,
+    responseState: ResponseState,
     validations: Validations?,
-    validationHandler: ((Boolean) -> Unit)?,
+    stateHandler: (ResponseState) -> Unit,
 ) {
-    val selected: MutableState<Int?> = remember { mutableStateOf(responses[ref]?.asInt()) }
+    var selected: Int? by remember { mutableStateOf(responseState.response?.asInt()) }
 
     val range = IntRange(1, properties.steps)
     val outlinedImage = when (properties.shape.lowercase()) {
@@ -57,33 +55,29 @@ internal fun RatingView(
         }
     }
 
-    fun determineValidity() {
-        if (validationHandler == null) {
-            return
+    fun updateState() {
+        var state = responseState
+
+        val selection = selected
+        state = if (selection != null) {
+            state.copy(response = ResponseValue.IntValue(selection))
+        } else {
+            state.copy(response = null)
         }
 
-        if (validations == null || !validations.required) {
-            validationHandler(true)
-            return
+        state = if (validations != null && validations.required) {
+            state.copy(invalid = selection == null)
+        } else {
+            state.copy(invalid = false)
         }
 
-        validationHandler(selected.value != null)
+        stateHandler(state)
     }
 
     fun select(value: Int) {
-        var selectedValue = selected.value
+        selected = if (value == selected) null else value
 
-        selectedValue = if (selectedValue == value) null else value
-
-        selected.value = selectedValue
-
-        if (selectedValue != null) {
-            responseHandler(ref, ResponseValue.IntValue(selectedValue))
-        } else {
-            responseHandler(ref, null)
-        }
-
-        determineValidity()
+        updateState()
     }
 
     Column(
@@ -101,7 +95,7 @@ internal fun RatingView(
             horizontalArrangement = Arrangement.SpaceBetween,
         ) {
             range.forEach { step ->
-                val filled = (selected.value ?: 0) >= step
+                val filled = (selected ?: 0) >= step
 
                 IconButton(
                     onClick = {
@@ -129,7 +123,7 @@ internal fun RatingView(
         }
     }
 
-    determineValidity()
+    updateState()
 }
 
 @Preview(showBackground = true, showSystemUi = true)
@@ -137,15 +131,13 @@ internal fun RatingView(
 private fun RatingViewPreview() {
     RatingView(
         settings = Settings(),
-        ref = "",
         properties = Rating(
             shape = "star",
             steps = 5,
             description = null,
         ),
-        responses = mutableMapOf(),
-        responseHandler = { _, _ -> },
+        responseState = ResponseState(),
         validations = null,
-        validationHandler = null,
-    )
+    ) {
+    }
 }

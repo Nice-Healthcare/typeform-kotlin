@@ -4,46 +4,50 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.tooling.preview.Preview
-import com.typeform.models.Response
 import com.typeform.models.ResponseValue
-import com.typeform.models.Responses
 import com.typeform.schema.Validations
 import com.typeform.schema.YesNo
 import com.typeform.ui.components.ChoiceButtonView
 import com.typeform.ui.components.StyledTextView
+import com.typeform.ui.models.ResponseState
 import com.typeform.ui.models.Settings
 
 @Composable
 internal fun YesNoView(
     settings: Settings,
-    ref: String,
     properties: YesNo,
-    responses: Responses,
-    responseHandler: Response,
+    responseState: ResponseState,
     validations: Validations?,
-    validationHandler: ((Boolean) -> Unit)?,
+    stateHandler: (ResponseState) -> Unit,
 ) {
-    val selected: MutableState<Boolean?> = remember { mutableStateOf(responses[ref]?.asBoolean()) }
+    var selected: Boolean? by remember { mutableStateOf(responseState.response?.asBoolean()) }
 
-    fun determineValidity() {
-        if (validationHandler == null) {
-            return
+    fun updateState() {
+        var state = responseState
+
+        val selection = selected
+        state = if (selection != null) {
+            state.copy(response = ResponseValue.BooleanValue(selection))
+        } else {
+            state.copy(response = null)
         }
 
-        if (validations == null || !validations.required) {
-            validationHandler(true)
-            return
+        state = if (validations != null && validations.required) {
+            state.copy(invalid = selection == null)
+        } else {
+            state.copy(invalid = false)
         }
 
-        validationHandler(selected.value != null)
+        stateHandler(state)
     }
 
     fun toggle(value: Boolean) {
-        var isSelected = selected.value
+        var isSelected = selected
 
         isSelected = when (isSelected) {
             true -> {
@@ -59,15 +63,9 @@ internal fun YesNoView(
             }
         }
 
-        selected.value = isSelected
+        selected = isSelected
 
-        if (isSelected != null) {
-            responseHandler(ref, ResponseValue.BooleanValue(isSelected))
-        } else {
-            responseHandler(ref, null)
-        }
-
-        determineValidity()
+        updateState()
     }
 
     Column(
@@ -86,7 +84,7 @@ internal fun YesNoView(
             ChoiceButtonView(
                 settings = settings,
                 text = settings.localization.yes,
-                selected = selected.value == true,
+                selected = selected == true,
             ) {
                 toggle(true)
             }
@@ -94,14 +92,14 @@ internal fun YesNoView(
             ChoiceButtonView(
                 settings = settings,
                 text = settings.localization.no,
-                selected = selected.value == false,
+                selected = selected == false,
             ) {
                 toggle(false)
             }
         }
     }
 
-    determineValidity()
+    updateState()
 }
 
 @Preview(showBackground = true, showSystemUi = true)
@@ -109,13 +107,11 @@ internal fun YesNoView(
 private fun YesNoViewPreview() {
     YesNoView(
         settings = Settings(),
-        ref = "",
         properties = YesNo(
             description = null,
         ),
-        responses = mutableMapOf(),
-        responseHandler = { _, _ -> },
+        responseState = ResponseState(),
         validations = null,
-        validationHandler = null,
-    )
+    ) {
+    }
 }

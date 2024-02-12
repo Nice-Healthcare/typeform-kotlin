@@ -4,8 +4,10 @@ import com.typeform.schema.Field
 import com.typeform.schema.Form
 import com.typeform.schema.FormType
 import com.typeform.schema.Links
+import com.typeform.schema.ScreenProperties
 import com.typeform.schema.Settings
 import com.typeform.schema.Theme
+import com.typeform.schema.WelcomeScreen
 import com.typeform.schema.Workspace
 import java.net.URL
 
@@ -52,7 +54,20 @@ val Form.Companion.preview: Form
         workspace = Workspace(
             href = URL("https://www.typeform.com")
         ),
-        welcome_screens = emptyList(),
+        welcome_screens = listOf(
+            WelcomeScreen(
+                id = "welcome1",
+                ref = "welcome1",
+                title = "Example Welcome Screen",
+                attachment = null,
+                properties = ScreenProperties(
+                    button_mode = null,
+                    button_text = "Continue",
+                    share_icons = null,
+                    show_button = true,
+                )
+            )
+        ),
         thankyou_screens = emptyList(),
     )
 

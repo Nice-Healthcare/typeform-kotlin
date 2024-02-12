@@ -7,54 +7,51 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.TextFieldDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.typeform.models.Response
 import com.typeform.models.ResponseValue
-import com.typeform.models.Responses
 import com.typeform.schema.ShortText
 import com.typeform.schema.Validations
 import com.typeform.ui.components.StyledTextView
+import com.typeform.ui.models.ResponseState
 import com.typeform.ui.models.Settings
 
 @Composable
 internal fun ShortTextView(
     settings: Settings,
-    ref: String,
     properties: ShortText,
-    responses: Responses,
-    responseHandler: Response,
+    responseState: ResponseState,
     validations: Validations?,
-    validationHandler: ((Boolean) -> Unit)?,
+    stateHandler: (ResponseState) -> Unit,
 ) {
-    val selected: MutableState<String> = remember { mutableStateOf(responses[ref]?.asString() ?: "") }
+    var selected: String by remember { mutableStateOf(responseState.response?.asString() ?: "") }
 
-    fun determineValidity() {
-        if (validationHandler == null) {
-            return
+    fun updateState() {
+        var state = responseState
+
+        state = if (selected.isNotEmpty()) {
+            state.copy(response = ResponseValue.StringValue(selected))
+        } else {
+            state.copy(response = null)
         }
 
-        if (validations == null || !validations.required) {
-            validationHandler(true)
-            return
+        state = if (validations != null && validations.required) {
+            state.copy(invalid = selected.isEmpty())
+        } else {
+            state.copy(invalid = false)
         }
 
-        validationHandler(selected.value.isNotEmpty())
+        stateHandler(state)
     }
 
     fun select(value: String) {
-        selected.value = value
+        selected = value
 
-        if (value.isNotEmpty()) {
-            responseHandler(ref, ResponseValue.StringValue(value))
-        } else {
-            responseHandler(ref, null)
-        }
-
-        determineValidity()
+        updateState()
     }
 
     Column(
@@ -68,7 +65,7 @@ internal fun ShortTextView(
         }
 
         OutlinedTextField(
-            value = selected.value,
+            value = selected,
             onValueChange = { value ->
                 select(value)
             },
@@ -82,7 +79,7 @@ internal fun ShortTextView(
         )
     }
 
-    determineValidity()
+    updateState()
 }
 
 @Preview(showBackground = true, showSystemUi = true)
@@ -90,13 +87,11 @@ internal fun ShortTextView(
 private fun ShortTextViewPreview() {
     ShortTextView(
         settings = Settings(),
-        ref = "",
         properties = ShortText(
             description = null,
         ),
-        responses = mutableMapOf(),
-        responseHandler = { _, _ -> },
+        responseState = ResponseState(),
         validations = null,
-        validationHandler = null,
-    )
+    ) {
+    }
 }

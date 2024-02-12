@@ -8,55 +8,53 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.TextFieldDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
-import com.typeform.models.Response
 import com.typeform.models.ResponseValue
-import com.typeform.models.Responses
 import com.typeform.schema.Number
 import com.typeform.schema.Validations
 import com.typeform.ui.components.StyledTextView
+import com.typeform.ui.models.ResponseState
 import com.typeform.ui.models.Settings
 
 @Composable
 internal fun NumberView(
     settings: Settings,
-    ref: String,
     properties: Number,
-    responses: Responses,
-    responseHandler: Response,
+    responseState: ResponseState,
     validations: Validations?,
-    validationHandler: ((Boolean) -> Unit)?,
+    stateHandler: (ResponseState) -> Unit,
 ) {
-    val selected: MutableState<Int?> = remember { mutableStateOf(responses[ref]?.asInt()) }
+    var selected: Int? by remember { mutableStateOf(responseState.response?.asInt()) }
 
-    fun determineValidity() {
-        if (validationHandler == null) {
-            return
+    fun updateState() {
+        var state = responseState
+
+        val selection = selected
+        state = if (selection != null) {
+            state.copy(response = ResponseValue.IntValue(selection))
+        } else {
+            state.copy(response = null)
         }
 
-        if (validations == null || !validations.required) {
-            validationHandler(true)
-            return
+        state = if (validations != null && validations.required) {
+            state.copy(invalid = selection == null)
+        } else {
+            state.copy(invalid = false)
         }
 
-        validationHandler(selected.value != null)
+        stateHandler(state)
     }
 
     fun select(value: Int?) {
-        selected.value = value
+        selected = value
 
-        if (value != null) {
-            responseHandler(ref, ResponseValue.IntValue(value))
-        } else {
-            responseHandler(ref, null)
-        }
-
-        determineValidity()
+        updateState()
     }
 
     Column(
@@ -70,7 +68,7 @@ internal fun NumberView(
         }
 
         OutlinedTextField(
-            value = "${selected.value ?: ""}",
+            value = "${selected ?: ""}",
             onValueChange = { value ->
                 select(value.toIntOrNull())
             },
@@ -85,7 +83,7 @@ internal fun NumberView(
         )
     }
 
-    determineValidity()
+    updateState()
 }
 
 @Preview(showBackground = true, showSystemUi = true)
@@ -93,13 +91,11 @@ internal fun NumberView(
 private fun NumberViewPreview() {
     NumberView(
         settings = Settings(),
-        ref = "",
         properties = Number(
             description = null,
         ),
-        responses = mutableMapOf(),
-        responseHandler = { _, _ -> },
+        responseState = ResponseState(),
         validations = null,
-        validationHandler = null,
-    )
+    ) {
+    }
 }
