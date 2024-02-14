@@ -6,7 +6,6 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import com.typeform.schema.Statement
-import com.typeform.schema.Validations
 import com.typeform.ui.components.StyledTextView
 import com.typeform.ui.models.Settings
 
@@ -14,22 +13,7 @@ import com.typeform.ui.models.Settings
 internal fun StatementView(
     settings: Settings,
     properties: Statement,
-    validations: Validations?,
-    validationHandler: ((Boolean) -> Unit)?,
 ) {
-    fun determineValidity() {
-        if (validationHandler == null) {
-            return
-        }
-
-        if (validations == null || !validations.required) {
-            validationHandler(true)
-            return
-        }
-
-        validationHandler(true)
-    }
-
     Column(
         verticalArrangement = Arrangement.spacedBy(settings.presentation.descriptionContentVerticalSpacing),
     ) {
@@ -40,8 +24,6 @@ internal fun StatementView(
             )
         }
     }
-
-    determineValidity()
 }
 
 @Preview(showBackground = true, showSystemUi = true)
@@ -54,7 +36,5 @@ private fun StatementViewPreview() {
             button_text = "Continue",
             description = null,
         ),
-        validations = null,
-        validationHandler = null,
     )
 }

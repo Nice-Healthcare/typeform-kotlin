@@ -11,9 +11,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
@@ -21,7 +22,6 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
 import com.typeform.models.Position
-import com.typeform.models.ResponseValue
 import com.typeform.models.Responses
 import com.typeform.models.TypeformException
 import com.typeform.schema.Field
@@ -42,6 +42,7 @@ import com.typeform.ui.fields.StatementView
 import com.typeform.ui.fields.YesNoView
 import com.typeform.ui.models.Conclusion
 import com.typeform.ui.models.NavigationAction
+import com.typeform.ui.models.ResponseState
 import com.typeform.ui.models.Settings
 import com.typeform.ui.preview.preview
 import com.typeform.ui.preview.previewDate
@@ -61,8 +62,16 @@ internal fun FieldView(
     header: (@Composable () -> Unit)? = null,
     actionHandler: (NavigationAction) -> Unit,
 ) {
-    val validated: MutableState<Boolean> = remember { mutableStateOf(false) }
-    val next: MutableState<Position?> = remember { mutableStateOf(null) }
+    var collectedResponses: Responses by remember { mutableStateOf(responses) }
+    var responseState: ResponseState by remember {
+        mutableStateOf(
+            ResponseState(
+                field = field,
+                responses = responses,
+            )
+        )
+    }
+    var next: Position? by remember { mutableStateOf(null) }
 
     val nextTitle = when (field.properties) {
         is FieldProperties.GroupProperties -> {
@@ -86,24 +95,26 @@ internal fun FieldView(
     }
 
     fun determineNext() {
-        next.value = try {
-            form.nextPosition(Position.FieldPosition(field, group), responses)
+        next = try {
+            form.nextPosition(Position.FieldPosition(field, group), collectedResponses)
         } catch (_: TypeformException) {
             null
         }
     }
 
-    fun handleResponse(ref: String, value: ResponseValue?) {
-        if (value != null) {
-            responses[ref] = value
-        } else {
-            responses.remove(ref)
-        }
-        determineNext()
-    }
+    fun handleResponseState(state: ResponseState) {
+        responseState = state
 
-    fun handleValidation(isValid: Boolean) {
-        validated.value = isValid
+        val currentResponses = collectedResponses
+
+        if (state.response != null) {
+            currentResponses[field.ref] = state.response
+        } else {
+            currentResponses.remove(field.ref)
+        }
+
+        collectedResponses = currentResponses
+
         determineNext()
     }
 
@@ -111,10 +122,10 @@ internal fun FieldView(
         scaffoldPadding = scaffoldPadding,
         settings = settings,
         title = nextTitle,
-        enabled = validated.value,
+        enabled = (next != null && !responseState.invalid),
         header = header,
         onClick = {
-            next.value?.let {
+            next?.let {
                 when (it) {
                     is Position.ScreenPosition -> {
                         if (it.screen is ThankYouScreen && settings.presentation.skipEndingScreen) {
@@ -143,136 +154,91 @@ internal fun FieldView(
                 is FieldProperties.DateStampProperties -> {
                     DateView(
                         settings = settings,
-                        ref = field.ref,
                         properties = field.properties.properties,
-                        responses = responses,
-                        responseHandler = { ref, response ->
-                            handleResponse(ref, response)
-                        },
+                        responseState = responseState,
                         validations = field.validations,
-                        validationHandler = { validated ->
-                            handleValidation(validated)
-                        },
-                    )
+                    ) {
+                        handleResponseState(it)
+                    }
                 }
                 is FieldProperties.DropdownProperties -> {
                     DropdownView(
                         settings = settings,
-                        ref = field.ref,
                         properties = field.properties.properties,
-                        responses = responses,
-                        responseHandler = { ref, response ->
-                            handleResponse(ref, response)
-                        },
+                        responseState = responseState,
                         validations = field.validations,
-                        validationHandler = { validated ->
-                            handleValidation(validated)
-                        },
-                    )
+                    ) {
+                        handleResponseState(it)
+                    }
                 }
                 is FieldProperties.GroupProperties -> {
                     // No additional content
-                    handleValidation(true)
                 }
                 is FieldProperties.LongTextProperties -> {
                     LongTextView(
                         settings = settings,
-                        ref = field.ref,
                         properties = field.properties.properties,
-                        responses = responses,
-                        responseHandler = { ref, response ->
-                            handleResponse(ref, response)
-                        },
+                        responseState = responseState,
                         validations = field.validations,
-                        validationHandler = { validated ->
-                            handleValidation(validated)
-                        },
-                    )
+                    ) {
+                        handleResponseState(it)
+                    }
                 }
                 is FieldProperties.MultipleChoiceProperties -> {
                     MultipleChoiceView(
                         settings = settings,
-                        ref = field.ref,
                         properties = field.properties.properties,
-                        responses = responses,
-                        responseHandler = { ref, response ->
-                            handleResponse(ref, response)
-                        },
+                        responseState = responseState,
                         validations = field.validations,
-                        validationHandler = { validated ->
-                            handleValidation(validated)
-                        },
-                    )
+                    ) {
+                        handleResponseState(it)
+                    }
                 }
                 is FieldProperties.NumberProperties -> {
                     NumberView(
                         settings = settings,
-                        ref = field.ref,
                         properties = field.properties.properties,
-                        responses = responses,
-                        responseHandler = { ref, response ->
-                            handleResponse(ref, response)
-                        },
+                        responseState = responseState,
                         validations = field.validations,
-                        validationHandler = { validated ->
-                            handleValidation(validated)
-                        },
-                    )
+                    ) {
+                        handleResponseState(it)
+                    }
                 }
                 is FieldProperties.RatingProperties -> {
                     RatingView(
                         settings = settings,
-                        ref = field.ref,
                         properties = field.properties.properties,
-                        responses = responses,
-                        responseHandler = { ref, response ->
-                            handleResponse(ref, response)
-                        },
+                        responseState = responseState,
                         validations = field.validations,
-                        validationHandler = { validated ->
-                            handleValidation(validated)
-                        },
-                    )
+                    ) {
+                        handleResponseState(it)
+                    }
                 }
                 is FieldProperties.ShortTextProperties -> {
                     ShortTextView(
                         settings = settings,
-                        ref = field.ref,
                         properties = field.properties.properties,
-                        responses = responses,
-                        responseHandler = { ref, response ->
-                            handleResponse(ref, response)
-                        },
+                        responseState = responseState,
                         validations = field.validations,
-                        validationHandler = { validated ->
-                            handleValidation(validated)
-                        },
-                    )
+                    ) {
+                        handleResponseState(it)
+                    }
                 }
                 is FieldProperties.StatementProperties -> {
                     StatementView(
                         settings = settings,
                         properties = field.properties.properties,
-                        validations = field.validations,
-                        validationHandler = { validated ->
-                            handleValidation(validated)
-                        },
                     )
                 }
                 is FieldProperties.YesNoProperties -> {
                     YesNoView(
                         settings = settings,
-                        ref = field.ref,
                         properties = field.properties.properties,
-                        responses = responses,
-                        responseHandler = { ref, response ->
-                            handleResponse(ref, response)
-                        },
+                        responseState = responseState,
                         validations = field.validations,
-                        validationHandler = { validated ->
-                            handleValidation(validated)
-                        },
-                    )
+                    ) {
+                        handleResponseState(it)
+                    }
                 }
             }
         }
@@ -314,14 +280,5 @@ private class FieldParameterProvider : PreviewParameterProvider<String> {
         get() = sequenceOf(
             Field.previewDate.ref,
             Field.previewDropdown.ref,
-//            "", //References.group,
-//            "", //References.longText,
-//            "", //References.multipleChoice_Many,
-//            "", //References.multipleChoice_One,
-//            "", //References.number,
-//            "", //References.rating,
-//            "", //References.shortText,
-//            "", //References.statement,
-//            "", //References.yesNo,
         )
 }

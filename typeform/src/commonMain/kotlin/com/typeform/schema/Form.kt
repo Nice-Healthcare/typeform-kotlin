@@ -3,6 +3,7 @@ package com.typeform.schema
 import com.typeform.models.Position
 import com.typeform.models.Responses
 import com.typeform.models.TypeformException
+import com.typeform.models.responseRequiredFor
 
 data class Form(
     val id: String,
@@ -137,6 +138,39 @@ data class Form(
     }
 
     /**
+     * Determine the first [Position] that should be displayed given the provided [Responses].
+     *
+     * When preloading responses for the form, the _first_ field may no longer be the one desired to be shown.
+     *
+     * @param skipWelcomeScreen Flag indicated whether a 'Welcome Screen' should be skipped if present.
+     * @param responses Any responses that are already known when the form is first presented.
+     * @return The first [Position] to be presented.
+     * @throws [TypeformException]
+     */
+    @Throws(TypeformException::class)
+    fun firstPosition(skipWelcomeScreen: Boolean, responses: Responses): Position {
+        if (!skipWelcomeScreen) {
+            firstScreen?.let { screen ->
+                return Position.ScreenPosition(screen)
+            }
+        }
+
+        val field = fields.firstOrNull()
+        if (field == null) {
+            defaultOrFirstThankYouScreen?.let {
+                return Position.ScreenPosition(it)
+            }
+
+            throw TypeformException.FirstPosition
+        }
+
+        return nextPosition(
+            from = Position.FieldPosition(field, null),
+            responses = responses
+        )
+    }
+
+    /**
      * Determine the next [Field] or [Screen] given the current [Position] and [Responses].
      *
      * @param from The current [Position] in the flow of the [Form].
@@ -168,87 +202,117 @@ data class Form(
                 }
             }
             is Position.FieldPosition -> {
-                // If the `Field` requires a response, and there is none given...
-                val responseGiven = responses[from.field.ref]
-                if (from.field.validations?.required == true && responseGiven == null) {
-                    throw TypeformException.ResponseValueRequired
-                }
+                var next: Position = Position.FieldPosition(from.field, from.group)
+                try {
+                    next = nextPositionFrom(from.field, from.group, responses)
+                    var requiresResponse = false
 
-                // Is the `FieldType` GROUP? Position at the first question in the group...
-                when (from.field.properties) {
-                    is FieldProperties.GroupProperties -> {
-                        val field = from.field.properties.properties.fields.firstOrNull() ?: throw TypeformException.NextPosition(from)
-                        return Position.FieldPosition(field, from.field.properties.properties)
-                    }
-                    else -> {
-                    }
-                }
-
-                // Is there specific `Logic` for the `Field`? Process it for `Action`s...
-                logic.firstOrNull { it.ref == from.field.ref }?.let { logic ->
-                    logic.actions.firstOrNull { it.condition.satisfiedGiven(responses) == true }?.let { action ->
-                        when (action.details.to.type) {
-                            ActionDetails.ToType.FIELD -> {
-                                return parentForFieldWithRef(action.details.to.value) ?: throw TypeformException.NextPosition(from)
+                    while (!requiresResponse) {
+                        when (next) {
+                            is Position.ScreenPosition -> {
+                                requiresResponse = true
                             }
-                            ActionDetails.ToType.THANK_YOU -> {
-                                var screen = thankyou_screens.firstOrNull { it.ref == action.details.to.value }
-                                if (screen != null) {
-                                    return Position.ScreenPosition(screen)
+                            is Position.FieldPosition -> {
+                                if (responses[next.field.ref] == null) {
+                                    requiresResponse = true
+                                } else {
+                                    next = nextPositionFrom(next.field, next.group, responses)
                                 }
-
-                                screen = thankyou_screens.firstOrNull { it.isDefault }
-                                if (screen != null) {
-                                    return Position.ScreenPosition(screen)
-                                }
-
-                                throw TypeformException.NextPosition(from)
                             }
                         }
                     }
+
+                    return next
+                } catch (exception: TypeformException.ResponseValueRequired) {
+                    return next
                 }
-
-                // Are we already in a group? What's the next field...
-                from.group?.let { group ->
-                    val index = group.fields.indexOfFirst { it.id == from.field.id }
-                    if (index == -1) {
-                        throw TypeformException.NextPosition(from)
-                    }
-
-                    group.fields.getOrNull(index + 1)?.let { nextField ->
-                        return Position.FieldPosition(nextField, group)
-                    }
-                }
-
-                // If the group is complete, what's the next field...
-                ancestorForFieldWithRef(from.field.ref)?.let { ancestor ->
-                    when (ancestor) {
-                        is Position.FieldPosition -> {
-                            val index = fields.indexOfFirst { it.id == ancestor.field.id }
-                            if (index == -1) {
-                                throw TypeformException.NextPosition(from)
-                            }
-
-                            fields.getOrNull(index + 1)?.let { nextField ->
-                                return Position.FieldPosition(nextField, null)
-                            }
-                        }
-                        else -> {
-                            throw TypeformException.NextPosition(from)
-                        }
-                    }
-                }
-
-                // If the field has no logic and is not in a group, what is the next field...
-                val index = fields.indexOfFirst { it.id == from.field.id }
-                if (index != -1) {
-                    fields.getOrNull(index + 1)?.let { nextField ->
-                        return Position.FieldPosition(nextField, null)
-                    }
-                }
-
-                throw TypeformException.NextPosition(from)
             }
         }
     }
+}
+
+@Throws(TypeformException::class)
+private fun Form.nextPositionFrom(field: Field, group: Group?, responses: Responses): Position {
+    val currentPosition = Position.FieldPosition(field, group)
+
+    // Is a response required of the current position?
+    if (responses.responseRequiredFor(field)) {
+        throw TypeformException.ResponseValueRequired
+    }
+
+    // Is this [Field] of type 'group'?
+    when (field.properties) {
+        is FieldProperties.GroupProperties -> {
+            val firstGroupField = field.properties.properties.fields.firstOrNull() ?: throw TypeformException.NextPosition(currentPosition)
+            return Position.FieldPosition(firstGroupField, field.properties.properties)
+        }
+        else -> {
+        }
+    }
+
+    // Is there [Logic] that applies to this [Field].
+    logic.firstOrNull { it.ref == field.ref }?.let { logic ->
+        logic.actions.firstOrNull { it.condition.satisfiedGiven(responses) == true }?.let { action ->
+            when (action.details.to.type) {
+                ActionDetails.ToType.FIELD -> {
+                    return parentForFieldWithRef(action.details.to.value) ?: throw TypeformException.NextPosition(currentPosition)
+                }
+                ActionDetails.ToType.THANK_YOU -> {
+                    var screen = thankyou_screens.firstOrNull { it.ref == action.details.to.value }
+                    if (screen != null) {
+                        return Position.ScreenPosition(screen)
+                    }
+
+                    screen = thankyou_screens.firstOrNull { it.isDefault }
+                    if (screen != null) {
+                        return Position.ScreenPosition(screen)
+                    }
+
+                    throw TypeformException.NextPosition(currentPosition)
+                }
+            }
+        }
+    }
+
+    // Are we already in a 'group'?
+    group?.let { theGroup ->
+        // Is there a next [Field]?
+        val fieldIndex = theGroup.fields.indexOfFirst { it.id == field.id }
+        if (fieldIndex == -1) {
+            throw TypeformException.NextPosition(currentPosition)
+        }
+
+        theGroup.fields.getOrNull(fieldIndex + 1)?.let { nextField ->
+            return Position.FieldPosition(nextField, theGroup)
+        }
+
+        // Is the 'group' complete?
+        ancestorForFieldWithRef(field.ref)?.let { ancestor ->
+            when (ancestor) {
+                is Position.FieldPosition -> {
+                    val ancestorIndex = fields.indexOfFirst { it.id == ancestor.field.id }
+                    if (ancestorIndex == -1) {
+                        throw TypeformException.NextPosition(currentPosition)
+                    }
+
+                    fields.getOrNull(ancestorIndex + 1)?.let { nextField ->
+                        return Position.FieldPosition(nextField, null)
+                    }
+                }
+                else -> {
+                    throw TypeformException.NextPosition(currentPosition)
+                }
+            }
+        }
+    }
+
+    // If the field has no logic and is not in a group, what is the next field...
+    val index = fields.indexOfFirst { it.id == field.id }
+    if (index != -1) {
+        fields.getOrNull(index + 1)?.let { nextField ->
+            return Position.FieldPosition(nextField, null)
+        }
+    }
+
+    throw TypeformException.NextPosition(currentPosition)
 }
