@@ -60,8 +60,8 @@ fun FormView(
     var showBackNavigation by remember { mutableStateOf(false) }
     var showConfirmCancel by remember { mutableStateOf(false) }
 
-    val startDestination = remember {
-        val firstPosition: Position? = try {
+    val startPosition: Position? = remember {
+        try {
             form.firstPosition(
                 skipWelcomeScreen = settings.presentation.skipWelcomeScreen,
                 responses = responses
@@ -69,13 +69,15 @@ fun FormView(
         } catch (_: Exception) {
             null
         }
+    }
 
-        return@remember when (firstPosition) {
+    val startDestination = remember {
+        when (startPosition) {
             is Position.ScreenPosition -> {
-                Pair(TypeformRoute.screen, firstPosition.screen.id)
+                Pair(TypeformRoute.screen, startPosition.screen.id)
             }
             is Position.FieldPosition -> {
-                Pair(TypeformRoute.field, firstPosition.field.id)
+                Pair(TypeformRoute.field, startPosition.field.id)
             }
             else -> {
                 Pair(TypeformRoute.rejected, "")
@@ -172,7 +174,7 @@ fun FormView(
                 ),
             ) {
                 showBackNavigation = false
-                val id = it.arguments?.getString("id") ?: form.firstScreen?.id
+                val id = (it.arguments?.getString("id") ?: startPosition?.associatedScreen()?.id) ?: form.firstScreen?.id
                 if (id == null) {
                     RejectedView(
                         scaffoldPadding = scaffoldPadding,
@@ -217,7 +219,7 @@ fun FormView(
                     },
                 ),
             ) {
-                val fieldId = it.arguments?.getString("id") ?: form.fields.firstOrNull()?.id
+                val fieldId = (it.arguments?.getString("id") ?: startPosition?.associatedField()?.id) ?: form.fields.firstOrNull()?.id
                 if (fieldId == null) {
                     showBackNavigation = false
                     RejectedView(
