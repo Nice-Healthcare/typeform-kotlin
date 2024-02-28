@@ -7,9 +7,11 @@ enum class Op(val rawValue: String) {
     IS("is"),
     IS_NOT("is_not"),
     OR("or"),
+    GREATER_EQUAL_THAN("greater_equal_than"),
+    LOWER_EQUAL_THAN("lower_equal_than"),
     ;
 
     companion object {
-        fun fromRawValue(rawValue: String) = Op.values().associateBy(Op::rawValue)[rawValue] ?: ALWAYS
+        fun fromRawValue(rawValue: String) = entries.associateBy(Op::rawValue)[rawValue] ?: ALWAYS
     }
 }

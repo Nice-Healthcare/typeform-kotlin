@@ -9,6 +9,7 @@ import com.typeform.schema.FieldType
 import com.typeform.schema.Group
 import com.typeform.schema.LongText
 import com.typeform.schema.MultipleChoice
+import com.typeform.schema.OpinionScale
 import com.typeform.schema.Rating
 import com.typeform.schema.ShortText
 import com.typeform.schema.Statement
@@ -21,7 +22,11 @@ data class FlatFieldProperties(
     val structure: String? = null,
     // Rating
     val shape: String? = null,
+    // Rating, Opinion Scale
     val steps: Int? = null,
+    // Opinion Scale
+    val labels: OpinionScale.Labels? = null,
+    val start_at_one: Boolean? = null,
     // Dropdown, Multiple Choice
     val choices: List<Choice>? = null,
     val randomize: Boolean? = null,
@@ -96,6 +101,15 @@ fun FieldProperties.Companion.make(flatFieldProperties: FlatFieldProperties, fie
                 com.typeform.schema.Number(
                     description = flatFieldProperties.description,
                 ),
+            )
+        }
+        FieldType.OPINION_SCALE -> {
+            FieldProperties.OpinionScaleProperties(
+                OpinionScale(
+                    steps = flatFieldProperties.steps ?: 0,
+                    labels = flatFieldProperties.labels ?: OpinionScale.Labels(),
+                    start_at_one = flatFieldProperties.start_at_one ?: false
+                )
             )
         }
         FieldType.RATING -> {
@@ -174,6 +188,13 @@ fun FlatFieldProperties.Companion.make(fieldProperties: FieldProperties): FlatFi
         is FieldProperties.NumberProperties -> {
             FlatFieldProperties(
                 description = fieldProperties.properties.description,
+            )
+        }
+        is FieldProperties.OpinionScaleProperties -> {
+            FlatFieldProperties(
+                steps = fieldProperties.properties.steps,
+                labels = fieldProperties.properties.labels,
+                start_at_one = fieldProperties.properties.start_at_one,
             )
         }
         is FieldProperties.RatingProperties -> {

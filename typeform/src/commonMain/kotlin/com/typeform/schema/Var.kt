@@ -12,11 +12,12 @@ data class Var(
         }
 
         data class Bool(val value: Boolean) : Value()
+        data class Integer(val value: Int) : Value()
         data class RefOrString(val value: String) : Value()
     }
 }
 
-fun List<Var>.matchGiven(responses: Responses): Boolean? {
+fun List<Var>.matchGiven(responses: Responses, op: Op): Boolean? {
     if (isEmpty()) {
         return true
     }
@@ -45,6 +46,29 @@ fun List<Var>.matchGiven(responses: Responses): Boolean? {
                 }
             }
         }
+        is Var.Value.Integer -> {
+            return when (response) {
+                is ResponseValue.IntValue -> {
+                    when (op) {
+                        Op.EQUAL -> {
+                            response.value == valueVar.value.value
+                        }
+                        Op.GREATER_EQUAL_THAN -> {
+                            response.value >= valueVar.value.value
+                        }
+                        Op.LOWER_EQUAL_THAN -> {
+                            response.value <= valueVar.value.value
+                        }
+                        else -> {
+                            null
+                        }
+                    }
+                }
+                else -> {
+                    null
+                }
+            }
+        }
         is Var.Value.RefOrString -> {
             return when (response) {
                 is ResponseValue.ChoiceValue -> {
@@ -64,7 +88,7 @@ fun List<Var>.matchGiven(responses: Responses): Boolean? {
     }
 }
 
-fun List<Var>.compactMatchGiven(responses: Responses): List<Boolean> {
-    val match = matchGiven(responses) ?: return emptyList()
+fun List<Var>.compactMatchGiven(responses: Responses, op: Op): List<Boolean> {
+    val match = matchGiven(responses, op) ?: return emptyList()
     return listOf(match)
 }

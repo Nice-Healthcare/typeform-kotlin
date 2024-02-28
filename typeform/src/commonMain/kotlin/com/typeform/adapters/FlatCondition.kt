@@ -84,6 +84,12 @@ fun FlatCondition.Companion.make(`var`: Var): FlatCondition {
                 value = `var`.value.value,
             )
         }
+        is Var.Value.Integer -> {
+            FlatCondition(
+                type = `var`.type,
+                value = `var`.value.value,
+            )
+        }
         is Var.Value.RefOrString -> {
             FlatCondition(
                 type = `var`.type,

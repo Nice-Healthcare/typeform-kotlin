@@ -7,6 +7,7 @@ enum class FieldType(val rawValue: String) {
     LONG_TEXT("long_text"),
     MULTIPLE_CHOICE("multiple_choice"),
     NUMBER("number"),
+    OPINION_SCALE("opinion_scale"),
     RATING("rating"),
     SHORT_TEXT("short_text"),
     STATEMENT("statement"),

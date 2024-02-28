@@ -10,6 +10,7 @@ sealed class FieldProperties {
     data class LongTextProperties(val properties: LongText) : FieldProperties()
     data class MultipleChoiceProperties(val properties: MultipleChoice) : FieldProperties()
     data class NumberProperties(val properties: Number) : FieldProperties()
+    data class OpinionScaleProperties(val properties: OpinionScale) : FieldProperties()
     data class RatingProperties(val properties: Rating) : FieldProperties()
     data class ShortTextProperties(val properties: ShortText) : FieldProperties()
     data class StatementProperties(val properties: Statement) : FieldProperties()
@@ -73,6 +74,17 @@ sealed class FieldProperties {
     fun asNumber(): Number? {
         return when (this) {
             is NumberProperties -> {
+                this.properties
+            }
+            else -> {
+                null
+            }
+        }
+    }
+
+    fun asOpinionScale(): OpinionScale? {
+        return when (this) {
+            is OpinionScaleProperties -> {
                 this.properties
             }
             else -> {

@@ -20,30 +20,35 @@ data class Condition(
     fun satisfiedGiven(responses: Responses): Boolean? {
         val satisfied = when (parameters) {
             is Parameters.Vars -> {
-                parameters.vars.compactMatchGiven(responses)
+                parameters.vars.compactMatchGiven(responses, op)
             }
             is Parameters.Conditions -> {
                 parameters.conditions.mapNotNull { it.satisfiedGiven(responses) }
             }
         }
 
+        if (op == Op.ALWAYS) {
+            return true
+        }
+
+        if (satisfied.isEmpty()) {
+            return false
+        }
+
         return when (op) {
-            Op.ALWAYS -> {
-                true
-            }
             Op.AND -> {
-                satisfied.isNotEmpty() && !satisfied.contains(false)
+                !satisfied.contains(false)
             }
             Op.OR -> {
-                satisfied.isNotEmpty() && satisfied.contains(true)
+                satisfied.contains(true)
             }
             Op.IS -> {
-                satisfied.isNotEmpty() && !satisfied.contains(false)
+                !satisfied.contains(false)
             }
             Op.IS_NOT -> {
-                satisfied.isNotEmpty() && !satisfied.contains(true)
+                !satisfied.contains(true)
             }
-            Op.EQUAL -> {
+            else -> {
                 null
             }
         }

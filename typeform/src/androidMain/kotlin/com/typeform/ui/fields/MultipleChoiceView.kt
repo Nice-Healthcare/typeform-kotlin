@@ -9,16 +9,16 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.tooling.preview.PreviewParameter
-import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import com.typeform.models.ResponseValue
 import com.typeform.schema.Choice
 import com.typeform.schema.MultipleChoice
 import com.typeform.schema.Validations
-import com.typeform.ui.components.ChoiceButtonView
+import com.typeform.ui.components.IntermittentChoiceButton
 import com.typeform.ui.components.StyledTextView
 import com.typeform.ui.models.ResponseState
 import com.typeform.ui.models.Settings
+import com.typeform.ui.preview.previewCold
+import com.typeform.ui.preview.previewHot
 
 @Composable
 internal fun MultipleChoiceView(
@@ -92,7 +92,7 @@ internal fun MultipleChoiceView(
             verticalArrangement = Arrangement.spacedBy(settings.presentation.contentVerticalSpacing),
         ) {
             choices.forEach { choice ->
-                ChoiceButtonView(
+                IntermittentChoiceButton(
                     settings = settings,
                     text = choice.label,
                     allowMultiple = allowMultiple,
@@ -109,13 +109,14 @@ internal fun MultipleChoiceView(
 
 @Preview(showBackground = true)
 @Composable
-private fun MultipleChoiceViewPreview(
-    @PreviewParameter(MultipleChoiceParameterProvider::class) reference: String,
-) {
+private fun MultipleChoiceViewPreview() {
     MultipleChoiceView(
         settings = Settings(),
         properties = MultipleChoice(
-            choices = emptyList(),
+            choices = listOf(
+                Choice.previewHot,
+                Choice.previewCold,
+            ),
             randomize = false,
             allow_multiple_selection = false,
             allow_other_choice = false,
@@ -126,12 +127,4 @@ private fun MultipleChoiceViewPreview(
         validations = null,
     ) {
     }
-}
-
-private class MultipleChoiceParameterProvider : PreviewParameterProvider<String> {
-    override val values: Sequence<String>
-        get() = sequenceOf(
-            "",
-            "",
-        )
 }

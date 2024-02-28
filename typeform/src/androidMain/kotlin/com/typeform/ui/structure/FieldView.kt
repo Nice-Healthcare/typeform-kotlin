@@ -36,6 +36,7 @@ import com.typeform.ui.fields.DropdownView
 import com.typeform.ui.fields.LongTextView
 import com.typeform.ui.fields.MultipleChoiceView
 import com.typeform.ui.fields.NumberView
+import com.typeform.ui.fields.OpinionScaleView
 import com.typeform.ui.fields.RatingView
 import com.typeform.ui.fields.ShortTextView
 import com.typeform.ui.fields.StatementView
@@ -196,6 +197,16 @@ internal fun FieldView(
                 }
                 is FieldProperties.NumberProperties -> {
                     NumberView(
+                        settings = settings,
+                        properties = field.properties.properties,
+                        responseState = responseState,
+                        validations = field.validations,
+                    ) {
+                        handleResponseState(it)
+                    }
+                }
+                is FieldProperties.OpinionScaleProperties -> {
+                    OpinionScaleView(
                         settings = settings,
                         properties = field.properties.properties,
                         responseState = responseState,
