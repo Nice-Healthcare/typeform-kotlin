@@ -12,6 +12,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.typeform.models.ResponseValue
@@ -82,14 +83,16 @@ internal fun OpinionScaleView(
         }
 
         FlowRow(
+            modifier = if (settings.rating.fillMaxWidth) Modifier else Modifier.align(Alignment.CenterHorizontally),
             horizontalArrangement = Arrangement.spacedBy(settings.presentation.contentHorizontalSpacing),
-            maxItemsInEachRow = 5
+            verticalArrangement = Arrangement.spacedBy(settings.presentation.contentVerticalSpacing),
+            maxItemsInEachRow = 6
         ) {
             range.forEach { step ->
                 IntermittentChoiceButton(
                     settings = settings,
                     text = "$step",
-                    modifier = Modifier.weight(1f),
+                    modifier = if (settings.rating.fillMaxWidth) Modifier.weight(1f) else Modifier,
                     allowMultiple = null,
                     selected = selected == step,
                 ) {
@@ -107,6 +110,26 @@ internal fun OpinionScaleView(
 private fun OpinionScaleViewPreview() {
     OpinionScaleView(
         settings = Settings(),
+        properties = OpinionScale(
+            steps = 11,
+            labels = OpinionScale.Labels("leading", "trailing"),
+            start_at_one = false,
+        ),
+        responseState = ResponseState(),
+        validations = null,
+    ) {
+    }
+}
+
+@Preview(showBackground = true, showSystemUi = true)
+@Composable
+private fun OpinionScaleViewPreviewFillMaxWidth() {
+    OpinionScaleView(
+        settings = Settings(
+            rating = Settings.Rating(
+                fillMaxWidth = true,
+            )
+        ),
         properties = OpinionScale(
             steps = 11,
             labels = OpinionScale.Labels("leading", "trailing"),
