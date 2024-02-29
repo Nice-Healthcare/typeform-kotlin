@@ -309,9 +309,21 @@ private fun Form.nextPositionFrom(field: Field, group: Group?, responses: Respon
     // If the field has no logic and is not in a group, what is the next field...
     val index = fields.indexOfFirst { it.id == field.id }
     if (index != -1) {
-        fields.getOrNull(index + 1)?.let { nextField ->
-            return Position.FieldPosition(nextField, null)
+        when (val nextIndex = index + 1) {
+            fields.count() -> {
+                defaultOrFirstThankYouScreen?.let {
+                    return Position.ScreenPosition(it)
+                }
+            }
+            in 1..fields.count().dec() -> {
+                fields.getOrNull(nextIndex)?.let { nextField ->
+                    return Position.FieldPosition(nextField, null)
+                }
+            }
+            else -> {
+            }
         }
+
     }
 
     throw TypeformException.NextPosition(currentPosition)
