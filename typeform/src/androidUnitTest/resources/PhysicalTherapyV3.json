@@ -1,0 +1,1142 @@
+{
+  "_links" : {
+    "display" : "https:\/\/tohanuk.typeform.com\/to\/rGeAA7V5",
+    "responses" : "https:\/\/api.typeform.com\/forms\/rGeAA7V5\/responses"
+  },
+  "fields" : [
+    {
+      "id" : "iJolnxu6Sftn",
+      "properties" : {
+        "button_text" : "Acknowledge & Continue",
+        "description" : "Signs of an emergency may include:\n\n• Active suicidal\/homicidal feelings\n\n• Chest pain or heart attack symptoms \n\n• Significant difficulty breathing\n\n• Stroke symptoms (facial drooping, arm weakness, speech difficulty)\n\n• Severe allergic reaction\n\n• Fever greater than 104.5°F\n\n• Coughing or vomiting blood\n\n• Sudden, severe, uncontrolled pain\n\n• Severe headache\n\n• Loss of consciousness\/changes in mental status\n\n• Poisoning\/inhalation of substances\n\n• Moderate to severe wounds\/burns\n\n• Seizures\n\n• Significant trauma\/head injury\n\n• Pregnancy complications (vaginal bleeding, cramping, or abdominal pain)",
+        "hide_marks" : false
+      },
+      "ref" : "medical-emergency-confirmation",
+      "title" : "If you are experiencing a medical emergency, please call 911 or seek immediate medical attention.",
+      "type" : "statement"
+    },
+    {
+      "id" : "cLKRIr0wbDP9",
+      "properties" : {
+        "button_text" : "Continue With PT Intake",
+        "description" : "If you’re experiencing any of the following, we recommend canceling this intake and scheduling a primary care visit.\n\n• New or rapidly worsening pain, especially if accompanied by fever, night sweats, nausea, or vomiting\n\n• Unexplained weight loss or gain\n\n• Pain worsening at night, especially in bones or joints\n\n• Morning back stiffness lasting more than 60 minutes\n\n• Pain or symptoms related to previous cancer history or treatment\n\n• Vertigo or other inner ear dysfunction",
+        "hide_marks" : false
+      },
+      "ref" : "physical-therapy-intro",
+      "title" : "Let’s make sure physical therapy is the right first step.",
+      "type" : "statement"
+    },
+    {
+      "id" : "YxuP6o2EwkiZ",
+      "properties" : {
+
+      },
+      "ref" : "patient-age",
+      "title" : "What is your age?",
+      "type" : "number",
+      "validations" : {
+        "required" : true
+      }
+    },
+    {
+      "id" : "XuV0HYjmZD0V",
+      "properties" : {
+        "button_text" : "Okay",
+        "description" : "This helps us provide safe and effective care for your child.",
+        "hide_marks" : false
+      },
+      "ref" : "minor-consent-guardian-present-confirmation-physical-therapy",
+      "title" : "For patients ages 12-17, a parent or guardian must be present during physical therapy visits.",
+      "type" : "statement"
+    },
+    {
+      "id" : "wJBMKPpFNx6A",
+      "properties" : {
+        "allow_multiple_selection" : false,
+        "allow_other_choice" : false,
+        "choices" : [
+          {
+            "id" : "0Hv7EwSN5ByB",
+            "label" : "Female",
+            "ref" : "sex-assigned-at-birth-answer-female"
+          },
+          {
+            "id" : "AlXZD8PosUqK",
+            "label" : "Male",
+            "ref" : "sex-assigned-at-birth-answer-male"
+          }
+        ],
+        "description" : "We use this information to provide safe medical treatment.",
+        "randomize" : false,
+        "vertical_alignment" : true
+      },
+      "ref" : "sex-assigned-at-birth",
+      "title" : "What was your sex assigned at birth?",
+      "type" : "multiple_choice",
+      "validations" : {
+        "required" : true
+      }
+    },
+    {
+      "id" : "RGfEZ17SXewO",
+      "properties" : {
+        "allow_multiple_selection" : true,
+        "allow_other_choice" : false,
+        "choices" : [
+          {
+            "id" : "NEAoVPwgCcSe",
+            "label" : "Upper back\/neck",
+            "ref" : "reason-for-visit-physical-therapy-symptoms-location-answer-upper-back"
+          },
+          {
+            "id" : "LEd0blG5H8NL",
+            "label" : "Shoulder",
+            "ref" : "reason-for-visit-physical-therapy-symptoms-location-answer-shoulder"
+          },
+          {
+            "id" : "lhVCWTT0GNzr",
+            "label" : "Elbow",
+            "ref" : "reason-for-visit-physical-therapy-symptoms-location-answer-elbow"
+          },
+          {
+            "id" : "jYVqGgCxfV1D",
+            "label" : "Wrist",
+            "ref" : "reason-for-visit-physical-therapy-symptoms-location-answer-wrist"
+          },
+          {
+            "id" : "kDm2zR4kwXHE",
+            "label" : "Hand\/finger",
+            "ref" : "reason-for-visit-physical-therapy-symptoms-location-answer-hand-finger"
+          },
+          {
+            "id" : "rTLcSvPGbEE6",
+            "label" : "Low back",
+            "ref" : "reason-for-visit-physical-therapy-symptoms-location-answer-low-back"
+          },
+          {
+            "id" : "BJFAPFTGV9Ya",
+            "label" : "Hip",
+            "ref" : "reason-for-visit-physical-therapy-symptoms-location-answer-hip"
+          },
+          {
+            "id" : "sCIAqeM210Z2",
+            "label" : "Pelvis",
+            "ref" : "reason-for-visit-physical-therapy-symptoms-location-answer-pelvis"
+          },
+          {
+            "id" : "B0TrYnKGDgMJ",
+            "label" : "Knee",
+            "ref" : "reason-for-visit-physical-therapy-symptoms-location-answer-knee"
+          },
+          {
+            "id" : "A2Mb2082kwF5",
+            "label" : "Ankle",
+            "ref" : "reason-for-visit-physical-therapy-symptoms-location-answer-ankle"
+          },
+          {
+            "id" : "GMP0iSTRq5iO",
+            "label" : "Toe\/foot",
+            "ref" : "reason-for-visit-physical-therapy-symptoms-location-answer-toe-foot"
+          },
+          {
+            "id" : "xUEoSt2Z7Guz",
+            "label" : "Other (please describe)",
+            "ref" : "reason-for-visit-physical-therapy-symptoms-location-answer-other"
+          }
+        ],
+        "description" : "Select all that apply",
+        "randomize" : false,
+        "vertical_alignment" : true
+      },
+      "ref" : "reason-for-visit-physical-therapy-symptoms-location",
+      "title" : "Where in your body are you primarily experiencing symptoms?",
+      "type" : "multiple_choice",
+      "validations" : {
+        "required" : true
+      }
+    },
+    {
+      "id" : "hWnS3BIbSh1R",
+      "properties" : {
+
+      },
+      "ref" : "reason-for-visit-physical-therapy-symptoms-location-other",
+      "title" : "In a few words, please describe the other body region where you're experiencing symptoms.",
+      "type" : "short_text",
+      "validations" : {
+        "required" : true
+      }
+    },
+    {
+      "id" : "mBGeYOe3wbpy",
+      "properties" : {
+        "allow_multiple_selection" : true,
+        "allow_other_choice" : false,
+        "choices" : [
+          {
+            "id" : "yh1LcJQ5AP2C",
+            "label" : "Pain or tenderness",
+            "ref" : "reason-for-visit-physical-therapy-symptoms-answer-pain"
+          },
+          {
+            "id" : "lpOqwXIWFqVQ",
+            "label" : "Stiffness or aching",
+            "ref" : "reason-for-visit-physical-therapy-symptoms-answer-stiffness"
+          },
+          {
+            "id" : "G1QAP5BikLT8",
+            "label" : "Swelling",
+            "ref" : "reason-for-visit-physical-therapy-symptoms-answer-swelling"
+          },
+          {
+            "id" : "n1zIb9lBmGK4",
+            "label" : "Numbness or tingling",
+            "ref" : "reason-for-visit-physical-therapy-symptoms-answer-numbness"
+          },
+          {
+            "id" : "jHSt3mHsv2oQ",
+            "label" : "Decreased range of motion",
+            "ref" : "reason-for-visit-physical-therapy-symptoms-answer-range-of-motion"
+          },
+          {
+            "id" : "g12bwANiiXbZ",
+            "label" : "Other (please describe)",
+            "ref" : "reason-for-visit-physical-therapy-symptoms-answer-other"
+          }
+        ],
+        "description" : "Select all that apply",
+        "randomize" : false,
+        "vertical_alignment" : true
+      },
+      "ref" : "reason-for-visit-physical-therapy-symptoms",
+      "title" : "Which of the following symptoms are you experiencing?",
+      "type" : "multiple_choice",
+      "validations" : {
+        "required" : true
+      }
+    },
+    {
+      "id" : "Wa7gncUXhJzV",
+      "properties" : {
+
+      },
+      "ref" : "reason-for-visit-physical-therapy-symptoms-other",
+      "title" : "In a few words, please describe the other symptoms you're experiencing.",
+      "type" : "short_text",
+      "validations" : {
+        "required" : true
+      }
+    },
+    {
+      "id" : "jGUhbaDhCJiy",
+      "properties" : {
+        "allow_multiple_selection" : true,
+        "allow_other_choice" : false,
+        "choices" : [
+          {
+            "id" : "inX5mGY7GpKc",
+            "label" : "Pelvic and\/or tailbone pain",
+            "ref" : "reason-for-visit-physical-therapy-symptoms-answer-pelvic-pain"
+          },
+          {
+            "id" : "o9yNCuVnKYQW",
+            "label" : "Constipation",
+            "ref" : "reason-for-visit-physical-therapy-symptoms-answer-pelvic-constipation"
+          },
+          {
+            "id" : "u6o6Sz55EKOw",
+            "label" : "Frequent urination or bowel movements",
+            "ref" : "reason-for-visit-physical-therapy-symptoms-answer-pelvic-frequent-urination-or-bowel-movements"
+          },
+          {
+            "id" : "IMbWPcfO6jU4",
+            "label" : "Trouble controlling urine or bowels, leading to leaks",
+            "ref" : "reason-for-visit-physical-therapy-symptoms-answer-pelvic-leaks"
+          },
+          {
+            "id" : "mHzAlVFcXUgU",
+            "label" : "Pain during sex",
+            "ref" : "reason-for-visit-physical-therapy-symptoms-answer-pelvic-pain-during-sex"
+          },
+          {
+            "id" : "uziwipEyvpid",
+            "label" : "Erectile dysfunction",
+            "ref" : "reason-for-visit-physical-therapy-symptoms-answer-pelvic-erectile-dysfunction"
+          },
+          {
+            "id" : "vV0EO509SGMD",
+            "label" : "Other (please describe)",
+            "ref" : "reason-for-visit-physical-therapy-symptoms-answer-pelvic-other"
+          }
+        ],
+        "description" : "Select all that apply",
+        "randomize" : false,
+        "vertical_alignment" : true
+      },
+      "ref" : "reason-for-visit-physical-therapy-symptoms-pelvic",
+      "title" : "Are you experiencing any of the following pelvic symptoms?",
+      "type" : "multiple_choice",
+      "validations" : {
+        "required" : true
+      }
+    },
+    {
+      "id" : "fdXE1yFfHcYL",
+      "properties" : {
+
+      },
+      "ref" : "reason-for-visit-physical-therapy-symptoms-pelvic-other",
+      "title" : "In a few words, please describe the other pelvic symptoms you're experiencing.",
+      "type" : "short_text",
+      "validations" : {
+        "required" : true
+      }
+    },
+    {
+      "id" : "STdGvZ8JOajn",
+      "properties" : {
+        "allow_multiple_selection" : false,
+        "allow_other_choice" : false,
+        "choices" : [
+          {
+            "id" : "oGEW2Or6U2br",
+            "label" : "Yes",
+            "ref" : "reason-for-visit-physical-therapy-symptoms-pelvic-pregnancy-answer-yes"
+          },
+          {
+            "id" : "ypLaRpWsuQCG",
+            "label" : "No",
+            "ref" : "reason-for-visit-physical-therapy-symptoms-pelvic-pregnancy-answer-no"
+          },
+          {
+            "id" : "WWZuLX1d9107",
+            "label" : "I'm not sure",
+            "ref" : "reason-for-visit-physical-therapy-symptoms-pelvic-pregnancy-answer-not-sure"
+          }
+        ],
+        "randomize" : false,
+        "vertical_alignment" : true
+      },
+      "ref" : "reason-for-visit-physical-therapy-symptoms-pelvic-pregnancy",
+      "title" : "Are your pelvic symptoms related to pregnancy or child birth?",
+      "type" : "multiple_choice",
+      "validations" : {
+        "required" : true
+      }
+    },
+    {
+      "id" : "Y7kQCIWQ4gKn",
+      "properties" : {
+        "allow_multiple_selection" : false,
+        "allow_other_choice" : false,
+        "choices" : [
+          {
+            "id" : "w0WxgI0n6ias",
+            "label" : "Less than 2 weeks",
+            "ref" : "reason-for-visit-physical-therapy-symptoms-duration-answer-one-week"
+          },
+          {
+            "id" : "zP8qOrKlnkLp",
+            "label" : "2-4 weeks",
+            "ref" : "reason-for-visit-physical-therapy-symptoms-duration-answer-two-to-four-weeks"
+          },
+          {
+            "id" : "j2bscVbWDnQ6",
+            "label" : "1-3 months",
+            "ref" : "reason-for-visit-physical-therapy-symptoms-duration-answer-one-to-three-months"
+          },
+          {
+            "id" : "SgxDTsNqb3Xc",
+            "label" : "3-6 months",
+            "ref" : "reason-for-visit-physical-therapy-symptoms-duration-answer-three-to-six-months"
+          },
+          {
+            "id" : "LLhEdfaahdEL",
+            "label" : "6 months or more",
+            "ref" : "reason-for-visit-physical-therapy-symptoms-duration-answer-six-months-or-more"
+          }
+        ],
+        "randomize" : false,
+        "vertical_alignment" : true
+      },
+      "ref" : "reason-for-visit-physical-therapy-symptoms-duration",
+      "title" : "How long have you been experiencing these symptoms?",
+      "type" : "multiple_choice",
+      "validations" : {
+        "required" : true
+      }
+    },
+    {
+      "id" : "XrGAAaW3t7BW",
+      "properties" : {
+        "allow_multiple_selection" : true,
+        "allow_other_choice" : false,
+        "choices" : [
+          {
+            "id" : "pUlP2kj1UEiL",
+            "label" : "Pain from a broken bone",
+            "ref" : "reason-for-visit-physical-therapy-red-flags-answer-pain-from-broken-bone"
+          },
+          {
+            "id" : "EeUBlCrJSj40",
+            "label" : "Severe balance issues",
+            "ref" : "reason-for-visit-physical-therapy-red-flags-answer-balance-issues"
+          },
+          {
+            "id" : "RKqP4ag7oXfC",
+            "label" : "Worsening numbness, tingling, or muscle weakness",
+            "ref" : "reason-for-visit-physical-therapy-red-flags-answer-numbness"
+          },
+          {
+            "id" : "fddvZ5IbiC76",
+            "label" : "Recent concussion",
+            "ref" : "reason-for-visit-physical-therapy-red-flags-answer-concussion"
+          },
+          {
+            "id" : "OwR2s9tejvDM",
+            "label" : "Pain from a recent motor vehicle accident (within the last 12 weeks)",
+            "ref" : "reason-for-visit-physical-therapy-red-flags-answer-motor-vehicle-accident"
+          },
+          {
+            "id" : "Hs7PKhd97lLW",
+            "label" : "Inability to walk safely without assistance",
+            "ref" : "reason-for-visit-physical-therapy-red-flags-answer-inability-to-walk"
+          },
+          {
+            "id" : "Snpz59k2Poyc",
+            "label" : "2 or more falls in the last 6 months",
+            "ref" : "reason-for-visit-physical-therapy-red-flags-answer-two-or-more-falls"
+          },
+          {
+            "id" : "rXeX7j0ZOxr4",
+            "label" : "Pain from a recent surgery (within the last 6 weeks)",
+            "ref" : "reason-for-visit-physical-therapy-red-flags-answer-pain-from-recent-surgery"
+          },
+          {
+            "id" : "sO6uYLb2UGCJ",
+            "label" : "Workplace injury requiring assistance with claims and workers' compensation paperwork",
+            "ref" : "reason-for-visit-physical-therapy-red-flags-answer-workplace-injury"
+          }
+        ],
+        "description" : "Select all that apply, or select Next if none apply ",
+        "randomize" : false,
+        "vertical_alignment" : true
+      },
+      "ref" : "reason-for-visit-physical-therapy-red-flags",
+      "title" : "Do any of the following apply to the reason you’re seeking care?",
+      "type" : "multiple_choice",
+      "validations" : {
+        "required" : false
+      }
+    },
+    {
+      "id" : "wYHZROUL5U0o",
+      "properties" : {
+        "button_text" : "Schedule a PT Consult",
+        "description" : "We recommend a PT consultation to identify the best next steps. During the consultation one of our licensed physical therapists will:\n\n• Evaluate if Nice’s virtual physical therapy model will meet your needs.\n\n• Share resources and information about your condition.\n\n• If needed, provide guidance for finding an in-person physical therapist and answer questions about what to expect.",
+        "hide_marks" : false
+      },
+      "ref" : "reason-for-visit-physical-therapy-requires-appointment-confirmation",
+      "title" : "Based on your responses, your condition may require hands-on care.",
+      "type" : "statement"
+    },
+    {
+      "id" : "QoQcR2k6lk0K",
+      "properties" : {
+        "labels" : {
+          "left" : "No pain",
+          "right" : "Worst pain imaginable"
+        },
+        "start_at_one" : false,
+        "steps" : 11
+      },
+      "ref" : "maximum-pain-level",
+      "title" : "What is the maximum pain level you’ve felt over the last 24 hours?",
+      "type" : "opinion_scale",
+      "validations" : {
+        "required" : true
+      }
+    },
+    {
+      "id" : "SU3StdIFW7w4",
+      "properties" : {
+        "labels" : {
+          "left" : "No pain",
+          "right" : "Worst pain imaginable"
+        },
+        "start_at_one" : false,
+        "steps" : 10
+      },
+      "ref" : "lowest-pain-level",
+      "title" : "What is the lowest pain level you’ve felt over the last 24 hours?",
+      "type" : "opinion_scale",
+      "validations" : {
+        "required" : true
+      }
+    },
+    {
+      "id" : "8Mt41ulS6MYd",
+      "properties" : {
+        "description" : "In a few words, describe the activity"
+      },
+      "ref" : "reason-for-visit-physical-therapy-symptoms-effect",
+      "title" : "Identify one important activity that you are unable to do or have difficulty doing as a result of your symptoms.",
+      "type" : "short_text",
+      "validations" : {
+        "required" : true
+      }
+    },
+    {
+      "id" : "b4xNUvs1zeJT",
+      "properties" : {
+        "labels" : {
+          "left" : "Unable to perform",
+          "right" : "Able to perform normally"
+        },
+        "start_at_one" : false,
+        "steps" : 11
+      },
+      "ref" : "reason-for-visit-physical-therapy-symptoms-effect-severity",
+      "title" : "Rate your ability to perform that activity compared to before your injury or problem.",
+      "type" : "opinion_scale",
+      "validations" : {
+        "required" : true
+      }
+    },
+    {
+      "id" : "Ll7Kg8VmifXI",
+      "properties" : {
+        "allow_multiple_selection" : false,
+        "allow_other_choice" : false,
+        "choices" : [
+          {
+            "id" : "CcH9VF3OO56t",
+            "label" : "Nearly every day",
+            "ref" : "little-interest-due-to-pain-answer-nearly-every-day"
+          },
+          {
+            "id" : "AlJDHIH8QgsA",
+            "label" : "More than half the days",
+            "ref" : "little-interest-due-to-pain-answer-more-than-half-the-days"
+          },
+          {
+            "id" : "TkV3ZTTxLEjT",
+            "label" : "Several days",
+            "ref" : "little-interest-due-to-pain-answer-several-days"
+          },
+          {
+            "id" : "O43BDTNU4k0L",
+            "label" : "Not at all",
+            "ref" : "little-interest-due-to-pain-answer-not-at-all"
+          }
+        ],
+        "randomize" : false,
+        "vertical_alignment" : true
+      },
+      "ref" : "little-interest-due-to-pain",
+      "title" : "Over the past 2 weeks, how often have you felt little interest or pleasure in doing things because of your pain?",
+      "type" : "multiple_choice",
+      "validations" : {
+        "required" : true
+      }
+    },
+    {
+      "id" : "PgHoCWMdVooB",
+      "properties" : {
+        "allow_multiple_selection" : false,
+        "allow_other_choice" : false,
+        "choices" : [
+          {
+            "id" : "P9ZSrPSNknzU",
+            "label" : "Nearly every day",
+            "ref" : "anxiety-due-to-pain-answer-nearly-every-day"
+          },
+          {
+            "id" : "fifTXwJTe8Ve",
+            "label" : "More than half the days",
+            "ref" : "anxiety-due-to-pain-answer-more-than-half-the-days"
+          },
+          {
+            "id" : "PFgjFq5368Zm",
+            "label" : "Several days",
+            "ref" : "anxiety-due-to-pain-answer-several-days"
+          },
+          {
+            "id" : "GQSWmGIq0f3k",
+            "label" : "Not at all",
+            "ref" : "anxiety-due-to-pain-answer-not-at-all"
+          }
+        ],
+        "randomize" : false,
+        "vertical_alignment" : true
+      },
+      "ref" : "anxiety-due-to-pain",
+      "title" : "Over the past 2 weeks how often have you felt anxious or low in mood because of your pain?",
+      "type" : "multiple_choice",
+      "validations" : {
+        "required" : true
+      }
+    },
+    {
+      "id" : "r2Vyn4s2Mg8t",
+      "properties" : {
+        "labels" : {
+          "left" : "Not confident",
+          "right" : "Very confident"
+        },
+        "start_at_one" : true,
+        "steps" : 5
+      },
+      "ref" : "confidence-condition-can-be-managed-without-surgery-medications-or-injections",
+      "title" : "How confident are you that your condition can be managed without surgery, medications, or injections?",
+      "type" : "opinion_scale",
+      "validations" : {
+        "required" : true
+      }
+    },
+    {
+      "id" : "YWujcxhK7T2S",
+      "properties" : {
+        "labels" : {
+          "left" : "Not confident",
+          "right" : "Very confident"
+        },
+        "start_at_one" : true,
+        "steps" : 5
+      },
+      "ref" : "confidence-in-your-ability-to-manage-pain-and-maintain-physical-function",
+      "title" : "Currently, how confident are you in your ability to manage your pain and maintain physical function?",
+      "type" : "opinion_scale",
+      "validations" : {
+        "required" : true
+      }
+    },
+    {
+      "id" : "a4867vWItsU8",
+      "properties" : {
+        "labels" : {
+          "left" : "Not confident",
+          "right" : "Very confident"
+        },
+        "start_at_one" : true,
+        "steps" : 5
+      },
+      "ref" : "confidence-that-exercise-and-education-through-virtual-pt-can-address-condition",
+      "title" : "How confident are you that exercise and education through virtual PT can effectively address your condition?",
+      "type" : "opinion_scale",
+      "validations" : {
+        "required" : true
+      }
+    },
+    {
+      "id" : "Zt8QdrxIvwsP",
+      "properties" : {
+        "description" : "Share more details about your symptoms and what you hope to achieve through physical therapy."
+      },
+      "ref" : "reason-for-visit-physical-therapy-detail",
+      "title" : "Tell us more about the reason for your visit.",
+      "type" : "long_text",
+      "validations" : {
+        "required" : true
+      }
+    }
+  ],
+  "id" : "rGeAA7V5",
+  "logic" : [
+    {
+      "actions" : [
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "is",
+            "vars" : [
+              {
+                "type" : "field",
+                "value" : "reason-for-visit-physical-therapy-symptoms-location"
+              },
+              {
+                "type" : "choice",
+                "value" : "reason-for-visit-physical-therapy-symptoms-location-answer-other"
+              }
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "reason-for-visit-physical-therapy-symptoms-location-other"
+            }
+          }
+        },
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "always",
+            "vars" : [
+
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "reason-for-visit-physical-therapy-symptoms"
+            }
+          }
+        }
+      ],
+      "ref" : "reason-for-visit-physical-therapy-symptoms-location",
+      "type" : "field"
+    },
+    {
+      "actions" : [
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "is",
+            "vars" : [
+              {
+                "type" : "field",
+                "value" : "reason-for-visit-physical-therapy-symptoms"
+              },
+              {
+                "type" : "choice",
+                "value" : "reason-for-visit-physical-therapy-symptoms-answer-other"
+              }
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "reason-for-visit-physical-therapy-symptoms-other"
+            }
+          }
+        },
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "is",
+            "vars" : [
+              {
+                "type" : "field",
+                "value" : "reason-for-visit-physical-therapy-symptoms-location"
+              },
+              {
+                "type" : "choice",
+                "value" : "reason-for-visit-physical-therapy-symptoms-location-answer-pelvis"
+              }
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "reason-for-visit-physical-therapy-symptoms-pelvic"
+            }
+          }
+        },
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "always",
+            "vars" : [
+
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "reason-for-visit-physical-therapy-symptoms-duration"
+            }
+          }
+        }
+      ],
+      "ref" : "reason-for-visit-physical-therapy-symptoms",
+      "type" : "field"
+    },
+    {
+      "actions" : [
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "is",
+            "vars" : [
+              {
+                "type" : "field",
+                "value" : "reason-for-visit-physical-therapy-symptoms-location"
+              },
+              {
+                "type" : "choice",
+                "value" : "reason-for-visit-physical-therapy-symptoms-location-answer-pelvis"
+              }
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "reason-for-visit-physical-therapy-symptoms-pelvic"
+            }
+          }
+        },
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "always",
+            "vars" : [
+
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "reason-for-visit-physical-therapy-symptoms-duration"
+            }
+          }
+        }
+      ],
+      "ref" : "reason-for-visit-physical-therapy-symptoms-other",
+      "type" : "field"
+    },
+    {
+      "actions" : [
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "is",
+            "vars" : [
+              {
+                "type" : "field",
+                "value" : "reason-for-visit-physical-therapy-symptoms-pelvic"
+              },
+              {
+                "type" : "choice",
+                "value" : "reason-for-visit-physical-therapy-symptoms-answer-pelvic-other"
+              }
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "reason-for-visit-physical-therapy-symptoms-pelvic-other"
+            }
+          }
+        },
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "always",
+            "vars" : [
+
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "reason-for-visit-physical-therapy-symptoms-pelvic-pregnancy"
+            }
+          }
+        }
+      ],
+      "ref" : "reason-for-visit-physical-therapy-symptoms-pelvic",
+      "type" : "field"
+    },
+    {
+      "actions" : [
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "or",
+            "vars" : [
+              {
+                "op" : "is",
+                "vars" : [
+                  {
+                    "type" : "field",
+                    "value" : "reason-for-visit-physical-therapy-red-flags"
+                  },
+                  {
+                    "type" : "choice",
+                    "value" : "reason-for-visit-physical-therapy-red-flags-answer-pain-from-broken-bone"
+                  }
+                ]
+              },
+              {
+                "op" : "is",
+                "vars" : [
+                  {
+                    "type" : "field",
+                    "value" : "reason-for-visit-physical-therapy-red-flags"
+                  },
+                  {
+                    "type" : "choice",
+                    "value" : "reason-for-visit-physical-therapy-red-flags-answer-balance-issues"
+                  }
+                ]
+              },
+              {
+                "op" : "is",
+                "vars" : [
+                  {
+                    "type" : "field",
+                    "value" : "reason-for-visit-physical-therapy-red-flags"
+                  },
+                  {
+                    "type" : "choice",
+                    "value" : "reason-for-visit-physical-therapy-red-flags-answer-numbness"
+                  }
+                ]
+              },
+              {
+                "op" : "is",
+                "vars" : [
+                  {
+                    "type" : "field",
+                    "value" : "reason-for-visit-physical-therapy-red-flags"
+                  },
+                  {
+                    "type" : "choice",
+                    "value" : "reason-for-visit-physical-therapy-red-flags-answer-concussion"
+                  }
+                ]
+              },
+              {
+                "op" : "is",
+                "vars" : [
+                  {
+                    "type" : "field",
+                    "value" : "reason-for-visit-physical-therapy-red-flags"
+                  },
+                  {
+                    "type" : "choice",
+                    "value" : "reason-for-visit-physical-therapy-red-flags-answer-motor-vehicle-accident"
+                  }
+                ]
+              },
+              {
+                "op" : "is",
+                "vars" : [
+                  {
+                    "type" : "field",
+                    "value" : "reason-for-visit-physical-therapy-red-flags"
+                  },
+                  {
+                    "type" : "choice",
+                    "value" : "reason-for-visit-physical-therapy-red-flags-answer-inability-to-walk"
+                  }
+                ]
+              },
+              {
+                "op" : "is",
+                "vars" : [
+                  {
+                    "type" : "field",
+                    "value" : "reason-for-visit-physical-therapy-red-flags"
+                  },
+                  {
+                    "type" : "choice",
+                    "value" : "reason-for-visit-physical-therapy-red-flags-answer-two-or-more-falls"
+                  }
+                ]
+              },
+              {
+                "op" : "is",
+                "vars" : [
+                  {
+                    "type" : "field",
+                    "value" : "reason-for-visit-physical-therapy-red-flags"
+                  },
+                  {
+                    "type" : "choice",
+                    "value" : "reason-for-visit-physical-therapy-red-flags-answer-pain-from-recent-surgery"
+                  }
+                ]
+              },
+              {
+                "op" : "is",
+                "vars" : [
+                  {
+                    "type" : "field",
+                    "value" : "reason-for-visit-physical-therapy-red-flags"
+                  },
+                  {
+                    "type" : "choice",
+                    "value" : "reason-for-visit-physical-therapy-red-flags-answer-workplace-injury"
+                  }
+                ]
+              }
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "reason-for-visit-physical-therapy-requires-appointment-confirmation"
+            }
+          }
+        },
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "always",
+            "vars" : [
+
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "maximum-pain-level"
+            }
+          }
+        }
+      ],
+      "ref" : "reason-for-visit-physical-therapy-red-flags",
+      "type" : "field"
+    },
+    {
+      "actions" : [
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "and",
+            "vars" : [
+              {
+                "op" : "greater_equal_than",
+                "vars" : [
+                  {
+                    "type" : "field",
+                    "value" : "patient-age"
+                  },
+                  {
+                    "type" : "constant",
+                    "value" : 12
+                  }
+                ]
+              },
+              {
+                "op" : "lower_equal_than",
+                "vars" : [
+                  {
+                    "type" : "field",
+                    "value" : "patient-age"
+                  },
+                  {
+                    "type" : "constant",
+                    "value" : 17
+                  }
+                ]
+              }
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "minor-consent-guardian-present-confirmation-physical-therapy"
+            }
+          }
+        },
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "always",
+            "vars" : [
+
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "sex-assigned-at-birth"
+            }
+          }
+        }
+      ],
+      "ref" : "patient-age",
+      "type" : "field"
+    },
+    {
+      "actions" : [
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "always",
+            "vars" : [
+
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "thankyou",
+              "value" : "ending-thank-you"
+            }
+          }
+        }
+      ],
+      "ref" : "reason-for-visit-physical-therapy-requires-appointment-confirmation",
+      "type" : "field"
+    }
+  ],
+  "settings" : {
+    "are_uploads_public" : false,
+    "autosave_progress" : true,
+    "capabilities" : {
+      "e2e_encryption" : {
+        "enabled" : false,
+        "modifiable" : false
+      }
+    },
+    "free_form_navigation" : false,
+    "hide_navigation" : false,
+    "is_public" : true,
+    "is_trial" : false,
+    "language" : "en",
+    "meta" : {
+      "allow_indexing" : false
+    },
+    "pro_subdomain_enabled" : false,
+    "progress_bar" : "proportion",
+    "show_cookie_consent" : false,
+    "show_key_hint_on_choices" : true,
+    "show_number_of_submissions" : false,
+    "show_progress_bar" : true,
+    "show_question_number" : true,
+    "show_time_to_complete" : true,
+    "show_typeform_branding" : true,
+    "use_lead_qualification" : false
+  },
+  "thankyou_screens" : [
+    {
+      "id" : "RUP9jY3dIrie",
+      "properties" : {
+        "button_mode" : "default_redirect",
+        "button_text" : "again",
+        "description" : "Next up, we'll schedule your visit.",
+        "share_icons" : false,
+        "show_button" : false
+      },
+      "ref" : "ending-thank-you",
+      "title" : "Thanks for completing your PT intake form.",
+      "type" : "thankyou_screen"
+    },
+    {
+      "attachment" : {
+        "href" : "https:\/\/images.typeform.com\/images\/2dpnUBBkz2VN",
+        "type" : "image"
+      },
+      "id" : "DefaultTyScreen",
+      "properties" : {
+        "button_mode" : "default_redirect",
+        "button_text" : "Create a *typeform*",
+        "share_icons" : false,
+        "show_button" : true
+      },
+      "ref" : "default_tys",
+      "title" : "Thanks for completing this typeform\nNow *create your own* — it's free, easy, & beautiful",
+      "type" : "thankyou_screen"
+    }
+  ],
+  "theme" : {
+    "href" : "https:\/\/api.typeform.com\/themes\/qHWOQ7"
+  },
+  "title" : "PT Intake V3",
+  "type" : "quiz",
+  "workspace" : {
+    "href" : "https:\/\/api.typeform.com\/workspaces\/U5kJiQ"
+  }
+}

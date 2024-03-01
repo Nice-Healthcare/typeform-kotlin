@@ -56,8 +56,14 @@ fun List<Var>.matchGiven(responses: Responses, op: Op): Boolean? {
                         Op.GREATER_EQUAL_THAN -> {
                             response.value >= valueVar.value.value
                         }
+                        Op.GREATER_THAN -> {
+                            response.value > valueVar.value.value
+                        }
                         Op.LOWER_EQUAL_THAN -> {
                             response.value <= valueVar.value.value
+                        }
+                        Op.LOWER_THAN -> {
+                            response.value < valueVar.value.value
                         }
                         else -> {
                             null
