@@ -93,12 +93,24 @@ class PTIntakeTests : TypeformTestCase() {
             Pair("reason-for-visit-physical-therapy-detail", ResponseValue.StringValue("info"))
         )
 
-        val position: Position
+        var position: Position
         try {
             position = form.firstPosition(skipWelcomeScreen = false, responses = responses)
         } catch (_ :Exception) {
             fail("Unexpected Exception")
         }
+
+        when (position) {
+            is Position.FieldPosition -> {
+                // first statement
+                assertEquals("iJolnxu6Sftn", position.field.id)
+            }
+            else -> {
+                fail("Unexpected Position")
+            }
+        }
+
+        position = form.nextPosition(from = position, responses = responses)
 
         when (position) {
             is Position.FieldPosition -> {
@@ -110,17 +122,16 @@ class PTIntakeTests : TypeformTestCase() {
             }
         }
 
-        var next: Position
         try {
-            next = form.nextPosition(position, responses)
+            position = form.nextPosition(position, responses)
         } catch (_: Exception) {
             fail("Unexpected Exception")
         }
 
-        when (next) {
+        when (position) {
             is Position.FieldPosition -> {
                 // reason-for-visit-physical-therapy
-                assertEquals("XrGAAaW3t7BW", next.field.id)
+                assertEquals("XrGAAaW3t7BW", position.field.id)
             }
             else -> {
                 fail("Unexpected Position")
@@ -128,14 +139,14 @@ class PTIntakeTests : TypeformTestCase() {
         }
 
         try {
-            next = form.nextPosition(next, responses)
+            position = form.nextPosition(position, responses)
         } catch (_: Exception) {
             fail("Unexpected Exception")
         }
 
-        when (next) {
+        when (position) {
             is Position.ScreenPosition -> {
-                assertEquals("DefaultTyScreen", next.screen.id)
+                assertEquals("DefaultTyScreen", position.screen.id)
             }
             else -> {
                 fail("Unexpected Position")

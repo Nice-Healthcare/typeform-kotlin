@@ -164,6 +164,10 @@ data class Form(
             throw TypeformException.FirstPosition
         }
 
+        if (field.type == FieldType.STATEMENT) {
+            return Position.FieldPosition(field, null)
+        }
+
         return nextPosition(
             from = Position.FieldPosition(field, null),
             responses = responses
