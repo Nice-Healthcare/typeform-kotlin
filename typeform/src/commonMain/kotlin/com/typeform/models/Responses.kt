@@ -98,6 +98,16 @@ fun Responses.invalidResponseValuesGiven(fields: List<Field>): List<String> {
                         }
                     }
                 }
+                is FieldProperties.OpinionScaleProperties -> {
+                    when (element.value) {
+                        is ResponseValue.IntValue -> {
+                            // Expected Type
+                        }
+                        else -> {
+                            ref = element.key
+                        }
+                    }
+                }
                 is FieldProperties.RatingProperties -> {
                     when (element.value) {
                         is ResponseValue.IntValue -> {

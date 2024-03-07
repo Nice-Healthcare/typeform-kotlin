@@ -1,0 +1,4309 @@
+{
+  "_links" : {
+    "display" : "https:\/\/tohanuk.typeform.com\/to\/hdgks8bb",
+    "responses" : "https:\/\/api.typeform.com\/forms\/hdgks8bb\/responses"
+  },
+  "fields" : [
+    {
+      "id" : "GpiXI1zon3dp",
+      "properties" : {
+        "button_text" : "Acknowledge & Continue",
+        "description" : "Signs of an emergency may include:\n\n• Active suicidal\/homicidal feelings\n\n• Chest pain or heart attack symptoms \n\n• Significant difficulty breathing\n\n• Stroke symptoms (facial drooping, arm weakness, speech difficulty)\n\n• Severe allergic reaction\n\n• Fever greater than 104.5°F\n\n• Coughing or vomiting blood\n\n• Sudden, severe, uncontrolled pain\n\n• Severe headache\n\n• Loss of consciousness\/changes in mental status\n\n• Poisoning\/inhalation of substances\n\n• Moderate to severe wounds\/burns\n\n• Seizures\n\n• Significant trauma\/head injury\n\n• Pregnancy complications (vaginal bleeding, cramping, or abdominal pain)",
+        "hide_marks" : true
+      },
+      "ref" : "medical-emergency-confirmation",
+      "title" : "If you are experiencing a medical emergency, please call 911 or seek immediate medical attention.",
+      "type" : "statement"
+    },
+    {
+      "id" : "61nofT5V9ZBF",
+      "properties" : {
+        "description" : "Some Nice services are limited for Medicaid recipients."
+      },
+      "ref" : "medicaid-enrolled",
+      "title" : "Are you currently enrolled in Medicaid?",
+      "type" : "yes_no",
+      "validations" : {
+        "required" : true
+      }
+    },
+    {
+      "id" : "BlNrdLOTr3QZ",
+      "properties" : {
+        "button_text" : "Okay",
+        "description" : "Prescriptions, as well as some lab and imaging services, are not available from Nice if you are currently enrolled in Medicaid.\n\nFor more information contact Customer Support via chat.",
+        "hide_marks" : false
+      },
+      "ref" : "medicaid-confirmation",
+      "title" : "Nice services are limited for Medicaid recipients.",
+      "type" : "statement"
+    },
+    {
+      "id" : "hPo2B2YnID2i",
+      "properties" : {
+
+      },
+      "ref" : "patient-age",
+      "title" : "How old are you?",
+      "type" : "number",
+      "validations" : {
+        "required" : true
+      }
+    },
+    {
+      "id" : "Rj1HFWsnt26q",
+      "properties" : {
+        "allow_multiple_selection" : false,
+        "allow_other_choice" : false,
+        "choices" : [
+          {
+            "id" : "F7rAMfimpFSo",
+            "label" : "Female",
+            "ref" : "sex-assigned-at-birth-answer-female"
+          },
+          {
+            "id" : "tfc3PqE0rzKW",
+            "label" : "Male",
+            "ref" : "sex-assigned-at-birth-answer-male"
+          }
+        ],
+        "description" : "We use this information to provide safe medical treatment.",
+        "randomize" : false,
+        "vertical_alignment" : true
+      },
+      "ref" : "sex-assigned-at-birth",
+      "title" : "What was your sex assigned at birth?",
+      "type" : "multiple_choice",
+      "validations" : {
+        "required" : true
+      }
+    },
+    {
+      "id" : "8kAnUrn2AzVx",
+      "properties" : {
+
+      },
+      "ref" : "minor-consent-guardian-present",
+      "title" : "Will a legal guardian be present during the visit?",
+      "type" : "yes_no",
+      "validations" : {
+        "required" : true
+      }
+    },
+    {
+      "id" : "fN3BoIlHtuHk",
+      "properties" : {
+        "button_text" : "Okay",
+        "hide_marks" : true
+      },
+      "ref" : "minor-consent-form-confirmation",
+      "title" : "A consent form is required to treat a minor (13 or older) without an adult present. Check your chat messages after scheduling to complete and sign a consent form.",
+      "type" : "statement"
+    },
+    {
+      "id" : "R0CLBulngFW7",
+      "properties" : {
+        "button_text" : "Okay",
+        "hide_marks" : true
+      },
+      "ref" : "minor-consent-guardian-present-confirmation",
+      "title" : "Patients 12 and under must have a legal guardian present for chat, virtual, or home visits.",
+      "type" : "statement"
+    },
+    {
+      "id" : "1wKtoqgVUd6v",
+      "properties" : {
+        "button_text" : "Okay",
+        "hide_marks" : true
+      },
+      "ref" : "minor-consent-guardian-answers-confirmation",
+      "title" : "If you are the parent or guardian of a patient under 18, please answer all questions in regards to the patient, not yourself.",
+      "type" : "statement"
+    },
+    {
+      "id" : "sJIdOL2quqx9",
+      "properties" : {
+        "description" : "We use this information to safely prescribe medication. "
+      },
+      "ref" : "minor-consent-recent-height",
+      "title" : "What was a recent height (in inches)?",
+      "type" : "short_text",
+      "validations" : {
+        "required" : true
+      }
+    },
+    {
+      "id" : "wfZGGTLQqwNW",
+      "properties" : {
+        "description" : "We use this information to safely prescribe medication. "
+      },
+      "ref" : "minor-consent-recent-weight",
+      "title" : "What was a recent weight (in pounds)?",
+      "type" : "short_text",
+      "validations" : {
+        "required" : true
+      }
+    },
+    {
+      "id" : "aWhbWMyRp9j4",
+      "properties" : {
+        "allow_multiple_selection" : true,
+        "allow_other_choice" : false,
+        "choices" : [
+          {
+            "id" : "EBFA7VIp0EOr",
+            "label" : "There is no chance of pregnancy and I am not breastfeeding",
+            "ref" : "health-history-female-pregnancy-answer-no-pregnancy"
+          },
+          {
+            "id" : "H7qKXnSDLf4k",
+            "label" : "There is a chance of pregnancy",
+            "ref" : "health-history-female-pregnancy-answer-chance-pregnancy"
+          },
+          {
+            "id" : "chnnn8jML1Sc",
+            "label" : "I am currently pregnant",
+            "ref" : "health-history-female-pregnancy-answer-currently-pregnant"
+          },
+          {
+            "id" : "VeKMVjjnXTdr",
+            "label" : "I am currently breastfeeding",
+            "ref" : "health-history-female-pregnancy-answer-breastfeeding"
+          }
+        ],
+        "randomize" : false,
+        "vertical_alignment" : true
+      },
+      "ref" : "health-history-female-pregnancy",
+      "title" : "Are you currently pregnant or breastfeeding?",
+      "type" : "multiple_choice",
+      "validations" : {
+        "required" : true
+      }
+    },
+    {
+      "id" : "wfVUkswtXopM",
+      "properties" : {
+
+      },
+      "ref" : "health-history-female-menstrual-cycle-date-available",
+      "title" : "Do you know the date of your last menstrual cycle? ",
+      "type" : "yes_no",
+      "validations" : {
+        "required" : true
+      }
+    },
+    {
+      "id" : "1GEcuWn2YVzN",
+      "properties" : {
+        "separator" : "\/",
+        "structure" : "MMDDYYYY"
+      },
+      "ref" : "health-history-female-menstrual-cycle",
+      "title" : "When did your last menstrual cycle begin?",
+      "type" : "date",
+      "validations" : {
+        "required" : true
+      }
+    },
+    {
+      "id" : "vUeBwz3nS22L",
+      "properties" : {
+        "allow_multiple_selection" : false,
+        "allow_other_choice" : false,
+        "choices" : [
+          {
+            "id" : "CWAWjGnTp3tF",
+            "label" : "Acute Care: Treat recent symptoms like a cough, sore throat, rash, etc.",
+            "ref" : "reason-for-visit-category-answer-acute"
+          },
+          {
+            "id" : "pVIy17jdfmXF",
+            "label" : "Chronic Care: Support for long term health issues like diabetes, high blood pressure, thyroid problems, etc.",
+            "ref" : "reason-for-visit-category-answer-chronic"
+          },
+          {
+            "id" : "glv2127R8I9h",
+            "label" : "Preventive Care: Annual wellness exams, birth control management, etc.",
+            "ref" : "reason-for-visit-category-answer-wellness"
+          },
+          {
+            "id" : "aZY7XjqvW39c",
+            "label" : "Mental Health: Primary care or therapy to address common mental health concerns",
+            "ref" : "reason-for-visit-category-answer-mental-health"
+          }
+        ],
+        "description" : "Select the type of care that best fits your needs for this visit.",
+        "randomize" : false,
+        "vertical_alignment" : true
+      },
+      "ref" : "reason-for-visit-category",
+      "title" : "How can we help?",
+      "type" : "multiple_choice",
+      "validations" : {
+        "required" : true
+      }
+    },
+    {
+      "id" : "DD2xQwLjtxEv",
+      "properties" : {
+        "button_text" : "Continue",
+        "fields" : [
+          {
+            "id" : "lispNhnifK72",
+            "properties" : {
+              "allow_multiple_selection" : false,
+              "allow_other_choice" : false,
+              "choices" : [
+                {
+                  "id" : "IH8IN9jHiCtA",
+                  "label" : "Allergy symptoms",
+                  "ref" : "reason-for-visit-acute-answer-allergies"
+                },
+                {
+                  "id" : "JZfMA40dOXLe",
+                  "label" : "Cold or flu-like symptoms",
+                  "ref" : "reason-for-visit-acute-answer-cold-or-flu"
+                },
+                {
+                  "id" : "Z5LZWXPVk1Rk",
+                  "label" : "Other ear, nose, throat, or eye symptoms",
+                  "ref" : "reason-for-visit-acute-answer-ear-nose-throat-or-eye"
+                },
+                {
+                  "id" : "6kXmh2B7IHMO",
+                  "label" : "Urinary symptoms",
+                  "ref" : "reason-for-visit-acute-answer-urinary"
+                },
+                {
+                  "id" : "OAotkPkC6FlM",
+                  "label" : "Skin or nail symptoms",
+                  "ref" : "reason-for-visit-acute-answer-skin-or-nail"
+                },
+                {
+                  "id" : "MuOFd2z0pIZs",
+                  "label" : "Stomach or digestion issues",
+                  "ref" : "reason-for-visit-acute-answer-stomach-or-digestion"
+                },
+                {
+                  "id" : "oMp3uz7V0tnP",
+                  "label" : "Vaginal symptoms",
+                  "ref" : "reason-for-visit-acute-answer-vaginal-symptoms"
+                },
+                {
+                  "id" : "rRNCrOOke9Bk",
+                  "label" : "Muscle or joint symptoms",
+                  "ref" : "reason-for-visit-acute-answer-muscle-or-joint-symptoms"
+                },
+                {
+                  "id" : "CWflP88zZ1y5",
+                  "label" : "Other (please describe)",
+                  "ref" : "reason-for-visit-acute-answer-other"
+                }
+              ],
+              "randomize" : false,
+              "vertical_alignment" : true
+            },
+            "ref" : "reason-for-visit-acute",
+            "title" : "Which of the following best describes the reason for your visit?",
+            "type" : "multiple_choice",
+            "validations" : {
+              "required" : true
+            }
+          },
+          {
+            "id" : "Z49vu3Fb19oY",
+            "properties" : {
+              "description" : "In a few words, describe your high-level issue or concern."
+            },
+            "ref" : "reason-for-visit-acute-other",
+            "title" : "Please describe the other health issue you’d like to discuss.",
+            "type" : "short_text",
+            "validations" : {
+              "required" : true
+            }
+          },
+          {
+            "id" : "iOqLKCXn8hRD",
+            "properties" : {
+
+            },
+            "ref" : "reason-for-visit-acute-follow-up",
+            "title" : "Is this a follow up to a recent Nice visit?",
+            "type" : "yes_no",
+            "validations" : {
+              "required" : true
+            }
+          },
+          {
+            "id" : "nVY6ziRvxqjH",
+            "properties" : {
+              "allow_multiple_selection" : true,
+              "allow_other_choice" : false,
+              "choices" : [
+                {
+                  "id" : "5RtaN2MLeWti",
+                  "label" : "Runny or stuffy nose",
+                  "ref" : "reason-for-visit-acute-symptoms-allergies-answer-runny-or-stuffy-nose"
+                },
+                {
+                  "id" : "Mm7PLEP08sCm",
+                  "label" : "Sneezing",
+                  "ref" : "reason-for-visit-acute-symptoms-allergies-answer-sneezing"
+                },
+                {
+                  "id" : "2B8wCFRXVkg4",
+                  "label" : "Itchy nose or eyes",
+                  "ref" : "reason-for-visit-acute-symptoms-allergies-answer-itchy-nose-or-eyes"
+                },
+                {
+                  "id" : "rWe1PXMahEWQ",
+                  "label" : "Red, watery, or irritated eyes",
+                  "ref" : "reason-for-visit-acute-symptoms-allergies-answer-irritated-eyes"
+                },
+                {
+                  "id" : "Jbns5x8J5c2l",
+                  "label" : "Other (please describe)",
+                  "ref" : "reason-for-visit-acute-symptoms-allergies-answer-other"
+                }
+              ],
+              "description" : "Select all that apply",
+              "randomize" : false,
+              "vertical_alignment" : true
+            },
+            "ref" : "reason-for-visit-acute-symptoms-allergies",
+            "title" : "Are you experiencing any of the following symptoms?",
+            "type" : "multiple_choice",
+            "validations" : {
+              "required" : true
+            }
+          },
+          {
+            "id" : "cQ5EF3rjfqho",
+            "properties" : {
+              "allow_multiple_selection" : true,
+              "allow_other_choice" : false,
+              "choices" : [
+                {
+                  "id" : "UeQLfSCbJu93",
+                  "label" : "Fever (temperature above 100.4 F)",
+                  "ref" : "reason-for-visit-acute-symptoms-cold-flu-answer-fever"
+                },
+                {
+                  "id" : "0HliRI0NZsul",
+                  "label" : "Muscle aches",
+                  "ref" : "reason-for-visit-acute-symptoms-cold-flu-answer-muscle-aches"
+                },
+                {
+                  "id" : "HlMojMwvTi4H",
+                  "label" : "Chills or sweats",
+                  "ref" : "reason-for-visit-acute-symptoms-cold-flu-answer-chills"
+                },
+                {
+                  "id" : "WlItZ2gxuYpl",
+                  "label" : "Headache",
+                  "ref" : "reason-for-visit-acute-symptoms-cold-flu-answer-headache"
+                },
+                {
+                  "id" : "l7JSVpDKGI4S",
+                  "label" : "Fatigue or weakness",
+                  "ref" : "reason-for-visit-acute-symptoms-cold-flu-answer-fatigue"
+                },
+                {
+                  "id" : "dM7arQah6Hxe",
+                  "label" : "Sore throat",
+                  "ref" : "reason-for-visit-acute-symptoms-cold-flu-answer-sore-throat"
+                },
+                {
+                  "id" : "9n5BxAOmQqxu",
+                  "label" : "Runny or stuffy nose",
+                  "ref" : "reason-for-visit-acute-symptoms-cold-flu-answer-runny-or-stuffy-nose"
+                },
+                {
+                  "id" : "qrk8GNwWHylI",
+                  "label" : "Cough",
+                  "ref" : "reason-for-visit-acute-symptoms-cold-flu-answer-cough"
+                },
+                {
+                  "id" : "s73swHk1piu9",
+                  "label" : "Swollen or tender lymph nodes in your neck",
+                  "ref" : "reason-for-visit-acute-symptoms-cold-flu-answer-swollen-lymph-nodes"
+                },
+                {
+                  "id" : "ZJr2kjDABfGp",
+                  "label" : "Shortness of breath",
+                  "ref" : "reason-for-visit-acute-symptoms-cold-flu-answer-shortness-of-breath"
+                },
+                {
+                  "id" : "pqIJ6lF16L9f",
+                  "label" : "Other (please describe)",
+                  "ref" : "reason-for-visit-acute-symptoms-cold-flu-answer-other"
+                }
+              ],
+              "description" : "Select all that apply",
+              "randomize" : false,
+              "vertical_alignment" : true
+            },
+            "ref" : "reason-for-visit-acute-symptoms-cold-flu",
+            "title" : "Are you experiencing any of the following symptoms?",
+            "type" : "multiple_choice",
+            "validations" : {
+              "required" : true
+            }
+          },
+          {
+            "id" : "ZdCPSuFHQxH4",
+            "properties" : {
+              "allow_multiple_selection" : true,
+              "allow_other_choice" : false,
+              "choices" : [
+                {
+                  "id" : "T0Q0JJEJQco8",
+                  "label" : "Sore throat",
+                  "ref" : "reason-for-visit-acute-symptoms-cold-flu-answer-sore-throat"
+                },
+                {
+                  "id" : "t193cHR9G43A",
+                  "label" : "Sinus pain or pressure",
+                  "ref" : "reason-for-visit-acute-symptoms-cold-flu-answer-sinus-pain"
+                },
+                {
+                  "id" : "EKjewih8euUl",
+                  "label" : "Runny or stuffy nose",
+                  "ref" : "reason-for-visit-acute-symptoms-cold-flu-answer-runny-or-stuffy-nose"
+                },
+                {
+                  "id" : "0mqk2dxReEp2",
+                  "label" : "Fever (temperature above 100.4 F)",
+                  "ref" : "reason-for-visit-acute-symptoms-cold-flu-answer-fever"
+                },
+                {
+                  "id" : "TLMNC4AgXlSy",
+                  "label" : "Swollen or tender lymph nodes in your neck",
+                  "ref" : "reason-for-visit-acute-symptoms-cold-flu-answer-swollen-or-tender-lymph-nodes"
+                },
+                {
+                  "id" : "A1gkJh92wSqj",
+                  "label" : "Ear pain or discomfort",
+                  "ref" : "reason-for-visit-acute-symptoms-cold-flu-answer-ear-pain"
+                },
+                {
+                  "id" : "b1O7zlyGVlJd",
+                  "label" : "Drainage of fluid from one or both ears",
+                  "ref" : "reason-for-visit-acute-symptoms-cold-flu-answer-drainage-of-fluid-from-ear"
+                },
+                {
+                  "id" : "vteC7v6IqaBA",
+                  "label" : "Itchy, red, or irritated eye(s)",
+                  "ref" : "reason-for-visit-acute-symptoms-cold-flu-answer-itchy-red-or-irritated-eye"
+                },
+                {
+                  "id" : "iR9WFMPuHc0H",
+                  "label" : "Discharge or drainage from one or both eyes",
+                  "ref" : "reason-for-visit-acute-symptoms-cold-flu-answer-discharge-from-eye"
+                },
+                {
+                  "id" : "vkbQxJcLADvN",
+                  "label" : "Eye pain or swelling",
+                  "ref" : "reason-for-visit-acute-symptoms-cold-flu-answer-eye-pain-or-swelling"
+                },
+                {
+                  "id" : "YFi1D8eM9i3m",
+                  "label" : "Sensitivity to light",
+                  "ref" : "reason-for-visit-acute-symptoms-cold-flu-answer-light-sensitivity"
+                },
+                {
+                  "id" : "bG5i3NJGQNkE",
+                  "label" : "Blurry vision",
+                  "ref" : "reason-for-visit-acute-symptoms-cold-flu-answer-blurry-vision"
+                },
+                {
+                  "id" : "UdyK1iaJifvb",
+                  "label" : "Other (please describe)",
+                  "ref" : "reason-for-visit-acute-symptoms-cold-flu-answer-other"
+                }
+              ],
+              "description" : "Select all that apply",
+              "randomize" : false,
+              "vertical_alignment" : true
+            },
+            "ref" : "reason-for-visit-acute-symptoms-ear-nose-throat-eyes",
+            "title" : "Are you experiencing any of the following symptoms?",
+            "type" : "multiple_choice",
+            "validations" : {
+              "required" : true
+            }
+          },
+          {
+            "id" : "2kAo1ZD0du4d",
+            "properties" : {
+              "allow_multiple_selection" : true,
+              "allow_other_choice" : false,
+              "choices" : [
+                {
+                  "id" : "E1Xyv2hxgxzk",
+                  "label" : "A strong urge to urinate",
+                  "ref" : "reason-for-visit-acute-symptoms-urinary-answer-strong-urge-to-urinate"
+                },
+                {
+                  "id" : "zzyxuoG32z9r",
+                  "label" : "A burning feeling while urinating",
+                  "ref" : "reason-for-visit-acute-symptoms-urinary-answer-burning"
+                },
+                {
+                  "id" : "BETqQnMCmw98",
+                  "label" : "Urinating often",
+                  "ref" : "reason-for-visit-acute-symptoms-urinary-answer-urinating-often"
+                },
+                {
+                  "id" : "KFOC6Jmx9Gsr",
+                  "label" : "Urine that appears cloudy",
+                  "ref" : "reason-for-visit-acute-symptoms-urinary-answer-cloudy"
+                },
+                {
+                  "id" : "1Y5ZHa48opOL",
+                  "label" : "Urine that appears pink or contains blood",
+                  "ref" : "reason-for-visit-acute-symptoms-urinary-answer-pink-or-blood"
+                },
+                {
+                  "id" : "FWa9BuZpvXVh",
+                  "label" : "Fever (temperature above 100.4 F)",
+                  "ref" : "reason-for-visit-acute-symptoms-urinary-answer-fever"
+                },
+                {
+                  "id" : "jgx8Q2YtV1AQ",
+                  "label" : "Other (please describe)",
+                  "ref" : "reason-for-visit-acute-symptoms-urinary-answer-other"
+                }
+              ],
+              "description" : "Select all that apply",
+              "randomize" : false,
+              "vertical_alignment" : true
+            },
+            "ref" : "reason-for-visit-acute-symptoms-urinary",
+            "title" : "Are you experiencing any of the following symptoms?",
+            "type" : "multiple_choice",
+            "validations" : {
+              "required" : true
+            }
+          },
+          {
+            "id" : "i2ADGPQxm0AI",
+            "properties" : {
+              "allow_multiple_selection" : true,
+              "allow_other_choice" : false,
+              "choices" : [
+                {
+                  "id" : "i0ERMncWJvZJ",
+                  "label" : "Redness, itchiness, or irritation",
+                  "ref" : "reason-for-visit-acute-symptoms-skin-nails-answer-irritation"
+                },
+                {
+                  "id" : "ThEaZb26qpCW",
+                  "label" : "Bumps on the skin",
+                  "ref" : "reason-for-visit-acute-symptoms-skin-nails-answer-bumps"
+                },
+                {
+                  "id" : "K62lsKLWLSzk",
+                  "label" : "Dry, flaky, or cracked skin",
+                  "ref" : "reason-for-visit-acute-symptoms-skin-nails-answer-dry-skin"
+                },
+                {
+                  "id" : "uSP6hLxOmkkL",
+                  "label" : "Wart(s)",
+                  "ref" : "reason-for-visit-acute-symptoms-skin-nails-answer-warts"
+                },
+                {
+                  "id" : "WjWGg33CBogz",
+                  "label" : "A circular or ring-shaped rash",
+                  "ref" : "reason-for-visit-acute-symptoms-skin-nails-answer-circular-rash"
+                },
+                {
+                  "id" : "524CCNBGIRCA",
+                  "label" : "Burning",
+                  "ref" : "reason-for-visit-acute-symptoms-skin-nails-answer-burning"
+                },
+                {
+                  "id" : "tZMiH7KJievB",
+                  "label" : "Swelling",
+                  "ref" : "3520265f-ab2f-44bd-8452-960b73392870"
+                },
+                {
+                  "id" : "DeEDKeAptefc",
+                  "label" : "Draining or oozing",
+                  "ref" : "reason-for-visit-acute-symptoms-skin-nails-answer-draining"
+                },
+                {
+                  "id" : "3oEHbOL8Jok1",
+                  "label" : "Fever (temperature above 100.4 F)",
+                  "ref" : "reason-for-visit-acute-symptoms-skin-nails-answer-fever"
+                },
+                {
+                  "id" : "e9ecKClZg5PX",
+                  "label" : "Other (please describe)",
+                  "ref" : "reason-for-visit-acute-symptoms-skin-nails-answer-other"
+                }
+              ],
+              "description" : "Select all that apply",
+              "randomize" : false,
+              "vertical_alignment" : true
+            },
+            "ref" : "reason-for-visit-acute-symptoms-skin-nails",
+            "title" : "Are you experiencing any of the following symptoms?",
+            "type" : "multiple_choice",
+            "validations" : {
+              "required" : true
+            }
+          },
+          {
+            "id" : "gp2aWxoyB4qt",
+            "properties" : {
+              "allow_multiple_selection" : true,
+              "allow_other_choice" : false,
+              "choices" : [
+                {
+                  "id" : "wt2VXVmV64lJ",
+                  "label" : "Nausea",
+                  "ref" : "reason-for-visit-acute-symptoms-digestive-answer-nausea"
+                },
+                {
+                  "id" : "6GtYCaJj9yyL",
+                  "label" : "Vomiting",
+                  "ref" : "reason-for-visit-acute-symptoms-digestive-answer-vomiting"
+                },
+                {
+                  "id" : "vPmTAlo5er2H",
+                  "label" : "Diarrhea",
+                  "ref" : "reason-for-visit-acute-symptoms-digestive-answer-diarrhea"
+                },
+                {
+                  "id" : "YkMjMsxiVwyS",
+                  "label" : "Stomach cramps or pain",
+                  "ref" : "reason-for-visit-acute-symptoms-digestive-answer-stomach-cramps"
+                },
+                {
+                  "id" : "bn8gfbgmR22f",
+                  "label" : "Fever (temperature above 100.4 F)",
+                  "ref" : "reason-for-visit-acute-symptoms-digestive-answer-fever"
+                },
+                {
+                  "id" : "gdMIfZSqFQlX",
+                  "label" : "Heartburn",
+                  "ref" : "reason-for-visit-acute-symptoms-digestive-answer-heartburn"
+                },
+                {
+                  "id" : "kHpOSJEOP1N7",
+                  "label" : "Constipation",
+                  "ref" : "reason-for-visit-acute-symptoms-digestive-answer-constipation"
+                },
+                {
+                  "id" : "qsx6CrvsHqhZ",
+                  "label" : "Other (please describe)",
+                  "ref" : "reason-for-visit-acute-symptoms-digestive-answer-other"
+                }
+              ],
+              "description" : "Select all that apply",
+              "randomize" : false,
+              "vertical_alignment" : true
+            },
+            "ref" : "reason-for-visit-acute-symptoms-digestive",
+            "title" : "Are you experiencing any of the following symptoms?",
+            "type" : "multiple_choice",
+            "validations" : {
+              "required" : true
+            }
+          },
+          {
+            "id" : "oqYJHHFshKO6",
+            "properties" : {
+              "allow_multiple_selection" : true,
+              "allow_other_choice" : false,
+              "choices" : [
+                {
+                  "id" : "fUFDlLyigJvq",
+                  "label" : "Vaginal itching or irritation",
+                  "ref" : "reason-for-visit-acute-symptoms-vaginal-answer-irritation"
+                },
+                {
+                  "id" : "IR0yeM9xyqjv",
+                  "label" : "Pain during intercourse",
+                  "ref" : "reason-for-visit-acute-symptoms-vaginal-answer-pain-during-intercourse"
+                },
+                {
+                  "id" : "FE81ozWYXeN6",
+                  "label" : "Pain during urination",
+                  "ref" : "reason-for-visit-acute-symptoms-vaginal-answer-pain-during-urination"
+                },
+                {
+                  "id" : "hFkL86ZT8R8g",
+                  "label" : "Change in color, odor or amount of vaginal discharge",
+                  "ref" : "reason-for-visit-acute-symptoms-vaginal-answer-change-in-vaginal-discharge"
+                },
+                {
+                  "id" : "o9MeV3jIYHZR",
+                  "label" : "Bleeding or spotting",
+                  "ref" : "reason-for-visit-acute-symptoms-vaginal-answer-bleeding-or-spotting"
+                },
+                {
+                  "id" : "qaMGqwEFmcBr",
+                  "label" : "Other (please describe)",
+                  "ref" : "reason-for-visit-acute-symptoms-vaginal-answer-other"
+                }
+              ],
+              "description" : "Select all that apply",
+              "randomize" : false,
+              "vertical_alignment" : true
+            },
+            "ref" : "reason-for-visit-acute-symptoms-vaginal",
+            "title" : "Are you experiencing any of the following symptoms?",
+            "type" : "multiple_choice",
+            "validations" : {
+              "required" : true
+            }
+          },
+          {
+            "id" : "VfneywR3xbya",
+            "properties" : {
+              "allow_multiple_selection" : true,
+              "allow_other_choice" : false,
+              "choices" : [
+                {
+                  "id" : "SSjmP6Gs9gRm",
+                  "label" : "Head\/Neck",
+                  "ref" : "reason-for-visit-acute-body-region-answer-head-neck"
+                },
+                {
+                  "id" : "Qnz4kkUDQIBf",
+                  "label" : "Upper Back",
+                  "ref" : "reason-for-visit-acute-body-region-answer-upper-back"
+                },
+                {
+                  "id" : "txdpJ2D882vK",
+                  "label" : "Lower Back",
+                  "ref" : "reason-for-visit-acute-body-region-answer-lower-back"
+                },
+                {
+                  "id" : "2SiiBJPP5Uev",
+                  "label" : "Shoulder",
+                  "ref" : "reason-for-visit-acute-body-region-answer-shoulder"
+                },
+                {
+                  "id" : "6ciasGXt3hxM",
+                  "label" : "Arm",
+                  "ref" : "reason-for-visit-acute-body-region-answer-arm"
+                },
+                {
+                  "id" : "cGmmgOUnFiOT",
+                  "label" : "Hand\/Wrist",
+                  "ref" : "reason-for-visit-acute-body-region-answer-hand-wrist"
+                },
+                {
+                  "id" : "EOWL9OWNiHTZ",
+                  "label" : "Hip",
+                  "ref" : "reason-for-visit-acute-body-region-answer-hip"
+                },
+                {
+                  "id" : "Hd2GTFFCAp20",
+                  "label" : "Pelvis",
+                  "ref" : "reason-for-visit-acute-body-region-answer-pelvis"
+                },
+                {
+                  "id" : "1N9Dbv6w27hJ",
+                  "label" : "Knee",
+                  "ref" : "reason-for-visit-acute-body-region-answer-knee"
+                },
+                {
+                  "id" : "zoJu0Ub89EeR",
+                  "label" : "Leg",
+                  "ref" : "reason-for-visit-acute-body-region-answer-leg"
+                },
+                {
+                  "id" : "dXfHX9cbzDBV",
+                  "label" : "Ankle\/Foot",
+                  "ref" : "reason-for-visit-acute-body-region-answer-ankle-foot"
+                },
+                {
+                  "id" : "FFT7b1I1Gerq",
+                  "label" : "Other (please describe)",
+                  "ref" : "reason-for-visit-acute-body-region-answer-other"
+                }
+              ],
+              "randomize" : false,
+              "vertical_alignment" : true
+            },
+            "ref" : "reason-for-visit-acute-body-region",
+            "title" : "Which body region is your primary concern?",
+            "type" : "multiple_choice",
+            "validations" : {
+              "required" : true
+            }
+          },
+          {
+            "id" : "b7qcaNsuiI38",
+            "properties" : {
+
+            },
+            "ref" : "reason-for-visit-acute-body-region-other",
+            "title" : "Please describe the other body region.",
+            "type" : "short_text",
+            "validations" : {
+              "required" : true
+            }
+          },
+          {
+            "id" : "iK2Nxz4xBz6k",
+            "properties" : {
+              "allow_multiple_selection" : true,
+              "allow_other_choice" : false,
+              "choices" : [
+                {
+                  "id" : "YDlbYVg71qvf",
+                  "label" : "Pain or tenderness",
+                  "ref" : "reason-for-visit-acute-symptoms-answer-pain"
+                },
+                {
+                  "id" : "OrREkFgcoQpk",
+                  "label" : "Stiffness",
+                  "ref" : "reason-for-visit-acute-symptoms-answer-stiffness"
+                },
+                {
+                  "id" : "SlanDNU1gPXh",
+                  "label" : "Swelling",
+                  "ref" : "reason-for-visit-acute-symptoms-answer-swelling"
+                },
+                {
+                  "id" : "RlIAi6HV2DwB",
+                  "label" : "Numbness or tingling",
+                  "ref" : "reason-for-visit-acute-symptoms-answer-numbness"
+                },
+                {
+                  "id" : "NdVorSKQKcWm",
+                  "label" : "Decreased range of motion",
+                  "ref" : "reason-for-visit-acute-symptoms-answer-range-of-motion"
+                },
+                {
+                  "id" : "GKFMYvqL7Rro",
+                  "label" : "Other (please describe)",
+                  "ref" : "reason-for-visit-acute-symptoms-answer-other"
+                }
+              ],
+              "description" : "Select all that apply",
+              "randomize" : false,
+              "vertical_alignment" : true
+            },
+            "ref" : "reason-for-visit-acute-symptoms",
+            "title" : "Are you experiencing any of the following symptoms?",
+            "type" : "multiple_choice",
+            "validations" : {
+              "required" : true
+            }
+          },
+          {
+            "id" : "eHU7lkl13gbK",
+            "properties" : {
+
+            },
+            "ref" : "reason-for-visit-acute-symptoms-other",
+            "title" : "Please describe your other symptoms.",
+            "type" : "short_text",
+            "validations" : {
+              "required" : true
+            }
+          },
+          {
+            "id" : "NuvSw8QwlxHH",
+            "properties" : {
+              "description" : "Answer in degrees Fahrenheit"
+            },
+            "ref" : "reason-for-visit-acute-symptoms-temperature",
+            "title" : "What was your most recent temperature?",
+            "type" : "short_text",
+            "validations" : {
+              "required" : true
+            }
+          },
+          {
+            "id" : "E3KdLJy7GAMP",
+            "properties" : {
+              "allow_multiple_selection" : false,
+              "allow_other_choice" : false,
+              "choices" : [
+                {
+                  "id" : "llTc569DRR3U",
+                  "label" : "Mild - Causes slight limitation during ordinary activities",
+                  "ref" : "reason-for-visit-acute-symptoms-shortness-of-breath-answer-mild"
+                },
+                {
+                  "id" : "Ao6ivqaMM207",
+                  "label" : "Moderate - Causes limitation during low-impact activities like walking slowly or getting dressed",
+                  "ref" : "reason-for-visit-acute-symptoms-shortness-of-breath-answer-moderate"
+                },
+                {
+                  "id" : "ytFS6a6L37Ui",
+                  "label" : "Severe - Shortness of breath is present even at rest",
+                  "ref" : "reason-for-visit-acute-symptoms-shortness-of-breath-answer-severe"
+                }
+              ],
+              "randomize" : false,
+              "vertical_alignment" : true
+            },
+            "ref" : "reason-for-visit-acute-symptoms-shortness-of-breath",
+            "title" : "Which of the following best describes your shortness of breath?",
+            "type" : "multiple_choice",
+            "validations" : {
+              "required" : true
+            }
+          },
+          {
+            "id" : "4h5hHEzqZHKq",
+            "properties" : {
+              "allow_multiple_selection" : false,
+              "allow_other_choice" : false,
+              "choices" : [
+                {
+                  "id" : "zmb2MAPbxo4K",
+                  "label" : "About a day",
+                  "ref" : "reason-for-visit-acute-symptoms-duration-answer-a-day"
+                },
+                {
+                  "id" : "VkuYcFXYEAPL",
+                  "label" : "2-4 days",
+                  "ref" : "reason-for-visit-acute-symptoms-duration-answer-two-to-four-days"
+                },
+                {
+                  "id" : "7JucDohGpTfV",
+                  "label" : "About a week",
+                  "ref" : "reason-for-visit-acute-symptoms-duration-answer-a-week"
+                },
+                {
+                  "id" : "Wt3STf19VIFb",
+                  "label" : "1-2 weeks",
+                  "ref" : "reason-for-visit-acute-symptoms-duration-answer-one-to-two-weeks"
+                },
+                {
+                  "id" : "Q2Snw5LhLlEr",
+                  "label" : "2-4 weeks",
+                  "ref" : "reason-for-visit-acute-symptoms-duration-answer-two-to-four-weeks"
+                },
+                {
+                  "id" : "dRDF56dLCnSW",
+                  "label" : "1 month or more",
+                  "ref" : "reason-for-visit-acute-symptoms-duration-answer-one-month-or-more"
+                }
+              ],
+              "randomize" : false,
+              "vertical_alignment" : true
+            },
+            "ref" : "reason-for-visit-acute-symptoms-duration",
+            "title" : "How long have you been experiencing these symptoms?",
+            "type" : "multiple_choice",
+            "validations" : {
+              "required" : true
+            }
+          },
+          {
+            "id" : "iRE2KUs4i6XH",
+            "properties" : {
+              "allow_multiple_selection" : false,
+              "allow_other_choice" : false,
+              "choices" : [
+                {
+                  "id" : "RiZCSug8Jpfu",
+                  "label" : "Not at all limited",
+                  "ref" : "reason-for-visit-acute-symptoms-effect-answer-not-limited"
+                },
+                {
+                  "id" : "BH187EX2E9bQ",
+                  "label" : "Somewhat limited",
+                  "ref" : "reason-for-visit-acute-symptoms-effect-answer-somewhat-limited"
+                },
+                {
+                  "id" : "U0Sm3z6n6WBG",
+                  "label" : "Severely limited",
+                  "ref" : "reason-for-visit-acute-symptoms-effect-answer-severely-limited"
+                }
+              ],
+              "randomize" : false,
+              "vertical_alignment" : true
+            },
+            "ref" : "reason-for-visit-acute-symptoms-effect",
+            "title" : "To what extent are your daily activities limited by your symptoms?",
+            "type" : "multiple_choice",
+            "validations" : {
+              "required" : true
+            }
+          },
+          {
+            "id" : "c1n6PTHcL5EN",
+            "properties" : {
+              "button_text" : "Okay",
+              "description" : "For symptoms you can see, like a rash or sore throat, uploading a photo to your Documents  will help your provider create a treatment plan.",
+              "hide_marks" : true
+            },
+            "ref" : "reason-for-visit-acute-photo-confirmation",
+            "title" : "Sharing a photo can help your provider.",
+            "type" : "statement"
+          },
+          {
+            "id" : "fcWlu3xYdnVM",
+            "properties" : {
+              "description" : "Share more about your symptoms or concerns and what you would like to discuss during your visit."
+            },
+            "ref" : "reason-for-visit-acute-detail",
+            "title" : "Tell us more about the reason for your visit.",
+            "type" : "long_text",
+            "validations" : {
+              "required" : true
+            }
+          }
+        ],
+        "show_button" : true
+      },
+      "ref" : "reason-for-visit-acute-intro",
+      "title" : "Acute Care",
+      "type" : "group"
+    },
+    {
+      "id" : "G4tFU7Z1Gscy",
+      "properties" : {
+        "button_text" : "Continue",
+        "fields" : [
+          {
+            "id" : "Jb9vdFxXxODy",
+            "properties" : {
+              "allow_multiple_selection" : true,
+              "allow_other_choice" : false,
+              "choices" : [
+                {
+                  "id" : "SfT6kr3Jl3Cn",
+                  "label" : "Type 2 diabetes or prediabetes",
+                  "ref" : "reason-for-visit-chronic-answer-diabetes"
+                },
+                {
+                  "id" : "8KPZ4tggM0pf",
+                  "label" : "High blood pressure",
+                  "ref" : "reason-for-visit-chronic-answer-high-blood-pressure"
+                },
+                {
+                  "id" : "5zsGZGNossAM",
+                  "label" : "High cholesterol",
+                  "ref" : "reason-for-visit-chronic-answer-high-cholesterol"
+                },
+                {
+                  "id" : "ti3q5pXgyzpH",
+                  "label" : "Thyroid disorder",
+                  "ref" : "reason-for-visit-chronic-answer-thyroid-disorder"
+                },
+                {
+                  "id" : "tFRwC2KmwA6N",
+                  "label" : "Seasonal allergies",
+                  "ref" : "reason-for-visit-chronic-answer-seasonal-allergies"
+                },
+                {
+                  "id" : "NdCxqhyQ3Br6",
+                  "label" : "Asthma, COPD, or other respiratory conditions",
+                  "ref" : "reason-for-visit-chronic-answer-asthma"
+                },
+                {
+                  "id" : "ZEI7cKqNPi5l",
+                  "label" : "Stomach, digestion, or bowel issues",
+                  "ref" : "reason-for-visit-chronic-answer-stomach-digestion-bowel"
+                },
+                {
+                  "id" : "UaZfWPY4QA1v",
+                  "label" : "Muscle, joint, or bone issues",
+                  "ref" : "reason-for-visit-chronic-answer-muscle-joint-or-bone"
+                },
+                {
+                  "id" : "QWQpmqJs9rUB",
+                  "label" : "Weight management",
+                  "ref" : "reason-for-visit-chronic-answer-weight-management"
+                },
+                {
+                  "id" : "mn4dr0N7LPP4",
+                  "label" : "Other (please describe)",
+                  "ref" : "reason-for-visit-chronic-answer-other"
+                }
+              ],
+              "randomize" : false,
+              "vertical_alignment" : true
+            },
+            "ref" : "reason-for-visit-chronic",
+            "title" : "Which of the following health issues would you like to discuss?",
+            "type" : "multiple_choice",
+            "validations" : {
+              "required" : true
+            }
+          },
+          {
+            "id" : "Wre7kIdPBKI4",
+            "properties" : {
+              "description" : "In a few words, describe your high-level issue or concern."
+            },
+            "ref" : "reason-for-visit-chronic-other",
+            "title" : "Please describe the other health issue you’d like to discuss.",
+            "type" : "short_text",
+            "validations" : {
+              "required" : true
+            }
+          },
+          {
+            "id" : "6RvRmM6ZgRtG",
+            "properties" : {
+              "allow_multiple_selection" : true,
+              "allow_other_choice" : false,
+              "choices" : [
+                {
+                  "id" : "nkRLpB7zn8qM",
+                  "label" : "A general check-in on my condition(s)",
+                  "ref" : "reason-for-visit-chronic-needs-answer-general-check"
+                },
+                {
+                  "id" : "gCgeBrq3CmD4",
+                  "label" : "Address specific concerns about my condition(s)",
+                  "ref" : "reason-for-visit-chronic-needs-answer-specific-concerns"
+                },
+                {
+                  "id" : "XsYovLIxje4a",
+                  "label" : "Manage medications",
+                  "ref" : "reason-for-visit-chronic-needs-answer-manage-medications"
+                },
+                {
+                  "id" : "uhX8Kc1W1ViV",
+                  "label" : "Discuss lab or imaging results",
+                  "ref" : "reason-for-visit-chronic-needs-answer-discuss-lab-or-imaging-results"
+                },
+                {
+                  "id" : "PxATeimqme64",
+                  "label" : "Something else",
+                  "ref" : "reason-for-visit-chronic-needs-answer-something-else"
+                }
+              ],
+              "randomize" : false,
+              "vertical_alignment" : true
+            },
+            "ref" : "reason-for-visit-chronic-needs",
+            "title" : "Which of the following best describes your needs for this visit?",
+            "type" : "multiple_choice",
+            "validations" : {
+              "required" : true
+            }
+          },
+          {
+            "id" : "hAMLGUklc0yr",
+            "properties" : {
+
+            },
+            "ref" : "reason-for-visit-chronic-follow-up",
+            "title" : "Is this a follow up to a previous Nice visit?",
+            "type" : "yes_no",
+            "validations" : {
+              "required" : true
+            }
+          },
+          {
+            "id" : "siLacVhR85YA",
+            "properties" : {
+              "description" : "Share any questions, concerns, or topics you’d like to cover during your visit."
+            },
+            "ref" : "reason-for-visit-chronic-detail",
+            "title" : "Tell us more about the reason for your visit.",
+            "type" : "long_text",
+            "validations" : {
+              "required" : true
+            }
+          }
+        ],
+        "show_button" : true
+      },
+      "ref" : "reason-for-visit-chronic-intro",
+      "title" : "Chronic Care",
+      "type" : "group"
+    },
+    {
+      "id" : "dOvy2se0OImF",
+      "properties" : {
+        "button_text" : "Continue",
+        "fields" : [
+          {
+            "id" : "ayVmdjO7qnJx",
+            "properties" : {
+              "allow_multiple_selection" : false,
+              "allow_other_choice" : false,
+              "choices" : [
+                {
+                  "id" : "42R6aaGzjdBS",
+                  "label" : "Wellness exam (adult)",
+                  "ref" : "reason-for-visit-wellness-answer-wellness-exam"
+                },
+                {
+                  "id" : "x5XPpXd1qRs0",
+                  "label" : "Well child exam (under 18)",
+                  "ref" : "reason-for-visit-wellness-answer-well-child-exam"
+                },
+                {
+                  "id" : "hX0kjuDnEHak",
+                  "label" : "Birth control management",
+                  "ref" : "reason-for-visit-wellness-answer-birth-control-management"
+                },
+                {
+                  "id" : "VPzdJIG6qlOK",
+                  "label" : "Camp or sports physical",
+                  "ref" : "reason-for-visit-wellness-answer-camp-or-sports-physical"
+                },
+                {
+                  "id" : "wCtKl5FUJrmO",
+                  "label" : "Pre-op physical",
+                  "ref" : "reason-for-visit-wellness-answer-pre-op-physical"
+                },
+                {
+                  "id" : "W8tHS5rinEh4",
+                  "label" : "Other (please describe)",
+                  "ref" : "reason-for-visit-wellness-answer-other"
+                }
+              ],
+              "randomize" : false,
+              "vertical_alignment" : true
+            },
+            "ref" : "reason-for-visit-wellness",
+            "title" : "Which of the following best describes the reason for your wellness visit?",
+            "type" : "multiple_choice",
+            "validations" : {
+              "required" : true
+            }
+          },
+          {
+            "id" : "dXa9545wlkak",
+            "properties" : {
+
+            },
+            "ref" : "reason-for-visit-wellness-other",
+            "title" : "Please describe the other reason for your wellness visit.",
+            "type" : "short_text",
+            "validations" : {
+              "required" : true
+            }
+          },
+          {
+            "id" : "FxlNQNoFT95R",
+            "properties" : {
+
+            },
+            "ref" : "reason-for-visit-wellness-follow-up",
+            "title" : "Is this a follow up to a previous Nice wellness visit?",
+            "type" : "yes_no",
+            "validations" : {
+              "required" : true
+            }
+          },
+          {
+            "id" : "Hon70eJRsG9Y",
+            "properties" : {
+
+            },
+            "ref" : "reason-for-visit-wellness-employer-requirement",
+            "title" : "Is this visit an employer-sponsored wellness program requirement?",
+            "type" : "yes_no",
+            "validations" : {
+              "required" : true
+            }
+          },
+          {
+            "id" : "j98To9YMzs2n",
+            "properties" : {
+              "description" : "By typing my name below, I consent to Nice Healthcare informing my employer that I fulfilled the wellness\/biometric visit requirement. Further, I consent to Nice Healthcare sharing my biometric data with my health insurance carrier in order to obtain an incentive."
+            },
+            "ref" : "reason-for-visit-wellness-employer-requirement-consent",
+            "title" : "Type your name to agree to the following:",
+            "type" : "short_text",
+            "validations" : {
+              "required" : true
+            }
+          },
+          {
+            "id" : "zDMKTT5fGS5N",
+            "properties" : {
+
+            },
+            "ref" : "reason-for-visit-wellness-last-physical-exam-date-available",
+            "title" : "Do you know the approximate date of your last physical exam?",
+            "type" : "yes_no",
+            "validations" : {
+              "required" : true
+            }
+          },
+          {
+            "id" : "90dUVyrpbB25",
+            "properties" : {
+              "description" : "Provide the approximate month and year"
+            },
+            "ref" : "reason-for-visit-wellness-last-physical-exam-date",
+            "title" : "When was your last physical exam?",
+            "type" : "short_text",
+            "validations" : {
+              "required" : true
+            }
+          },
+          {
+            "id" : "O8XWfbmM8Mrj",
+            "properties" : {
+              "allow_multiple_selection" : false,
+              "allow_other_choice" : false,
+              "choices" : [
+                {
+                  "id" : "vqSBqk7WvJBo",
+                  "label" : "Not balanced (mostly processed foods or fast food)",
+                  "ref" : "reason-for-visit-wellness-diet-answer-not-balanced"
+                },
+                {
+                  "id" : "LsbkazgtWF0G",
+                  "label" : "Somewhat balanced (a mix of processed with some fresh foods)",
+                  "ref" : "reason-for-visit-wellness-diet-answer-somewhat-balanced"
+                },
+                {
+                  "id" : "YjjHkeCYIbmH",
+                  "label" : "Well balanced (regularly eating fresh fruits and vegetables, whole grains)",
+                  "ref" : "reason-for-visit-wellness-diet-answer-well-balanced"
+                }
+              ],
+              "randomize" : false,
+              "vertical_alignment" : true
+            },
+            "ref" : "reason-for-visit-wellness-diet",
+            "title" : "Which of the following best describes your diet on a typical day?",
+            "type" : "multiple_choice",
+            "validations" : {
+              "required" : true
+            }
+          },
+          {
+            "id" : "S301udV7N9oP",
+            "properties" : {
+              "allow_multiple_selection" : false,
+              "allow_other_choice" : false,
+              "choices" : [
+                {
+                  "id" : "wkETvMYjvUN7",
+                  "label" : "Mostly sedentary, without much movement throughout the day",
+                  "ref" : "reason-for-visit-wellness-physical-activity-answer-mostly-sedentary"
+                },
+                {
+                  "id" : "Gcw0ebiAy4U4",
+                  "label" : "Light movement during the day such as walking",
+                  "ref" : "reason-for-visit-wellness-physical-activity-answer-light-movement"
+                },
+                {
+                  "id" : "YinMfQAH5Bw4",
+                  "label" : "Regular exercise or other activity like a physically demanding job",
+                  "ref" : "reason-for-visit-wellness-physical-activity-answer-regular-exercise"
+                },
+                {
+                  "id" : "EsGlkbAZ0FJ4",
+                  "label" : "High intensity exercise or activity throughout the day",
+                  "ref" : "reason-for-visit-wellness-physical-activity-answer-high-intensity-exercise"
+                }
+              ],
+              "randomize" : false,
+              "vertical_alignment" : true
+            },
+            "ref" : "reason-for-visit-wellness-physical-activity",
+            "title" : "Which of the following best describes your physical activity on a typical day?",
+            "type" : "multiple_choice",
+            "validations" : {
+              "required" : true
+            }
+          },
+          {
+            "id" : "2DtAod88meEg",
+            "properties" : {
+              "allow_multiple_selection" : true,
+              "allow_other_choice" : false,
+              "choices" : [
+                {
+                  "id" : "wXTyeobwj0H0",
+                  "label" : "Feeling down or depressed",
+                  "ref" : "reason-for-visit-wellness-symptoms-answer-feeling-down"
+                },
+                {
+                  "id" : "IMlheKUwOVsf",
+                  "label" : "Feeling anxious or on edge",
+                  "ref" : "reason-for-visit-wellness-symptoms-answer-feeling-anxious"
+                },
+                {
+                  "id" : "48yCMXQvkRia",
+                  "label" : "Feeling stressed or burned out",
+                  "ref" : "reason-for-visit-wellness-symptoms-answer-stressed-or-burned-out"
+                },
+                {
+                  "id" : "e95CGII1UB5s",
+                  "label" : "Having trouble sleeping",
+                  "ref" : "reason-for-visit-wellness-symptoms-answer-trouble-sleeping"
+                },
+                {
+                  "id" : "oFbD3O7g2b5a",
+                  "label" : "None of the above",
+                  "ref" : "reason-for-visit-wellness-symptoms-answer-none-of-the-above"
+                }
+              ],
+              "description" : "Select all that apply",
+              "randomize" : false,
+              "vertical_alignment" : true
+            },
+            "ref" : "reason-for-visit-wellness-symptoms",
+            "title" : "Have you struggled with any of the following recently?",
+            "type" : "multiple_choice",
+            "validations" : {
+              "required" : true
+            }
+          },
+          {
+            "id" : "EQ5KsVKy992Z",
+            "properties" : {
+
+            },
+            "ref" : "reason-for-visit-wellness-recent-height",
+            "title" : "What was a recent height (in inches)?",
+            "type" : "short_text",
+            "validations" : {
+              "required" : true
+            }
+          },
+          {
+            "id" : "F8ZsdLnKZQX3",
+            "properties" : {
+
+            },
+            "ref" : "reason-for-visit-wellness-recent-weight",
+            "title" : "What was a recent weight (in pounds)?",
+            "type" : "short_text",
+            "validations" : {
+              "required" : true
+            }
+          },
+          {
+            "id" : "oOJHflCnTo9g",
+            "properties" : {
+              "description" : "Share any questions, concerns, or topics you’d like to cover during your visit."
+            },
+            "ref" : "reason-for-visit-wellness-detail",
+            "title" : "Tell us more about the reason for your wellness visit.",
+            "type" : "long_text",
+            "validations" : {
+              "required" : true
+            }
+          }
+        ],
+        "show_button" : true
+      },
+      "ref" : "reason-for-visit-wellness-intro",
+      "title" : "Wellness and Preventive Care",
+      "type" : "group"
+    },
+    {
+      "id" : "Ezppqbwl6RW3",
+      "properties" : {
+        "button_text" : "Continue",
+        "fields" : [
+          {
+            "id" : "HfmRZixVWAFo",
+            "properties" : {
+              "allow_multiple_selection" : true,
+              "allow_other_choice" : false,
+              "choices" : [
+                {
+                  "id" : "9rKCP5We9ywz",
+                  "label" : "Feeling down or depressed",
+                  "ref" : "reason-for-visit-mental-health-answer-depressed"
+                },
+                {
+                  "id" : "KEWWQJ7z9iev",
+                  "label" : "Feeling anxious or on edge",
+                  "ref" : "reason-for-visit-mental-health-answer-anxious"
+                },
+                {
+                  "id" : "LEmpcUcOOEV4",
+                  "label" : "Feeling stressed or burned out",
+                  "ref" : "reason-for-visit-mental-health-answer-stressed"
+                },
+                {
+                  "id" : "yM5Zzv3nXrcb",
+                  "label" : "Having trouble sleeping",
+                  "ref" : "reason-for-visit-mental-health-answer-trouble-sleeping"
+                },
+                {
+                  "id" : "Uu2XXTaJCqk4",
+                  "label" : "Other (please describe)",
+                  "ref" : "reason-for-visit-mental-health-answer-other"
+                }
+              ],
+              "description" : "Select all that apply",
+              "randomize" : false,
+              "vertical_alignment" : true
+            },
+            "ref" : "reason-for-visit-mental-health",
+            "title" : "Which of the following best describes the reason you’re seeking mental health care?",
+            "type" : "multiple_choice",
+            "validations" : {
+              "required" : true
+            }
+          },
+          {
+            "id" : "WqTJE5XOFxYK",
+            "properties" : {
+              "description" : "In a few words, describe your high-level issue or concern."
+            },
+            "ref" : "reason-for-visit-mental-health-other",
+            "title" : "Please describe the other mental health issue you’d like to discuss.",
+            "type" : "short_text",
+            "validations" : {
+              "required" : true
+            }
+          },
+          {
+            "id" : "WFSxSeEqNhRf",
+            "properties" : {
+              "allow_multiple_selection" : false,
+              "allow_other_choice" : false,
+              "choices" : [
+                {
+                  "id" : "4anFYt8pfhpW",
+                  "label" : "Medication",
+                  "ref" : "reason-for-visit-mental-health-support-requested-answer-medication"
+                },
+                {
+                  "id" : "TP8iXTe32ZkL",
+                  "label" : "Therapy",
+                  "ref" : "reason-for-visit-mental-health-support-requested-answer-therapy"
+                },
+                {
+                  "id" : "Gj6g88vjmyBX",
+                  "label" : "Medication + therapy",
+                  "ref" : "reason-for-visit-mental-health-support-requested-answer-medication-and-therapy"
+                }
+              ],
+              "randomize" : false,
+              "vertical_alignment" : true
+            },
+            "ref" : "reason-for-visit-mental-health-support-requested",
+            "title" : "What type of mental health support are you looking for?",
+            "type" : "multiple_choice",
+            "validations" : {
+              "required" : true
+            }
+          },
+          {
+            "id" : "m5vFazJPFEoD",
+            "properties" : {
+              "button_text" : "Okay",
+              "description" : "Our integrated mental health approach starts with a primary care provider who will:\n\n• Learn about your physical and mental health.\n\n• Manage mental health medications if needed. (Nice does not prescribe anti-psychotic or controlled medications.)\n\n• Provide a referral to our therapy program if it’s a good fit for your needs.",
+              "hide_marks" : false
+            },
+            "ref" : "reason-for-visit-mental-health-primary-care-confirmation",
+            "title" : "Mental health at Nice starts with a primary care exam.",
+            "type" : "statement"
+          },
+          {
+            "id" : "ycQzgX2TYQxp",
+            "properties" : {
+              "button_text" : "Okay",
+              "description" : "Mental health therapy at Nice is not available to patients under 18. For these patients, our primary care clinicians can:\n\n• Screen for common mental health conditions like anxiety and depression.\n\n• Recommend next steps for care.\n\n• Connect patients and families with external resources and provide referrals to specialists when needed.",
+              "hide_marks" : false
+            },
+            "ref" : "reason-for-visit-mental-health-age-confirmation",
+            "title" : "Mental health care at Nice is limited for patients under 18.",
+            "type" : "statement"
+          },
+          {
+            "id" : "lUo2LTSv6Gde",
+            "properties" : {
+              "button_text" : "Continue",
+              "description" : "As you answer, think about the last 2 weeks. How often have you been bothered by the following problems?",
+              "hide_marks" : true
+            },
+            "ref" : "reason-for-visit-mental-health-concern-confirmation",
+            "title" : "The following questionnaire, called “PHQ9”, was designed by mental health experts to assess symptoms of depression.",
+            "type" : "statement"
+          },
+          {
+            "id" : "Yoprc9It9zat",
+            "properties" : {
+              "allow_multiple_selection" : false,
+              "allow_other_choice" : false,
+              "choices" : [
+                {
+                  "id" : "zLFQjt7WmrVK",
+                  "label" : "0 - Not at all",
+                  "ref" : "reason-for-visit-mental-health-concern-interest-answer-not-at-all"
+                },
+                {
+                  "id" : "ejOc4uT623Ge",
+                  "label" : "1 - Several days",
+                  "ref" : "reason-for-visit-mental-health-concern-interest-answer-several-days"
+                },
+                {
+                  "id" : "XDI3dckJdJMY",
+                  "label" : "2 - More than half the days",
+                  "ref" : "reason-for-visit-mental-health-concern-interest-answer-more-than-half"
+                },
+                {
+                  "id" : "lMwMZAMlqHaM",
+                  "label" : "3 - Nearly every day",
+                  "ref" : "reason-for-visit-mental-health-concern-interest-answer-nearly-every-day"
+                }
+              ],
+              "description" : "In the last 2 weeks, how often have you been bothered by this problem?",
+              "randomize" : false,
+              "vertical_alignment" : true
+            },
+            "ref" : "reason-for-visit-mental-health-concern-interest",
+            "title" : "[PHQ9] Little interest or pleasure in doing things",
+            "type" : "multiple_choice",
+            "validations" : {
+              "required" : true
+            }
+          },
+          {
+            "id" : "ZqZuJWzO5SQS",
+            "properties" : {
+              "allow_multiple_selection" : false,
+              "allow_other_choice" : false,
+              "choices" : [
+                {
+                  "id" : "eSJbs9SPksli",
+                  "label" : "0 - Not at all",
+                  "ref" : "reason-for-visit-mental-health-concern-depressed-answer-not-at-all"
+                },
+                {
+                  "id" : "BTqqGNfrS6jp",
+                  "label" : "1 - Several days",
+                  "ref" : "reason-for-visit-mental-health-concern-depressed-answer-several-days"
+                },
+                {
+                  "id" : "gwK6HQQMe40E",
+                  "label" : "2 - More than half the days",
+                  "ref" : "reason-for-visit-mental-health-concern-depressed-answer-more-than-half-the-days"
+                },
+                {
+                  "id" : "smzFTJaEUpdI",
+                  "label" : "3 - Nearly every day",
+                  "ref" : "reason-for-visit-mental-health-concern-depressed-answer-nearly-every-day"
+                }
+              ],
+              "description" : "In the last 2 weeks, how often have you been bothered by this problem?",
+              "randomize" : false,
+              "vertical_alignment" : true
+            },
+            "ref" : "reason-for-visit-mental-health-concern-depressed",
+            "title" : "[PHQ9] Feeling down, depressed, or hopeless",
+            "type" : "multiple_choice",
+            "validations" : {
+              "required" : true
+            }
+          },
+          {
+            "id" : "fH9IQiFhLjZR",
+            "properties" : {
+              "allow_multiple_selection" : false,
+              "allow_other_choice" : false,
+              "choices" : [
+                {
+                  "id" : "lcvXW6eUbJP8",
+                  "label" : "0 - Not at all",
+                  "ref" : "reason-for-visit-mental-health-concern-sleep-answer-not-at-all"
+                },
+                {
+                  "id" : "BDIXJtcwbJhX",
+                  "label" : "1 - Several days",
+                  "ref" : "reason-for-visit-mental-health-concern-sleep-answer-several-days"
+                },
+                {
+                  "id" : "SLlXvV7Iq24k",
+                  "label" : "2 - More than half the days",
+                  "ref" : "reason-for-visit-mental-health-concern-sleep-answer-more-than-half-the-days"
+                },
+                {
+                  "id" : "K1XJms0Uo3hj",
+                  "label" : "3 - Nearly every day",
+                  "ref" : "reason-for-visit-mental-health-concern-sleep-answer-nearly-every-day"
+                }
+              ],
+              "description" : "In the last 2 weeks, how often have you been bothered by this problem?",
+              "randomize" : false,
+              "vertical_alignment" : true
+            },
+            "ref" : "reason-for-visit-mental-health-concern-sleep",
+            "title" : "[PHQ9] Trouble sleeping or sleeping too much",
+            "type" : "multiple_choice",
+            "validations" : {
+              "required" : true
+            }
+          },
+          {
+            "id" : "c75d2WZbUUP6",
+            "properties" : {
+              "allow_multiple_selection" : false,
+              "allow_other_choice" : false,
+              "choices" : [
+                {
+                  "id" : "jetoU1IYOjd5",
+                  "label" : "0 - Not at all",
+                  "ref" : "reason-for-visit-mental-health-concern-energy-answer-not-at-all"
+                },
+                {
+                  "id" : "9oMduPZEVhzT",
+                  "label" : "1 - Several days",
+                  "ref" : "reason-for-visit-mental-health-concern-energy-answer-several-days"
+                },
+                {
+                  "id" : "xgy81Qp3bf6U",
+                  "label" : "2 - More than half the days",
+                  "ref" : "reason-for-visit-mental-health-concern-energy-answer-more-than-half-the-days"
+                },
+                {
+                  "id" : "dYQMRAlmJoDN",
+                  "label" : "3 - Nearly every day",
+                  "ref" : "reason-for-visit-mental-health-concern-energy-answer-nearly-every-day"
+                }
+              ],
+              "description" : "In the last 2 weeks, how often have you been bothered by this problem?",
+              "randomize" : false,
+              "vertical_alignment" : true
+            },
+            "ref" : "reason-for-visit-mental-health-concern-energy",
+            "title" : "[PHQ9] Feeling tired or having little energy",
+            "type" : "multiple_choice",
+            "validations" : {
+              "required" : true
+            }
+          },
+          {
+            "id" : "KotSy1VFpTXQ",
+            "properties" : {
+              "allow_multiple_selection" : false,
+              "allow_other_choice" : false,
+              "choices" : [
+                {
+                  "id" : "88bhfWcwcFr8",
+                  "label" : "0 - Not at all",
+                  "ref" : "reason-for-visit-mental-health-concern-appetite-answer-not-at-all"
+                },
+                {
+                  "id" : "DemowlycKewA",
+                  "label" : "1 - Several days",
+                  "ref" : "reason-for-visit-mental-health-concern-appetite-answer-several-days"
+                },
+                {
+                  "id" : "1MYC2u80fDPI",
+                  "label" : "2 - More than half the days",
+                  "ref" : "reason-for-visit-mental-health-concern-appetite-answer-more-than-half-the-days"
+                },
+                {
+                  "id" : "U4i10XLRxT5I",
+                  "label" : "3 - Nearly every day",
+                  "ref" : "reason-for-visit-mental-health-concern-appetite-answer-nearly-every-day"
+                }
+              ],
+              "description" : "In the last 2 weeks, how often have you been bothered by this problem?",
+              "randomize" : false,
+              "vertical_alignment" : true
+            },
+            "ref" : "reason-for-visit-mental-health-concern-appetite",
+            "title" : "[PHQ9] Poor appetite or overeating",
+            "type" : "multiple_choice",
+            "validations" : {
+              "required" : true
+            }
+          },
+          {
+            "id" : "AHPBkC9qmJF5",
+            "properties" : {
+              "allow_multiple_selection" : false,
+              "allow_other_choice" : false,
+              "choices" : [
+                {
+                  "id" : "SKkrRpzKDW5z",
+                  "label" : "0 - Not at all",
+                  "ref" : "reason-for-visit-mental-health-concern-failure-answer-not-at-all"
+                },
+                {
+                  "id" : "embZ136we3Of",
+                  "label" : "1 - Several days",
+                  "ref" : "reason-for-visit-mental-health-concern-failure-answer-several-days"
+                },
+                {
+                  "id" : "FkDCcSTnNxd3",
+                  "label" : "2 - More than half the days",
+                  "ref" : "reason-for-visit-mental-health-concern-failure-answer-more-than-half-the-days"
+                },
+                {
+                  "id" : "L8IEbIHnLKAJ",
+                  "label" : "3 - Nearly every day",
+                  "ref" : "reason-for-visit-mental-health-concern-failure-answer-nearly-every-day"
+                }
+              ],
+              "description" : "In the last 2 weeks, how often have you been bothered by this problem?",
+              "randomize" : false,
+              "vertical_alignment" : true
+            },
+            "ref" : "reason-for-visit-mental-health-concern-failure",
+            "title" : "[PHQ9] Feeling bad about yourself — or that you are a failure or have let yourself or your family down",
+            "type" : "multiple_choice",
+            "validations" : {
+              "required" : true
+            }
+          },
+          {
+            "id" : "QfaJ7F6W052D",
+            "properties" : {
+              "allow_multiple_selection" : false,
+              "allow_other_choice" : false,
+              "choices" : [
+                {
+                  "id" : "9TbP6ieILoI1",
+                  "label" : "0 - Not at all",
+                  "ref" : "reason-for-visit-mental-health-concern-concentration-answer-not-at-all"
+                },
+                {
+                  "id" : "t2gWIOxcdJxU",
+                  "label" : "1 - Several days",
+                  "ref" : "reason-for-visit-mental-health-concern-concentration-answer-several-days"
+                },
+                {
+                  "id" : "PD9IkpoY6dwe",
+                  "label" : "2 - More than half the days",
+                  "ref" : "reason-for-visit-mental-health-concern-concentration-answer-more-than-half-the-days"
+                },
+                {
+                  "id" : "6mAnaC9eMLsN",
+                  "label" : "3 - Nearly every day",
+                  "ref" : "reason-for-visit-mental-health-concern-concentration-answer-nearly-every-day"
+                }
+              ],
+              "description" : "In the last 2 weeks, how often have you been bothered by this problem?",
+              "randomize" : false,
+              "vertical_alignment" : true
+            },
+            "ref" : "reason-for-visit-mental-health-concern-concentration",
+            "title" : "[PHQ9] Trouble concentrating on things, such as reading the newspaper or watching television",
+            "type" : "multiple_choice",
+            "validations" : {
+              "required" : true
+            }
+          },
+          {
+            "id" : "iLDM8GmXr0CB",
+            "properties" : {
+              "allow_multiple_selection" : false,
+              "allow_other_choice" : false,
+              "choices" : [
+                {
+                  "id" : "b22UxYH3XY7s",
+                  "label" : "0 - Not at all",
+                  "ref" : "reason-for-visit-mental-health-concern-behavior-change-answer-not-at-all"
+                },
+                {
+                  "id" : "NKuHC94jrCrM",
+                  "label" : "1 - Several days",
+                  "ref" : "reason-for-visit-mental-health-concern-behavior-change-answer-several-days"
+                },
+                {
+                  "id" : "Kqf83uswzAY9",
+                  "label" : "2 - More than half the days",
+                  "ref" : "reason-for-visit-mental-health-concern-behavior-change-answer-more-than-half-the-days"
+                },
+                {
+                  "id" : "zUOqNOm1vkCI",
+                  "label" : "3 - Nearly every day",
+                  "ref" : "reason-for-visit-mental-health-concern-behavior-change-answer-nearly-every-day"
+                }
+              ],
+              "description" : "In the last 2 weeks, how often have you been bothered by this problem?",
+              "randomize" : false,
+              "vertical_alignment" : true
+            },
+            "ref" : "reason-for-visit-mental-health-concern-behavior-change",
+            "title" : "[PHQ9] Moving or speaking so slowly that other people could have noticed, or the opposite — being so fidgety or restless that you have been moving around a lot more than usual",
+            "type" : "multiple_choice",
+            "validations" : {
+              "required" : true
+            }
+          },
+          {
+            "id" : "B1QBn5206ubg",
+            "properties" : {
+              "allow_multiple_selection" : false,
+              "allow_other_choice" : false,
+              "choices" : [
+                {
+                  "id" : "DYOB4mwfORDZ",
+                  "label" : "0 - Not at all",
+                  "ref" : "reason-for-visit-mental-health-concern-self-harm-answer-not-at-all"
+                },
+                {
+                  "id" : "0kyczNm9EcC4",
+                  "label" : "1 - Several days",
+                  "ref" : "reason-for-visit-mental-health-concern-self-harm-answer-several-days"
+                },
+                {
+                  "id" : "DFkCb8bonIWi",
+                  "label" : "2 - More than half the days",
+                  "ref" : "reason-for-visit-mental-health-concern-self-harm-answer-more-than-half-the-days"
+                },
+                {
+                  "id" : "1DNJxLB87qmf",
+                  "label" : "3 - Nearly every day",
+                  "ref" : "reason-for-visit-mental-health-concern-self-harm-answer-nearly-every-day"
+                }
+              ],
+              "description" : "In the last 2 weeks, how often have you been bothered by this problem?",
+              "randomize" : false,
+              "vertical_alignment" : true
+            },
+            "ref" : "reason-for-visit-mental-health-concern-self-harm",
+            "title" : "[PHQ9] Thoughts that you would be better off dead, or of hurting yourself",
+            "type" : "multiple_choice",
+            "validations" : {
+              "required" : true
+            }
+          },
+          {
+            "id" : "PRz50Mg4IPuq",
+            "properties" : {
+              "button_text" : "Continue",
+              "description" : "As you answer, think about the last 2 weeks. How often have you been bothered by the following problems?",
+              "hide_marks" : false
+            },
+            "ref" : "reason-for-visit-mental-health-concern-anxiety-confirmation",
+            "title" : "Next we’ll ask a series of questions called “GAD7”, used by mental health experts to assess symptoms of anxiety.",
+            "type" : "statement"
+          },
+          {
+            "id" : "gXkPfjP49ZRx",
+            "properties" : {
+              "allow_multiple_selection" : false,
+              "allow_other_choice" : false,
+              "choices" : [
+                {
+                  "id" : "nxJv3lkQQvNW",
+                  "label" : "0 - Not at all",
+                  "ref" : "reason-for-visit-mental-health-concern-nervous-answer-not-at-all"
+                },
+                {
+                  "id" : "u72sYRQsFHis",
+                  "label" : "1 - Several days",
+                  "ref" : "reason-for-visit-mental-health-concern-nervous-answer-several-days"
+                },
+                {
+                  "id" : "JPBuQfuziElS",
+                  "label" : "2 - More than half the days",
+                  "ref" : "reason-for-visit-mental-health-concern-nervous-answer-more-than-half-the-days"
+                },
+                {
+                  "id" : "VLcR1IfcFgnY",
+                  "label" : "3 - Nearly every day",
+                  "ref" : "reason-for-visit-mental-health-concern-nervous-answer-nearly-every-day"
+                }
+              ],
+              "description" : "In the last 2 weeks, how often have you been bothered by this problem?",
+              "randomize" : false,
+              "vertical_alignment" : true
+            },
+            "ref" : "reason-for-visit-mental-health-concern-nervous",
+            "title" : "[GAD7] Feeling nervous, anxious or on edge",
+            "type" : "multiple_choice",
+            "validations" : {
+              "required" : true
+            }
+          },
+          {
+            "id" : "LZw6mk9OREys",
+            "properties" : {
+              "allow_multiple_selection" : false,
+              "allow_other_choice" : false,
+              "choices" : [
+                {
+                  "id" : "QA7nwfb9fwis",
+                  "label" : "0 - Not at all",
+                  "ref" : "reason-for-visit-mental-health-concern-worried-answer-not-at-all"
+                },
+                {
+                  "id" : "4xixYGHlx7Or",
+                  "label" : "1 - Several days",
+                  "ref" : "reason-for-visit-mental-health-concern-worried-answer-several-days"
+                },
+                {
+                  "id" : "pLbjOw7ped9x",
+                  "label" : "2 - More than half the days",
+                  "ref" : "reason-for-visit-mental-health-concern-worried-answer-more-than-half-the-days"
+                },
+                {
+                  "id" : "PbRglHux68Fp",
+                  "label" : "3 - Nearly every day",
+                  "ref" : "reason-for-visit-mental-health-concern-worried-answer-nearly-every-day"
+                }
+              ],
+              "description" : "In the last 2 weeks, how often have you been bothered by this problem?",
+              "randomize" : false,
+              "vertical_alignment" : true
+            },
+            "ref" : "reason-for-visit-mental-health-concern-worried",
+            "title" : "[GAD7] Not being able to stop or control worrying",
+            "type" : "multiple_choice",
+            "validations" : {
+              "required" : true
+            }
+          },
+          {
+            "id" : "HhdpPdO2Elji",
+            "properties" : {
+              "allow_multiple_selection" : false,
+              "allow_other_choice" : false,
+              "choices" : [
+                {
+                  "id" : "uYxDN7s1UAQ1",
+                  "label" : "0 - Not at all",
+                  "ref" : "reason-for-visit-mental-health-concern-worried-different-things-answer-not-at-all"
+                },
+                {
+                  "id" : "Kgh8fLu7XYdL",
+                  "label" : "1 - Several days",
+                  "ref" : "reason-for-visit-mental-health-concern-worried-different-things-answer-several-days"
+                },
+                {
+                  "id" : "qEiskmYLpMSp",
+                  "label" : "2 - More than half the days",
+                  "ref" : "reason-for-visit-mental-health-concern-worried-different-things-answer-more-than-half-the-days"
+                },
+                {
+                  "id" : "nVakHq7AlP5V",
+                  "label" : "3 - Nearly every day",
+                  "ref" : "reason-for-visit-mental-health-concern-worried-different-things-answer-nearly-every-day"
+                }
+              ],
+              "description" : "In the last 2 weeks, how often have you been bothered by this problem?",
+              "randomize" : false,
+              "vertical_alignment" : true
+            },
+            "ref" : "reason-for-visit-mental-health-concern-worried-different-things",
+            "title" : "[GAD7] Worrying too much about different things",
+            "type" : "multiple_choice",
+            "validations" : {
+              "required" : true
+            }
+          },
+          {
+            "id" : "kFKjDdUp58SQ",
+            "properties" : {
+              "allow_multiple_selection" : false,
+              "allow_other_choice" : false,
+              "choices" : [
+                {
+                  "id" : "aP0Yhbi7FjDP",
+                  "label" : "0 - Not at all",
+                  "ref" : "reason-for-visit-mental-health-concern-trouble-relaxing-answer-not-at-all"
+                },
+                {
+                  "id" : "go5MkmuchoYl",
+                  "label" : "1 - Several days",
+                  "ref" : "reason-for-visit-mental-health-concern-trouble-relaxing-answer-several-days"
+                },
+                {
+                  "id" : "Szr44QzFOxdj",
+                  "label" : "2 - More than half the days",
+                  "ref" : "reason-for-visit-mental-health-concern-trouble-relaxing-answer-more-than-half-the-days"
+                },
+                {
+                  "id" : "WSKpgG2iMber",
+                  "label" : "3 - Nearly every day",
+                  "ref" : "reason-for-visit-mental-health-concern-trouble-relaxing-answer-nearly-every-day"
+                }
+              ],
+              "description" : "In the last 2 weeks, how often have you been bothered by this problem?",
+              "randomize" : false,
+              "vertical_alignment" : true
+            },
+            "ref" : "reason-for-visit-mental-health-concern-trouble-relaxing",
+            "title" : "[GAD7] Trouble relaxing",
+            "type" : "multiple_choice",
+            "validations" : {
+              "required" : true
+            }
+          },
+          {
+            "id" : "POUCl0qO4R2g",
+            "properties" : {
+              "allow_multiple_selection" : false,
+              "allow_other_choice" : false,
+              "choices" : [
+                {
+                  "id" : "0fQczGRc52fo",
+                  "label" : "0 - Not at all",
+                  "ref" : "reason-for-visit-mental-health-concern-restless-answer-not-at-all"
+                },
+                {
+                  "id" : "QnNP8iOdAYUa",
+                  "label" : "1 - Several days",
+                  "ref" : "reason-for-visit-mental-health-concern-restless-answer-several-days"
+                },
+                {
+                  "id" : "LpXvzwRlF8oI",
+                  "label" : "2 - More than half the days",
+                  "ref" : "reason-for-visit-mental-health-concern-restless-answer-more-than-half-the-days"
+                },
+                {
+                  "id" : "3WbxaojwAPCs",
+                  "label" : "3 - Nearly every day",
+                  "ref" : "reason-for-visit-mental-health-concern-restless-answer-nearly-every-day"
+                }
+              ],
+              "description" : "In the last 2 weeks, how often have you been bothered by this problem?",
+              "randomize" : false,
+              "vertical_alignment" : true
+            },
+            "ref" : "reason-for-visit-mental-health-concern-restless",
+            "title" : "[GAD7] Being so restless that it's hard to sit still",
+            "type" : "multiple_choice",
+            "validations" : {
+              "required" : true
+            }
+          },
+          {
+            "id" : "KwNNlIOiysmD",
+            "properties" : {
+              "allow_multiple_selection" : false,
+              "allow_other_choice" : false,
+              "choices" : [
+                {
+                  "id" : "p9NEVZBaDeBZ",
+                  "label" : "0 - Not at all",
+                  "ref" : "reason-for-visit-mental-health-concern-irritable-answer-not-at-all"
+                },
+                {
+                  "id" : "ZhFzrP8VYIkS",
+                  "label" : "1 - Several days",
+                  "ref" : "reason-for-visit-mental-health-concern-irritable-answer-several-days"
+                },
+                {
+                  "id" : "EPS1LQXLcGzW",
+                  "label" : "2 - More than half the days",
+                  "ref" : "reason-for-visit-mental-health-concern-irritable-answer-more-than-half-the-days"
+                },
+                {
+                  "id" : "ClnZKnwZLLik",
+                  "label" : "3 - Nearly every day",
+                  "ref" : "reason-for-visit-mental-health-concern-irritable-answer-nearly-every-day"
+                }
+              ],
+              "description" : "In the last 2 weeks, how often have you been bothered by this problem?",
+              "randomize" : false,
+              "vertical_alignment" : true
+            },
+            "ref" : "reason-for-visit-mental-health-concern-irritable",
+            "title" : "[GAD7] Becoming easily annoyed or irritable",
+            "type" : "multiple_choice",
+            "validations" : {
+              "required" : true
+            }
+          },
+          {
+            "id" : "mgf6H43aQIh8",
+            "properties" : {
+              "allow_multiple_selection" : false,
+              "allow_other_choice" : false,
+              "choices" : [
+                {
+                  "id" : "iftU3sS1dchE",
+                  "label" : "0 - Not at all",
+                  "ref" : "reason-for-visit-mental-health-concern-afraid-answer-not-at-all"
+                },
+                {
+                  "id" : "lLbcrMZUBcK7",
+                  "label" : "1 - Several days",
+                  "ref" : "reason-for-visit-mental-health-concern-afraid-answer-several-days"
+                },
+                {
+                  "id" : "hQ8xKTnBojzN",
+                  "label" : "2 - More than half the days",
+                  "ref" : "reason-for-visit-mental-health-concern-afraid-answer-more-than-half-the-days"
+                },
+                {
+                  "id" : "3grjw0r05wQ3",
+                  "label" : "3 - Nearly every day",
+                  "ref" : "reason-for-visit-mental-health-concern-afraid-answer-nearly-every-day"
+                }
+              ],
+              "description" : "In the last 2 weeks, how often have you been bothered by this problem?",
+              "randomize" : false,
+              "vertical_alignment" : true
+            },
+            "ref" : "reason-for-visit-mental-health-concern-afraid",
+            "title" : "[GAD7] Feeling afraid as if something awful might happen",
+            "type" : "multiple_choice",
+            "validations" : {
+              "required" : true
+            }
+          },
+          {
+            "id" : "y6Dbu9CeBDDf",
+            "properties" : {
+              "allow_multiple_selection" : false,
+              "allow_other_choice" : false,
+              "choices" : [
+                {
+                  "id" : "LoFG1oFBNCex",
+                  "label" : "Not difficult at all",
+                  "ref" : "reason-for-visit-mental-health-concern-effect-answer-not-difficult"
+                },
+                {
+                  "id" : "WcjYYP4A8mc1",
+                  "label" : "Somewhat difficult",
+                  "ref" : "reason-for-visit-mental-health-concern-effect-answer-somewhat-difficult"
+                },
+                {
+                  "id" : "cAndnQBAA4Qq",
+                  "label" : "Very difficult",
+                  "ref" : "reason-for-visit-mental-health-concern-effect-answer-very-difficult"
+                },
+                {
+                  "id" : "8sAzgOg5AbFG",
+                  "label" : "Extremely difficult",
+                  "ref" : "reason-for-visit-mental-health-concern-effect-answer-extremely-difficult"
+                }
+              ],
+              "description" : "Skip if you answered \"Not at all\" to all previous questions.",
+              "randomize" : false,
+              "vertical_alignment" : true
+            },
+            "ref" : "reason-for-visit-mental-health-concern-effect",
+            "title" : "If you answered \"Several days\", \"More than half the days\", or \"Nearly every day\" to any of the previous questions, how difficult have these problems made it for you to do your work, take care of things at home, or get along with other people?",
+            "type" : "multiple_choice",
+            "validations" : {
+              "required" : false
+            }
+          },
+          {
+            "id" : "Zqm6W5Bbtjdu",
+            "properties" : {
+              "description" : "Share any questions, concerns, or topics you’d like to cover during your visit."
+            },
+            "ref" : "reason-for-visit-mental-health-detail",
+            "title" : "Tell us more about why you’re seeking mental health care.",
+            "type" : "long_text",
+            "validations" : {
+              "required" : true
+            }
+          }
+        ],
+        "show_button" : true
+      },
+      "ref" : "reason-for-visit-mental-health-intro",
+      "title" : "Mental Health",
+      "type" : "group"
+    },
+    {
+      "id" : "8GrKzkE3KLo0",
+      "properties" : {
+        "description" : "Note: Walgreens does not participate in Nice’s free medication program."
+      },
+      "ref" : "preferred-pharmacy",
+      "title" : "What is your preferred pharmacy name and address?",
+      "type" : "long_text",
+      "validations" : {
+        "required" : false
+      }
+    }
+  ],
+  "id" : "hdgks8bb",
+  "logic" : [
+    {
+      "actions" : [
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "is",
+            "vars" : [
+              {
+                "type" : "field",
+                "value" : "reason-for-visit-acute"
+              },
+              {
+                "type" : "choice",
+                "value" : "reason-for-visit-acute-answer-other"
+              }
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "reason-for-visit-acute-other"
+            }
+          }
+        },
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "always",
+            "vars" : [
+
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "reason-for-visit-acute-follow-up"
+            }
+          }
+        }
+      ],
+      "ref" : "reason-for-visit-acute",
+      "type" : "field"
+    },
+    {
+      "actions" : [
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "is",
+            "vars" : [
+              {
+                "type" : "field",
+                "value" : "reason-for-visit-acute-body-region"
+              },
+              {
+                "type" : "choice",
+                "value" : "reason-for-visit-acute-body-region-answer-other"
+              }
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "reason-for-visit-acute-body-region-other"
+            }
+          }
+        },
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "always",
+            "vars" : [
+
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "reason-for-visit-acute-symptoms"
+            }
+          }
+        }
+      ],
+      "ref" : "reason-for-visit-acute-body-region",
+      "type" : "field"
+    },
+    {
+      "actions" : [
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "is",
+            "vars" : [
+              {
+                "type" : "field",
+                "value" : "reason-for-visit-acute-symptoms-allergies"
+              },
+              {
+                "type" : "choice",
+                "value" : "reason-for-visit-acute-symptoms-allergies-answer-other"
+              }
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "reason-for-visit-acute-symptoms-other"
+            }
+          }
+        },
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "always",
+            "vars" : [
+
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "reason-for-visit-acute-symptoms-duration"
+            }
+          }
+        }
+      ],
+      "ref" : "reason-for-visit-acute-symptoms-allergies",
+      "type" : "field"
+    },
+    {
+      "actions" : [
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "is",
+            "vars" : [
+              {
+                "type" : "field",
+                "value" : "reason-for-visit-acute-symptoms-vaginal"
+              },
+              {
+                "type" : "choice",
+                "value" : "reason-for-visit-acute-symptoms-vaginal-answer-other"
+              }
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "reason-for-visit-acute-symptoms-other"
+            }
+          }
+        },
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "always",
+            "vars" : [
+
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "reason-for-visit-acute-symptoms-duration"
+            }
+          }
+        }
+      ],
+      "ref" : "reason-for-visit-acute-symptoms-vaginal",
+      "type" : "field"
+    },
+    {
+      "actions" : [
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "is",
+            "vars" : [
+              {
+                "type" : "field",
+                "value" : "reason-for-visit-chronic"
+              },
+              {
+                "type" : "choice",
+                "value" : "reason-for-visit-chronic-answer-other"
+              }
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "reason-for-visit-chronic-other"
+            }
+          }
+        },
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "always",
+            "vars" : [
+
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "reason-for-visit-chronic-needs"
+            }
+          }
+        }
+      ],
+      "ref" : "reason-for-visit-chronic",
+      "type" : "field"
+    },
+    {
+      "actions" : [
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "is",
+            "vars" : [
+              {
+                "type" : "field",
+                "value" : "reason-for-visit-wellness"
+              },
+              {
+                "type" : "choice",
+                "value" : "reason-for-visit-wellness-answer-other"
+              }
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "reason-for-visit-wellness-other"
+            }
+          }
+        },
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "always",
+            "vars" : [
+
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "reason-for-visit-wellness-follow-up"
+            }
+          }
+        }
+      ],
+      "ref" : "reason-for-visit-wellness",
+      "type" : "field"
+    },
+    {
+      "actions" : [
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "is",
+            "vars" : [
+              {
+                "type" : "field",
+                "value" : "reason-for-visit-acute-symptoms"
+              },
+              {
+                "type" : "choice",
+                "value" : "reason-for-visit-acute-symptoms-answer-other"
+              }
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "reason-for-visit-acute-symptoms-other"
+            }
+          }
+        },
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "always",
+            "vars" : [
+
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "reason-for-visit-acute-symptoms-duration"
+            }
+          }
+        }
+      ],
+      "ref" : "reason-for-visit-acute-symptoms",
+      "type" : "field"
+    },
+    {
+      "actions" : [
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "is",
+            "vars" : [
+              {
+                "type" : "field",
+                "value" : "reason-for-visit-acute"
+              },
+              {
+                "type" : "choice",
+                "value" : "reason-for-visit-acute-answer-allergies"
+              }
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "reason-for-visit-acute-symptoms-allergies"
+            }
+          }
+        },
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "is",
+            "vars" : [
+              {
+                "type" : "field",
+                "value" : "reason-for-visit-acute"
+              },
+              {
+                "type" : "choice",
+                "value" : "reason-for-visit-acute-answer-cold-or-flu"
+              }
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "reason-for-visit-acute-symptoms-cold-flu"
+            }
+          }
+        },
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "is",
+            "vars" : [
+              {
+                "type" : "field",
+                "value" : "reason-for-visit-acute"
+              },
+              {
+                "type" : "choice",
+                "value" : "reason-for-visit-acute-answer-ear-nose-throat-or-eye"
+              }
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "reason-for-visit-acute-symptoms-ear-nose-throat-eyes"
+            }
+          }
+        },
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "is",
+            "vars" : [
+              {
+                "type" : "field",
+                "value" : "reason-for-visit-acute"
+              },
+              {
+                "type" : "choice",
+                "value" : "reason-for-visit-acute-answer-urinary"
+              }
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "reason-for-visit-acute-symptoms-urinary"
+            }
+          }
+        },
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "is",
+            "vars" : [
+              {
+                "type" : "field",
+                "value" : "reason-for-visit-acute"
+              },
+              {
+                "type" : "choice",
+                "value" : "reason-for-visit-acute-answer-skin-or-nail"
+              }
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "reason-for-visit-acute-symptoms-skin-nails"
+            }
+          }
+        },
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "is",
+            "vars" : [
+              {
+                "type" : "field",
+                "value" : "reason-for-visit-acute"
+              },
+              {
+                "type" : "choice",
+                "value" : "reason-for-visit-acute-answer-stomach-or-digestion"
+              }
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "reason-for-visit-acute-symptoms-digestive"
+            }
+          }
+        },
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "is",
+            "vars" : [
+              {
+                "type" : "field",
+                "value" : "reason-for-visit-acute"
+              },
+              {
+                "type" : "choice",
+                "value" : "reason-for-visit-acute-answer-vaginal-symptoms"
+              }
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "reason-for-visit-acute-symptoms-vaginal"
+            }
+          }
+        },
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "is",
+            "vars" : [
+              {
+                "type" : "field",
+                "value" : "reason-for-visit-acute"
+              },
+              {
+                "type" : "choice",
+                "value" : "reason-for-visit-acute-answer-muscle-or-joint-symptoms"
+              }
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "reason-for-visit-acute-body-region"
+            }
+          }
+        },
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "is",
+            "vars" : [
+              {
+                "type" : "field",
+                "value" : "reason-for-visit-acute"
+              },
+              {
+                "type" : "choice",
+                "value" : "reason-for-visit-acute-answer-other"
+              }
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "reason-for-visit-acute-photo-confirmation"
+            }
+          }
+        },
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "always",
+            "vars" : [
+
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "reason-for-visit-acute-photo-confirmation"
+            }
+          }
+        }
+      ],
+      "ref" : "reason-for-visit-acute-follow-up",
+      "type" : "field"
+    },
+    {
+      "actions" : [
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "is",
+            "vars" : [
+              {
+                "type" : "field",
+                "value" : "reason-for-visit-acute-symptoms-cold-flu"
+              },
+              {
+                "type" : "choice",
+                "value" : "reason-for-visit-acute-symptoms-cold-flu-answer-other"
+              }
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "reason-for-visit-acute-symptoms-other"
+            }
+          }
+        },
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "is",
+            "vars" : [
+              {
+                "type" : "field",
+                "value" : "reason-for-visit-acute-symptoms-cold-flu"
+              },
+              {
+                "type" : "choice",
+                "value" : "reason-for-visit-acute-symptoms-cold-flu-answer-fever"
+              }
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "reason-for-visit-acute-symptoms-temperature"
+            }
+          }
+        },
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "is",
+            "vars" : [
+              {
+                "type" : "field",
+                "value" : "reason-for-visit-acute-symptoms-cold-flu"
+              },
+              {
+                "type" : "choice",
+                "value" : "reason-for-visit-acute-symptoms-cold-flu-answer-shortness-of-breath"
+              }
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "reason-for-visit-acute-symptoms-shortness-of-breath"
+            }
+          }
+        },
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "always",
+            "vars" : [
+
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "reason-for-visit-acute-symptoms-duration"
+            }
+          }
+        }
+      ],
+      "ref" : "reason-for-visit-acute-symptoms-cold-flu",
+      "type" : "field"
+    },
+    {
+      "actions" : [
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "is",
+            "vars" : [
+              {
+                "type" : "field",
+                "value" : "reason-for-visit-acute-symptoms-ear-nose-throat-eyes"
+              },
+              {
+                "type" : "choice",
+                "value" : "reason-for-visit-acute-symptoms-cold-flu-answer-other"
+              }
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "reason-for-visit-acute-symptoms-other"
+            }
+          }
+        },
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "is",
+            "vars" : [
+              {
+                "type" : "field",
+                "value" : "reason-for-visit-acute-symptoms-ear-nose-throat-eyes"
+              },
+              {
+                "type" : "choice",
+                "value" : "reason-for-visit-acute-symptoms-cold-flu-answer-fever"
+              }
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "reason-for-visit-acute-symptoms-temperature"
+            }
+          }
+        },
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "always",
+            "vars" : [
+
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "reason-for-visit-acute-symptoms-duration"
+            }
+          }
+        }
+      ],
+      "ref" : "reason-for-visit-acute-symptoms-ear-nose-throat-eyes",
+      "type" : "field"
+    },
+    {
+      "actions" : [
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "is",
+            "vars" : [
+              {
+                "type" : "field",
+                "value" : "reason-for-visit-acute-symptoms-urinary"
+              },
+              {
+                "type" : "choice",
+                "value" : "reason-for-visit-acute-symptoms-urinary-answer-other"
+              }
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "reason-for-visit-acute-symptoms-other"
+            }
+          }
+        },
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "is",
+            "vars" : [
+              {
+                "type" : "field",
+                "value" : "reason-for-visit-acute-symptoms-urinary"
+              },
+              {
+                "type" : "choice",
+                "value" : "reason-for-visit-acute-symptoms-urinary-answer-fever"
+              }
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "reason-for-visit-acute-symptoms-temperature"
+            }
+          }
+        },
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "always",
+            "vars" : [
+
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "reason-for-visit-acute-symptoms-duration"
+            }
+          }
+        }
+      ],
+      "ref" : "reason-for-visit-acute-symptoms-urinary",
+      "type" : "field"
+    },
+    {
+      "actions" : [
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "is",
+            "vars" : [
+              {
+                "type" : "field",
+                "value" : "reason-for-visit-acute-symptoms-skin-nails"
+              },
+              {
+                "type" : "choice",
+                "value" : "reason-for-visit-acute-symptoms-skin-nails-answer-other"
+              }
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "reason-for-visit-acute-symptoms-other"
+            }
+          }
+        },
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "is",
+            "vars" : [
+              {
+                "type" : "field",
+                "value" : "reason-for-visit-acute-symptoms-skin-nails"
+              },
+              {
+                "type" : "choice",
+                "value" : "reason-for-visit-acute-symptoms-skin-nails-answer-fever"
+              }
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "reason-for-visit-acute-symptoms-temperature"
+            }
+          }
+        },
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "always",
+            "vars" : [
+
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "reason-for-visit-acute-symptoms-duration"
+            }
+          }
+        }
+      ],
+      "ref" : "reason-for-visit-acute-symptoms-skin-nails",
+      "type" : "field"
+    },
+    {
+      "actions" : [
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "is",
+            "vars" : [
+              {
+                "type" : "field",
+                "value" : "reason-for-visit-acute-symptoms-digestive"
+              },
+              {
+                "type" : "choice",
+                "value" : "reason-for-visit-acute-symptoms-digestive-answer-other"
+              }
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "reason-for-visit-acute-symptoms-other"
+            }
+          }
+        },
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "is",
+            "vars" : [
+              {
+                "type" : "field",
+                "value" : "reason-for-visit-acute-symptoms-digestive"
+              },
+              {
+                "type" : "choice",
+                "value" : "reason-for-visit-acute-symptoms-digestive-answer-fever"
+              }
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "reason-for-visit-acute-symptoms-temperature"
+            }
+          }
+        },
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "always",
+            "vars" : [
+
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "reason-for-visit-acute-symptoms-duration"
+            }
+          }
+        }
+      ],
+      "ref" : "reason-for-visit-acute-symptoms-digestive",
+      "type" : "field"
+    },
+    {
+      "actions" : [
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "is",
+            "vars" : [
+              {
+                "type" : "field",
+                "value" : "reason-for-visit-acute-symptoms-cold-flu"
+              },
+              {
+                "type" : "choice",
+                "value" : "reason-for-visit-acute-symptoms-cold-flu-answer-fever"
+              }
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "reason-for-visit-acute-symptoms-temperature"
+            }
+          }
+        },
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "is",
+            "vars" : [
+              {
+                "type" : "field",
+                "value" : "reason-for-visit-acute-symptoms-cold-flu"
+              },
+              {
+                "type" : "choice",
+                "value" : "reason-for-visit-acute-symptoms-cold-flu-answer-shortness-of-breath"
+              }
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "reason-for-visit-acute-symptoms-shortness-of-breath"
+            }
+          }
+        },
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "is",
+            "vars" : [
+              {
+                "type" : "field",
+                "value" : "reason-for-visit-acute-symptoms-ear-nose-throat-eyes"
+              },
+              {
+                "type" : "choice",
+                "value" : "reason-for-visit-acute-symptoms-cold-flu-answer-fever"
+              }
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "reason-for-visit-acute-symptoms-temperature"
+            }
+          }
+        },
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "is",
+            "vars" : [
+              {
+                "type" : "field",
+                "value" : "reason-for-visit-acute-symptoms-urinary"
+              },
+              {
+                "type" : "choice",
+                "value" : "reason-for-visit-acute-symptoms-urinary-answer-fever"
+              }
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "reason-for-visit-acute-symptoms-temperature"
+            }
+          }
+        },
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "is",
+            "vars" : [
+              {
+                "type" : "field",
+                "value" : "reason-for-visit-acute-symptoms-skin-nails"
+              },
+              {
+                "type" : "choice",
+                "value" : "reason-for-visit-acute-symptoms-skin-nails-answer-fever"
+              }
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "reason-for-visit-acute-symptoms-temperature"
+            }
+          }
+        },
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "is",
+            "vars" : [
+              {
+                "type" : "field",
+                "value" : "reason-for-visit-acute-symptoms-digestive"
+              },
+              {
+                "type" : "choice",
+                "value" : "reason-for-visit-acute-symptoms-digestive-answer-fever"
+              }
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "reason-for-visit-acute-symptoms-temperature"
+            }
+          }
+        },
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "always",
+            "vars" : [
+
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "reason-for-visit-acute-symptoms-duration"
+            }
+          }
+        }
+      ],
+      "ref" : "reason-for-visit-acute-symptoms-other",
+      "type" : "field"
+    },
+    {
+      "actions" : [
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "is",
+            "vars" : [
+              {
+                "type" : "field",
+                "value" : "reason-for-visit-acute-symptoms-cold-flu"
+              },
+              {
+                "type" : "choice",
+                "value" : "reason-for-visit-acute-symptoms-cold-flu-answer-shortness-of-breath"
+              }
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "reason-for-visit-acute-symptoms-shortness-of-breath"
+            }
+          }
+        },
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "always",
+            "vars" : [
+
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "reason-for-visit-acute-symptoms-duration"
+            }
+          }
+        }
+      ],
+      "ref" : "reason-for-visit-acute-symptoms-temperature",
+      "type" : "field"
+    },
+    {
+      "actions" : [
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "is",
+            "vars" : [
+              {
+                "type" : "field",
+                "value" : "reason-for-visit-category"
+              },
+              {
+                "type" : "choice",
+                "value" : "reason-for-visit-category-answer-acute"
+              }
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "reason-for-visit-acute"
+            }
+          }
+        },
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "is",
+            "vars" : [
+              {
+                "type" : "field",
+                "value" : "reason-for-visit-category"
+              },
+              {
+                "type" : "choice",
+                "value" : "reason-for-visit-category-answer-chronic"
+              }
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "reason-for-visit-chronic"
+            }
+          }
+        },
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "is",
+            "vars" : [
+              {
+                "type" : "field",
+                "value" : "reason-for-visit-category"
+              },
+              {
+                "type" : "choice",
+                "value" : "reason-for-visit-category-answer-wellness"
+              }
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "reason-for-visit-wellness"
+            }
+          }
+        },
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "is",
+            "vars" : [
+              {
+                "type" : "field",
+                "value" : "reason-for-visit-category"
+              },
+              {
+                "type" : "choice",
+                "value" : "reason-for-visit-category-answer-mental-health"
+              }
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "reason-for-visit-mental-health"
+            }
+          }
+        }
+      ],
+      "ref" : "reason-for-visit-category",
+      "type" : "field"
+    },
+    {
+      "actions" : [
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "is",
+            "vars" : [
+              {
+                "type" : "field",
+                "value" : "medicaid-enrolled"
+              },
+              {
+                "type" : "constant",
+                "value" : true
+              }
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "medicaid-confirmation"
+            }
+          }
+        },
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "always",
+            "vars" : [
+
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "patient-age"
+            }
+          }
+        }
+      ],
+      "ref" : "medicaid-enrolled",
+      "type" : "field"
+    },
+    {
+      "actions" : [
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "is",
+            "vars" : [
+              {
+                "type" : "field",
+                "value" : "health-history-female-menstrual-cycle-date-available"
+              },
+              {
+                "type" : "constant",
+                "value" : true
+              }
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "health-history-female-menstrual-cycle"
+            }
+          }
+        },
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "always",
+            "vars" : [
+
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "reason-for-visit-category"
+            }
+          }
+        }
+      ],
+      "ref" : "health-history-female-menstrual-cycle-date-available",
+      "type" : "field"
+    },
+    {
+      "actions" : [
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "is",
+            "vars" : [
+              {
+                "type" : "field",
+                "value" : "reason-for-visit-wellness-employer-requirement"
+              },
+              {
+                "type" : "constant",
+                "value" : false
+              }
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "reason-for-visit-wellness-last-physical-exam-date-available"
+            }
+          }
+        },
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "always",
+            "vars" : [
+
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "reason-for-visit-wellness-employer-requirement-consent"
+            }
+          }
+        }
+      ],
+      "ref" : "reason-for-visit-wellness-employer-requirement",
+      "type" : "field"
+    },
+    {
+      "actions" : [
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "is",
+            "vars" : [
+              {
+                "type" : "field",
+                "value" : "reason-for-visit-wellness-last-physical-exam-date-available"
+              },
+              {
+                "type" : "constant",
+                "value" : true
+              }
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "reason-for-visit-wellness-last-physical-exam-date"
+            }
+          }
+        },
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "always",
+            "vars" : [
+
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "reason-for-visit-wellness-diet"
+            }
+          }
+        }
+      ],
+      "ref" : "reason-for-visit-wellness-last-physical-exam-date-available",
+      "type" : "field"
+    },
+    {
+      "actions" : [
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "lower_than",
+            "vars" : [
+              {
+                "type" : "field",
+                "value" : "patient-age"
+              },
+              {
+                "type" : "constant",
+                "value" : 18
+              }
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "reason-for-visit-wellness-last-physical-exam-date-available"
+            }
+          }
+        },
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "always",
+            "vars" : [
+
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "reason-for-visit-wellness-employer-requirement"
+            }
+          }
+        }
+      ],
+      "ref" : "reason-for-visit-wellness-follow-up",
+      "type" : "field"
+    },
+    {
+      "actions" : [
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "greater_than",
+            "vars" : [
+              {
+                "type" : "field",
+                "value" : "patient-age"
+              },
+              {
+                "type" : "constant",
+                "value" : 17
+              }
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "reason-for-visit-wellness-recent-height"
+            }
+          }
+        },
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "always",
+            "vars" : [
+
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "reason-for-visit-wellness-detail"
+            }
+          }
+        }
+      ],
+      "ref" : "reason-for-visit-wellness-symptoms",
+      "type" : "field"
+    },
+    {
+      "actions" : [
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "lower_than",
+            "vars" : [
+              {
+                "type" : "field",
+                "value" : "patient-age"
+              },
+              {
+                "type" : "constant",
+                "value" : 18
+              }
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "reason-for-visit-mental-health-age-confirmation"
+            }
+          }
+        },
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "always",
+            "vars" : [
+
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "reason-for-visit-mental-health-support-requested"
+            }
+          }
+        }
+      ],
+      "ref" : "reason-for-visit-mental-health-other",
+      "type" : "field"
+    },
+    {
+      "actions" : [
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "is",
+            "vars" : [
+              {
+                "type" : "field",
+                "value" : "reason-for-visit-mental-health"
+              },
+              {
+                "type" : "choice",
+                "value" : "reason-for-visit-mental-health-answer-other"
+              }
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "reason-for-visit-mental-health-other"
+            }
+          }
+        },
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "lower_than",
+            "vars" : [
+              {
+                "type" : "field",
+                "value" : "patient-age"
+              },
+              {
+                "type" : "constant",
+                "value" : 18
+              }
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "reason-for-visit-mental-health-age-confirmation"
+            }
+          }
+        },
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "always",
+            "vars" : [
+
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "reason-for-visit-mental-health-support-requested"
+            }
+          }
+        }
+      ],
+      "ref" : "reason-for-visit-mental-health",
+      "type" : "field"
+    },
+    {
+      "actions" : [
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "is",
+            "vars" : [
+              {
+                "type" : "field",
+                "value" : "minor-consent-guardian-present"
+              },
+              {
+                "type" : "constant",
+                "value" : true
+              }
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "minor-consent-guardian-answers-confirmation"
+            }
+          }
+        }
+      ],
+      "ref" : "minor-consent-guardian-present",
+      "type" : "field"
+    },
+    {
+      "actions" : [
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "and",
+            "vars" : [
+              {
+                "op" : "is",
+                "vars" : [
+                  {
+                    "type" : "field",
+                    "value" : "sex-assigned-at-birth"
+                  },
+                  {
+                    "type" : "choice",
+                    "value" : "sex-assigned-at-birth-answer-male"
+                  }
+                ]
+              },
+              {
+                "op" : "greater_than",
+                "vars" : [
+                  {
+                    "type" : "field",
+                    "value" : "patient-age"
+                  },
+                  {
+                    "type" : "constant",
+                    "value" : 17
+                  }
+                ]
+              }
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "reason-for-visit-category"
+            }
+          }
+        },
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "and",
+            "vars" : [
+              {
+                "op" : "is",
+                "vars" : [
+                  {
+                    "type" : "field",
+                    "value" : "sex-assigned-at-birth"
+                  },
+                  {
+                    "type" : "choice",
+                    "value" : "sex-assigned-at-birth-answer-female"
+                  }
+                ]
+              },
+              {
+                "op" : "greater_than",
+                "vars" : [
+                  {
+                    "type" : "field",
+                    "value" : "patient-age"
+                  },
+                  {
+                    "type" : "constant",
+                    "value" : 17
+                  }
+                ]
+              }
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "health-history-female-pregnancy"
+            }
+          }
+        },
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "lower_equal_than",
+            "vars" : [
+              {
+                "type" : "field",
+                "value" : "patient-age"
+              },
+              {
+                "type" : "constant",
+                "value" : 12
+              }
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "minor-consent-guardian-present-confirmation"
+            }
+          }
+        },
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "and",
+            "vars" : [
+              {
+                "op" : "greater_than",
+                "vars" : [
+                  {
+                    "type" : "field",
+                    "value" : "patient-age"
+                  },
+                  {
+                    "type" : "constant",
+                    "value" : 12
+                  }
+                ]
+              },
+              {
+                "op" : "lower_than",
+                "vars" : [
+                  {
+                    "type" : "field",
+                    "value" : "patient-age"
+                  },
+                  {
+                    "type" : "constant",
+                    "value" : 18
+                  }
+                ]
+              }
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "minor-consent-guardian-present"
+            }
+          }
+        }
+      ],
+      "ref" : "sex-assigned-at-birth",
+      "type" : "field"
+    },
+    {
+      "actions" : [
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "always",
+            "vars" : [
+
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "reason-for-visit-category"
+            }
+          }
+        }
+      ],
+      "ref" : "health-history-female-menstrual-cycle",
+      "type" : "field"
+    },
+    {
+      "actions" : [
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "always",
+            "vars" : [
+
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "reason-for-visit-acute-photo-confirmation"
+            }
+          }
+        }
+      ],
+      "ref" : "reason-for-visit-acute-symptoms-effect",
+      "type" : "field"
+    },
+    {
+      "actions" : [
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "always",
+            "vars" : [
+
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "reason-for-visit-acute-symptoms-effect"
+            }
+          }
+        }
+      ],
+      "ref" : "reason-for-visit-acute-symptoms-duration",
+      "type" : "field"
+    },
+    {
+      "actions" : [
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "always",
+            "vars" : [
+
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "preferred-pharmacy"
+            }
+          }
+        }
+      ],
+      "ref" : "reason-for-visit-acute-detail",
+      "type" : "field"
+    },
+    {
+      "actions" : [
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "always",
+            "vars" : [
+
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "preferred-pharmacy"
+            }
+          }
+        }
+      ],
+      "ref" : "reason-for-visit-chronic-detail",
+      "type" : "field"
+    },
+    {
+      "actions" : [
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "always",
+            "vars" : [
+
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "preferred-pharmacy"
+            }
+          }
+        }
+      ],
+      "ref" : "reason-for-visit-wellness-detail",
+      "type" : "field"
+    },
+    {
+      "actions" : [
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "always",
+            "vars" : [
+
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "reason-for-visit-acute-symptoms-duration"
+            }
+          }
+        }
+      ],
+      "ref" : "reason-for-visit-acute-symptoms-shortness-of-breath",
+      "type" : "field"
+    },
+    {
+      "actions" : [
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "always",
+            "vars" : [
+
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "thankyou",
+              "value" : "ending-thank-you"
+            }
+          }
+        }
+      ],
+      "ref" : "preferred-pharmacy",
+      "type" : "field"
+    },
+    {
+      "actions" : [
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "always",
+            "vars" : [
+
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "reason-for-visit-mental-health-concern-confirmation"
+            }
+          }
+        }
+      ],
+      "ref" : "reason-for-visit-mental-health-primary-care-confirmation",
+      "type" : "field"
+    },
+    {
+      "actions" : [
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "always",
+            "vars" : [
+
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "minor-consent-guardian-answers-confirmation"
+            }
+          }
+        }
+      ],
+      "ref" : "minor-consent-form-confirmation",
+      "type" : "field"
+    },
+    {
+      "actions" : [
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "always",
+            "vars" : [
+
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "reason-for-visit-category"
+            }
+          }
+        }
+      ],
+      "ref" : "minor-consent-recent-weight",
+      "type" : "field"
+    }
+  ],
+  "settings" : {
+    "are_uploads_public" : false,
+    "autosave_progress" : true,
+    "capabilities" : {
+      "e2e_encryption" : {
+        "enabled" : false,
+        "modifiable" : false
+      }
+    },
+    "free_form_navigation" : false,
+    "hide_navigation" : false,
+    "is_public" : true,
+    "is_trial" : false,
+    "language" : "en",
+    "meta" : {
+      "allow_indexing" : false
+    },
+    "pro_subdomain_enabled" : false,
+    "progress_bar" : "percentage",
+    "show_cookie_consent" : false,
+    "show_key_hint_on_choices" : true,
+    "show_number_of_submissions" : false,
+    "show_progress_bar" : true,
+    "show_question_number" : true,
+    "show_time_to_complete" : true,
+    "show_typeform_branding" : false,
+    "use_lead_qualification" : false
+  },
+  "thankyou_screens" : [
+    {
+      "id" : "6NW2Wgc7myci",
+      "properties" : {
+        "button_mode" : "default_redirect",
+        "button_text" : "again",
+        "share_icons" : false,
+        "show_button" : false
+      },
+      "ref" : "ending-thank-you",
+      "title" : "Thanks for completing the intake form. Next, we'll schedule your appointment.",
+      "type" : "thankyou_screen"
+    },
+    {
+      "id" : "DefaultTyScreen",
+      "properties" : {
+        "share_icons" : false,
+        "show_button" : false
+      },
+      "ref" : "default_tys",
+      "title" : "All done! Thanks for your time.",
+      "type" : "thankyou_screen"
+    }
+  ],
+  "theme" : {
+    "href" : "https:\/\/api.typeform.com\/themes\/qHWOQ7"
+  },
+  "title" : "Primary Care Intake V3",
+  "type" : "quiz",
+  "workspace" : {
+    "href" : "https:\/\/api.typeform.com\/workspaces\/5FbapN"
+  }
+}

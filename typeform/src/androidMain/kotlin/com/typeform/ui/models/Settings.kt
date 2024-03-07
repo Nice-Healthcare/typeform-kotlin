@@ -106,5 +106,6 @@ data class Settings(
     data class Rating(
         val unselectedForegroundColor: Color = Color.Black,
         val selectedForegroundColor: Color = Color.Blue,
+        val fillMaxWidth: Boolean = false,
     )
 }

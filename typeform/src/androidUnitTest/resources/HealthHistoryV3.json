@@ -1,0 +1,1428 @@
+{
+  "_links" : {
+    "display" : "https:\/\/tohanuk.typeform.com\/to\/dmsX77W1",
+    "responses" : "https:\/\/api.typeform.com\/forms\/dmsX77W1\/responses"
+  },
+  "created_at" : "2024-02-06T16:17:59+00:00",
+  "fields" : [
+    {
+      "id" : "4GFCNamRrypK",
+      "properties" : {
+
+      },
+      "ref" : "health-history-form-completed",
+      "title" : "Have you completed a Health History form as part of a previous Nice visit?",
+      "type" : "yes_no",
+      "validations" : {
+        "required" : true
+      }
+    },
+    {
+      "id" : "VAhMhtbtBe99",
+      "properties" : {
+
+      },
+      "ref" : "patient-age",
+      "title" : "What is your age?",
+      "type" : "number",
+      "validations" : {
+        "required" : true
+      }
+    },
+    {
+      "id" : "goVxppEnFIba",
+      "properties" : {
+        "allow_multiple_selection" : false,
+        "allow_other_choice" : false,
+        "choices" : [
+          {
+            "id" : "gYxjsy4loTDH",
+            "label" : "Male",
+            "ref" : "sex-assigned-at-birth-answer-male"
+          },
+          {
+            "id" : "ZemocFoiPPyM",
+            "label" : "Female",
+            "ref" : "sex-assigned-at-birth-answer-female"
+          }
+        ],
+        "randomize" : false,
+        "vertical_alignment" : true
+      },
+      "ref" : "sex-assigned-at-birth",
+      "title" : "What was your sex assigned at birth?",
+      "type" : "multiple_choice",
+      "validations" : {
+        "required" : true
+      }
+    },
+    {
+      "id" : "qilutj5YnvtA",
+      "properties" : {
+        "allow_multiple_selection" : true,
+        "allow_other_choice" : false,
+        "choices" : [
+          {
+            "id" : "Zb5pAdxGyb6P",
+            "label" : "High blood pressure",
+            "ref" : "medical-conditions-answer-high-blood-pressure"
+          },
+          {
+            "id" : "wanDcdzVTMoL",
+            "label" : "High cholesterol",
+            "ref" : "medical-conditions-answer-cholesterol"
+          },
+          {
+            "id" : "3K8oTuonrnLp",
+            "label" : "Diabetes",
+            "ref" : "medical-conditions-answer-diabetes"
+          },
+          {
+            "id" : "e31nqEx0W0xe",
+            "label" : "Thyroid disease",
+            "ref" : "medical-conditions-answer-thyroid"
+          },
+          {
+            "id" : "C8EjqLMTPwhJ",
+            "label" : "Heart disease",
+            "ref" : "medical-conditions-answer-heart"
+          },
+          {
+            "id" : "9WzuVe0D9iC2",
+            "label" : "Asthma \/ Reactive airway disease",
+            "ref" : "medical-conditions-answer-asthma-reactive"
+          },
+          {
+            "id" : "KCvds1r0yCr9",
+            "label" : "COPD \/ Bronchitis",
+            "ref" : "medical-conditions-answer-copd-bronchitis"
+          },
+          {
+            "id" : "csIlRQ6K3tEg",
+            "label" : "Autoimmune condition",
+            "ref" : "medical-conditions-answer-autoimmune"
+          },
+          {
+            "id" : "AiEQdyoEr5xL",
+            "label" : "Joint condition",
+            "ref" : "medical-conditions-answer-joint"
+          },
+          {
+            "id" : "d20Q5B0Khf4T",
+            "label" : "Kidney disease",
+            "ref" : "medical-conditions-answer-kidney"
+          },
+          {
+            "id" : "rNNZMbSxOon8",
+            "label" : "Cancer",
+            "ref" : "medical-conditions-answer-cancer"
+          },
+          {
+            "id" : "lyZ1IK6YxIiu",
+            "label" : "Depression",
+            "ref" : "medical-conditions-answer-depression"
+          },
+          {
+            "id" : "hdYahlpNqTwI",
+            "label" : "Anxiety",
+            "ref" : "medical-conditions-answer-anxiety"
+          },
+          {
+            "id" : "rF65gqJwuspq",
+            "label" : "Premature birth",
+            "ref" : "medical-conditions-answer-premature-birth"
+          },
+          {
+            "id" : "VPjJRe5vkB8O",
+            "label" : "Other (please describe)",
+            "ref" : "medical-conditions-answer-other"
+          }
+        ],
+        "description" : "Select all that apply",
+        "randomize" : false,
+        "vertical_alignment" : true
+      },
+      "ref" : "medical-conditions",
+      "title" : "Have you had any of the following medical conditions?",
+      "type" : "multiple_choice",
+      "validations" : {
+        "required" : false
+      }
+    },
+    {
+      "id" : "Iq8InlAc38r1",
+      "properties" : {
+        "description" : "Such as when you were diagnosed, if it's a current or past condition, etc."
+      },
+      "ref" : "medical-conditions-selected-details",
+      "title" : "Tell us more about the conditions selected.",
+      "type" : "long_text",
+      "validations" : {
+        "required" : true
+      }
+    },
+    {
+      "id" : "bQ3kc3Kel5jY",
+      "properties" : {
+
+      },
+      "ref" : "medications-usage",
+      "title" : "Do you take any medications or supplements?",
+      "type" : "yes_no",
+      "validations" : {
+        "required" : true
+      }
+    },
+    {
+      "id" : "2IQy91NKUNJR",
+      "properties" : {
+        "description" : "For each medication, include the dose and how often you take it."
+      },
+      "ref" : "medications-details",
+      "title" : "Please list your medications and supplements.",
+      "type" : "long_text",
+      "validations" : {
+        "required" : true
+      }
+    },
+    {
+      "id" : "DUEE6G5mn7GT",
+      "properties" : {
+
+      },
+      "ref" : "medication-allergies",
+      "title" : "Do you have any medication allergies?",
+      "type" : "yes_no",
+      "validations" : {
+        "required" : true
+      }
+    },
+    {
+      "id" : "nR27kcvpB2CI",
+      "properties" : {
+
+      },
+      "ref" : "medication-allergies-details",
+      "title" : "Please list the medication and the allergic reaction it caused.",
+      "type" : "long_text",
+      "validations" : {
+        "required" : true
+      }
+    },
+    {
+      "id" : "sBVQ7MMn4i3Z",
+      "properties" : {
+
+      },
+      "ref" : "surgeries",
+      "title" : "Have you had any surgeries?",
+      "type" : "yes_no",
+      "validations" : {
+        "required" : true
+      }
+    },
+    {
+      "id" : "q4Bz1dqKNl6P",
+      "properties" : {
+
+      },
+      "ref" : "surgeries-details",
+      "title" : "Please list the surgeries and their approximate date(s).",
+      "type" : "long_text",
+      "validations" : {
+        "required" : true
+      }
+    },
+    {
+      "id" : "on8nWEpEOUFY",
+      "properties" : {
+        "description" : "Include biological parents, siblings and grandparents who have had cancer, heart disease, stroke, high blood pressure, diabetes, or thyroid disease."
+      },
+      "ref" : "family-medical-history",
+      "title" : "To the best of your knowledge, please share any significant family medical history.",
+      "type" : "long_text",
+      "validations" : {
+        "required" : true
+      }
+    },
+    {
+      "id" : "rjYj0e3r6rOB",
+      "properties" : {
+        "allow_multiple_selection" : true,
+        "allow_other_choice" : false,
+        "choices" : [
+          {
+            "id" : "u2cImGY3hzHx",
+            "label" : "Pap smear",
+            "ref" : "female-cancer-screenings-answer-pap-smear"
+          },
+          {
+            "id" : "NImDR8zOIM0J",
+            "label" : "Mammogram",
+            "ref" : "female-cancer-screenings-answer-mammogram"
+          },
+          {
+            "id" : "ToL76h8t6bMJ",
+            "label" : "Colon cancer screening (colonoscopy, stool test, or other)",
+            "ref" : "female-cancer-screenings-answer-colon-cancer"
+          }
+        ],
+        "description" : "Select all that apply",
+        "randomize" : false,
+        "vertical_alignment" : true
+      },
+      "ref" : "female-cancer-screenings",
+      "title" : "Have you had any of the following cancer screenings?",
+      "type" : "multiple_choice",
+      "validations" : {
+        "required" : false
+      }
+    },
+    {
+      "id" : "dsYok772e94h",
+      "properties" : {
+        "description" : "Provide the approximate month and year"
+      },
+      "ref" : "female-cancer-screenings-dates",
+      "title" : "For each selected screening, please share the most recent screening date",
+      "type" : "long_text",
+      "validations" : {
+        "required" : true
+      }
+    },
+    {
+      "id" : "qjmb5szDBZOL",
+      "properties" : {
+
+      },
+      "ref" : "male-colon-cancer-screenings",
+      "title" : "Have you been screened for colon cancer?",
+      "type" : "yes_no",
+      "validations" : {
+        "required" : true
+      }
+    },
+    {
+      "id" : "QBE24e9vMCDn",
+      "properties" : {
+        "description" : "Provide the approximate month and year"
+      },
+      "ref" : "male-colon-cancer-screenings-date",
+      "title" : "What was the date of your most recent colon cancer screening?",
+      "type" : "short_text",
+      "validations" : {
+        "required" : true
+      }
+    },
+    {
+      "id" : "6PdLZzq1eDEM",
+      "properties" : {
+        "allow_multiple_selection" : true,
+        "allow_other_choice" : false,
+        "choices" : [
+          {
+            "id" : "ckkdzDuIT7Z0",
+            "label" : "I currently smoke",
+            "ref" : "adult-tobacco-use-answer-smoke"
+          },
+          {
+            "id" : "NFttSlV0Xw4Q",
+            "label" : "I currently vape",
+            "ref" : "adult-tobacco-use-answer-vape"
+          },
+          {
+            "id" : "6p6xoi1SeidA",
+            "label" : "I currently chew tobacco",
+            "ref" : "adult-tobacco-use-answer-chew"
+          },
+          {
+            "id" : "4EzPBic9hP2t",
+            "label" : "I am a former tobacco user",
+            "ref" : "adult-tobacco-use-answer-former-user"
+          },
+          {
+            "id" : "y1eKNUMM8XlG",
+            "label" : "No current or former tobacco use",
+            "ref" : "adult-tobacco-use-answer-not-use"
+          }
+        ],
+        "description" : "Select all that apply",
+        "randomize" : false,
+        "vertical_alignment" : true
+      },
+      "ref" : "adult-tobacco-use",
+      "title" : "Which of the following best describes your tobacco use?",
+      "type" : "multiple_choice",
+      "validations" : {
+        "required" : true
+      }
+    },
+    {
+      "id" : "8kL7zzpuyH7h",
+      "properties" : {
+
+      },
+      "ref" : "adult-cigarette-usage-years",
+      "title" : "How many years in total have you used tobacco?",
+      "type" : "number",
+      "validations" : {
+        "required" : true
+      }
+    },
+    {
+      "id" : "jwQG2r7xKXXg",
+      "properties" : {
+        "allow_multiple_selection" : false,
+        "allow_other_choice" : false,
+        "choices" : [
+          {
+            "id" : "bxunQBHphGww",
+            "label" : "A few cigarettes per week",
+            "ref" : "adult-cigarette-frequency-use-answer-a-few"
+          },
+          {
+            "id" : "87FAA4kPs4yf",
+            "label" : "1-10 cigarettes per day",
+            "ref" : "adult-cigarette-frequency-use-answer-one-to-ten"
+          },
+          {
+            "id" : "mkVBDXahoYMQ",
+            "label" : "11-20 cigarettes per day",
+            "ref" : "adult-cigarette-frequency-use-answer-eleven-to-twenty"
+          },
+          {
+            "id" : "nb7vG14yXsDI",
+            "label" : "More than 20 cigarettes per day",
+            "ref" : "adult-cigarette-frequency-use-answer-twenty-or-more"
+          }
+        ],
+        "randomize" : false,
+        "vertical_alignment" : true
+      },
+      "ref" : "adult-cigarette-frequency-use",
+      "title" : "How many cigarettes do you typically smoke?",
+      "type" : "multiple_choice",
+      "validations" : {
+        "required" : true
+      }
+    },
+    {
+      "id" : "S8KXWVzlzfAQ",
+      "properties" : {
+        "allow_multiple_selection" : false,
+        "allow_other_choice" : false,
+        "choices" : [
+          {
+            "id" : "zHZJB0uHeoB6",
+            "label" : "Up to date",
+            "ref" : "minor-immunization-status-answer-up-to-date"
+          },
+          {
+            "id" : "D2ZJ3UMhthf6",
+            "label" : "Not up to date",
+            "ref" : "minor-immunization-status-answer-not-up-to-date"
+          },
+          {
+            "id" : "movwq76Ng4Rc",
+            "label" : "Medically exempt from receiving immunization(s)",
+            "ref" : "minor-immunization-status-answer-medically-exempt"
+          },
+          {
+            "id" : "BWm0xzNACiua",
+            "label" : "I choose not to immunize",
+            "ref" : "minor-immunization-status-answer-choose-not-to-immunize"
+          },
+          {
+            "id" : "6XRPhuYozU8B",
+            "label" : "I’m not sure",
+            "ref" : "minor-immunization-status-answer-not-sure"
+          }
+        ],
+        "randomize" : false,
+        "vertical_alignment" : true
+      },
+      "ref" : "minor-immunization-status",
+      "title" : "What best describes your child's immunization status?",
+      "type" : "multiple_choice",
+      "validations" : {
+        "required" : true
+      }
+    },
+    {
+      "id" : "vpmdWldBS65g",
+      "properties" : {
+
+      },
+      "ref" : "minor-smoker-in-household",
+      "title" : "Is anyone in your household a smoker?",
+      "type" : "yes_no",
+      "validations" : {
+        "required" : true
+      }
+    },
+    {
+      "id" : "5WZ2Awxm9Rwf",
+      "properties" : {
+        "description" : "This includes changes to medications, new diagnoses, recent surgeries, etc."
+      },
+      "ref" : "health-history-changed",
+      "title" : "Has your health history changed since your last Nice visit?",
+      "type" : "yes_no",
+      "validations" : {
+        "required" : true
+      }
+    },
+    {
+      "id" : "8S0SN9cFJJQj",
+      "properties" : {
+
+      },
+      "ref" : "health-history-changes",
+      "title" : "Describe the changes to your health history.",
+      "type" : "long_text",
+      "validations" : {
+        "required" : true
+      }
+    }
+  ],
+  "id" : "dmsX77W1",
+  "last_updated_at" : "2024-02-29T22:11:56+00:00",
+  "logic" : [
+    {
+      "actions" : [
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "is",
+            "vars" : [
+              {
+                "type" : "field",
+                "value" : "health-history-form-completed"
+              },
+              {
+                "type" : "constant",
+                "value" : true
+              }
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "health-history-changed"
+            }
+          }
+        },
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "is",
+            "vars" : [
+              {
+                "type" : "field",
+                "value" : "health-history-form-completed"
+              },
+              {
+                "type" : "constant",
+                "value" : false
+              }
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "patient-age"
+            }
+          }
+        }
+      ],
+      "ref" : "health-history-form-completed",
+      "type" : "field"
+    },
+    {
+      "actions" : [
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "or",
+            "vars" : [
+              {
+                "op" : "is",
+                "vars" : [
+                  {
+                    "type" : "field",
+                    "value" : "medical-conditions"
+                  },
+                  {
+                    "type" : "choice",
+                    "value" : "medical-conditions-answer-high-blood-pressure"
+                  }
+                ]
+              },
+              {
+                "op" : "is",
+                "vars" : [
+                  {
+                    "type" : "field",
+                    "value" : "medical-conditions"
+                  },
+                  {
+                    "type" : "choice",
+                    "value" : "medical-conditions-answer-cholesterol"
+                  }
+                ]
+              },
+              {
+                "op" : "is",
+                "vars" : [
+                  {
+                    "type" : "field",
+                    "value" : "medical-conditions"
+                  },
+                  {
+                    "type" : "choice",
+                    "value" : "medical-conditions-answer-diabetes"
+                  }
+                ]
+              },
+              {
+                "op" : "is",
+                "vars" : [
+                  {
+                    "type" : "field",
+                    "value" : "medical-conditions"
+                  },
+                  {
+                    "type" : "choice",
+                    "value" : "medical-conditions-answer-thyroid"
+                  }
+                ]
+              },
+              {
+                "op" : "is",
+                "vars" : [
+                  {
+                    "type" : "field",
+                    "value" : "medical-conditions"
+                  },
+                  {
+                    "type" : "choice",
+                    "value" : "medical-conditions-answer-heart"
+                  }
+                ]
+              },
+              {
+                "op" : "is",
+                "vars" : [
+                  {
+                    "type" : "field",
+                    "value" : "medical-conditions"
+                  },
+                  {
+                    "type" : "choice",
+                    "value" : "medical-conditions-answer-asthma-reactive"
+                  }
+                ]
+              },
+              {
+                "op" : "is",
+                "vars" : [
+                  {
+                    "type" : "field",
+                    "value" : "medical-conditions"
+                  },
+                  {
+                    "type" : "choice",
+                    "value" : "medical-conditions-answer-copd-bronchitis"
+                  }
+                ]
+              },
+              {
+                "op" : "is",
+                "vars" : [
+                  {
+                    "type" : "field",
+                    "value" : "medical-conditions"
+                  },
+                  {
+                    "type" : "choice",
+                    "value" : "medical-conditions-answer-autoimmune"
+                  }
+                ]
+              },
+              {
+                "op" : "is",
+                "vars" : [
+                  {
+                    "type" : "field",
+                    "value" : "medical-conditions"
+                  },
+                  {
+                    "type" : "choice",
+                    "value" : "medical-conditions-answer-joint"
+                  }
+                ]
+              },
+              {
+                "op" : "is",
+                "vars" : [
+                  {
+                    "type" : "field",
+                    "value" : "medical-conditions"
+                  },
+                  {
+                    "type" : "choice",
+                    "value" : "medical-conditions-answer-kidney"
+                  }
+                ]
+              },
+              {
+                "op" : "is",
+                "vars" : [
+                  {
+                    "type" : "field",
+                    "value" : "medical-conditions"
+                  },
+                  {
+                    "type" : "choice",
+                    "value" : "medical-conditions-answer-cancer"
+                  }
+                ]
+              },
+              {
+                "op" : "is",
+                "vars" : [
+                  {
+                    "type" : "field",
+                    "value" : "medical-conditions"
+                  },
+                  {
+                    "type" : "choice",
+                    "value" : "medical-conditions-answer-depression"
+                  }
+                ]
+              },
+              {
+                "op" : "is",
+                "vars" : [
+                  {
+                    "type" : "field",
+                    "value" : "medical-conditions"
+                  },
+                  {
+                    "type" : "choice",
+                    "value" : "medical-conditions-answer-anxiety"
+                  }
+                ]
+              },
+              {
+                "op" : "is",
+                "vars" : [
+                  {
+                    "type" : "field",
+                    "value" : "medical-conditions"
+                  },
+                  {
+                    "type" : "choice",
+                    "value" : "medical-conditions-answer-premature-birth"
+                  }
+                ]
+              },
+              {
+                "op" : "is",
+                "vars" : [
+                  {
+                    "type" : "field",
+                    "value" : "medical-conditions"
+                  },
+                  {
+                    "type" : "choice",
+                    "value" : "medical-conditions-answer-other"
+                  }
+                ]
+              }
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "medical-conditions-selected-details"
+            }
+          }
+        },
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "always",
+            "vars" : [
+
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "medications-usage"
+            }
+          }
+        }
+      ],
+      "ref" : "medical-conditions",
+      "type" : "field"
+    },
+    {
+      "actions" : [
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "is",
+            "vars" : [
+              {
+                "type" : "field",
+                "value" : "medications-usage"
+              },
+              {
+                "type" : "constant",
+                "value" : true
+              }
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "medications-details"
+            }
+          }
+        },
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "always",
+            "vars" : [
+
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "medication-allergies"
+            }
+          }
+        }
+      ],
+      "ref" : "medications-usage",
+      "type" : "field"
+    },
+    {
+      "actions" : [
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "is",
+            "vars" : [
+              {
+                "type" : "field",
+                "value" : "medication-allergies"
+              },
+              {
+                "type" : "constant",
+                "value" : true
+              }
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "medication-allergies-details"
+            }
+          }
+        },
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "always",
+            "vars" : [
+
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "surgeries"
+            }
+          }
+        }
+      ],
+      "ref" : "medication-allergies",
+      "type" : "field"
+    },
+    {
+      "actions" : [
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "or",
+            "vars" : [
+              {
+                "op" : "is",
+                "vars" : [
+                  {
+                    "type" : "field",
+                    "value" : "female-cancer-screenings"
+                  },
+                  {
+                    "type" : "choice",
+                    "value" : "female-cancer-screenings-answer-pap-smear"
+                  }
+                ]
+              },
+              {
+                "op" : "is",
+                "vars" : [
+                  {
+                    "type" : "field",
+                    "value" : "female-cancer-screenings"
+                  },
+                  {
+                    "type" : "choice",
+                    "value" : "female-cancer-screenings-answer-mammogram"
+                  }
+                ]
+              },
+              {
+                "op" : "is",
+                "vars" : [
+                  {
+                    "type" : "field",
+                    "value" : "female-cancer-screenings"
+                  },
+                  {
+                    "type" : "choice",
+                    "value" : "female-cancer-screenings-answer-colon-cancer"
+                  }
+                ]
+              }
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "female-cancer-screenings-dates"
+            }
+          }
+        },
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "always",
+            "vars" : [
+
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "adult-tobacco-use"
+            }
+          }
+        }
+      ],
+      "ref" : "female-cancer-screenings",
+      "type" : "field"
+    },
+    {
+      "actions" : [
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "is",
+            "vars" : [
+              {
+                "type" : "field",
+                "value" : "surgeries"
+              },
+              {
+                "type" : "constant",
+                "value" : true
+              }
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "surgeries-details"
+            }
+          }
+        },
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "always",
+            "vars" : [
+
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "family-medical-history"
+            }
+          }
+        }
+      ],
+      "ref" : "surgeries",
+      "type" : "field"
+    },
+    {
+      "actions" : [
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "is",
+            "vars" : [
+              {
+                "type" : "field",
+                "value" : "adult-tobacco-use"
+              },
+              {
+                "type" : "choice",
+                "value" : "adult-tobacco-use-answer-smoke"
+              }
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "adult-cigarette-frequency-use"
+            }
+          }
+        },
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "always",
+            "vars" : [
+
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "thankyou",
+              "value" : "ending-thank-you"
+            }
+          }
+        }
+      ],
+      "ref" : "adult-cigarette-usage-years",
+      "type" : "field"
+    },
+    {
+      "actions" : [
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "is",
+            "vars" : [
+              {
+                "type" : "field",
+                "value" : "health-history-changed"
+              },
+              {
+                "type" : "constant",
+                "value" : true
+              }
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "health-history-changes"
+            }
+          }
+        },
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "is",
+            "vars" : [
+              {
+                "type" : "field",
+                "value" : "health-history-changed"
+              },
+              {
+                "type" : "constant",
+                "value" : false
+              }
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "thankyou",
+              "value" : "ending-thank-you"
+            }
+          }
+        }
+      ],
+      "ref" : "health-history-changed",
+      "type" : "field"
+    },
+    {
+      "actions" : [
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "is",
+            "vars" : [
+              {
+                "type" : "field",
+                "value" : "adult-tobacco-use"
+              },
+              {
+                "type" : "choice",
+                "value" : "adult-tobacco-use-answer-not-use"
+              }
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "thankyou",
+              "value" : "ending-thank-you"
+            }
+          }
+        },
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "always",
+            "vars" : [
+
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "adult-cigarette-usage-years"
+            }
+          }
+        }
+      ],
+      "ref" : "adult-tobacco-use",
+      "type" : "field"
+    },
+    {
+      "actions" : [
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "is",
+            "vars" : [
+              {
+                "type" : "field",
+                "value" : "male-colon-cancer-screenings"
+              },
+              {
+                "type" : "constant",
+                "value" : true
+              }
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "male-colon-cancer-screenings-date"
+            }
+          }
+        },
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "always",
+            "vars" : [
+
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "adult-tobacco-use"
+            }
+          }
+        }
+      ],
+      "ref" : "male-colon-cancer-screenings",
+      "type" : "field"
+    },
+    {
+      "actions" : [
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "and",
+            "vars" : [
+              {
+                "op" : "greater_equal_than",
+                "vars" : [
+                  {
+                    "type" : "field",
+                    "value" : "patient-age"
+                  },
+                  {
+                    "type" : "constant",
+                    "value" : 20
+                  }
+                ]
+              },
+              {
+                "op" : "is",
+                "vars" : [
+                  {
+                    "type" : "field",
+                    "value" : "sex-assigned-at-birth"
+                  },
+                  {
+                    "type" : "choice",
+                    "value" : "sex-assigned-at-birth-answer-female"
+                  }
+                ]
+              }
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "female-cancer-screenings"
+            }
+          }
+        },
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "and",
+            "vars" : [
+              {
+                "op" : "greater_equal_than",
+                "vars" : [
+                  {
+                    "type" : "field",
+                    "value" : "patient-age"
+                  },
+                  {
+                    "type" : "constant",
+                    "value" : 45
+                  }
+                ]
+              },
+              {
+                "op" : "is",
+                "vars" : [
+                  {
+                    "type" : "field",
+                    "value" : "sex-assigned-at-birth"
+                  },
+                  {
+                    "type" : "choice",
+                    "value" : "sex-assigned-at-birth-answer-male"
+                  }
+                ]
+              }
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "male-colon-cancer-screenings"
+            }
+          }
+        },
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "lower_than",
+            "vars" : [
+              {
+                "type" : "field",
+                "value" : "patient-age"
+              },
+              {
+                "type" : "constant",
+                "value" : 18
+              }
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "minor-immunization-status"
+            }
+          }
+        },
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "always",
+            "vars" : [
+
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "adult-tobacco-use"
+            }
+          }
+        }
+      ],
+      "ref" : "family-medical-history",
+      "type" : "field"
+    },
+    {
+      "actions" : [
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "always",
+            "vars" : [
+
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "thankyou",
+              "value" : "ending-thank-you"
+            }
+          }
+        }
+      ],
+      "ref" : "adult-cigarette-frequency-use",
+      "type" : "field"
+    },
+    {
+      "actions" : [
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "always",
+            "vars" : [
+
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "thankyou",
+              "value" : "ending-thank-you"
+            }
+          }
+        }
+      ],
+      "ref" : "minor-smoker-in-household",
+      "type" : "field"
+    },
+    {
+      "actions" : [
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "always",
+            "vars" : [
+
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "thankyou",
+              "value" : "ending-thank-you"
+            }
+          }
+        }
+      ],
+      "ref" : "health-history-changes",
+      "type" : "field"
+    },
+    {
+      "actions" : [
+        {
+          "action" : "jump",
+          "condition" : {
+            "op" : "always",
+            "vars" : [
+
+            ]
+          },
+          "details" : {
+            "to" : {
+              "type" : "field",
+              "value" : "adult-tobacco-use"
+            }
+          }
+        }
+      ],
+      "ref" : "female-cancer-screenings-dates",
+      "type" : "field"
+    }
+  ],
+  "published_at" : "2024-02-06T17:07:40+00:00",
+  "settings" : {
+    "are_uploads_public" : false,
+    "autosave_progress" : true,
+    "capabilities" : {
+      "e2e_encryption" : {
+        "enabled" : false,
+        "modifiable" : false
+      }
+    },
+    "free_form_navigation" : false,
+    "hide_navigation" : false,
+    "is_public" : true,
+    "is_trial" : false,
+    "language" : "en",
+    "meta" : {
+      "allow_indexing" : false
+    },
+    "pro_subdomain_enabled" : false,
+    "progress_bar" : "proportion",
+    "show_cookie_consent" : false,
+    "show_key_hint_on_choices" : true,
+    "show_number_of_submissions" : false,
+    "show_progress_bar" : true,
+    "show_question_number" : true,
+    "show_time_to_complete" : true,
+    "show_typeform_branding" : true,
+    "use_lead_qualification" : false
+  },
+  "thankyou_screens" : [
+    {
+      "id" : "IRjbup38VoQD",
+      "properties" : {
+        "button_mode" : "default_redirect",
+        "button_text" : "again",
+        "share_icons" : false,
+        "show_button" : false
+      },
+      "ref" : "ending-thank-you",
+      "title" : "Thanks for submitting your health history",
+      "type" : "thankyou_screen"
+    },
+    {
+      "attachment" : {
+        "href" : "https:\/\/images.typeform.com\/images\/2dpnUBBkz2VN",
+        "type" : "image"
+      },
+      "id" : "DefaultTyScreen",
+      "properties" : {
+        "button_mode" : "default_redirect",
+        "button_text" : "Create a *typeform*",
+        "share_icons" : false,
+        "show_button" : true
+      },
+      "ref" : "default_tys",
+      "title" : "Thanks for completing this typeform\nNow *create your own* — it's free, easy, & beautiful",
+      "type" : "thankyou_screen"
+    }
+  ],
+  "theme" : {
+    "href" : "https:\/\/api.typeform.com\/themes\/qHWOQ7"
+  },
+  "title" : "Patient Health History V3",
+  "type" : "quiz",
+  "workspace" : {
+    "href" : "https:\/\/api.typeform.com\/workspaces\/CEvvDB"
+  }
+}

@@ -16,18 +16,21 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.typeform.ui.models.Settings
 
 @Composable
-internal fun ChoiceButtonView(
+internal fun IntermittentChoiceButton(
     settings: Settings,
     text: String,
-    allowMultiple: Boolean = false,
+    modifier: Modifier = Modifier,
+    allowMultiple: Boolean? = false,
     selected: Boolean = false,
     onClick: () -> Unit,
 ) {
     val background = if (selected) settings.interaction.selectedBackgroundColor else settings.interaction.unselectedBackgroundColor
     val border = if (selected) settings.interaction.selectedStrokeColor else settings.interaction.unselectedStrokeColor
+    val textModifier = if (allowMultiple == null) Modifier else Modifier.fillMaxWidth()
 
     Button(
         onClick = onClick,
+        modifier = modifier,
         elevation = null,
         border = BorderStroke(
             width = settings.interaction.unselectedStrokeWidth,
@@ -43,15 +46,17 @@ internal fun ChoiceButtonView(
             horizontalArrangement = Arrangement.spacedBy(settings.interaction.horizontalSpacing),
             verticalAlignment = Alignment.CenterVertically,
         ) {
-            ChoiceIndicatorView(
-                settings = settings,
-                allowMultiple = allowMultiple,
-                selected = selected,
-            )
+            allowMultiple?.let {
+                ChoiceIndicatorView(
+                    settings = settings,
+                    allowMultiple = it,
+                    selected = selected,
+                )
+            }
 
             StyledTextView(
                 text = text,
-                modifier = Modifier.fillMaxWidth(),
+                modifier = textModifier,
                 textStyle = MaterialTheme.typography.body1,
             )
         }
@@ -60,8 +65,8 @@ internal fun ChoiceButtonView(
 
 @Preview(showBackground = true)
 @Composable
-private fun ChoiceButtonViewPreview() {
-    ChoiceButtonView(
+private fun IntermittentChoiceButtonPreview() {
+    IntermittentChoiceButton(
         settings = Settings(),
         text = "Example Button",
     ) {

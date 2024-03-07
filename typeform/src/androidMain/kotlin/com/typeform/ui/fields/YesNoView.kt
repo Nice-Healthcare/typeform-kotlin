@@ -12,7 +12,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.typeform.models.ResponseValue
 import com.typeform.schema.Validations
 import com.typeform.schema.YesNo
-import com.typeform.ui.components.ChoiceButtonView
+import com.typeform.ui.components.IntermittentChoiceButton
 import com.typeform.ui.components.StyledTextView
 import com.typeform.ui.models.ResponseState
 import com.typeform.ui.models.Settings
@@ -81,7 +81,7 @@ internal fun YesNoView(
         Column(
             verticalArrangement = Arrangement.spacedBy(settings.presentation.contentVerticalSpacing),
         ) {
-            ChoiceButtonView(
+            IntermittentChoiceButton(
                 settings = settings,
                 text = settings.localization.yes,
                 selected = selected == true,
@@ -89,7 +89,7 @@ internal fun YesNoView(
                 toggle(true)
             }
 
-            ChoiceButtonView(
+            IntermittentChoiceButton(
                 settings = settings,
                 text = settings.localization.no,
                 selected = selected == false,
