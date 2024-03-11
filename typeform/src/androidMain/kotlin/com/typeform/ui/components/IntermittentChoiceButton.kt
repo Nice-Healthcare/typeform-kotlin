@@ -24,8 +24,30 @@ internal fun IntermittentChoiceButton(
     selected: Boolean = false,
     onClick: () -> Unit,
 ) {
-    val background = if (selected) settings.interaction.selectedBackgroundColor else settings.interaction.unselectedBackgroundColor
-    val border = if (selected) settings.interaction.selectedStrokeColor else settings.interaction.unselectedStrokeColor
+    val backgroundColor = if (allowMultiple == null) {
+        if (selected) settings.rating.selectedBackgroundColor else settings.rating.unselectedBackgroundColor
+    } else {
+        if (selected) settings.interaction.selectedBackgroundColor else settings.interaction.unselectedBackgroundColor
+    }
+
+    val strokeColor = if (allowMultiple == null) {
+        if (selected) settings.rating.selectedStrokeColor else settings.rating.unselectedStrokeColor
+    } else {
+        if (selected) settings.interaction.selectedStrokeColor else settings.interaction.unselectedStrokeColor
+    }
+
+    val strokeWidth = if (allowMultiple == null) {
+        if (selected) settings.rating.selectedStrokeWidth else settings.rating.unselectedStrokeWidth
+    } else {
+        if (selected) settings.interaction.selectedStrokeWidth else settings.interaction.unselectedStrokeWidth
+    }
+
+    val foregroundColor = if (allowMultiple == null) {
+        if (selected) settings.rating.selectedForegroundColor else settings.rating.unselectedForegroundColor
+    } else {
+        MaterialTheme.colors.onBackground
+    }
+    
     val textModifier = if (allowMultiple == null) Modifier else Modifier.fillMaxWidth()
 
     Button(
@@ -33,11 +55,11 @@ internal fun IntermittentChoiceButton(
         modifier = modifier,
         elevation = null,
         border = BorderStroke(
-            width = settings.interaction.unselectedStrokeWidth,
-            color = border,
+            width = strokeWidth,
+            color = strokeColor,
         ),
         colors = ButtonDefaults.buttonColors(
-            backgroundColor = background,
+            backgroundColor = backgroundColor,
         ),
         contentPadding = PaddingValues(),
     ) {
@@ -58,6 +80,7 @@ internal fun IntermittentChoiceButton(
                 text = text,
                 modifier = textModifier,
                 textStyle = MaterialTheme.typography.body1,
+                color = foregroundColor,
             )
         }
     }

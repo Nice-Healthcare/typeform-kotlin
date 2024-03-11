@@ -69,9 +69,11 @@ data class Settings(
         val unselectedBackgroundColor: Color = Color.Blue.copy(alpha = 0.2f),
         val unselectedStrokeColor: Color = Color.Blue.copy(alpha = 0.5f),
         val unselectedStrokeWidth: Dp = 1.dp,
+        val unselectedForegroundColor: Color = Color.White,
         val selectedBackgroundColor: Color = Color.Blue.copy(alpha = 0.5f),
         val selectedStrokeColor: Color = Color.Blue.copy(alpha = 0.8f),
         val selectedStrokeWidth: Dp = 2.dp,
+        val selectedForegroundColor: Color = Color.Blue,
         val padding: PaddingValues = PaddingValues(10.dp),
         val horizontalSpacing: Dp = 10.dp,
         val contentCornerRadius: Dp = 6.dp,
@@ -104,7 +106,13 @@ data class Settings(
     )
 
     data class Rating(
+        val unselectedBackgroundColor: Color = Color.Blue.copy(alpha = 0.3f),
+        val unselectedStrokeColor: Color = Color.Blue.copy(alpha = 0.5f),
+        val unselectedStrokeWidth: Dp = 1.dp,
         val unselectedForegroundColor: Color = Color.Black,
+        val selectedBackgroundColor: Color = Color.Blue.copy(alpha = 0.3f),
+        val selectedStrokeColor: Color = Color.Blue.copy(alpha = 0.9f),
+        val selectedStrokeWidth: Dp = 2.dp,
         val selectedForegroundColor: Color = Color.Blue,
         val fillMaxWidth: Boolean = false,
     )
