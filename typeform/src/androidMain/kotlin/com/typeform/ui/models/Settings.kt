@@ -30,6 +30,7 @@ data class Settings(
         val finish: String = "Finish",
         val yes: String = "Yes",
         val no: String = "No",
+        val exit: String = "Exit",
         val abandonConfirmationTitle: String = "Abandon Form?",
         val abandonConfirmationMessage: String = "Are you sure you want to abandon the form?",
         val abandonConfirmationAction: String = "Abandon",

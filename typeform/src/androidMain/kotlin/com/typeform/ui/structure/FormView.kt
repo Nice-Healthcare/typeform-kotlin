@@ -139,7 +139,7 @@ fun FormView(
                             )
 
                             Text(
-                                text = settings.localization.cancel,
+                                text = settings.localization.exit,
                                 modifier = Modifier.clickable {
                                     if (responses.isEmpty()) {
                                         conclusion(Conclusion.Canceled)
