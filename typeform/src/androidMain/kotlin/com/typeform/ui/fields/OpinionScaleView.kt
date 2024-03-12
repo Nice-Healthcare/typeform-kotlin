@@ -34,10 +34,11 @@ internal fun OpinionScaleView(
 ) {
     var selected: Int? by remember { mutableStateOf(responseState.response?.asInt()) }
 
-    val range = IntRange(
-        if (properties.start_at_one) 1 else 0,
-        if (properties.start_at_one) properties.steps else properties.steps - 1
-    )
+    val start = if (properties.start_at_one) 1 else 0
+    val end = if (properties.start_at_one) properties.steps else properties.steps - 1
+    val range = IntRange(start, end)
+    val leadingLabel = String.format("%d: %s", start, properties.labels.left)
+    val trailingLabel = String.format("%d: %s", end, properties.labels.right)
 
     fun updateState() {
         var state = responseState
@@ -72,12 +73,12 @@ internal fun OpinionScaleView(
             horizontalArrangement = Arrangement.SpaceBetween,
         ) {
             StyledTextView(
-                text = properties.labels.left,
+                text = leadingLabel,
                 textStyle = MaterialTheme.typography.caption,
             )
 
             StyledTextView(
-                text = properties.labels.right,
+                text = trailingLabel,
                 textStyle = MaterialTheme.typography.caption,
             )
         }
@@ -131,9 +132,9 @@ private fun OpinionScaleViewPreviewFillMaxWidth() {
             )
         ),
         properties = OpinionScale(
-            steps = 11,
+            steps = 10,
             labels = OpinionScale.Labels("leading", "trailing"),
-            start_at_one = false,
+            start_at_one = true,
         ),
         responseState = ResponseState(),
         validations = null,
