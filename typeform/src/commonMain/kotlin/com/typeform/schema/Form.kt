@@ -256,7 +256,7 @@ private fun Form.nextPositionFrom(field: Field, group: Group?, responses: Respon
 
     // Is there [Logic] that applies to this [Field].
     logic.firstOrNull { it.ref == field.ref }?.let { logic ->
-        logic.actions.firstOrNull { it.condition.satisfiedGiven(responses) == true }?.let { action ->
+        logic.actions.firstOrNull { it.condition.satisfiedGiven(responses) }?.let { action ->
             when (action.details.to.type) {
                 ActionDetails.ToType.FIELD -> {
                     return parentForFieldWithRef(action.details.to.value) ?: throw TypeformException.NextPosition(currentPosition)

@@ -45,6 +45,18 @@ fun Condition.Companion.makeVar(flatCondition: FlatCondition): Var? {
                     value = Var.Value.Bool(flatCondition.value),
                 )
             }
+            is Int -> {
+                Var(
+                    type = flatCondition.type,
+                    value = Var.Value.Integer(flatCondition.value),
+                )
+            }
+            is Double -> {
+                Var(
+                    type = flatCondition.type,
+                    value = Var.Value.Integer(flatCondition.value.toInt()),
+                )
+            }
             is String -> {
                 Var(
                     type = flatCondition.type,
