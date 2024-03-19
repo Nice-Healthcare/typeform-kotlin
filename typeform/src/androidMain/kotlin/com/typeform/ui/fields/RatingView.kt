@@ -20,12 +20,14 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.typeform.models.ResponseValue
 import com.typeform.schema.Rating
 import com.typeform.schema.Validations
 import com.typeform.ui.components.StyledTextView
 import com.typeform.ui.models.ResponseState
 import com.typeform.ui.models.Settings
+import com.typeform.ui.preview.ThemePreview
 
 @Composable
 internal fun RatingView(
@@ -96,6 +98,11 @@ internal fun RatingView(
         ) {
             range.forEach { step ->
                 val filled = (selected ?: 0) >= step
+                val tint = if (filled) {
+                    settings.rating.colors.contentColor(enabled = true)
+                } else {
+                    settings.rating.colors.backgroundColor(enabled = true)
+                }
 
                 IconButton(
                     onClick = {
@@ -110,7 +117,7 @@ internal fun RatingView(
                             imageVector = if (filled) filledImage else outlinedImage,
                             contentDescription = null,
                             modifier = Modifier.fillMaxWidth(),
-                            tint = if (filled) settings.rating.selectedForegroundColor else settings.rating.unselectedForegroundColor,
+                            tint = tint.value,
                         )
 
                         StyledTextView(
@@ -129,15 +136,33 @@ internal fun RatingView(
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 private fun RatingViewPreview() {
-    RatingView(
-        settings = Settings(),
-        properties = Rating(
-            shape = "star",
-            steps = 5,
-            description = null,
-        ),
-        responseState = ResponseState(),
-        validations = null,
-    ) {
+    ThemePreview {
+        Column(
+            verticalArrangement = Arrangement.spacedBy(20.dp)
+        ) {
+            RatingView(
+                settings = Settings(),
+                properties = Rating(
+                    shape = "star",
+                    steps = 5,
+                    description = null,
+                ),
+                responseState = ResponseState(),
+                validations = null,
+            ) {
+            }
+
+            RatingView(
+                settings = Settings(),
+                properties = Rating(
+                    shape = "star",
+                    steps = 5,
+                    description = null,
+                ),
+                responseState = ResponseState(),
+                validations = null,
+            ) {
+            }
+        }
     }
 }

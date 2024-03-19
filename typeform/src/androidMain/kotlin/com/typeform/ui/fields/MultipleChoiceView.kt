@@ -17,6 +17,7 @@ import com.typeform.ui.components.IntermittentChoiceButton
 import com.typeform.ui.components.StyledTextView
 import com.typeform.ui.models.ResponseState
 import com.typeform.ui.models.Settings
+import com.typeform.ui.preview.ThemePreview
 import com.typeform.ui.preview.previewCold
 import com.typeform.ui.preview.previewHot
 
@@ -110,21 +111,23 @@ internal fun MultipleChoiceView(
 @Preview(showBackground = true)
 @Composable
 private fun MultipleChoiceViewPreview() {
-    MultipleChoiceView(
-        settings = Settings(),
-        properties = MultipleChoice(
-            choices = listOf(
-                Choice.previewHot,
-                Choice.previewCold,
+    ThemePreview {
+        MultipleChoiceView(
+            settings = Settings(),
+            properties = MultipleChoice(
+                choices = listOf(
+                    Choice.previewHot,
+                    Choice.previewCold,
+                ),
+                randomize = false,
+                allow_multiple_selection = false,
+                allow_other_choice = false,
+                vertical_alignment = true,
+                description = null,
             ),
-            randomize = false,
-            allow_multiple_selection = false,
-            allow_other_choice = false,
-            vertical_alignment = true,
-            description = null,
-        ),
-        responseState = ResponseState(),
-        validations = null,
-    ) {
+            responseState = ResponseState(),
+            validations = null,
+        ) {
+        }
     }
 }

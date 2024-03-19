@@ -7,7 +7,10 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.graphics.Color
 
-data class DefaultTextFieldColors(
+@Deprecated("", ReplaceWith("TypeformTextFieldColors"))
+typealias DefaultTextFieldColors = TypeformTextFieldColors
+
+data class TypeformTextFieldColors(
     val backgroundColor: Color = Color.White,
     val textColor: Color = Color.Black,
     val cursorColor: Color = Color.Black,

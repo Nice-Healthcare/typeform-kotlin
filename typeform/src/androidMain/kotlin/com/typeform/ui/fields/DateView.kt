@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Switch
-import androidx.compose.material.SwitchDefaults
 import androidx.compose.material3.DatePicker
 import androidx.compose.material3.DatePickerDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -107,10 +106,7 @@ internal fun DateView(
                                 select(pickerState.selectedDateMillis ?: Date().time)
                             }
                         },
-                        colors = SwitchDefaults.colors(
-                            checkedThumbColor = MaterialTheme.colors.primary,
-                            uncheckedThumbColor = MaterialTheme.colors.onBackground,
-                        ),
+                        colors = settings.switch.colors,
                     )
                 }
             }

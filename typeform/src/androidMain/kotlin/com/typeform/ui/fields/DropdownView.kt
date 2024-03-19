@@ -155,7 +155,7 @@ private fun DropdownChoiceRow(
     ) {
         Text(
             text = label,
-            color = MaterialTheme.typography.h5.color,
+            color = MaterialTheme.typography.body1.color,
             style = MaterialTheme.typography.body1,
         )
 

@@ -23,6 +23,7 @@ import com.typeform.ui.components.StyledTextView
 import com.typeform.ui.models.Conclusion
 import com.typeform.ui.models.NavigationAction
 import com.typeform.ui.models.Settings
+import com.typeform.ui.preview.ThemePreview
 import com.typeform.ui.preview.preview
 
 /**
@@ -51,7 +52,7 @@ internal fun ScreenView(
     ScrollingContentView(
         scaffoldPadding = scaffoldPadding,
         settings = settings,
-        title = screen.properties.button_text ?: "Next",
+        title = screen.properties.button_text ?: settings.localization.next,
         onClick = {
             if (next != null) {
                 actionHandler(NavigationAction.PositionAction(next))
@@ -77,7 +78,7 @@ internal fun ScreenView(
 
             StyledTextView(
                 text = screen.title,
-                textStyle = MaterialTheme.typography.h4,
+                textStyle = MaterialTheme.typography.h5,
             )
         }
     }
@@ -89,12 +90,14 @@ private fun ScreenViewPreview() {
     val form = Form.preview
     val screen = form.welcome_screens!!.first()
 
-    ScreenView(
-        scaffoldPadding = PaddingValues(0.dp),
-        form = form,
-        settings = Settings(),
-        screen = screen,
-        responses = mutableMapOf(),
-        actionHandler = { },
-    )
+    ThemePreview {
+        ScreenView(
+            scaffoldPadding = PaddingValues(0.dp),
+            form = form,
+            settings = Settings(),
+            screen = screen,
+            responses = mutableMapOf(),
+            actionHandler = { },
+        )
+    }
 }
