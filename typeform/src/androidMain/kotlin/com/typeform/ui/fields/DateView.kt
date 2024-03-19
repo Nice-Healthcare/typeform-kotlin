@@ -83,25 +83,20 @@ internal fun DateView(
             )
         }
 
-        StyledTextView(
-            text = "$milliseconds",
-            textStyle = MaterialTheme.typography.h1
-        )
-
         Column(
             verticalArrangement = Arrangement.spacedBy(settings.presentation.contentVerticalSpacing),
         ) {
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically,
-            ) {
-                StyledTextView(
-                    text = settings.localization.nullDate,
-                    textStyle = MaterialTheme.typography.caption,
-                )
+            if (isOptional) {
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    StyledTextView(
+                        text = settings.localization.nullDate,
+                        textStyle = MaterialTheme.typography.caption,
+                    )
 
-                if (isOptional) {
                     Switch(
                         checked = isNotSure,
                         onCheckedChange = {
