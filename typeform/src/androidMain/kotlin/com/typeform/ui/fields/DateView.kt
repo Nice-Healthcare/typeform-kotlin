@@ -12,6 +12,7 @@ import androidx.compose.material3.DatePickerDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.rememberDatePickerState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -67,6 +68,11 @@ internal fun DateView(
         updateState()
     }
 
+    DisposableEffect(pickerState.selectedDateMillis) {
+        select(pickerState.selectedDateMillis)
+        onDispose { }
+    }
+
     Column(
         verticalArrangement = Arrangement.spacedBy(settings.presentation.descriptionContentVerticalSpacing),
     ) {
@@ -76,6 +82,11 @@ internal fun DateView(
                 textStyle = MaterialTheme.typography.caption,
             )
         }
+
+        StyledTextView(
+            text = "$milliseconds",
+            textStyle = MaterialTheme.typography.h1
+        )
 
         Column(
             verticalArrangement = Arrangement.spacedBy(settings.presentation.contentVerticalSpacing),
@@ -112,10 +123,6 @@ internal fun DateView(
             if (!isOptional || !isNotSure) {
                 DatePicker(
                     state = pickerState,
-                    dateValidator = {
-                        select(it)
-                        true
-                    },
                     title = null,
                     headline = null,
                     showModeToggle = false,
