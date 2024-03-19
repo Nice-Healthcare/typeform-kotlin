@@ -1,7 +1,7 @@
 plugins {
     kotlin("multiplatform")
     id("com.android.library")
-    id("org.jetbrains.compose") version "1.5.3"
+    id("org.jetbrains.compose") version "1.6.1"
     id("com.adarshr.test-logger") version "3.2.0"
 }
 
@@ -36,8 +36,8 @@ kotlin {
                 api(compose.ui)
                 api(compose.uiTooling)
                 api(compose.preview)
-                implementation("androidx.compose.material3:material3:1.1.2")
-                implementation("androidx.navigation:navigation-compose:2.7.5")
+                implementation("androidx.compose.material3:material3:1.2.0")
+                implementation("androidx.navigation:navigation-compose:2.7.7")
                 implementation("io.coil-kt:coil-compose:2.4.0")
             }
         }
