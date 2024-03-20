@@ -1,10 +1,11 @@
 package com.typeform.ui.fields
 
+import android.view.WindowInsets
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.safeGesturesPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Slider
@@ -87,10 +88,10 @@ internal fun OpinionScaleView(
         updateState()
     }
 
-    // Additional horizontal padding added here to account for the system gesture insets.
+    // Additional padding added here to account for the system gesture insets.
     // The system has priority over gestures within a certain margin of the device edge.
     Column(
-        modifier = Modifier.padding(horizontal = 25.dp),
+        modifier = Modifier.safeGesturesPadding(),
         verticalArrangement = Arrangement.spacedBy(settings.presentation.contentVerticalSpacing),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
