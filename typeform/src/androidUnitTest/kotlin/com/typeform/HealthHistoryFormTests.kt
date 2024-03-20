@@ -4,11 +4,8 @@ import com.typeform.models.Position
 import com.typeform.models.ResponseValue
 import com.typeform.models.Responses
 import com.typeform.schema.Choice
-import com.typeform.schema.WelcomeScreen
-import com.typeform.ui.structure.TypeformRoute.Companion.field
 import kotlin.test.Test
 import kotlin.test.assertEquals
-import kotlin.test.assertTrue
 import kotlin.test.fail
 
 class HealthHistoryFormTests : TypeformTestCase() {

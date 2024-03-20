@@ -34,6 +34,7 @@ import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.typeform.ui.models.Settings
+import com.typeform.ui.preview.ThemePreview
 import kotlin.math.abs
 
 /**
@@ -52,7 +53,6 @@ internal fun ScrollingContentView(
 ) {
     val scrollState = rememberScrollState()
     val isKeyboardVisible by rememberUpdatedState(if (LocalInspectionMode.current) false else WindowInsets.isImeVisible)
-    val textState = settings.callToAction.colors.contentColor(enabled = enabled)
     val animationDuration = 300
 
     Column(
@@ -79,7 +79,9 @@ internal fun ScrollingContentView(
             enter = slideInVertically(tween(animationDuration)) { abs(it) } + fadeIn(tween(animationDuration)),
             exit = slideOutVertically(tween(animationDuration)) { abs(it) } + fadeOut(tween(animationDuration)),
         ) {
-            Box {
+            Box(
+                modifier = Modifier.background(settings.callToAction.backgroundColor),
+            ) {
                 Divider(
                     modifier = Modifier.fillMaxWidth(),
                     color = settings.callToAction.dividerColor,
@@ -88,8 +90,7 @@ internal fun ScrollingContentView(
 
                 Column(
                     modifier = Modifier
-                        .padding(settings.callToAction.containerPadding)
-                        .background(settings.callToAction.backgroundColor),
+                        .padding(settings.callToAction.containerPadding),
                 ) {
                     Button(
                         onClick = onClick,
@@ -101,7 +102,7 @@ internal fun ScrollingContentView(
                     ) {
                         Text(
                             text = title,
-                            color = textState.value,
+                            color = settings.callToAction.colors.contentColor(enabled = enabled).value,
                         )
                     }
                 }
@@ -115,45 +116,47 @@ internal fun ScrollingContentView(
 private fun ScrollingContentViewPreview(
     settings: Settings = Settings(),
 ) {
-    ScrollingContentView(
-        scaffoldPadding = PaddingValues(0.dp),
-        settings = settings,
-        title = "Preview",
-        onClick = {},
-        header = {
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .background(Color.LightGray)
-                    .height(50.dp),
-            )
-        },
-    ) {
-        Column(
-            modifier = Modifier.padding(settings.presentation.contentPadding),
+    ThemePreview {
+        ScrollingContentView(
+            scaffoldPadding = PaddingValues(0.dp),
+            settings = settings,
+            title = "Preview",
+            onClick = {},
+            header = {
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .background(Color.Cyan)
+                        .height(50.dp),
+                )
+            },
         ) {
-            Box(
-                modifier = Modifier
-                    .height(300.dp)
-                    .width(50.dp)
-                    .background(Color.Blue),
+            Column(
+                modifier = Modifier.padding(settings.presentation.contentPadding),
             ) {
-            }
+                Box(
+                    modifier = Modifier
+                        .height(300.dp)
+                        .width(50.dp)
+                        .background(Color.Blue),
+                ) {
+                }
 
-            Box(
-                modifier = Modifier
-                    .height(300.dp)
-                    .width(50.dp)
-                    .background(Color.Yellow),
-            ) {
-            }
+                Box(
+                    modifier = Modifier
+                        .height(300.dp)
+                        .width(50.dp)
+                        .background(Color.Yellow),
+                ) {
+                }
 
-            Box(
-                modifier = Modifier
-                    .height(300.dp)
-                    .width(50.dp)
-                    .background(Color.Red),
-            ) {
+                Box(
+                    modifier = Modifier
+                        .height(300.dp)
+                        .width(50.dp)
+                        .background(Color.Red),
+                ) {
+                }
             }
         }
     }

@@ -2,28 +2,31 @@ package com.typeform.ui.fields
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.ExperimentalLayoutApi
-import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.safeGesturesPadding
+import androidx.compose.foundation.layout.width
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Slider
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.typeform.models.ResponseValue
 import com.typeform.schema.OpinionScale
 import com.typeform.schema.Validations
-import com.typeform.ui.components.IntermittentChoiceButton
 import com.typeform.ui.components.StyledTextView
 import com.typeform.ui.models.ResponseState
 import com.typeform.ui.models.Settings
+import com.typeform.ui.preview.ThemePreview
 
-@OptIn(ExperimentalLayoutApi::class)
 @Composable
 internal fun OpinionScaleView(
     settings: Settings,
@@ -32,11 +35,22 @@ internal fun OpinionScaleView(
     validations: Validations?,
     stateHandler: (ResponseState) -> Unit,
 ) {
-    var selected: Int? by remember { mutableStateOf(responseState.response?.asInt()) }
-
     val start = if (properties.start_at_one) 1 else 0
-    val end = if (properties.start_at_one) properties.steps else properties.steps - 1
-    val range = IntRange(start, end)
+    val end = if (properties.start_at_one) properties.steps else (properties.steps - 1)
+    val steps = properties.steps - 1
+    val step = 1f / end.toFloat()
+
+    var selected: Int? by remember { mutableStateOf(responseState.response?.asInt()) }
+    var value: Float by remember {
+        mutableFloatStateOf(
+            if (responseState.response?.asInt() != null) {
+                responseState.response.asInt()!!.toFloat() * step
+            } else {
+                0f
+            }
+        )
+    }
+
     val leadingLabel = String.format("%d: %s", start, properties.labels.left)
     val trailingLabel = String.format("%d: %s", end, properties.labels.right)
 
@@ -59,15 +73,41 @@ internal fun OpinionScaleView(
         stateHandler(state)
     }
 
-    fun select(value: Int) {
-        selected = if (value == selected) null else value
+    fun selectFloat(newValue: Float) {
+        selected = if (newValue <= 0f) {
+            null
+        } else if (newValue >= 1f) {
+            end
+        } else {
+            (newValue / step).toInt()
+        }
+
+        value = newValue
 
         updateState()
     }
 
     Column(
-        verticalArrangement = Arrangement.spacedBy(settings.presentation.descriptionContentVerticalSpacing),
+        verticalArrangement = Arrangement.spacedBy(settings.presentation.contentVerticalSpacing),
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
+        StyledTextView(
+            text = if (selected == null) settings.localization.emptyChoice else "$selected",
+            textStyle = MaterialTheme.typography.body1,
+        )
+
+        // Additional padding added here to account for the system gesture insets.
+        // The system has priority over gestures within a certain margin of the device edge.
+        Slider(
+            value = value,
+            onValueChange = {
+                selectFloat(it)
+            },
+            modifier = Modifier.safeGesturesPadding(),
+            steps = steps,
+            colors = settings.opinionScale.colors,
+        )
+
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween,
@@ -75,31 +115,15 @@ internal fun OpinionScaleView(
             StyledTextView(
                 text = leadingLabel,
                 textStyle = MaterialTheme.typography.caption,
+                modifier = Modifier.width(120.dp),
             )
 
             StyledTextView(
                 text = trailingLabel,
                 textStyle = MaterialTheme.typography.caption,
+                modifier = Modifier.width(120.dp),
+                textAlign = TextAlign.End,
             )
-        }
-
-        FlowRow(
-            modifier = if (settings.rating.fillMaxWidth) Modifier else Modifier.align(Alignment.CenterHorizontally),
-            horizontalArrangement = Arrangement.spacedBy(settings.presentation.contentHorizontalSpacing),
-            verticalArrangement = Arrangement.spacedBy(settings.presentation.contentVerticalSpacing),
-            maxItemsInEachRow = 6
-        ) {
-            range.forEach { step ->
-                IntermittentChoiceButton(
-                    settings = settings,
-                    text = "$step",
-                    modifier = if (settings.rating.fillMaxWidth) Modifier.weight(1f) else Modifier,
-                    allowMultiple = null,
-                    selected = selected == step,
-                ) {
-                    select(step)
-                }
-            }
         }
     }
 
@@ -109,35 +133,37 @@ internal fun OpinionScaleView(
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 private fun OpinionScaleViewPreview() {
-    OpinionScaleView(
-        settings = Settings(),
-        properties = OpinionScale(
-            steps = 11,
-            labels = OpinionScale.Labels("leading", "trailing"),
-            start_at_one = false,
-        ),
-        responseState = ResponseState(),
-        validations = null,
-    ) {
-    }
-}
+    ThemePreview {
+        Column {
+            OpinionScaleView(
+                settings = Settings(),
+                properties = OpinionScale(
+                    steps = 11,
+                    labels = OpinionScale.Labels(
+                        left = "no pain",
+                        right = "worst pain imaginable"
+                    ),
+                    start_at_one = false,
+                ),
+                responseState = ResponseState(),
+                validations = null,
+            ) {
+            }
 
-@Preview(showBackground = true, showSystemUi = true)
-@Composable
-private fun OpinionScaleViewPreviewFillMaxWidth() {
-    OpinionScaleView(
-        settings = Settings(
-            rating = Settings.Rating(
-                fillMaxWidth = true,
-            )
-        ),
-        properties = OpinionScale(
-            steps = 10,
-            labels = OpinionScale.Labels("leading", "trailing"),
-            start_at_one = true,
-        ),
-        responseState = ResponseState(),
-        validations = null,
-    ) {
+            OpinionScaleView(
+                settings = Settings(),
+                properties = OpinionScale(
+                    steps = 5,
+                    labels = OpinionScale.Labels(
+                        left = "Not confident",
+                        right = "Very confident"
+                    ),
+                    start_at_one = true,
+                ),
+                responseState = ResponseState(),
+                validations = null,
+            ) {
+            }
+        }
     }
 }

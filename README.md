@@ -87,6 +87,7 @@ All of the _structural_ components are supported: Welcome Screen, Ending, Statem
 * Multiple Choice
 * Yes/No
 * Dropdown
+* Opinion Scale
 
 ## Customization
 
@@ -98,7 +99,25 @@ The [`Settings`](typeform/src/androidMain/kotlin/com/typeform/ui/models/Settings
 
 ### MaterialTheme
 
-Most other aspects use `MaterialTheme` to customize the appearance. 
+Most other aspects use `MaterialTheme` to customize the appearance.
+
+* **Title** style (`Screen.title`, `Field.title`)
+  * `textStyle`: `MaterialTheme.typography.h5`
+* **Subtitle** style (Applied to navigational buttons)
+  * `textStyle`: `MaterialTheme.typography.subtitle1`
+* **Body** style (Applied to any other text element.)
+  * `textStyle`: `MaterialTheme.typography.body1`
+* **Prompt** style (Applied to supplemental text blocks, like Date toggle.)
+  * `textStyle`: `MaterialTheme.typography.body2`
+* **Caption** style (`Field.properties.description`)
+  * `textStyle`: `MaterialTheme.typography.caption`
+
+The 'Exit' confirmation dialog _by default_ uses the `subtitle1` and `body1` styles for the title & text.
+The dialog buttons use style `body1` but have color overrides applied:
+
+* Cancel (return to form): `MaterialTheme.colors.primary`
+* Exit (leave form): `MaterialTheme.colors.error`
+
 
 ### Headers & Footers
 

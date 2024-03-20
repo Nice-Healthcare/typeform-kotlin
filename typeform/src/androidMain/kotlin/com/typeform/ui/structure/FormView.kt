@@ -28,7 +28,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavType
@@ -37,12 +36,14 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.typeform.models.Position
+import com.typeform.models.ResponseValue
 import com.typeform.models.Responses
 import com.typeform.schema.Form
 import com.typeform.ui.components.StyledTextView
 import com.typeform.ui.models.Conclusion
 import com.typeform.ui.models.NavigationAction
 import com.typeform.ui.models.Settings
+import com.typeform.ui.preview.ThemePreview
 import com.typeform.ui.preview.preview
 
 /**
@@ -74,13 +75,13 @@ fun FormView(
     val startDestination = remember {
         when (startPosition) {
             is Position.ScreenPosition -> {
-                Pair(TypeformRoute.screen, startPosition.screen.id)
+                Pair(TypeformRoute.SCREEN, startPosition.screen.id)
             }
             is Position.FieldPosition -> {
-                Pair(TypeformRoute.field, startPosition.field.id)
+                Pair(TypeformRoute.FIELD, startPosition.field.id)
             }
             else -> {
-                Pair(TypeformRoute.rejected, "")
+                Pair(TypeformRoute.REJECTED, "")
             }
         }
     }
@@ -126,7 +127,7 @@ fun FormView(
                             if (showBackNavigation) {
                                 Icon(
                                     imageVector = Icons.Outlined.ArrowBack,
-                                    contentDescription = null,
+                                    contentDescription = Icons.Outlined.ArrowBack.name,
                                     modifier = Modifier.clickable {
                                         navigateUsing(NavigationAction.Back)
                                     },
@@ -165,7 +166,7 @@ fun FormView(
             startDestination = startDestination.first,
         ) {
             composable(
-                route = TypeformRoute.screen,
+                route = TypeformRoute.SCREEN,
                 arguments = listOf(
                     navArgument("id") {
                         type = NavType.StringType
@@ -211,7 +212,7 @@ fun FormView(
             }
 
             composable(
-                route = TypeformRoute.field,
+                route = TypeformRoute.FIELD,
                 arguments = listOf(
                     navArgument("id") {
                         type = NavType.StringType
@@ -232,7 +233,7 @@ fun FormView(
                     return@composable
                 }
 
-                showBackNavigation = (startDestination.first != TypeformRoute.field || startDestination.second != fieldId)
+                showBackNavigation = (startDestination.first != TypeformRoute.FIELD || startDestination.second != fieldId)
 
                 val field = form.fieldWithId(fieldId)
                 if (field == null) {
@@ -264,7 +265,7 @@ fun FormView(
             }
 
             composable(
-                route = TypeformRoute.rejected,
+                route = TypeformRoute.REJECTED,
             ) {
                 showBackNavigation = false
 
@@ -299,7 +300,7 @@ fun FormView(
                         StyledTextView(
                             text = settings.localization.abandonConfirmationAction,
                             textStyle = MaterialTheme.typography.body1,
-                            color = Color.Red,
+                            color = MaterialTheme.colors.error,
                         )
                     }
 
@@ -317,16 +318,10 @@ fun FormView(
                 }
             },
             title = {
-                StyledTextView(
-                    text = settings.localization.abandonConfirmationTitle,
-                    textStyle = MaterialTheme.typography.h5,
-                )
+                Text(text = settings.localization.abandonConfirmationTitle)
             },
             text = {
-                StyledTextView(
-                    text = settings.localization.abandonConfirmationMessage,
-                    textStyle = MaterialTheme.typography.body1,
-                )
+                Text(text = settings.localization.abandonConfirmationMessage)
             },
             shape = RoundedCornerShape(CornerSize(16.dp)),
         )
@@ -335,16 +330,16 @@ fun FormView(
 
 internal sealed class TypeformRoute {
     companion object {
-        const val screen = "typeform_screen/{id}"
-        const val field = "typeform_field/{id}"
-        const val rejected = "typeform_rejected"
+        const val SCREEN = "typeform_screen/{id}"
+        const val FIELD = "typeform_field/{id}"
+        const val REJECTED = "typeform_rejected"
 
         fun makeScreen(id: String): String {
-            return screen.replace("{id}", id)
+            return SCREEN.replace("{id}", id)
         }
 
         fun makeField(fieldId: String): String {
-            return field.replace("{id}", fieldId)
+            return FIELD.replace("{id}", fieldId)
         }
     }
 }
@@ -352,8 +347,13 @@ internal sealed class TypeformRoute {
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 private fun FormViewPreview() {
-    FormView(
-        Form.preview,
-        conclusion = { },
-    )
+    ThemePreview {
+        FormView(
+            Form.preview,
+            responses = mutableMapOf(
+                Pair("", ResponseValue.BooleanValue(false)),
+            ),
+            conclusion = { },
+        )
+    }
 }

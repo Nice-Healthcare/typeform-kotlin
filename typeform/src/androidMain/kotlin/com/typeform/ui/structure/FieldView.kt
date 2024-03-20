@@ -26,7 +26,6 @@ import com.typeform.models.Responses
 import com.typeform.models.TypeformException
 import com.typeform.schema.Field
 import com.typeform.schema.FieldProperties
-import com.typeform.schema.FieldType
 import com.typeform.schema.Form
 import com.typeform.schema.Group
 import com.typeform.schema.ThankYouScreen
@@ -45,6 +44,7 @@ import com.typeform.ui.models.Conclusion
 import com.typeform.ui.models.NavigationAction
 import com.typeform.ui.models.ResponseState
 import com.typeform.ui.models.Settings
+import com.typeform.ui.preview.ThemePreview
 import com.typeform.ui.preview.preview
 import com.typeform.ui.preview.previewDate
 import com.typeform.ui.preview.previewDropdown
@@ -83,15 +83,6 @@ internal fun FieldView(
         }
         else -> {
             settings.localization.next
-        }
-    }
-
-    val titleStyle = when (field.type) {
-        FieldType.GROUP -> {
-            MaterialTheme.typography.h4
-        }
-        else -> {
-            MaterialTheme.typography.h5
         }
     }
 
@@ -148,7 +139,7 @@ internal fun FieldView(
         ) {
             StyledTextView(
                 text = field.title,
-                textStyle = titleStyle,
+                textStyle = MaterialTheme.typography.h5,
             )
 
             when (field.properties) {
@@ -266,24 +257,26 @@ private fun FieldViewPreview(
     val form = Form.preview
     val field = form.fieldWithRef(reference) ?: throw Resources.NotFoundException()
 
-    FieldView(
-        scaffoldPadding = PaddingValues(0.dp),
-        form = form,
-        settings = Settings(),
-        field = field,
-        group = null,
-        responses = mutableMapOf(),
-        header = {
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .background(Color.Magenta),
-            ) {
-                Text("Intake for: Patient Name")
-            }
-        },
-        actionHandler = { },
-    )
+    ThemePreview {
+        FieldView(
+            scaffoldPadding = PaddingValues(0.dp),
+            form = form,
+            settings = Settings(),
+            field = field,
+            group = null,
+            responses = mutableMapOf(),
+            header = {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .background(Color.Magenta),
+                ) {
+                    Text("Intake for: Patient Name")
+                }
+            },
+            actionHandler = { },
+        )
+    }
 }
 
 private class FieldParameterProvider : PreviewParameterProvider<String> {
