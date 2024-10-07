@@ -5,7 +5,7 @@ data class Settings(
     val is_trial: Boolean,
     val language: String,
     val is_public: Boolean,
-    val capabilities: Capabilities,
+    val capabilities: Capabilities?,
     val progress_bar: String,
     val hide_navigation: Boolean,
     val show_progress_bar: Boolean,
@@ -21,7 +21,7 @@ data class Settings(
     )
 
     data class Capabilities(
-        val e2e_encryption: EndToEndEncryption,
+        val e2e_encryption: EndToEndEncryption?,
     )
 
     data class EndToEndEncryption(
