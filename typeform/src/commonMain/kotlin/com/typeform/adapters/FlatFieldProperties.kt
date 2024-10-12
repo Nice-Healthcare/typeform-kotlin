@@ -15,6 +15,7 @@ import com.typeform.schema.ShortText
 import com.typeform.schema.Statement
 import com.typeform.schema.YesNo
 
+@Deprecated(message = "Use kotlinx-serialization.", replaceWith = ReplaceWith("FieldPropertiesContract"))
 data class FlatFieldProperties(
     val description: String? = null,
     // Datestamp

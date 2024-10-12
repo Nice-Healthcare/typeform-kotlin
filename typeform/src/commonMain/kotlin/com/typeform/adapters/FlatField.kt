@@ -5,6 +5,7 @@ import com.typeform.schema.FieldProperties
 import com.typeform.schema.FieldType
 import com.typeform.schema.Validations
 
+@Deprecated(message = "Use kotlinx-serialization.", replaceWith = ReplaceWith("FieldContract"))
 data class FlatField(
     val id: String,
     val ref: String,

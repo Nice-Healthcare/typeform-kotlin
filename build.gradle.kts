@@ -1,7 +1,7 @@
 plugins {
     //trick: for the same plugin versions in all sub-modules
-    kotlin("multiplatform").version("1.9.10").apply(false)
-    id("com.android.library").version("8.1.2").apply(false)
+    kotlin("multiplatform").version(libs.versions.kotlin).apply(false)
+    alias(libs.plugins.androidLibrary).apply(false)
     id("maven-publish")
 }
 

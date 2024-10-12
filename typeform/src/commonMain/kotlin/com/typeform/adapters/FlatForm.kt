@@ -30,6 +30,7 @@ import com.typeform.schema.Workspace
  * }
  * ```
  */
+@Deprecated(message = "Use kotlinx-serialization.", replaceWith = ReplaceWith("FormContract"))
 data class FlatForm(
     val id: String,
     val type: FormType,

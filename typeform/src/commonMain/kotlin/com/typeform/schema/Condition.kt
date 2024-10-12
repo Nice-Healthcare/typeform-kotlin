@@ -1,7 +1,10 @@
 package com.typeform.schema
 
 import com.typeform.models.Responses
+import com.typeform.serializers.ConditionSerializer
+import kotlinx.serialization.Serializable
 
+@Serializable(with = ConditionSerializer::class)
 data class Condition(
     val op: Op = Op.EQUAL,
     val parameters: Parameters = Parameters.Conditions(emptyList()),
@@ -10,11 +13,11 @@ data class Condition(
     }
 
     sealed class Parameters {
-        companion object {
-        }
-
         data class Vars(val vars: List<Var>) : Parameters()
         data class Conditions(val conditions: List<Condition>) : Parameters()
+
+        companion object {
+        }
     }
 
     fun satisfiedGiven(responses: Responses): Boolean {

@@ -5,6 +5,7 @@ import com.typeform.schema.Op
 import com.typeform.schema.Var
 import com.typeform.schema.VarType
 
+@Deprecated(message = "Use kotlinx-serialization.", replaceWith = ReplaceWith("ConditionContract"))
 data class FlatCondition(
     val op: Op? = null,
     val vars: List<FlatCondition>? = null,

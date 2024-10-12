@@ -1,7 +1,10 @@
 package com.typeform.schema
 
 import com.typeform.models.Position
+import com.typeform.serializers.FieldSerializer
+import kotlinx.serialization.Serializable
 
+@Serializable(with = FieldSerializer::class)
 data class Field(
     val id: String,
     val ref: String,

@@ -4,6 +4,7 @@ import com.typeform.schema.Action
 import com.typeform.schema.Logic
 import com.typeform.schema.LogicType
 
+@Deprecated(message = "Use kotlinx-serialization.", replaceWith = ReplaceWith("LogicContract"))
 data class FlatLogic(
     val ref: String,
     val type: LogicType,

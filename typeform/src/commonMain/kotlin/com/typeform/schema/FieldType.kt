@@ -1,5 +1,9 @@
 package com.typeform.schema
 
+import com.typeform.serializers.FieldTypeSerializer
+import kotlinx.serialization.Serializable
+
+@Serializable(with = FieldTypeSerializer::class)
 enum class FieldType(val rawValue: String) {
     DATE("date"),
     DROPDOWN("dropdown"),
@@ -15,6 +19,6 @@ enum class FieldType(val rawValue: String) {
     ;
 
     companion object {
-        fun fromRawValue(rawValue: String) = FieldType.values().associateBy(FieldType::rawValue)[rawValue] ?: STATEMENT
+        fun fromRawValue(rawValue: String) = FieldType.entries.firstOrNull { it.rawValue == rawValue } ?: STATEMENT
     }
 }

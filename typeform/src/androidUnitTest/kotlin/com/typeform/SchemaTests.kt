@@ -1,8 +1,5 @@
 package com.typeform
 
-import com.typeform.adapters.FlatForm
-import com.typeform.adapters.make
-import com.typeform.schema.Form
 import com.typeform.schema.WelcomeScreen
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -10,17 +7,6 @@ import kotlin.test.assertTrue
 import kotlin.test.fail
 
 class SchemaTests : TypeformTestCase() {
-
-    @Test
-    fun testFormDecoding() {
-        val flatFormAdapter = moshi.adapter(FlatForm::class.java)
-        val flatForm = assertUnwrap(flatFormAdapter.fromJson(json))
-
-        assertEquals(Form.make(flatForm), form)
-
-        assertEquals(152, form.logic.count())
-        assertEquals(56, form.fields.count())
-    }
 
     @Test
     fun testFirstScreen() {

@@ -4,7 +4,10 @@ import com.typeform.models.Position
 import com.typeform.models.Responses
 import com.typeform.models.TypeformException
 import com.typeform.models.responseRequiredFor
+import com.typeform.serializers.FormSerializer
+import kotlinx.serialization.Serializable
 
+@Serializable(with = FormSerializer::class)
 data class Form(
     val id: String,
     val type: FormType,
