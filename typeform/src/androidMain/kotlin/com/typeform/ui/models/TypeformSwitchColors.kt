@@ -13,13 +13,19 @@ data class TypeformSwitchColors(
     val checkedTrackColor: Color = Color.Gray,
 ) : SwitchColors {
     @Composable
-    override fun thumbColor(enabled: Boolean, checked: Boolean): State<Color> {
+    override fun thumbColor(
+        enabled: Boolean,
+        checked: Boolean,
+    ): State<Color> {
         val color = if (checked) checkedThumbColor else uncheckedThumbColor
         return rememberUpdatedState(color)
     }
 
     @Composable
-    override fun trackColor(enabled: Boolean, checked: Boolean): State<Color> {
+    override fun trackColor(
+        enabled: Boolean,
+        checked: Boolean,
+    ): State<Color> {
         val color = if (checked) checkedTrackColor else uncheckedTrackColor
         return rememberUpdatedState(color)
     }

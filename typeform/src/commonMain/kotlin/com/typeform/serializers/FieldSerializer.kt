@@ -14,7 +14,10 @@ object FieldSerializer : KSerializer<Field> {
     override val descriptor: SerialDescriptor
         get() = serializer.descriptor
 
-    override fun serialize(encoder: Encoder, value: Field) {
+    override fun serialize(
+        encoder: Encoder,
+        value: Field,
+    ) {
         serializer.serialize(encoder, FieldContract(value))
     }
 

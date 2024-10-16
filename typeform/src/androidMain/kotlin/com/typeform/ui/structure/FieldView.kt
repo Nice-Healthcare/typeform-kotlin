@@ -69,7 +69,7 @@ internal fun FieldView(
             ResponseState(
                 field = field,
                 responses = responses,
-            )
+            ),
         )
     }
     var next: Position? by remember { mutableStateOf(null) }

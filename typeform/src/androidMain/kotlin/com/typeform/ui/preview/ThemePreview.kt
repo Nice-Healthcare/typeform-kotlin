@@ -57,6 +57,6 @@ fun ThemePreview(
                 fontSize = 12.sp,
             ),
         ),
-        content = content
+        content = content,
     )
 }

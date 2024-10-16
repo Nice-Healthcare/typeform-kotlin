@@ -8,12 +8,12 @@ import kotlinx.serialization.Serializable
 data class LogicContract(
     val ref: String,
     val type: LogicType,
-    val actions: List<ActionContract>
+    val actions: List<ActionContract>,
 ) {
-    constructor(logic: Logic): this(
+    constructor(logic: Logic) : this(
         ref = logic.ref,
         type = logic.type,
-        actions = logic.actions.map { ActionContract(it) }
+        actions = logic.actions.map { ActionContract(it) },
     )
 
     fun toLogic(): Logic {

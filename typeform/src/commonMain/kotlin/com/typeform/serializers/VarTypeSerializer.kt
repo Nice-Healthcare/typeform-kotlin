@@ -12,7 +12,10 @@ object VarTypeSerializer : KSerializer<VarType> {
     override val descriptor: SerialDescriptor
         get() = PrimitiveSerialDescriptor("VarType", PrimitiveKind.STRING)
 
-    override fun serialize(encoder: Encoder, value: VarType) {
+    override fun serialize(
+        encoder: Encoder,
+        value: VarType,
+    ) {
         encoder.encodeString(value.rawValue)
     }
 

@@ -24,9 +24,10 @@ class HealthHistoryFormTests : TypeformTestCase() {
             Pair("health-history-form-completed", ResponseValue.BooleanValue(false)),
             Pair("patient-age", ResponseValue.IntValue(17)),
             Pair(
-                "sex-assigned-at-birth", ResponseValue.ChoiceValue(
-                    Choice(id = "gYxjsy4loTDH", ref = "sex-assigned-at-birth-answer-male", label = "Male")
-                )
+                "sex-assigned-at-birth",
+                ResponseValue.ChoiceValue(
+                    Choice(id = "gYxjsy4loTDH", ref = "sex-assigned-at-birth-answer-male", label = "Male"),
+                ),
             ),
             Pair("medications-usage", ResponseValue.BooleanValue(false)),
             Pair("medication-allergies", ResponseValue.BooleanValue(false)),

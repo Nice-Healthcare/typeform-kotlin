@@ -65,7 +65,7 @@ fun FormView(
         try {
             form.firstPosition(
                 skipWelcomeScreen = settings.presentation.skipWelcomeScreen,
-                responses = responses
+                responses = responses,
             )
         } catch (_: Exception) {
             null
@@ -180,7 +180,7 @@ fun FormView(
                     RejectedView(
                         scaffoldPadding = scaffoldPadding,
                         settings = settings,
-                        responses = responses
+                        responses = responses,
                     ) { rejection ->
                         conclusion(rejection)
                     }

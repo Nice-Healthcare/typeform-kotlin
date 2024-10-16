@@ -31,17 +31,28 @@ data class TypeformTextFieldColors(
     }
 
     @Composable
-    override fun indicatorColor(enabled: Boolean, isError: Boolean, interactionSource: InteractionSource): State<Color> {
+    override fun indicatorColor(
+        enabled: Boolean,
+        isError: Boolean,
+        interactionSource: InteractionSource,
+    ): State<Color> {
         return rememberUpdatedState(indicatorColor)
     }
 
     @Composable
-    override fun labelColor(enabled: Boolean, error: Boolean, interactionSource: InteractionSource): State<Color> {
+    override fun labelColor(
+        enabled: Boolean,
+        error: Boolean,
+        interactionSource: InteractionSource,
+    ): State<Color> {
         return rememberUpdatedState(labelColor)
     }
 
     @Composable
-    override fun leadingIconColor(enabled: Boolean, isError: Boolean): State<Color> {
+    override fun leadingIconColor(
+        enabled: Boolean,
+        isError: Boolean,
+    ): State<Color> {
         return rememberUpdatedState(leadingIconColor)
     }
 
@@ -56,7 +67,10 @@ data class TypeformTextFieldColors(
     }
 
     @Composable
-    override fun trailingIconColor(enabled: Boolean, isError: Boolean): State<Color> {
+    override fun trailingIconColor(
+        enabled: Boolean,
+        isError: Boolean,
+    ): State<Color> {
         return rememberUpdatedState(trailingIconColor)
     }
 }

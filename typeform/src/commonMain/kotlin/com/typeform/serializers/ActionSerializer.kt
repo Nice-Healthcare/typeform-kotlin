@@ -14,7 +14,10 @@ object ActionSerializer : KSerializer<Action> {
     override val descriptor: SerialDescriptor
         get() = serializer.descriptor
 
-    override fun serialize(encoder: Encoder, value: Action) {
+    override fun serialize(
+        encoder: Encoder,
+        value: Action,
+    ) {
         serializer.serialize(encoder, ActionContract(value))
     }
 

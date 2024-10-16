@@ -138,7 +138,7 @@ internal fun RatingView(
 private fun RatingViewPreview() {
     ThemePreview {
         Column(
-            verticalArrangement = Arrangement.spacedBy(20.dp)
+            verticalArrangement = Arrangement.spacedBy(20.dp),
         ) {
             RatingView(
                 settings = Settings(),

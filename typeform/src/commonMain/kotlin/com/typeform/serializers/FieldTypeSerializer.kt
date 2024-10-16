@@ -12,7 +12,10 @@ object FieldTypeSerializer : KSerializer<FieldType> {
     override val descriptor: SerialDescriptor
         get() = PrimitiveSerialDescriptor("FieldType", PrimitiveKind.STRING)
 
-    override fun serialize(encoder: Encoder, value: FieldType) {
+    override fun serialize(
+        encoder: Encoder,
+        value: FieldType,
+    ) {
         encoder.encodeString(value.rawValue)
     }
 

@@ -91,7 +91,7 @@ private fun LongTextViewPreview() {
     LongTextView(
         settings = Settings(),
         properties = LongText(
-            description = null
+            description = null,
         ),
         responseState = ResponseState(),
         validations = null,

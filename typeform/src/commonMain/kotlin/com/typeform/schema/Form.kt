@@ -151,7 +151,10 @@ data class Form(
      * @throws [TypeformException]
      */
     @Throws(TypeformException::class)
-    fun firstPosition(skipWelcomeScreen: Boolean, responses: Responses): Position {
+    fun firstPosition(
+        skipWelcomeScreen: Boolean,
+        responses: Responses,
+    ): Position {
         if (!skipWelcomeScreen) {
             firstScreen?.let { screen ->
                 return Position.ScreenPosition(screen)
@@ -173,7 +176,7 @@ data class Form(
 
         return nextPosition(
             from = Position.FieldPosition(field, null),
-            responses = responses
+            responses = responses,
         )
     }
 
@@ -186,7 +189,10 @@ data class Form(
      * @throws [TypeformException]
      */
     @Throws(TypeformException::class)
-    fun nextPosition(from: Position, responses: Responses): Position {
+    fun nextPosition(
+        from: Position,
+        responses: Responses,
+    ): Position {
         when (from) {
             is Position.ScreenPosition -> {
                 when (from.screen) {
@@ -239,7 +245,11 @@ data class Form(
 }
 
 @Throws(TypeformException::class)
-private fun Form.nextPositionFrom(field: Field, group: Group?, responses: Responses): Position {
+private fun Form.nextPositionFrom(
+    field: Field,
+    group: Group?,
+    responses: Responses,
+): Position {
     val currentPosition = Position.FieldPosition(field, group)
 
     // Is a response required of the current position?
@@ -330,7 +340,6 @@ private fun Form.nextPositionFrom(field: Field, group: Group?, responses: Respon
             else -> {
             }
         }
-
     }
 
     throw TypeformException.NextPosition(currentPosition)

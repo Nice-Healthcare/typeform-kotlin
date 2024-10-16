@@ -12,7 +12,10 @@ object ActionDetailsToTypeSerializer : KSerializer<ActionDetails.ToType> {
     override val descriptor: SerialDescriptor
         get() = PrimitiveSerialDescriptor("ActionDetails.ToType", PrimitiveKind.STRING)
 
-    override fun serialize(encoder: Encoder, value: ActionDetails.ToType) {
+    override fun serialize(
+        encoder: Encoder,
+        value: ActionDetails.ToType,
+    ) {
         encoder.encodeString(value.rawValue)
     }
 

@@ -12,12 +12,17 @@ data class Var(
     @Serializable(with = VarValueSerializer::class)
     sealed class Value {
         data class Bool(val value: Boolean) : Value()
+
         data class Integer(val value: Int) : Value()
+
         data class RefOrString(val value: String) : Value()
     }
 }
 
-fun List<Var>.matchGiven(responses: Responses, op: Op): Boolean? {
+fun List<Var>.matchGiven(
+    responses: Responses,
+    op: Op,
+): Boolean? {
     if (isEmpty()) {
         return true
     }
@@ -94,7 +99,10 @@ fun List<Var>.matchGiven(responses: Responses, op: Op): Boolean? {
     }
 }
 
-fun List<Var>.compactMatchGiven(responses: Responses, op: Op): List<Boolean> {
+fun List<Var>.compactMatchGiven(
+    responses: Responses,
+    op: Op,
+): List<Boolean> {
     val match = matchGiven(responses, op) ?: return emptyList()
     return listOf(match)
 }

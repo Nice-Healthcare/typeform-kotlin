@@ -5,10 +5,15 @@ import java.util.Date
 
 sealed class ResponseValue {
     data class BooleanValue(val value: Boolean) : ResponseValue()
+
     data class ChoiceValue(val value: Choice) : ResponseValue()
+
     data class ChoicesValue(val value: List<Choice>) : ResponseValue()
+
     data class DateValue(val value: Date) : ResponseValue()
+
     data class IntValue(val value: Int) : ResponseValue()
+
     data class StringValue(val value: String) : ResponseValue()
 
     fun asBoolean(): Boolean? {

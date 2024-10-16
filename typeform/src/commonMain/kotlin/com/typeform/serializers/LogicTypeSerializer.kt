@@ -12,7 +12,10 @@ object LogicTypeSerializer : KSerializer<LogicType> {
     override val descriptor: SerialDescriptor
         get() = PrimitiveSerialDescriptor("LogicType", PrimitiveKind.STRING)
 
-    override fun serialize(encoder: Encoder, value: LogicType) {
+    override fun serialize(
+        encoder: Encoder,
+        value: LogicType,
+    ) {
         encoder.encodeString(value.rawValue)
     }
 

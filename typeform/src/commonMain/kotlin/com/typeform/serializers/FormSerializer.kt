@@ -14,7 +14,10 @@ object FormSerializer : KSerializer<Form> {
     override val descriptor: SerialDescriptor
         get() = serializer.descriptor
 
-    override fun serialize(encoder: Encoder, value: Form) {
+    override fun serialize(
+        encoder: Encoder,
+        value: Form,
+    ) {
         serializer.serialize(encoder, FormContract(value))
     }
 

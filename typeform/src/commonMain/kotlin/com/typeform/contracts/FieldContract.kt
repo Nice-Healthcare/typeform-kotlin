@@ -14,7 +14,7 @@ data class FieldContract(
     val properties: FieldPropertiesContract,
     val validations: Validations?,
 ) {
-    constructor(field: Field): this(
+    constructor(field: Field) : this(
         id = field.id,
         ref = field.ref,
         type = field.type,

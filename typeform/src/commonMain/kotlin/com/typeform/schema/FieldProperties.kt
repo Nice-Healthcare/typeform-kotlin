@@ -2,15 +2,25 @@ package com.typeform.schema
 
 sealed class FieldProperties {
     data class DateStampProperties(val properties: DateStamp) : FieldProperties()
+
     data class DropdownProperties(val properties: Dropdown) : FieldProperties()
+
     data class GroupProperties(val properties: Group) : FieldProperties()
+
     data class LongTextProperties(val properties: LongText) : FieldProperties()
+
     data class MultipleChoiceProperties(val properties: MultipleChoice) : FieldProperties()
+
     data class NumberProperties(val properties: Number) : FieldProperties()
+
     data class OpinionScaleProperties(val properties: OpinionScale) : FieldProperties()
+
     data class RatingProperties(val properties: Rating) : FieldProperties()
+
     data class ShortTextProperties(val properties: ShortText) : FieldProperties()
+
     data class StatementProperties(val properties: Statement) : FieldProperties()
+
     data class YesNoProperties(val properties: YesNo) : FieldProperties()
 
     companion object {
@@ -138,7 +148,7 @@ sealed class FieldProperties {
     }
 
     val description: String?
-        get() = when(this) {
+        get() = when (this) {
             is DateStampProperties -> {
                 this.properties.description
             }
@@ -166,7 +176,7 @@ sealed class FieldProperties {
         }
 
     val separator: String?
-        get() = when(this) {
+        get() = when (this) {
             is DateStampProperties -> {
                 this.properties.separator
             }
@@ -176,7 +186,7 @@ sealed class FieldProperties {
         }
 
     val structure: String?
-        get() = when(this) {
+        get() = when (this) {
             is DateStampProperties -> {
                 this.properties.structure
             }
@@ -186,7 +196,7 @@ sealed class FieldProperties {
         }
 
     val shape: String?
-        get() = when(this) {
+        get() = when (this) {
             is RatingProperties -> {
                 this.properties.shape
             }
@@ -196,7 +206,7 @@ sealed class FieldProperties {
         }
 
     val steps: Int?
-        get() = when(this) {
+        get() = when (this) {
             is RatingProperties -> {
                 this.properties.steps
             }
@@ -209,7 +219,7 @@ sealed class FieldProperties {
         }
 
     val labels: OpinionScale.Labels?
-        get() = when(this) {
+        get() = when (this) {
             is OpinionScaleProperties -> {
                 this.properties.labels
             }
@@ -219,7 +229,7 @@ sealed class FieldProperties {
         }
 
     val startAtOne: Boolean?
-        get() = when(this) {
+        get() = when (this) {
             is OpinionScaleProperties -> {
                 this.properties.start_at_one
             }
@@ -229,7 +239,7 @@ sealed class FieldProperties {
         }
 
     val choices: List<Choice>?
-        get() = when(this) {
+        get() = when (this) {
             is DropdownProperties -> {
                 this.properties.choices
             }
@@ -242,7 +252,7 @@ sealed class FieldProperties {
         }
 
     val randomize: Boolean?
-        get() = when(this) {
+        get() = when (this) {
             is DropdownProperties -> {
                 this.properties.randomize
             }
@@ -255,7 +265,7 @@ sealed class FieldProperties {
         }
 
     val alphabeticalOrder: Boolean?
-        get() = when(this) {
+        get() = when (this) {
             is DropdownProperties -> {
                 this.properties.alphabetical_order
             }
@@ -265,7 +275,7 @@ sealed class FieldProperties {
         }
 
     val allowMultipleSelection: Boolean?
-        get() = when(this) {
+        get() = when (this) {
             is MultipleChoiceProperties -> {
                 this.properties.allow_multiple_selection
             }
@@ -275,7 +285,7 @@ sealed class FieldProperties {
         }
 
     val allowOtherChoice: Boolean?
-        get() = when(this) {
+        get() = when (this) {
             is MultipleChoiceProperties -> {
                 this.properties.allow_other_choice
             }
@@ -285,7 +295,7 @@ sealed class FieldProperties {
         }
 
     val verticalAlignment: Boolean?
-        get() = when(this) {
+        get() = when (this) {
             is MultipleChoiceProperties -> {
                 this.properties.vertical_alignment
             }
@@ -295,7 +305,7 @@ sealed class FieldProperties {
         }
 
     val buttonText: String?
-        get() = when(this) {
+        get() = when (this) {
             is StatementProperties -> {
                 this.properties.button_text
             }
@@ -305,7 +315,7 @@ sealed class FieldProperties {
         }
 
     val fields: List<Field>?
-        get() = when(this) {
+        get() = when (this) {
             is GroupProperties -> {
                 this.properties.fields
             }
@@ -315,7 +325,7 @@ sealed class FieldProperties {
         }
 
     val showButton: Boolean?
-        get() = when(this) {
+        get() = when (this) {
             is GroupProperties -> {
                 this.properties.show_button
             }
@@ -325,7 +335,7 @@ sealed class FieldProperties {
         }
 
     val hideMarks: Boolean?
-        get() = when(this) {
+        get() = when (this) {
             is StatementProperties -> {
                 this.properties.hide_marks
             }
