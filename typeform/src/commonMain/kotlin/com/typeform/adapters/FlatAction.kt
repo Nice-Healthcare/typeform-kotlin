@@ -5,6 +5,7 @@ import com.typeform.schema.ActionDetails
 import com.typeform.schema.ActionType
 import com.typeform.schema.Condition
 
+@Deprecated(message = "Use kotlinx-serialization.", replaceWith = ReplaceWith("ActionContract"))
 data class FlatAction(
     val action: ActionType,
     val details: ActionDetails,

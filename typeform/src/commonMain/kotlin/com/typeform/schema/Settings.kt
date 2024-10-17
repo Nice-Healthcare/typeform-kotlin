@@ -1,5 +1,8 @@
 package com.typeform.schema
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class Settings(
     val meta: Meta,
     val is_trial: Boolean,
@@ -16,14 +19,17 @@ data class Settings(
     val show_typeform_branding: Boolean,
     val show_number_of_submissions: Boolean,
 ) {
+    @Serializable
     data class Meta(
         val allow_indexing: Boolean,
     )
 
+    @Serializable
     data class Capabilities(
         val e2e_encryption: EndToEndEncryption?,
     )
 
+    @Serializable
     data class EndToEndEncryption(
         val enabled: Boolean,
         val modifiable: Boolean,

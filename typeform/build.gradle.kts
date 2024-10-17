@@ -1,23 +1,23 @@
 plugins {
     kotlin("multiplatform")
-    id("com.android.library")
-    id("org.jetbrains.compose") version "1.6.1"
-    id("com.adarshr.test-logger") version "3.2.0"
+    alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.kotlinSerialization)
+    alias(libs.plugins.compose)
+    alias(libs.plugins.composeCompiler)
+    alias(libs.plugins.testLogger)
 }
 
 kotlin {
     androidTarget {
-        compilations.all {
-            kotlinOptions {
-                jvmTarget = "17"
-            }
-
-            publishLibraryVariants("release")
-        }
     }
+
+    jvmToolchain(17)
 
     sourceSets {
         val commonMain by getting {
+            dependencies {
+                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
+            }
         }
 
         val commonTest by getting {
@@ -45,8 +45,6 @@ kotlin {
         val androidUnitTest by getting {
             dependencies {
                 implementation(kotlin("test"))
-                implementation("com.squareup.moshi:moshi-kotlin-codegen:1.15.0")
-                implementation("com.squareup.moshi:moshi-kotlin:1.15.0")
             }
         }
     }

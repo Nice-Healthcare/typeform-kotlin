@@ -2,15 +2,15 @@ package com.typeform.schema
 
 import com.typeform.models.ResponseValue
 import com.typeform.models.Responses
+import com.typeform.serializers.VarValueSerializer
+import kotlinx.serialization.Serializable
 
 data class Var(
     val type: VarType,
     val value: Value,
 ) {
+    @Serializable(with = VarValueSerializer::class)
     sealed class Value {
-        companion object {
-        }
-
         data class Bool(val value: Boolean) : Value()
         data class Integer(val value: Int) : Value()
         data class RefOrString(val value: String) : Value()

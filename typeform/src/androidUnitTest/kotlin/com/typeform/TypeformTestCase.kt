@@ -1,21 +1,7 @@
 package com.typeform
 
-import com.squareup.moshi.FromJson
-import com.squareup.moshi.Moshi
-import com.squareup.moshi.ToJson
-import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
-import com.typeform.adapters.FlatForm
-import com.typeform.adapters.make
-import com.typeform.schema.ActionDetails
-import com.typeform.schema.ActionType
 import com.typeform.schema.Choice
-import com.typeform.schema.FieldType
 import com.typeform.schema.Form
-import com.typeform.schema.FormType
-import com.typeform.schema.LogicType
-import com.typeform.schema.Op
-import com.typeform.schema.VarType
-import java.net.URL
 
 open class TypeformTestCase {
     companion object {
@@ -67,94 +53,7 @@ open class TypeformTestCase {
         )
     }
 
-    class UrlAdapter {
-        @ToJson
-        fun toJson(type: URL): String = type.toString()
-
-        @FromJson
-        fun fromJson(rawValue: String): URL = URL(rawValue)
-    }
-
-    class TypeformFormAdapter {
-        @ToJson
-        fun toJson(type: Form): FlatForm = FlatForm.make(type)
-
-        @FromJson
-        fun fromJson(rawValue: FlatForm): Form = Form.make(rawValue)
-    }
-
-    class TypeformActionTypeAdapter {
-        @ToJson
-        fun toJson(type: ActionType): String = type.rawValue
-
-        @FromJson
-        fun fromJson(rawValue: String): ActionType = ActionType.fromRawValue(rawValue)
-    }
-
-    class TypeformFieldTypeAdapter {
-        @ToJson
-        fun toJson(type: FieldType): String = type.rawValue
-
-        @FromJson
-        fun fromJson(rawValue: String): FieldType = FieldType.fromRawValue(rawValue)
-    }
-
-    class TypeformFormTypeAdapter {
-        @ToJson
-        fun toJson(type: FormType): String = type.rawValue
-
-        @FromJson
-        fun fromJson(rawValue: String): FormType = FormType.fromRawValue(rawValue)
-    }
-
-    class TypeformLogicTypeAdapter {
-        @ToJson
-        fun toJson(type: LogicType): String = type.rawValue
-
-        @FromJson
-        fun fromJson(rawValue: String): LogicType = LogicType.fromRawValue(rawValue)
-    }
-
-    class TypeformOpAdapter {
-        @ToJson
-        fun toJson(type: Op): String = type.rawValue
-
-        @FromJson
-        fun fromJson(rawValue: String): Op = Op.fromRawValue(rawValue)
-    }
-
-    class TypeformVarTypeAdapter {
-        @ToJson
-        fun toJson(type: VarType): String = type.rawValue
-
-        @FromJson
-        fun fromJson(rawValue: String): VarType = VarType.fromRawValue(rawValue)
-    }
-
-    class TypeformActionDetailsToTypeAdapter {
-        @ToJson
-        fun toJson(type: ActionDetails.ToType): String = type.rawValue
-
-        @FromJson
-        fun fromJson(rawValue: String): ActionDetails.ToType = ActionDetails.ToType.fromRawValue(rawValue)
-    }
-
     val resources: Resources = Resources()
-    val moshi: Moshi
-        get() = Moshi.Builder()
-            .add(UrlAdapter())
-            .add(TypeformFormAdapter())
-            .add(TypeformFormTypeAdapter())
-            .add(TypeformFieldTypeAdapter())
-            .add(TypeformLogicTypeAdapter())
-            .add(TypeformOpAdapter())
-            .add(TypeformVarTypeAdapter())
-            .add(TypeformActionTypeAdapter())
-            .add(TypeformActionDetailsToTypeAdapter())
-            .add(KotlinJsonAdapterFactory())
-            .build()
-
-    val json: String
     val form: Form
 
     open val jsonResource: String
@@ -162,8 +61,7 @@ open class TypeformTestCase {
 
     init {
         val formBytes = resources.contentOfResource(jsonResource)
-        json = String(formBytes)
-        val formAdapter = moshi.adapter(Form::class.java)
-        form = assertUnwrap(formAdapter.fromJson(json))
+        val json = String(formBytes)
+        form = Typeform.json.decodeFromString(json)
     }
 }

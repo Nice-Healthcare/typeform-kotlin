@@ -1,5 +1,8 @@
 package com.typeform.schema
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class MultipleChoice(
     val choices: List<Choice>,
     val randomize: Boolean,

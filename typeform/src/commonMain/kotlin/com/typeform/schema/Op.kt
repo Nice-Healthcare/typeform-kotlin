@@ -1,5 +1,10 @@
 package com.typeform.schema
 
+import android.R.attr.entries
+import com.typeform.serializers.OpSerializer
+import kotlinx.serialization.Serializable
+
+@Serializable(with = OpSerializer::class)
 enum class Op(val rawValue: String) {
     ALWAYS("always"),
     AND("and"),
@@ -14,6 +19,6 @@ enum class Op(val rawValue: String) {
     ;
 
     companion object {
-        fun fromRawValue(rawValue: String) = entries.associateBy(Op::rawValue)[rawValue] ?: ALWAYS
+        fun fromRawValue(rawValue: String) = Op.entries.firstOrNull { it.rawValue == rawValue } ?: ALWAYS
     }
 }
