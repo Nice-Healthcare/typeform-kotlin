@@ -17,11 +17,11 @@ val Form.Companion.preview: Form
         type = FormType.QUIZ,
         logic = emptyList(),
         theme = Theme(
-            href = URL("https://www.typeform.com")
+            href = URL("https://www.typeform.com"),
         ),
         title = "",
         _links = Links(
-            display = URL("https://www.typeform.com")
+            display = URL("https://www.typeform.com"),
         ),
         fields = listOf(
             Field.previewDate,
@@ -52,7 +52,7 @@ val Form.Companion.preview: Form
             show_number_of_submissions = false,
         ),
         workspace = Workspace(
-            href = URL("https://www.typeform.com")
+            href = URL("https://www.typeform.com"),
         ),
         welcome_screens = listOf(
             WelcomeScreen(
@@ -65,9 +65,8 @@ val Form.Companion.preview: Form
                     button_text = "Continue",
                     share_icons = null,
                     show_button = true,
-                )
-            )
+                ),
+            ),
         ),
         thankyou_screens = emptyList(),
     )
-

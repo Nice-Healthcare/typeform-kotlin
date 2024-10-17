@@ -113,9 +113,7 @@ internal fun ScrollingContentView(
 
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
-private fun ScrollingContentViewPreview(
-    settings: Settings = Settings(),
-) {
+private fun ScrollingContentViewPreview(settings: Settings = Settings()) {
     ThemePreview {
         ScrollingContentView(
             scaffoldPadding = PaddingValues(0.dp),

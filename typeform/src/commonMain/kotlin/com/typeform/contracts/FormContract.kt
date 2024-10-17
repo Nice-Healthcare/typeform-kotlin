@@ -33,7 +33,7 @@ data class FormContract(
     @SerialName("thankyou_screens")
     val thankYouScreens: List<ThankYouScreen>,
 ) {
-    constructor(form: Form): this(
+    constructor(form: Form) : this(
         id = form.id,
         type = form.type,
         logic = form.logic.map { LogicContract(it) },

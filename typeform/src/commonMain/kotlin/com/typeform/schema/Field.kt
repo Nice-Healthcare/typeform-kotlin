@@ -78,7 +78,10 @@ fun List<Field>.fieldWithRef(ref: String): Field? {
  * @param group The optional [Group] of which the field provided belongs.
  * @return The [Position] associated to the parent if located.
  */
-internal fun List<Field>.parentForFieldWithId(id: String, group: Group? = null): Position? {
+internal fun List<Field>.parentForFieldWithId(
+    id: String,
+    group: Group? = null,
+): Position? {
     for (field in this) {
         if (field.id == id) {
             return Position.FieldPosition(field, group)
@@ -105,7 +108,10 @@ internal fun List<Field>.parentForFieldWithId(id: String, group: Group? = null):
  * @param group The optional [Group] of which the field provided belongs.
  * @return The [Position] associated to the parent if located.
  */
-internal fun List<Field>.parentForFieldWithRef(ref: String, group: Group? = null): Position? {
+internal fun List<Field>.parentForFieldWithRef(
+    ref: String,
+    group: Group? = null,
+): Position? {
     for (field in this) {
         if (field.ref == ref) {
             return Position.FieldPosition(field, group)

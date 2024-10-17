@@ -15,13 +15,19 @@ data class TypeformCheckboxColors(
     val checkmarkColor: Color = Color.White,
 ) : CheckboxColors {
     @Composable
-    override fun borderColor(enabled: Boolean, state: ToggleableState): State<Color> {
+    override fun borderColor(
+        enabled: Boolean,
+        state: ToggleableState,
+    ): State<Color> {
         val color = if (state == ToggleableState.On) checkedBorderColor else uncheckedBorderColor
         return rememberUpdatedState(color)
     }
 
     @Composable
-    override fun boxColor(enabled: Boolean, state: ToggleableState): State<Color> {
+    override fun boxColor(
+        enabled: Boolean,
+        state: ToggleableState,
+    ): State<Color> {
         val color = if (state == ToggleableState.On) checkedBoxColor else uncheckedBoxColor
         return rememberUpdatedState(color)
     }

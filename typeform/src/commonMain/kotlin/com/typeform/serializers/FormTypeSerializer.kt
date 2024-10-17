@@ -12,7 +12,10 @@ object FormTypeSerializer : KSerializer<FormType> {
     override val descriptor: SerialDescriptor
         get() = PrimitiveSerialDescriptor("FormType", PrimitiveKind.STRING)
 
-    override fun serialize(encoder: Encoder, value: FormType) {
+    override fun serialize(
+        encoder: Encoder,
+        value: FormType,
+    ) {
         encoder.encodeString(value.rawValue)
     }
 

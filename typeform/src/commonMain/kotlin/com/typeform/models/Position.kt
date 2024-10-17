@@ -6,10 +6,11 @@ import com.typeform.schema.Screen
 
 sealed class Position {
     data class ScreenPosition(val screen: Screen) : Position()
+
     data class FieldPosition(val field: Field, val group: Group?) : Position()
 
     fun associatedScreen(): Screen? {
-        return when(this) {
+        return when (this) {
             is ScreenPosition -> {
                 this.screen
             }
@@ -20,7 +21,7 @@ sealed class Position {
     }
 
     fun associatedField(): Field? {
-        return when(this) {
+        return when (this) {
             is FieldPosition -> {
                 this.field
             }

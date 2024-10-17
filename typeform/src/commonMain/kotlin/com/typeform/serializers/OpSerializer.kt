@@ -12,7 +12,10 @@ object OpSerializer : KSerializer<Op> {
     override val descriptor: SerialDescriptor
         get() = PrimitiveSerialDescriptor("Op", PrimitiveKind.STRING)
 
-    override fun serialize(encoder: Encoder, value: Op) {
+    override fun serialize(
+        encoder: Encoder,
+        value: Op,
+    ) {
         encoder.encodeString(value.rawValue)
     }
 

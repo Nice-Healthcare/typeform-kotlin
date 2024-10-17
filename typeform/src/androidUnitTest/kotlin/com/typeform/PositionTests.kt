@@ -116,9 +116,9 @@ class PositionTests : TypeformTestCase() {
     @Test
     fun testBeginGroup() {
         responses = mutableMapOf(
-            Pair(visitState, ResponseValue.ChoiceValue(minnesota)),
-            Pair(patientAge, ResponseValue.ChoiceValue(adult)),
-            Pair(patientBiologicalSex, ResponseValue.ChoiceValue(male)),
+            Pair(VISIT_STATE, ResponseValue.ChoiceValue(minnesota)),
+            Pair(PATIENT_AGE, ResponseValue.ChoiceValue(adult)),
+            Pair(PATIENT_BIOLOGICAL_SEX, ResponseValue.ChoiceValue(male)),
         )
 
         val genderField = assertUnwrap(form.fieldWithId("gFDX3w26M8yg"))
@@ -167,13 +167,13 @@ class PositionTests : TypeformTestCase() {
     @Test
     fun testEndGroup() {
         responses = mutableMapOf(
-            Pair(visitState, ResponseValue.ChoiceValue(minnesota)),
-            Pair(patientAge, ResponseValue.ChoiceValue(adult)),
-            Pair(patientBiologicalSex, ResponseValue.ChoiceValue(male)),
+            Pair(VISIT_STATE, ResponseValue.ChoiceValue(minnesota)),
+            Pair(PATIENT_AGE, ResponseValue.ChoiceValue(adult)),
+            Pair(PATIENT_BIOLOGICAL_SEX, ResponseValue.ChoiceValue(male)),
             Pair("7f57a989-19d3-40b8-af66-d022d3ebb73f", ResponseValue.BooleanValue(true)),
             Pair("5d99768b-65af-4f68-9939-87dfbd29f49a", ResponseValue.BooleanValue(false)),
             Pair(
-                visitReason,
+                VISIT_REASON,
                 ResponseValue.ChoiceValue(
                     Choice(
                         id = "BQbGWsw0MzIZ",
@@ -223,13 +223,13 @@ class PositionTests : TypeformTestCase() {
     @Test
     fun testNoLogicNextField() {
         responses = mutableMapOf(
-            Pair(visitState, ResponseValue.ChoiceValue(minnesota)),
-            Pair(patientAge, ResponseValue.ChoiceValue(adult)),
-            Pair(patientBiologicalSex, ResponseValue.ChoiceValue(male)),
+            Pair(VISIT_STATE, ResponseValue.ChoiceValue(minnesota)),
+            Pair(PATIENT_AGE, ResponseValue.ChoiceValue(adult)),
+            Pair(PATIENT_BIOLOGICAL_SEX, ResponseValue.ChoiceValue(male)),
             Pair("7f57a989-19d3-40b8-af66-d022d3ebb73f", ResponseValue.BooleanValue(true)),
             Pair("5d99768b-65af-4f68-9939-87dfbd29f49a", ResponseValue.BooleanValue(false)),
             Pair(
-                visitReason,
+                VISIT_REASON,
                 ResponseValue.ChoiceValue(
                     Choice(
                         id = "BQbGWsw0MzIZ",
@@ -263,10 +263,10 @@ class PositionTests : TypeformTestCase() {
     @Test
     fun testAcuteSymptomsFlow() {
         responses = mutableMapOf(
-            Pair(visitState, ResponseValue.ChoiceValue(minnesota)),
-            Pair(patientAge, ResponseValue.ChoiceValue(adult)),
-            Pair(patientBiologicalSex, ResponseValue.ChoiceValue(male)),
-            Pair(visitReason, ResponseValue.ChoiceValue(acute)),
+            Pair(VISIT_STATE, ResponseValue.ChoiceValue(minnesota)),
+            Pair(PATIENT_AGE, ResponseValue.ChoiceValue(adult)),
+            Pair(PATIENT_BIOLOGICAL_SEX, ResponseValue.ChoiceValue(male)),
+            Pair(VISIT_REASON, ResponseValue.ChoiceValue(acute)),
         )
 
         val acuteSymptoms = assertUnwrap(form.fieldWithId("JuUoSnHTjrsG"))

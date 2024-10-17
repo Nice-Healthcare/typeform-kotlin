@@ -47,7 +47,7 @@ internal fun OpinionScaleView(
                 responseState.response.asInt()!!.toFloat() * step
             } else {
                 0f
-            }
+            },
         )
     }
 
@@ -141,7 +141,7 @@ private fun OpinionScaleViewPreview() {
                     steps = 11,
                     labels = OpinionScale.Labels(
                         left = "no pain",
-                        right = "worst pain imaginable"
+                        right = "worst pain imaginable",
                     ),
                     start_at_one = false,
                 ),
@@ -156,7 +156,7 @@ private fun OpinionScaleViewPreview() {
                     steps = 5,
                     labels = OpinionScale.Labels(
                         left = "Not confident",
-                        right = "Very confident"
+                        right = "Very confident",
                     ),
                     start_at_one = true,
                 ),

@@ -10,9 +10,9 @@ data class ResponseState(
 ) {
     constructor(
         field: Field,
-        responses: Responses
-    ): this(
+        responses: Responses,
+    ) : this(
         response = responses[field.ref],
-        invalid = field.properties.asStatement() == null
+        invalid = field.properties.asStatement() == null,
     )
 }

@@ -13,21 +13,21 @@ data class ConditionContract(
     val type: VarType?,
     val value: Var.Value?,
 ) {
-    constructor(condition: Condition): this(
+    constructor(condition: Condition) : this(
         op = condition.op,
         vars = when (condition.parameters) {
-                is Condition.Parameters.Vars -> {
-                    condition.parameters.vars.map { ConditionContract(it) }
-                }
-                is Condition.Parameters.Conditions -> {
-                    condition.parameters.conditions.map { ConditionContract(it) }
-                }
-            },
+            is Condition.Parameters.Vars -> {
+                condition.parameters.vars.map { ConditionContract(it) }
+            }
+            is Condition.Parameters.Conditions -> {
+                condition.parameters.conditions.map { ConditionContract(it) }
+            }
+        },
         type = null,
-        value = null
+        value = null,
     )
 
-    constructor(`var`: Var): this(
+    constructor(`var`: Var) : this(
         op = null,
         vars = null,
         type = `var`.type,
@@ -47,7 +47,7 @@ data class ConditionContract(
             } else {
                 Condition(
                     op = op,
-                    parameters = Condition.Parameters.Vars(vars)
+                    parameters = Condition.Parameters.Vars(vars),
                 )
             }
         }
@@ -59,7 +59,7 @@ data class ConditionContract(
         if (type != null && value != null) {
             return Var(
                 type = type,
-                value = value
+                value = value,
             )
         }
 

@@ -14,6 +14,7 @@ data class Condition(
 
     sealed class Parameters {
         data class Vars(val vars: List<Var>) : Parameters()
+
         data class Conditions(val conditions: List<Condition>) : Parameters()
 
         companion object {

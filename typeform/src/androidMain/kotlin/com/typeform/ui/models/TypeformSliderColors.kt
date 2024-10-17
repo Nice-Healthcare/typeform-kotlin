@@ -22,12 +22,18 @@ data class TypeformSliderColors(
     }
 
     @Composable
-    override fun tickColor(enabled: Boolean, active: Boolean): State<Color> {
+    override fun tickColor(
+        enabled: Boolean,
+        active: Boolean,
+    ): State<Color> {
         return rememberUpdatedState(tickColor)
     }
 
     @Composable
-    override fun trackColor(enabled: Boolean, active: Boolean): State<Color> {
+    override fun trackColor(
+        enabled: Boolean,
+        active: Boolean,
+    ): State<Color> {
         return rememberUpdatedState(trackColor)
     }
 }

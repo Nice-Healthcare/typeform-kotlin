@@ -14,7 +14,10 @@ object ConditionSerializer : KSerializer<Condition> {
     override val descriptor: SerialDescriptor
         get() = serializer.descriptor
 
-    override fun serialize(encoder: Encoder, value: Condition) {
+    override fun serialize(
+        encoder: Encoder,
+        value: Condition,
+    ) {
         serializer.serialize(encoder, ConditionContract(value))
     }
 

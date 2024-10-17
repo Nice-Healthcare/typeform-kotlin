@@ -121,7 +121,7 @@ data class Settings(
     )
 
     data class Switch(
-        val colors: SwitchColors = TypeformSwitchColors()
+        val colors: SwitchColors = TypeformSwitchColors(),
     )
 
     data class Button(
@@ -133,7 +133,6 @@ data class Settings(
 
     data class Checkbox(
         val colors: CheckboxColors = TypeformCheckboxColors(),
-
         @Deprecated("")
         val unselectedBackgroundColor: Color = Color.White,
         @Deprecated("")
@@ -150,7 +149,6 @@ data class Settings(
 
     data class Radio(
         val colors: RadioButtonColors = TypeformRadioButtonColors(),
-
         @Deprecated("")
         val unselectedBackgroundColor: Color = Color.White,
         @Deprecated("")
@@ -165,7 +163,6 @@ data class Settings(
 
     data class Rating(
         val colors: ButtonColors = TypeformButtonColors.ratingColors,
-
         @Deprecated("")
         val unselectedBackgroundColor: Color = Color.Blue.copy(alpha = 0.3f),
         @Deprecated("")

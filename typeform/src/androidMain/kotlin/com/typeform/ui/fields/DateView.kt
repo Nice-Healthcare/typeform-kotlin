@@ -34,7 +34,7 @@ internal fun DateView(
     properties: DateStamp,
     responseState: ResponseState,
     validations: Validations?,
-    stateHandler: (ResponseState) -> Unit
+    stateHandler: (ResponseState) -> Unit,
 ) {
     val pickerState = rememberDatePickerState((responseState.response?.asDate() ?: Date()).time)
     var milliseconds by remember { mutableStateOf(responseState.response?.asDate()?.time) }

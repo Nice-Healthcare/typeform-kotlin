@@ -49,7 +49,10 @@ data class FlatFieldProperties(
     }
 }
 
-fun FieldProperties.Companion.make(flatFieldProperties: FlatFieldProperties, fieldType: FieldType): FieldProperties {
+fun FieldProperties.Companion.make(
+    flatFieldProperties: FlatFieldProperties,
+    fieldType: FieldType,
+): FieldProperties {
     return when (fieldType) {
         FieldType.DATE -> {
             FieldProperties.DateStampProperties(
@@ -109,8 +112,8 @@ fun FieldProperties.Companion.make(flatFieldProperties: FlatFieldProperties, fie
                 OpinionScale(
                     steps = flatFieldProperties.steps ?: 0,
                     labels = flatFieldProperties.labels ?: OpinionScale.Labels(),
-                    start_at_one = flatFieldProperties.start_at_one ?: false
-                )
+                    start_at_one = flatFieldProperties.start_at_one ?: false,
+                ),
             )
         }
         FieldType.RATING -> {

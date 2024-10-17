@@ -10,9 +10,9 @@ import kotlinx.serialization.Serializable
 data class ActionContract(
     val action: ActionType,
     val details: ActionDetails,
-    val condition: ConditionContract
+    val condition: ConditionContract,
 ) {
-    constructor(action: Action): this(
+    constructor(action: Action) : this(
         action = action.action,
         details = action.details,
         condition = ConditionContract(action.condition),

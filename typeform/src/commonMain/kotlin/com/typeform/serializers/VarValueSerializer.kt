@@ -18,7 +18,10 @@ object VarValueSerializer : KSerializer<Var.Value> {
     override val descriptor: SerialDescriptor
         get() = serializer.descriptor
 
-    override fun serialize(encoder: Encoder, value: Var.Value) {
+    override fun serialize(
+        encoder: Encoder,
+        value: Var.Value,
+    ) {
         when (value) {
             is Var.Value.Bool -> {
                 serializer.serialize(encoder, JsonPrimitive(value.value))

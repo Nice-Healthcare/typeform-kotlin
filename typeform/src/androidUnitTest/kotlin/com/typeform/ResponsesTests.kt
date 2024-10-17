@@ -11,7 +11,7 @@ import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
-class ResponsesTests: TypeformTestCase() {
+class ResponsesTests : TypeformTestCase() {
 
     private var responses: Responses = mutableMapOf()
 
@@ -27,7 +27,7 @@ class ResponsesTests: TypeformTestCase() {
     @Test
     fun testValidVisitReasonResponses() {
         responses = mutableMapOf(
-            Pair(visitReason, ResponseValue.ChoiceValue(visitReasonChoice)),
+            Pair(VISIT_REASON, ResponseValue.ChoiceValue(visitReasonChoice)),
         )
         assertTrue(responses.validResponseValuesGiven(form.fields))
     }
@@ -35,7 +35,7 @@ class ResponsesTests: TypeformTestCase() {
     @Test
     fun testInvalidVisitReasonResponses() {
         responses = mutableMapOf(
-            Pair(visitReason, ResponseValue.ChoicesValue(listOf(visitReasonChoice))),
+            Pair(VISIT_REASON, ResponseValue.ChoicesValue(listOf(visitReasonChoice))),
         )
         assertFalse(responses.validResponseValuesGiven(form.fields))
     }
@@ -43,15 +43,15 @@ class ResponsesTests: TypeformTestCase() {
     @Test
     fun testValidResponseValueTypes() {
         responses = mutableMapOf(
-            Pair(date, ResponseValue.DateValue(Date())),
-            Pair(dropdown, ResponseValue.ChoiceValue(Choice())),
-            Pair(longText, ResponseValue.StringValue("")),
-            Pair(multipleChoice_Many, ResponseValue.ChoicesValue(emptyList())),
-            Pair(multipleChoice_One, ResponseValue.ChoiceValue(Choice())),
-            Pair(number, ResponseValue.IntValue(0)),
-            Pair(rating, ResponseValue.IntValue(0)),
-            Pair(shortText, ResponseValue.StringValue("")),
-            Pair(yesNo, ResponseValue.BooleanValue(false)),
+            Pair(DATE, ResponseValue.DateValue(Date())),
+            Pair(DROPDOWN, ResponseValue.ChoiceValue(Choice())),
+            Pair(LONG_TEXT, ResponseValue.StringValue("")),
+            Pair(MULTIPLE_CHOICE_MANY, ResponseValue.ChoicesValue(emptyList())),
+            Pair(MULTIPLE_CHOICE_ONE, ResponseValue.ChoiceValue(Choice())),
+            Pair(NUMBER, ResponseValue.IntValue(0)),
+            Pair(RATING, ResponseValue.IntValue(0)),
+            Pair(SHORT_TEXT, ResponseValue.StringValue("")),
+            Pair(YES_NO, ResponseValue.BooleanValue(false)),
         )
         assertTrue(responses.validResponseValuesGiven(form.fields))
     }
@@ -59,29 +59,29 @@ class ResponsesTests: TypeformTestCase() {
     @Test
     fun testInvalidResponseValueTypes() {
         responses = mutableMapOf(
-            Pair(date, ResponseValue.ChoiceValue(Choice())),
-            Pair(dropdown, ResponseValue.DateValue(Date())),
-            Pair(longText, ResponseValue.ChoiceValue(Choice())),
-            Pair(multipleChoice_Many, ResponseValue.StringValue("")),
-            Pair(multipleChoice_One, ResponseValue.ChoicesValue(emptyList())),
-            Pair(number, ResponseValue.StringValue("")),
-            Pair(rating, ResponseValue.BooleanValue(false)),
-            Pair(shortText, ResponseValue.IntValue(0)),
-            Pair(yesNo, ResponseValue.IntValue(0)),
+            Pair(DATE, ResponseValue.ChoiceValue(Choice())),
+            Pair(DROPDOWN, ResponseValue.DateValue(Date())),
+            Pair(LONG_TEXT, ResponseValue.ChoiceValue(Choice())),
+            Pair(MULTIPLE_CHOICE_MANY, ResponseValue.StringValue("")),
+            Pair(MULTIPLE_CHOICE_ONE, ResponseValue.ChoicesValue(emptyList())),
+            Pair(NUMBER, ResponseValue.StringValue("")),
+            Pair(RATING, ResponseValue.BooleanValue(false)),
+            Pair(SHORT_TEXT, ResponseValue.IntValue(0)),
+            Pair(YES_NO, ResponseValue.IntValue(0)),
         )
         val invalidKeys = responses.invalidResponseValuesGiven(form.fields)
         assertEquals(9, invalidKeys.count())
         assertEquals(
             listOf(
-                date,
-                dropdown,
-                longText,
-                multipleChoice_Many,
-                multipleChoice_One,
-                number,
-                rating,
-                shortText,
-                yesNo,
+                DATE,
+                DROPDOWN,
+                LONG_TEXT,
+                MULTIPLE_CHOICE_MANY,
+                MULTIPLE_CHOICE_ONE,
+                NUMBER,
+                RATING,
+                SHORT_TEXT,
+                YES_NO,
             ),
             invalidKeys,
         )

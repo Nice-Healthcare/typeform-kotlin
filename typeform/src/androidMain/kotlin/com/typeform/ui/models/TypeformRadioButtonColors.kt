@@ -11,7 +11,10 @@ data class TypeformRadioButtonColors(
     val selectedColor: Color = Color.Blue,
 ) : RadioButtonColors {
     @Composable
-    override fun radioColor(enabled: Boolean, selected: Boolean): State<Color> {
+    override fun radioColor(
+        enabled: Boolean,
+        selected: Boolean,
+    ): State<Color> {
         val color = if (selected) selectedColor else unselectedColor
         return rememberUpdatedState(color)
     }

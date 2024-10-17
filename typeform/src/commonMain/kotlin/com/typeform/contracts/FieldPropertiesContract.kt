@@ -55,7 +55,7 @@ data class FieldPropertiesContract(
     @SerialName("hide_marks")
     val hideMarks: Boolean?,
 ) {
-    constructor(fieldProperties: FieldProperties): this(
+    constructor(fieldProperties: FieldProperties) : this(
         description = fieldProperties.description,
         separator = fieldProperties.separator,
         structure = fieldProperties.structure,
@@ -83,7 +83,7 @@ data class FieldPropertiesContract(
                         separator = separator ?: "",
                         structure = structure ?: "",
                         description = description,
-                    )
+                    ),
                 )
             }
             FieldType.DROPDOWN -> {
@@ -92,7 +92,7 @@ data class FieldPropertiesContract(
                         choices = choices ?: emptyList(),
                         randomize = randomize == true,
                         alphabetical_order = alphabeticalOrder == true,
-                    )
+                    ),
                 )
             }
             FieldType.GROUP -> {
@@ -101,14 +101,14 @@ data class FieldPropertiesContract(
                         button_text = buttonText ?: "",
                         fields = fields?.map { it.toField() } ?: emptyList(),
                         show_button = showButton == true,
-                    )
+                    ),
                 )
             }
             FieldType.LONG_TEXT -> {
                 FieldProperties.LongTextProperties(
                     LongText(
                         description = description,
-                    )
+                    ),
                 )
             }
             FieldType.MULTIPLE_CHOICE -> {
@@ -120,14 +120,14 @@ data class FieldPropertiesContract(
                         allow_other_choice = allowOtherChoice == true,
                         vertical_alignment = verticalAlignment == true,
                         description = description,
-                    )
+                    ),
                 )
             }
             FieldType.NUMBER -> {
                 FieldProperties.NumberProperties(
                     Number(
                         description = description,
-                    )
+                    ),
                 )
             }
             FieldType.OPINION_SCALE -> {
@@ -136,7 +136,7 @@ data class FieldPropertiesContract(
                         steps = steps ?: 0,
                         labels = labels ?: OpinionScale.Labels(),
                         start_at_one = startAtOne == true,
-                    )
+                    ),
                 )
             }
             FieldType.RATING -> {
@@ -145,14 +145,14 @@ data class FieldPropertiesContract(
                         shape = shape ?: "",
                         steps = steps ?: 0,
                         description = description,
-                    )
+                    ),
                 )
             }
             FieldType.SHORT_TEXT -> {
                 FieldProperties.ShortTextProperties(
                     ShortText(
                         description = description,
-                    )
+                    ),
                 )
             }
             FieldType.STATEMENT -> {
@@ -161,14 +161,14 @@ data class FieldPropertiesContract(
                         hide_marks = hideMarks == true,
                         button_text = buttonText ?: "",
                         description = description,
-                    )
+                    ),
                 )
             }
             FieldType.YES_NO -> {
                 FieldProperties.YesNoProperties(
                     YesNo(
                         description = description,
-                    )
+                    ),
                 )
             }
         }

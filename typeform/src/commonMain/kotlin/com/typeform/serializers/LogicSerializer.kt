@@ -14,7 +14,10 @@ object LogicSerializer : KSerializer<Logic> {
     override val descriptor: SerialDescriptor
         get() = serializer.descriptor
 
-    override fun serialize(encoder: Encoder, value: Logic) {
+    override fun serialize(
+        encoder: Encoder,
+        value: Logic,
+    ) {
         serializer.serialize(encoder, LogicContract(value))
     }
 

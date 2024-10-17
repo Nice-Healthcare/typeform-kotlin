@@ -10,7 +10,7 @@ import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 import kotlin.test.fail
 
-class PreloadedResponsesTests: TypeformTestCase() {
+class PreloadedResponsesTests : TypeformTestCase() {
 
     override val jsonResource: String
         get() = "MedicalIntake26.json"
@@ -21,7 +21,7 @@ class PreloadedResponsesTests: TypeformTestCase() {
         val position: Position
         try {
             position = form.firstPosition(skipWelcomeScreen = false, responses = responses)
-        } catch (_ :Exception) {
+        } catch (_: Exception) {
             fail("Unexpected Exception")
         }
 
@@ -45,16 +45,16 @@ class PreloadedResponsesTests: TypeformTestCase() {
                     Choice(
                         id = "eSMBTpzeqJYQ",
                         ref = "65fd22c3-32ec-4c92-b194-5aef3a10fe60",
-                        label = "Alabama"
-                    )
-                )
-            )
+                        label = "Alabama",
+                    ),
+                ),
+            ),
         )
 
         val position: Position
         try {
             position = form.firstPosition(skipWelcomeScreen = false, responses = responses)
-        } catch (_ :Exception) {
+        } catch (_: Exception) {
             fail("Unexpected Exception")
         }
 
@@ -76,7 +76,7 @@ class PreloadedResponsesTests: TypeformTestCase() {
         val position: Position
         try {
             position = form.firstPosition(skipWelcomeScreen = true, responses = responses)
-        } catch (_ :Exception) {
+        } catch (_: Exception) {
             fail("Unexpected Exception")
         }
 
@@ -99,16 +99,16 @@ class PreloadedResponsesTests: TypeformTestCase() {
                     Choice(
                         id = "Rh7fHLNn7tRV",
                         ref = "aa028c7c-ce34-428f-8563-35bce5201dc1",
-                        label = "Minnesota"
-                    )
-                )
-            )
+                        label = "Minnesota",
+                    ),
+                ),
+            ),
         )
 
         val position: Position
         try {
             position = form.firstPosition(skipWelcomeScreen = true, responses = responses)
-        } catch (_ :Exception) {
+        } catch (_: Exception) {
             fail("Unexpected Exception")
         }
 
@@ -132,9 +132,9 @@ class PreloadedResponsesTests: TypeformTestCase() {
                     Choice(
                         id = "Rh7fHLNn7tRV",
                         ref = "aa028c7c-ce34-428f-8563-35bce5201dc1",
-                        label = "Minnesota"
-                    )
-                )
+                        label = "Minnesota",
+                    ),
+                ),
             ),
             Pair(
                 "4915db69-55ca-4a00-b57e-893d7ea3e761",
@@ -142,16 +142,16 @@ class PreloadedResponsesTests: TypeformTestCase() {
                     Choice(
                         id = "QQP6V2LnuOBK",
                         ref = "a66c1065-4e4f-46fc-8a26-794cc46a59f9",
-                        label = "Adult, 18-64 years of age"
-                    )
-                )
-            )
+                        label = "Adult, 18-64 years of age",
+                    ),
+                ),
+            ),
         )
 
         var position: Position
         try {
             position = form.firstPosition(skipWelcomeScreen = true, responses = responses)
-        } catch (_ :Exception) {
+        } catch (_: Exception) {
             fail("Unexpected Exception")
         }
 
@@ -166,7 +166,7 @@ class PreloadedResponsesTests: TypeformTestCase() {
 
         try {
             position = form.nextPosition(from = position, responses = responses)
-        } catch (_ :Exception) {
+        } catch (_: Exception) {
             fail("Unexpected Exception")
         }
 

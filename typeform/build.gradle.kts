@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.compose)
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.testLogger)
+    alias(libs.plugins.ktlint)
 }
 
 kotlin {
@@ -72,4 +73,9 @@ android {
             withJavadocJar()
         }
     }
+}
+
+ktlint {
+    verbose.set(true)
+    outputToConsole.set(true)
 }
