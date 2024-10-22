@@ -24,8 +24,9 @@ val Form.Companion.preview: Form
             display = URL("https://www.typeform.com"),
         ),
         fields = listOf(
-            Field.previewDate,
+            Field.previewStatement,
             Field.previewDropdown,
+            Field.previewDate,
         ),
         hidden = emptyList(),
         settings = Settings(
