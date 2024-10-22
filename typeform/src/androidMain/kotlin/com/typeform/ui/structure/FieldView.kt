@@ -1,6 +1,5 @@
 package com.typeform.ui.structure
 
-import android.content.res.Resources
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -11,6 +10,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -48,6 +48,7 @@ import com.typeform.ui.preview.ThemePreview
 import com.typeform.ui.preview.preview
 import com.typeform.ui.preview.previewDate
 import com.typeform.ui.preview.previewDropdown
+import com.typeform.ui.preview.previewStatement
 
 /**
  * Structure used to display individual [Field] types.
@@ -107,6 +108,10 @@ internal fun FieldView(
 
         collectedResponses = currentResponses
 
+        determineNext()
+    }
+
+    LaunchedEffect(Unit) {
         determineNext()
     }
 
@@ -245,8 +250,6 @@ internal fun FieldView(
             }
         }
     }
-
-    determineNext()
 }
 
 @Preview(showBackground = true, showSystemUi = true)
@@ -255,7 +258,7 @@ private fun FieldViewPreview(
     @PreviewParameter(FieldParameterProvider::class) reference: String,
 ) {
     val form = Form.preview
-    val field = form.fieldWithRef(reference) ?: throw Resources.NotFoundException()
+    val field = form.fieldWithRef(reference) ?: throw Exception("Resource Not Found")
 
     ThemePreview {
         FieldView(
@@ -282,7 +285,8 @@ private fun FieldViewPreview(
 private class FieldParameterProvider : PreviewParameterProvider<String> {
     override val values: Sequence<String>
         get() = sequenceOf(
-            Field.previewDate.ref,
+            Field.previewStatement.ref,
             Field.previewDropdown.ref,
+            Field.previewDate.ref,
         )
 }

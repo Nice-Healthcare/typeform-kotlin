@@ -6,6 +6,7 @@ import com.typeform.schema.Dropdown
 import com.typeform.schema.Field
 import com.typeform.schema.FieldProperties
 import com.typeform.schema.FieldType
+import com.typeform.schema.Statement
 import com.typeform.schema.Validations
 
 val Field.Companion.previewDate: Field
@@ -45,4 +46,20 @@ val Field.Companion.previewDropdown: Field
         validations = Validations(
             required = true,
         ),
+    )
+
+val Field.Companion.previewStatement: Field
+    get() = Field(
+        id = "A37F8750-3E16-4626-A09E-29E51162F625",
+        ref = "5F3AFEF7-55F1-4500-B13A-99606DA24780",
+        type = FieldType.STATEMENT,
+        title = "Please read carefully.",
+        properties = FieldProperties.StatementProperties(
+            properties = Statement(
+                hide_marks = false,
+                button_text = "Agree",
+                description = "You must agree to this statement in order to continue.",
+            ),
+        ),
+        validations = null,
     )
