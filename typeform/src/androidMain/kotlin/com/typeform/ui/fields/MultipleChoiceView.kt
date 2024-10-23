@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -79,6 +80,10 @@ internal fun MultipleChoiceView(
         updateState()
     }
 
+    LaunchedEffect(Unit) {
+        updateState()
+    }
+
     Column(
         verticalArrangement = Arrangement.spacedBy(settings.presentation.descriptionContentVerticalSpacing),
     ) {
@@ -104,8 +109,6 @@ internal fun MultipleChoiceView(
             }
         }
     }
-
-    updateState()
 }
 
 @Preview(showBackground = true)
