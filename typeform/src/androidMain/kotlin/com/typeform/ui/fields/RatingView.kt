@@ -13,6 +13,7 @@ import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.outlined.Cloud
 import androidx.compose.material.icons.outlined.Star
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -82,6 +83,10 @@ internal fun RatingView(
         updateState()
     }
 
+    LaunchedEffect(Unit) {
+        updateState()
+    }
+
     Column(
         verticalArrangement = Arrangement.spacedBy(settings.presentation.descriptionContentVerticalSpacing),
     ) {
@@ -129,8 +134,6 @@ internal fun RatingView(
             }
         }
     }
-
-    updateState()
 }
 
 @Preview(showBackground = true, showSystemUi = true)

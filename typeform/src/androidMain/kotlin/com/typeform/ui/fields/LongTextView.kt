@@ -8,6 +8,7 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -56,6 +57,10 @@ internal fun LongTextView(
         updateState()
     }
 
+    LaunchedEffect(Unit) {
+        updateState()
+    }
+
     Column(
         verticalArrangement = Arrangement.spacedBy(settings.presentation.descriptionContentVerticalSpacing),
     ) {
@@ -81,8 +86,6 @@ internal fun LongTextView(
             ),
         )
     }
-
-    updateState()
 }
 
 @Preview(showBackground = true, showSystemUi = true)

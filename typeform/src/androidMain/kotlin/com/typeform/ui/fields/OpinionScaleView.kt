@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Slider
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -87,6 +88,10 @@ internal fun OpinionScaleView(
         updateState()
     }
 
+    LaunchedEffect(Unit) {
+        updateState()
+    }
+
     Column(
         verticalArrangement = Arrangement.spacedBy(settings.presentation.contentVerticalSpacing),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -126,8 +131,6 @@ internal fun OpinionScaleView(
             )
         }
     }
-
-    updateState()
 }
 
 @Preview(showBackground = true, showSystemUi = true)

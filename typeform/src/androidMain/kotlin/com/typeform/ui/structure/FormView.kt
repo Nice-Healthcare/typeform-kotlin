@@ -20,7 +20,7 @@ import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.material.TextButton
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.ArrowBack
+import androidx.compose.material.icons.automirrored.outlined.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -126,8 +126,8 @@ fun FormView(
                         ) {
                             if (showBackNavigation) {
                                 Icon(
-                                    imageVector = Icons.Outlined.ArrowBack,
-                                    contentDescription = Icons.Outlined.ArrowBack.name,
+                                    imageVector = Icons.AutoMirrored.Outlined.ArrowBack,
+                                    contentDescription = Icons.AutoMirrored.Outlined.ArrowBack.name,
                                     modifier = Modifier.clickable {
                                         navigateUsing(NavigationAction.Back)
                                     },
