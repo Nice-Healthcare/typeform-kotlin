@@ -72,16 +72,17 @@ fun FormView(
         }
     }
 
+    // Pair<TypeformRoute, String(Destination)>
     val startDestination = remember {
         when (startPosition) {
             is Position.ScreenPosition -> {
-                Pair(TypeformRoute.SCREEN, startPosition.screen.id)
+                Pair(TypeformRoute.SCREEN, TypeformRoute.makeScreen(startPosition.screen.id))
             }
             is Position.FieldPosition -> {
-                Pair(TypeformRoute.FIELD, startPosition.field.id)
+                Pair(TypeformRoute.FIELD, TypeformRoute.makeField(startPosition.field.id))
             }
             else -> {
-                Pair(TypeformRoute.REJECTED, "")
+                Pair(TypeformRoute.REJECTED, TypeformRoute.REJECTED)
             }
         }
     }
@@ -163,7 +164,7 @@ fun FormView(
     ) { scaffoldPadding ->
         NavHost(
             navController = navController,
-            startDestination = startDestination.first,
+            startDestination = startDestination.second,
         ) {
             composable(
                 route = TypeformRoute.SCREEN,
@@ -233,7 +234,7 @@ fun FormView(
                     return@composable
                 }
 
-                showBackNavigation = (startDestination.first != TypeformRoute.FIELD || startDestination.second != fieldId)
+                showBackNavigation = (startDestination.first != TypeformRoute.FIELD || !startDestination.second.contains(fieldId))
 
                 val field = form.fieldWithId(fieldId)
                 if (field == null) {
