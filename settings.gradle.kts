@@ -14,9 +14,8 @@ dependencyResolutionManagement {
     versionCatalogs {
         create("libs") {
             version("android.plugin", "8.7.0")
-            version("compose", "1.6.11")
-            version("gradle.wrapper", "8.9")
-            version("kotlin", "2.0.21")
+            version("compose", "1.7.1")
+            version("kotlin", "2.1.0")
 
             plugin("androidLibrary", "com.android.library").versionRef("android.plugin")
             plugin("compose", "org.jetbrains.compose").versionRef("compose")
@@ -25,6 +24,10 @@ dependencyResolutionManagement {
             plugin("kotlinSerialization", "org.jetbrains.kotlin.plugin.serialization").versionRef("kotlin")
             plugin("testLogger", "com.adarshr.test-logger").version("3.2.0")
             plugin("ktlint", "org.jlleitschuh.gradle.ktlint").version("12.1.1")
+        }
+
+        create("tools") {
+            version("gradle", "8.9")
         }
     }
 }

@@ -37,9 +37,9 @@ kotlin {
                 api(compose.ui)
                 api(compose.uiTooling)
                 api(compose.preview)
-                implementation("androidx.compose.material3:material3:1.2.0")
-                implementation("androidx.navigation:navigation-compose:2.7.7")
-                implementation("io.coil-kt:coil-compose:2.4.0")
+                implementation("androidx.compose.material3:material3:1.3.1")
+                implementation("androidx.navigation:navigation-compose:2.8.5")
+                implementation("io.coil-kt.coil3:coil-compose:3.0.4")
             }
         }
 
@@ -53,7 +53,7 @@ kotlin {
 
 android {
     namespace = "com.typeform"
-    compileSdk = 34
+    compileSdk = 35
     defaultConfig {
         minSdk = 28
     }
@@ -63,9 +63,6 @@ android {
     }
     buildFeatures {
         compose = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.3"
     }
     publishing {
         singleVariant("release") {
