@@ -170,7 +170,7 @@ data class Form(
             throw TypeformException.FirstPosition
         }
 
-        if (field.type == FieldType.STATEMENT) {
+        if (!responses.containsKey(field.ref)) {
             return Position.FieldPosition(field, null)
         }
 

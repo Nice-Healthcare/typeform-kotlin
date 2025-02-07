@@ -2,6 +2,7 @@ package com.typeform.serializers
 
 import com.typeform.schema.ActionType
 import kotlinx.serialization.KSerializer
+import kotlinx.serialization.SerializationException
 import kotlinx.serialization.descriptors.PrimitiveKind
 import kotlinx.serialization.descriptors.PrimitiveSerialDescriptor
 import kotlinx.serialization.descriptors.SerialDescriptor
@@ -20,6 +21,8 @@ object ActionTypeSerializer : KSerializer<ActionType> {
     }
 
     override fun deserialize(decoder: Decoder): ActionType {
-        return ActionType.fromRawValue(decoder.decodeString())
+        val rawValue = decoder.decodeString()
+        return ActionType.entries.firstOrNull { it.rawValue == rawValue }
+            ?: throw SerializationException("Unhandled 'ActionType' value '$rawValue'.")
     }
 }

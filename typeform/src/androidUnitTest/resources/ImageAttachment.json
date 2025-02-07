@@ -1,0 +1,88 @@
+{
+  "id": "bjyxIhXZ",
+  "type": "quiz",
+  "title": "Async Prelim Test Form - Image Only",
+  "workspace": {
+    "href": "https://api.typeform.com/workspaces/5PY2Nu"
+  },
+  "theme": {
+    "href": "https://api.typeform.com/themes/qHWOQ7"
+  },
+  "settings": {
+    "language": "en",
+    "progress_bar": "proportion",
+    "meta": {
+      "allow_indexing": false
+    },
+    "hide_navigation": false,
+    "is_public": true,
+    "is_trial": false,
+    "show_progress_bar": true,
+    "show_typeform_branding": true,
+    "are_uploads_public": false,
+    "show_time_to_complete": true,
+    "show_number_of_submissions": false,
+    "show_cookie_consent": false,
+    "show_question_number": true,
+    "show_key_hint_on_choices": true,
+    "autosave_progress": true,
+    "free_form_navigation": false,
+    "use_lead_qualification": false,
+    "pro_subdomain_enabled": false
+  },
+  "thankyou_screens": [
+    {
+      "id": "DefaultTyScreen",
+      "ref": "default_tys",
+      "title": "Thanks for completing this typeform\nNow *create your own* — it's free, easy, \u0026 beautiful",
+      "type": "thankyou_screen",
+      "properties": {
+        "show_button": true,
+        "share_icons": false,
+        "button_mode": "default_redirect",
+        "button_text": "Create a *typeform*"
+      },
+      "attachment": {
+        "type": "image",
+        "href": "https://images.typeform.com/images/2dpnUBBkz2VN"
+      }
+    }
+  ],
+  "fields": [
+    {
+      "id": "21xteNrP8VJs",
+      "title": "This is a yes/no question with an image inserted below the description",
+      "ref": "8ef9c845-a658-4784-adfa-db703741df24",
+      "properties": {
+        "description": "Cool description"
+      },
+      "validations": {
+        "required": false
+      },
+      "type": "yes_no",
+      "attachment": {
+        "type": "image",
+        "href": "https://images.typeform.com/images/nicGuchsjTJG",
+        "properties": {
+          "decorative": false
+        }
+      },
+      "layout": {
+        "type": "stack",
+        "attachment": {
+          "type": "image",
+          "href": "https://images.typeform.com/images/nicGuchsjTJG",
+          "properties": {
+            "brightness": 0,
+            "decorative": false
+          }
+        },
+        "viewport_overrides": {}
+      }
+    }
+  ],
+  "_links": {
+    "display": "https://tohanuk.typeform.com/to/bjyxIhXZ",
+    "responses": "https://api.typeform.com/forms/bjyxIhXZ/responses"
+  }
+}
