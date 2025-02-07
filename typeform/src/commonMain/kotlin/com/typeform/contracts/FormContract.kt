@@ -19,7 +19,7 @@ import kotlinx.serialization.Serializable
 data class FormContract(
     val id: String,
     val type: FormType,
-    val logic: List<LogicContract>,
+    val logic: List<LogicContract>?,
     val theme: Theme,
     val title: String,
     @SerialName("_links")
@@ -52,7 +52,7 @@ data class FormContract(
         return Form(
             id = id,
             type = type,
-            logic = logic.map { it.toLogic() },
+            logic = (logic ?: emptyList()).map { it.toLogic() },
             theme = theme,
             title = title,
             _links = links,

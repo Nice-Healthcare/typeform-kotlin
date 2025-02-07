@@ -16,9 +16,4 @@ enum class FieldType(val rawValue: String) {
     SHORT_TEXT("short_text"),
     STATEMENT("statement"),
     YES_NO("yes_no"),
-    ;
-
-    companion object {
-        fun fromRawValue(rawValue: String) = FieldType.entries.firstOrNull { it.rawValue == rawValue } ?: STATEMENT
-    }
 }

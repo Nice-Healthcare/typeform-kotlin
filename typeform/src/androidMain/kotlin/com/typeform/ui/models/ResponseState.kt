@@ -3,6 +3,7 @@ package com.typeform.ui.models
 import com.typeform.models.ResponseValue
 import com.typeform.models.Responses
 import com.typeform.schema.Field
+import com.typeform.schema.FieldProperties
 
 data class ResponseState(
     val response: ResponseValue? = null,
@@ -13,6 +14,16 @@ data class ResponseState(
         responses: Responses,
     ) : this(
         response = responses[field.ref],
-        invalid = field.properties.asStatement() == null,
+        invalid = when (field.properties) {
+            is FieldProperties.GroupProperties -> {
+                false
+            }
+            is FieldProperties.StatementProperties -> {
+                false
+            }
+            else -> {
+                true
+            }
+        },
     )
 }

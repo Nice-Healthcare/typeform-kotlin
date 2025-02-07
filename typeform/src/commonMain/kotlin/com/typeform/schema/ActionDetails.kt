@@ -17,10 +17,5 @@ data class ActionDetails(
     enum class ToType(val rawValue: String) {
         FIELD("field"),
         THANK_YOU("thankyou"),
-        ;
-
-        companion object {
-            fun fromRawValue(rawValue: String) = ToType.entries.firstOrNull { it.rawValue == rawValue } ?: THANK_YOU
-        }
     }
 }

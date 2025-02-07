@@ -2,6 +2,7 @@ package com.typeform.serializers
 
 import com.typeform.schema.Op
 import kotlinx.serialization.KSerializer
+import kotlinx.serialization.SerializationException
 import kotlinx.serialization.descriptors.PrimitiveKind
 import kotlinx.serialization.descriptors.PrimitiveSerialDescriptor
 import kotlinx.serialization.descriptors.SerialDescriptor
@@ -20,6 +21,8 @@ object OpSerializer : KSerializer<Op> {
     }
 
     override fun deserialize(decoder: Decoder): Op {
-        return Op.fromRawValue(decoder.decodeString())
+        val rawValue = decoder.decodeString()
+        return Op.entries.firstOrNull { it.rawValue == rawValue }
+            ?: throw SerializationException("Unhandled 'Op' value '$rawValue'.")
     }
 }

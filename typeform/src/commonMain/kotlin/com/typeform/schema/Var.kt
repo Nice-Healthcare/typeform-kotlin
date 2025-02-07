@@ -54,25 +54,10 @@ fun List<Var>.matchGiven(
         is Var.Value.Integer -> {
             return when (response) {
                 is ResponseValue.IntValue -> {
-                    when (op) {
-                        Op.EQUAL -> {
-                            response.value == valueVar.value.value
-                        }
-                        Op.GREATER_EQUAL_THAN -> {
-                            response.value >= valueVar.value.value
-                        }
-                        Op.GREATER_THAN -> {
-                            response.value > valueVar.value.value
-                        }
-                        Op.LOWER_EQUAL_THAN -> {
-                            response.value <= valueVar.value.value
-                        }
-                        Op.LOWER_THAN -> {
-                            response.value < valueVar.value.value
-                        }
-                        else -> {
-                            null
-                        }
+                    try {
+                        op.compareInt(response.value, valueVar.value.value)
+                    } catch (_: Exception) {
+                        null
                     }
                 }
                 else -> {
@@ -89,7 +74,18 @@ fun List<Var>.matchGiven(
                     response.value.map { it.ref }.contains(valueVar.value.value)
                 }
                 is ResponseValue.StringValue -> {
-                    response.value == valueVar.value.value
+                    try {
+                        op.compareString(response.value, valueVar.value.value)
+                    } catch (_: Exception) {
+                        null
+                    }
+                }
+                is ResponseValue.DateValue -> {
+                    try {
+                        op.compareDate(response.value, valueVar.value.value)
+                    } catch (_: Exception) {
+                        null
+                    }
                 }
                 else -> {
                     null
