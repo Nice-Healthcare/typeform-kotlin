@@ -4,6 +4,7 @@ import com.typeform.schema.Field
 import com.typeform.schema.Form
 import com.typeform.schema.FormType
 import com.typeform.schema.Links
+import com.typeform.schema.ScreenAttachment
 import com.typeform.schema.ScreenProperties
 import com.typeform.schema.Settings
 import com.typeform.schema.Theme
@@ -60,7 +61,10 @@ val Form.Companion.preview: Form
                 id = "welcome1",
                 ref = "welcome1",
                 title = "Example Welcome Screen",
-                attachment = null,
+                attachment = ScreenAttachment(
+                    href = URL("https://images.typeform.com/images/nicGuchsjTJG"),
+                    type = "image",
+                ),
                 properties = ScreenProperties(
                     button_mode = null,
                     button_text = "Continue",

@@ -1,11 +1,11 @@
 plugins {
-    kotlin("multiplatform")
-    alias(libs.plugins.androidLibrary)
-    alias(libs.plugins.kotlinSerialization)
+    alias(libs.plugins.android.library)
     alias(libs.plugins.compose)
-    alias(libs.plugins.composeCompiler)
-    alias(libs.plugins.testLogger)
+    alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.kotlin.multiplatform)
+    alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.ktlint)
+    alias(libs.plugins.test.logger)
 }
 
 kotlin {
@@ -17,35 +17,36 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
+                implementation(libs.kotlinx.serialization.json)
             }
         }
 
         val commonTest by getting {
             dependencies {
-                implementation(kotlin("test"))
+                implementation(libs.kotlin.test)
             }
         }
 
         val androidMain by getting {
             dependencies {
-                api(compose.runtime)
-                api(compose.foundation)
                 api(compose.animation)
+                api(compose.foundation)
                 api(compose.material)
                 api(compose.materialIconsExtended)
+                api(compose.material3)
+                api(compose.preview)
+                api(compose.runtime)
                 api(compose.ui)
                 api(compose.uiTooling)
-                api(compose.preview)
-                implementation("androidx.compose.material3:material3:1.3.1")
-                implementation("androidx.navigation:navigation-compose:2.8.5")
-                implementation("io.coil-kt.coil3:coil-compose:3.0.4")
+
+                implementation(libs.androidx.navigation.compose)
+                implementation(libs.coil.compose)
             }
         }
 
         val androidUnitTest by getting {
             dependencies {
-                implementation(kotlin("test"))
+                implementation(libs.kotlin.test)
             }
         }
     }
