@@ -25,6 +25,7 @@ val Field.Companion.previewDate: Field
         validations = Validations(
             required = true,
         ),
+        attachment = null,
     )
 
 val Field.Companion.previewDropdown: Field
@@ -46,6 +47,7 @@ val Field.Companion.previewDropdown: Field
         validations = Validations(
             required = true,
         ),
+        attachment = null,
     )
 
 val Field.Companion.previewStatement: Field
@@ -62,4 +64,5 @@ val Field.Companion.previewStatement: Field
             ),
         ),
         validations = null,
+        attachment = null,
     )

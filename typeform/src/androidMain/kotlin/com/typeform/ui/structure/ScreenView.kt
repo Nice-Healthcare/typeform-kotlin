@@ -3,15 +3,13 @@ package com.typeform.ui.structure
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import coil3.compose.AsyncImage
+import coil3.ImageLoader
 import com.typeform.models.Position
 import com.typeform.models.Responses
 import com.typeform.models.TypeformException
@@ -36,12 +34,10 @@ internal fun ScreenView(
     settings: Settings,
     screen: Screen,
     responses: Responses,
+    imageLoader: ImageLoader? = null,
     actionHandler: (NavigationAction) -> Unit,
 ) {
-    val imageUrl = screen.attachment?.href
-
     val isWelcomeScreen = screen is WelcomeScreen
-    val showImage: Boolean = if (isWelcomeScreen) settings.presentation.showWelcomeImage else settings.presentation.showThankYouImage
 
     val next = try {
         form.nextPosition(Position.ScreenPosition(screen), responses)
@@ -67,12 +63,10 @@ internal fun ScreenView(
             modifier = Modifier.padding(settings.presentation.contentPadding),
             verticalArrangement = Arrangement.spacedBy(settings.presentation.titleDescriptionVerticalSpacing),
         ) {
-            if (imageUrl != null && showImage) {
-                AsyncImage(
-                    model = imageUrl,
-                    contentDescription = null,
-                    modifier = Modifier.fillMaxWidth(),
-                    contentScale = ContentScale.FillWidth,
+            screen.attachment?.let { attachment ->
+                AttachmentView(
+                    attachment = attachment,
+                    imageLoader = imageLoader,
                 )
             }
 

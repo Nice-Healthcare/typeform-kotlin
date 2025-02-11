@@ -87,49 +87,38 @@ internal fun RatingView(
         updateState()
     }
 
-    Column(
-        verticalArrangement = Arrangement.spacedBy(settings.presentation.descriptionContentVerticalSpacing),
+    Row(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.SpaceBetween,
     ) {
-        properties.description?.let {
-            StyledTextView(
-                text = it,
-                textStyle = MaterialTheme.typography.caption,
-            )
-        }
+        range.forEach { step ->
+            val filled = (selected ?: 0) >= step
+            val tint = if (filled) {
+                settings.rating.colors.contentColor(enabled = true)
+            } else {
+                settings.rating.colors.backgroundColor(enabled = true)
+            }
 
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween,
-        ) {
-            range.forEach { step ->
-                val filled = (selected ?: 0) >= step
-                val tint = if (filled) {
-                    settings.rating.colors.contentColor(enabled = true)
-                } else {
-                    settings.rating.colors.backgroundColor(enabled = true)
-                }
-
-                IconButton(
-                    onClick = {
-                        select(step)
-                    },
-                    modifier = Modifier.weight(1f),
+            IconButton(
+                onClick = {
+                    select(step)
+                },
+                modifier = Modifier.weight(1f),
+            ) {
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally,
                 ) {
-                    Column(
-                        horizontalAlignment = Alignment.CenterHorizontally,
-                    ) {
-                        Icon(
-                            imageVector = if (filled) filledImage else outlinedImage,
-                            contentDescription = null,
-                            modifier = Modifier.fillMaxWidth(),
-                            tint = tint.value,
-                        )
+                    Icon(
+                        imageVector = if (filled) filledImage else outlinedImage,
+                        contentDescription = null,
+                        modifier = Modifier.fillMaxWidth(),
+                        tint = tint.value,
+                    )
 
-                        StyledTextView(
-                            text = "$step",
-                            textStyle = MaterialTheme.typography.body1,
-                        )
-                    }
+                    StyledTextView(
+                        text = "$step",
+                        textStyle = MaterialTheme.typography.body1,
+                    )
                 }
             }
         }

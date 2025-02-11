@@ -10,6 +10,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import coil3.SingletonImageLoader
+import coil3.compose.LocalPlatformContext
 import com.typeform.example.ui.theme.ExampleTheme
 import com.typeform.schema.Form
 import com.typeform.ui.models.Conclusion
@@ -33,7 +35,7 @@ fun Navigation(
         composable(
             route = "content",
         ) {
-            Content(
+            ContentView(
                 conclusion = conclusion,
                 displayFormHandler = { inForm, inSettings ->
                     form = inForm
@@ -50,6 +52,7 @@ fun Navigation(
                 FormView(
                     form = it,
                     settings = settings,
+                    imageLoader = SingletonImageLoader.get(LocalPlatformContext.current),
                     conclusion = {
                         conclusion = it
                         navController.navigate("content")

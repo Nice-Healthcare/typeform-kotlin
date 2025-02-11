@@ -1,10 +1,12 @@
 package com.typeform.ui.preview
 
+import com.typeform.schema.Attachment
+import com.typeform.schema.AttachmentProperties
+import com.typeform.schema.AttachmentType
 import com.typeform.schema.Field
 import com.typeform.schema.Form
 import com.typeform.schema.FormType
 import com.typeform.schema.Links
-import com.typeform.schema.ScreenAttachment
 import com.typeform.schema.ScreenProperties
 import com.typeform.schema.Settings
 import com.typeform.schema.Theme
@@ -61,9 +63,12 @@ val Form.Companion.preview: Form
                 id = "welcome1",
                 ref = "welcome1",
                 title = "Example Welcome Screen",
-                attachment = ScreenAttachment(
+                attachment = Attachment(
                     href = URL("https://images.typeform.com/images/nicGuchsjTJG"),
-                    type = "image",
+                    type = AttachmentType.IMAGE,
+                    properties = AttachmentProperties(
+                        description = "",
+                    ),
                 ),
                 properties = ScreenProperties(
                     button_mode = null,

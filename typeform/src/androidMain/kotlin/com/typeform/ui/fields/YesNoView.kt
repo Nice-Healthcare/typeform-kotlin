@@ -2,7 +2,6 @@ package com.typeform.ui.fields
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -14,7 +13,6 @@ import com.typeform.models.ResponseValue
 import com.typeform.schema.Validations
 import com.typeform.schema.YesNo
 import com.typeform.ui.components.IntermittentChoiceButton
-import com.typeform.ui.components.StyledTextView
 import com.typeform.ui.models.ResponseState
 import com.typeform.ui.models.Settings
 
@@ -74,33 +72,22 @@ internal fun YesNoView(
     }
 
     Column(
-        verticalArrangement = Arrangement.spacedBy(settings.presentation.descriptionContentVerticalSpacing),
+        verticalArrangement = Arrangement.spacedBy(settings.presentation.contentVerticalSpacing),
     ) {
-        properties.description?.let {
-            StyledTextView(
-                text = it,
-                textStyle = MaterialTheme.typography.caption,
-            )
+        IntermittentChoiceButton(
+            settings = settings,
+            text = settings.localization.yes,
+            selected = selected == true,
+        ) {
+            toggle(true)
         }
 
-        Column(
-            verticalArrangement = Arrangement.spacedBy(settings.presentation.contentVerticalSpacing),
+        IntermittentChoiceButton(
+            settings = settings,
+            text = settings.localization.no,
+            selected = selected == false,
         ) {
-            IntermittentChoiceButton(
-                settings = settings,
-                text = settings.localization.yes,
-                selected = selected == true,
-            ) {
-                toggle(true)
-            }
-
-            IntermittentChoiceButton(
-                settings = settings,
-                text = settings.localization.no,
-                selected = selected == false,
-            ) {
-                toggle(false)
-            }
+            toggle(false)
         }
     }
 }

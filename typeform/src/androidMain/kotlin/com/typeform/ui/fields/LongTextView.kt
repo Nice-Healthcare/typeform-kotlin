@@ -1,7 +1,5 @@
 package com.typeform.ui.fields
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.material.MaterialTheme
@@ -19,7 +17,6 @@ import androidx.compose.ui.unit.dp
 import com.typeform.models.ResponseValue
 import com.typeform.schema.LongText
 import com.typeform.schema.Validations
-import com.typeform.ui.components.StyledTextView
 import com.typeform.ui.models.ResponseState
 import com.typeform.ui.models.Settings
 
@@ -61,31 +58,20 @@ internal fun LongTextView(
         updateState()
     }
 
-    Column(
-        verticalArrangement = Arrangement.spacedBy(settings.presentation.descriptionContentVerticalSpacing),
-    ) {
-        properties.description?.let {
-            StyledTextView(
-                text = it,
-                textStyle = MaterialTheme.typography.caption,
-            )
-        }
-
-        OutlinedTextField(
-            value = selected,
-            onValueChange = { value ->
-                select(value)
-            },
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(150.dp),
-            colors = TextFieldDefaults.outlinedTextFieldColors(
-                textColor = MaterialTheme.typography.body1.color,
-                backgroundColor = MaterialTheme.colors.background,
-                focusedBorderColor = MaterialTheme.colors.primary,
-            ),
-        )
-    }
+    OutlinedTextField(
+        value = selected,
+        onValueChange = { value ->
+            select(value)
+        },
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(150.dp),
+        colors = TextFieldDefaults.outlinedTextFieldColors(
+            textColor = MaterialTheme.typography.body1.color,
+            backgroundColor = MaterialTheme.colors.background,
+            focusedBorderColor = MaterialTheme.colors.primary,
+        ),
+    )
 }
 
 @Preview(showBackground = true, showSystemUi = true)

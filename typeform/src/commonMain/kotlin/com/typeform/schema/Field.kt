@@ -12,6 +12,7 @@ data class Field(
     val title: String,
     val properties: FieldProperties,
     val validations: Validations?,
+    val attachment: Attachment?,
 ) {
     companion object {
     }

@@ -1,5 +1,6 @@
 package com.typeform.contracts
 
+import com.typeform.schema.Attachment
 import com.typeform.schema.Field
 import com.typeform.schema.FieldType
 import com.typeform.schema.Validations
@@ -13,6 +14,7 @@ data class FieldContract(
     val title: String,
     val properties: FieldPropertiesContract,
     val validations: Validations?,
+    val attachment: Attachment?,
 ) {
     constructor(field: Field) : this(
         id = field.id,
@@ -21,6 +23,7 @@ data class FieldContract(
         title = field.title,
         properties = FieldPropertiesContract(field.properties),
         validations = field.validations,
+        attachment = field.attachment,
     )
 
     fun toField(): Field {
@@ -31,6 +34,7 @@ data class FieldContract(
             title = title,
             properties = properties.toFieldProperties(type),
             validations = validations,
+            attachment = attachment,
         )
     }
 }

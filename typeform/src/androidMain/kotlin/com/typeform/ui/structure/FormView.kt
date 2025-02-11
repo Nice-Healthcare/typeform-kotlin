@@ -35,6 +35,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import coil3.ImageLoader
 import com.typeform.models.Position
 import com.typeform.models.ResponseValue
 import com.typeform.models.Responses
@@ -54,6 +55,7 @@ fun FormView(
     form: Form,
     settings: Settings = Settings(),
     responses: Responses = mutableMapOf(),
+    imageLoader: ImageLoader? = null,
     conclusion: (Conclusion) -> Unit,
     header: (@Composable () -> Unit)? = null,
 ) {
@@ -206,6 +208,7 @@ fun FormView(
                     settings = settings,
                     screen = screen,
                     responses = responses,
+                    imageLoader = imageLoader,
                     actionHandler = { navigationAction ->
                         navigateUsing(navigationAction)
                     },
@@ -258,6 +261,7 @@ fun FormView(
                     field = field,
                     group = group,
                     responses = responses,
+                    imageLoader = imageLoader,
                     header = header,
                     actionHandler = { navigationAction ->
                         navigateUsing(navigationAction)

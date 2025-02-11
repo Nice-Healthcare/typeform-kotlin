@@ -26,6 +26,7 @@ fun Field.Companion.make(flatField: FlatField): Field {
         title = flatField.title,
         properties = FieldProperties.make(flatField.properties, flatField.type),
         validations = flatField.validations,
+        attachment = null,
     )
 }
 

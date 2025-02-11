@@ -75,7 +75,9 @@ data class Settings(
         val contentPadding: PaddingValues = PaddingValues(10.dp),
         val contentVerticalSpacing: Dp = 15.dp,
         val contentHorizontalSpacing: Dp = 10.dp,
+        @Deprecated(message = "Ignored")
         val showWelcomeImage: Boolean = true,
+        @Deprecated(message = "Ignored")
         val showThankYouImage: Boolean = true,
         val skipWelcomeScreen: Boolean = false,
         val skipEndingScreen: Boolean = false,

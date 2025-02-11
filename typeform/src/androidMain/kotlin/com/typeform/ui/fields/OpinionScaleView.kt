@@ -52,8 +52,16 @@ internal fun OpinionScaleView(
         )
     }
 
-    val leadingLabel = String.format("%d: %s", start, properties.labels.left)
-    val trailingLabel = String.format("%d: %s", end, properties.labels.right)
+    val leadingLabel = if (properties.labels != null) {
+        String.format("%d: %s", start, properties.labels.left)
+    } else {
+        String.format("%d", start)
+    }
+    val trailingLabel = if (properties.labels != null) {
+        String.format("%d: %s", end, properties.labels.right)
+    } else {
+        String.format("%d", end)
+    }
 
     fun updateState() {
         var state = responseState
