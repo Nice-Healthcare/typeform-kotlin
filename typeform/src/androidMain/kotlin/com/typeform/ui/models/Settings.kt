@@ -32,8 +32,6 @@ data class Settings(
     val presentation: Presentation = Presentation(),
     val callToAction: CallToAction = CallToAction(),
     val field: Field = Field(),
-    @Deprecated("Use individual component styling.")
-    val interaction: Interaction = Interaction(),
     val calendar: Calendar = Calendar(),
     val switch: Switch = Switch(),
     val button: Button = Button(),
@@ -98,21 +96,6 @@ data class Settings(
         val horizontalPadding: Dp = 15.dp,
     )
 
-    @Deprecated("")
-    data class Interaction(
-        val unselectedBackgroundColor: Color = Color.Blue.copy(alpha = 0.2f),
-        val unselectedStrokeColor: Color = Color.Blue.copy(alpha = 0.5f),
-        val unselectedStrokeWidth: Dp = 1.dp,
-        val unselectedForegroundColor: Color = Color.White,
-        val selectedBackgroundColor: Color = Color.Blue.copy(alpha = 0.5f),
-        val selectedStrokeColor: Color = Color.Blue.copy(alpha = 0.8f),
-        val selectedStrokeWidth: Dp = 2.dp,
-        val selectedForegroundColor: Color = Color.Blue,
-        val padding: PaddingValues = PaddingValues(10.dp),
-        val horizontalSpacing: Dp = 10.dp,
-        val contentCornerRadius: Dp = 6.dp,
-    )
-
     data class Calendar(
         val weekdayContentColor: Color = Color.Black,
         val dayContentColor: Color = Color.Black,
@@ -135,52 +118,14 @@ data class Settings(
 
     data class Checkbox(
         val colors: CheckboxColors = TypeformCheckboxColors(),
-        @Deprecated("")
-        val unselectedBackgroundColor: Color = Color.White,
-        @Deprecated("")
-        val unselectedStrokeColor: Color = Color.Black,
-        @Deprecated("")
-        val selectedBackgroundColor: Color = Color.Black,
-        @Deprecated("")
-        val selectedStrokeColor: Color = Color.Black,
-        @Deprecated("")
-        val selectedForegroundColor: Color = Color.White,
-        @Deprecated("")
-        val cornerRadius: Dp = 3.dp,
     )
 
     data class Radio(
         val colors: RadioButtonColors = TypeformRadioButtonColors(),
-        @Deprecated("")
-        val unselectedBackgroundColor: Color = Color.White,
-        @Deprecated("")
-        val unselectedStrokeColor: Color = Color.Black,
-        @Deprecated("")
-        val selectedBackgroundColor: Color = Color.White,
-        @Deprecated("")
-        val selectedStrokeColor: Color = Color.Black,
-        @Deprecated("")
-        val selectedForegroundColor: Color = Color.Blue,
     )
 
     data class Rating(
         val colors: ButtonColors = TypeformButtonColors.ratingColors,
-        @Deprecated("")
-        val unselectedBackgroundColor: Color = Color.Blue.copy(alpha = 0.3f),
-        @Deprecated("")
-        val unselectedStrokeColor: Color = Color.Blue.copy(alpha = 0.5f),
-        @Deprecated("")
-        val unselectedStrokeWidth: Dp = 1.dp,
-        @Deprecated("")
-        val unselectedForegroundColor: Color = Color.Black,
-        @Deprecated("")
-        val selectedBackgroundColor: Color = Color.Blue.copy(alpha = 0.3f),
-        @Deprecated("")
-        val selectedStrokeColor: Color = Color.Blue.copy(alpha = 0.9f),
-        @Deprecated("")
-        val selectedStrokeWidth: Dp = 2.dp,
-        @Deprecated("")
-        val selectedForegroundColor: Color = Color.Blue,
     )
 
     data class OpinionScale(

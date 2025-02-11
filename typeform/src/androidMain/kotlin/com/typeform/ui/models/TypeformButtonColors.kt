@@ -6,9 +6,6 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.graphics.Color
 
-@Deprecated("", ReplaceWith("TypeformButtonColors"))
-typealias DefaultButtonColors = TypeformButtonColors
-
 data class TypeformButtonColors(
     val backgroundColor: Color = Color.White,
     val contentColor: Color = Color.Black,
