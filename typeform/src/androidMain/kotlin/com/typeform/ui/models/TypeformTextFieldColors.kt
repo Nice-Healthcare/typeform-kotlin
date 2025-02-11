@@ -7,9 +7,6 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.graphics.Color
 
-@Deprecated("", ReplaceWith("TypeformTextFieldColors"))
-typealias DefaultTextFieldColors = TypeformTextFieldColors
-
 data class TypeformTextFieldColors(
     val backgroundColor: Color = Color.White,
     val textColor: Color = Color.Black,
@@ -48,10 +45,23 @@ data class TypeformTextFieldColors(
         return rememberUpdatedState(labelColor)
     }
 
+    @Deprecated(
+        message = "Use/implement overload with interactionSource parameter",
+        replaceWith = ReplaceWith("leadingIconColor(enabled, isError, interactionSource)"),
+    )
     @Composable
     override fun leadingIconColor(
         enabled: Boolean,
         isError: Boolean,
+    ): State<Color> {
+        return rememberUpdatedState(leadingIconColor)
+    }
+
+    @Composable
+    override fun leadingIconColor(
+        enabled: Boolean,
+        isError: Boolean,
+        interactionSource: InteractionSource,
     ): State<Color> {
         return rememberUpdatedState(leadingIconColor)
     }
@@ -66,10 +76,23 @@ data class TypeformTextFieldColors(
         return rememberUpdatedState(textColor)
     }
 
+    @Deprecated(
+        message = "Use/implement overload with interactionSource parameter",
+        replaceWith = ReplaceWith("trailingIconColor(enabled, isError, interactionSource)"),
+    )
     @Composable
     override fun trailingIconColor(
         enabled: Boolean,
         isError: Boolean,
+    ): State<Color> {
+        return rememberUpdatedState(trailingIconColor)
+    }
+
+    @Composable
+    override fun trailingIconColor(
+        enabled: Boolean,
+        isError: Boolean,
+        interactionSource: InteractionSource,
     ): State<Color> {
         return rememberUpdatedState(trailingIconColor)
     }
