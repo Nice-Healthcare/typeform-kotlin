@@ -78,60 +78,49 @@ internal fun DateView(
     }
 
     Column(
-        verticalArrangement = Arrangement.spacedBy(settings.presentation.descriptionContentVerticalSpacing),
+        verticalArrangement = Arrangement.spacedBy(settings.presentation.contentVerticalSpacing),
     ) {
-        properties.description?.let {
-            StyledTextView(
-                text = it,
-                textStyle = MaterialTheme.typography.caption,
-            )
-        }
+        if (isOptional) {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                StyledTextView(
+                    text = settings.localization.nullDate,
+                    textStyle = MaterialTheme.typography.caption,
+                )
 
-        Column(
-            verticalArrangement = Arrangement.spacedBy(settings.presentation.contentVerticalSpacing),
-        ) {
-            if (isOptional) {
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically,
-                ) {
-                    StyledTextView(
-                        text = settings.localization.nullDate,
-                        textStyle = MaterialTheme.typography.caption,
-                    )
-
-                    Switch(
-                        checked = isNotSure,
-                        onCheckedChange = {
-                            isNotSure = !isNotSure
-                            if (isNotSure) {
-                                select(null)
-                            } else {
-                                select(pickerState.selectedDateMillis ?: Date().time)
-                            }
-                        },
-                        colors = settings.switch.colors,
-                    )
-                }
-            }
-
-            if (!isOptional || !isNotSure) {
-                DatePicker(
-                    state = pickerState,
-                    title = null,
-                    headline = null,
-                    showModeToggle = false,
-                    colors = DatePickerDefaults.colors(
-                        weekdayContentColor = settings.calendar.weekdayContentColor,
-                        dayContentColor = settings.calendar.dayContentColor,
-                        selectedDayContentColor = settings.calendar.selectedDayContentColor,
-                        selectedDayContainerColor = settings.calendar.selectedDayContainerColor,
-                        todayContentColor = settings.calendar.todayDateContentColor,
-                        todayDateBorderColor = settings.calendar.todayDateContainerColor,
-                    ),
+                Switch(
+                    checked = isNotSure,
+                    onCheckedChange = {
+                        isNotSure = !isNotSure
+                        if (isNotSure) {
+                            select(null)
+                        } else {
+                            select(pickerState.selectedDateMillis ?: Date().time)
+                        }
+                    },
+                    colors = settings.switch.colors,
                 )
             }
+        }
+
+        if (!isOptional || !isNotSure) {
+            DatePicker(
+                state = pickerState,
+                title = null,
+                headline = null,
+                showModeToggle = false,
+                colors = DatePickerDefaults.colors(
+                    weekdayContentColor = settings.calendar.weekdayContentColor,
+                    dayContentColor = settings.calendar.dayContentColor,
+                    selectedDayContentColor = settings.calendar.selectedDayContentColor,
+                    selectedDayContainerColor = settings.calendar.selectedDayContainerColor,
+                    todayContentColor = settings.calendar.todayDateContentColor,
+                    todayDateBorderColor = settings.calendar.todayDateContainerColor,
+                ),
+            )
         }
     }
 }

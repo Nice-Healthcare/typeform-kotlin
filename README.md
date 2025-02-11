@@ -29,11 +29,11 @@ dependencies {
 }
 ```
 
-## Platforms
+## Modules
 
-This library contains multiple platform packages which comprise a complete toolset for decoding, logic parsing, and display of Typeform questionnaires.
+This repository contains multiple modules which comprise a complete toolset for decoding, logic parsing, and display of Typeform questionnaires.
 
-### Common (commonMain/Kotlin Native)
+### Common (Kotlin Native) (`:typeform:commonMain`)
 
 This module contains the Typeform schema and additional models for navigating the logic and completion of a _form_. Start with the [`Form`](Typeform/src/commonMain/kotlin/com/typeform/schema/Form.kt) structure, which is the entity retrieved from the Typeform [API](https://www.typeform.com/developers/create/reference/retrieve-forms/).
 
@@ -46,7 +46,7 @@ val responses: Map<Reference, ResponseValue> = mutableMapOf()
 val nextPosition = form.nextPosition(from = position, responses = responses)
 ```
 
-### Android (androidMain)
+### Android (`:typeform:androidMain`)
 
 The **Android** source set is a **Jetpack Compose** implementation used to display and navigate through a Typeform questionnaire. It is designed to be self-contained and customizable to fit in with your apps design.
 
@@ -73,6 +73,45 @@ fun MyNavGraph(form: Form) {
 }
 ```
 
+## Images
+
+Image `Attachment`s are handled using the popular (**Coil**)[https://github.com/coil-kt/coil] library.
+In order to display images, a `ImageLoader` must be provided in the `FormView` initializer. The Coil `SingletonImageLoader` provides an interface for retrieving an instance:
+
+```kotlin
+FormView(
+  …
+  imageLoader = SingletonImageLoader.get(LocalPlatformContext.current)
+  …
+)
+```
+
+To supply an `ImageLoader`, one must be configured by your application. Details can be found in the [Coil Documentation](https://coil-kt.github.io/coil/image_loaders/).
+The example project in this repository uses Ktor, but OkHttp may be used as well.
+
+```kotlin
+class MainActivity {
+  override fun onCreate(savedInstanceState: Bundle?) {
+    setContent {
+    setSingletonImageLoaderFactory { platformContext ->
+      ImageLoader.Builder(platformContext)
+        .components {
+          add(
+            KtorNetworkFetcherFactory(
+              httpClient = {
+                HttpClient()
+              }
+            )
+          )
+        }
+        .build()
+      }
+      … // Your content
+    }
+  }
+}
+```
+
 ## Supported Question Types
 
 > Note, this library is _incomplete_; not every question type or condition has been implemented. Want to help fix a bug or make improvements? Consider becoming a contributor!
@@ -80,14 +119,14 @@ fun MyNavGraph(form: Form) {
 All of the _structural_ components are supported: Welcome Screen, Ending, Statement, and Question Group. Learn more about Typeform [Question Types](https://www.typeform.com/help/a/question-types-360051789692/?attribution_user_id=1dbdf7d8-4d28-44f6-8536-d95cf65b0311). The currently supported types are:
 
 * Date
-* Short Text
+* Dropdown
 * Long Text
+* Opinion Scale
+* Multiple Choice
 * Number
 * Rating
-* Multiple Choice
+* Short Text
 * Yes/No
-* Dropdown
-* Opinion Scale
 
 ## Customization
 

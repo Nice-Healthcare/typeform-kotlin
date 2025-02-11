@@ -40,7 +40,7 @@ kotlin {
                 api(compose.uiTooling)
 
                 implementation(libs.androidx.navigation.compose)
-                implementation(libs.coil.compose)
+                implementation(libs.coil.compose.core)
             }
         }
 

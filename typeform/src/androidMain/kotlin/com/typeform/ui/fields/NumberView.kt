@@ -1,7 +1,5 @@
 package com.typeform.ui.fields
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.MaterialTheme
@@ -19,7 +17,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.typeform.models.ResponseValue
 import com.typeform.schema.Number
 import com.typeform.schema.Validations
-import com.typeform.ui.components.StyledTextView
 import com.typeform.ui.models.ResponseState
 import com.typeform.ui.models.Settings
 
@@ -62,31 +59,20 @@ internal fun NumberView(
         updateState()
     }
 
-    Column(
-        verticalArrangement = Arrangement.spacedBy(settings.presentation.descriptionContentVerticalSpacing),
-    ) {
-        properties.description?.let {
-            StyledTextView(
-                text = it,
-                textStyle = MaterialTheme.typography.caption,
-            )
-        }
-
-        OutlinedTextField(
-            value = "${selected ?: ""}",
-            onValueChange = { value ->
-                select(value.toIntOrNull())
-            },
-            modifier = Modifier.fillMaxWidth(),
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-            singleLine = true,
-            colors = TextFieldDefaults.outlinedTextFieldColors(
-                textColor = MaterialTheme.typography.body1.color,
-                backgroundColor = MaterialTheme.colors.background,
-                focusedBorderColor = MaterialTheme.colors.primary,
-            ),
-        )
-    }
+    OutlinedTextField(
+        value = "${selected ?: ""}",
+        onValueChange = { value ->
+            select(value.toIntOrNull())
+        },
+        modifier = Modifier.fillMaxWidth(),
+        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+        singleLine = true,
+        colors = TextFieldDefaults.outlinedTextFieldColors(
+            textColor = MaterialTheme.typography.body1.color,
+            backgroundColor = MaterialTheme.colors.background,
+            focusedBorderColor = MaterialTheme.colors.primary,
+        ),
+    )
 }
 
 @Preview(showBackground = true, showSystemUi = true)

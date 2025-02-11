@@ -8,7 +8,7 @@ data class ThankYouScreen(
     val ref: String,
     val type: String,
     override val title: String,
-    override val attachment: ScreenAttachment?,
+    override val attachment: Attachment?,
     override val properties: ScreenProperties,
 ) : Screen {
     /**

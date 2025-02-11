@@ -2,7 +2,6 @@ package com.typeform.ui.fields
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -15,7 +14,6 @@ import com.typeform.schema.Choice
 import com.typeform.schema.MultipleChoice
 import com.typeform.schema.Validations
 import com.typeform.ui.components.IntermittentChoiceButton
-import com.typeform.ui.components.StyledTextView
 import com.typeform.ui.models.ResponseState
 import com.typeform.ui.models.Settings
 import com.typeform.ui.preview.ThemePreview
@@ -85,27 +83,16 @@ internal fun MultipleChoiceView(
     }
 
     Column(
-        verticalArrangement = Arrangement.spacedBy(settings.presentation.descriptionContentVerticalSpacing),
+        verticalArrangement = Arrangement.spacedBy(settings.presentation.contentVerticalSpacing),
     ) {
-        properties.description?.let {
-            StyledTextView(
-                text = it,
-                textStyle = MaterialTheme.typography.caption,
-            )
-        }
-
-        Column(
-            verticalArrangement = Arrangement.spacedBy(settings.presentation.contentVerticalSpacing),
-        ) {
-            choices.forEach { choice ->
-                IntermittentChoiceButton(
-                    settings = settings,
-                    text = choice.label,
-                    allowMultiple = allowMultiple,
-                    selected = selected.contains(choice),
-                ) {
-                    toggle(choice)
-                }
+        choices.forEach { choice ->
+            IntermittentChoiceButton(
+                settings = settings,
+                text = choice.label,
+                allowMultiple = allowMultiple,
+                selected = selected.contains(choice),
+            ) {
+                toggle(choice)
             }
         }
     }

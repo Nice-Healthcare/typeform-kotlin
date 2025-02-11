@@ -8,6 +8,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
@@ -33,9 +35,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.typeform.example.model.FormHandler
+import com.typeform.example.model.FormDownloader
 import com.typeform.example.model.RecentHandler
 import com.typeform.example.ui.theme.ExampleTheme
 import com.typeform.schema.Form
@@ -47,7 +51,7 @@ import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun Content(
+fun ContentView(
     modifier: Modifier = Modifier,
     conclusion: Conclusion? = null,
     displayFormHandler: (Form, Settings) -> Unit = { _, _ -> },
@@ -57,7 +61,7 @@ fun Content(
     val coroutineScope = rememberCoroutineScope()
     val recentHandler = RecentHandler(context)
     val recentIds = recentHandler.recentFormIds.collectAsState()
-    val formHandler = FormHandler()
+    val formDownloader = FormDownloader()
 
     var formId by remember { mutableStateOf("") }
     var expanded by remember { mutableStateOf(false) }
@@ -66,9 +70,10 @@ fun Content(
     var downloading by remember { mutableStateOf(false) }
     var downloadFailure: String? by remember { mutableStateOf(null) }
     val (focus) = FocusRequester.createRefs()
+    val focusManager = LocalFocusManager.current
 
     fun download() {
-        focus.freeFocus()
+        focusManager.clearFocus()
         downloadFailure = null
 
         if (formId.isBlank()) {
@@ -79,7 +84,7 @@ fun Content(
 
         CoroutineScope(Dispatchers.IO).launch {
             try {
-                val form = formHandler.getForm(formId)
+                val form = formDownloader.getForm(formId)
                 recentHandler.addFormId(formId)
                 val settings = Settings(
                     presentation = Settings.Presentation(
@@ -90,12 +95,12 @@ fun Content(
                 coroutineScope.launch {
                     displayFormHandler(form, settings)
                 }
-            } catch (exception: FormHandler.FormException) {
+            } catch (exception: FormDownloader.FormException) {
                 downloadFailure = when (exception) {
-                    is FormHandler.FormException.Download -> {
+                    is FormDownloader.FormException.Download -> {
                         "Download Failed"
                     }
-                    is FormHandler.FormException.Decoding -> {
+                    is FormDownloader.FormException.Decoding -> {
                         "Decoding Failed"
                     }
                 }
@@ -128,7 +133,6 @@ fun Content(
             ) {
                 Text(
                     text = "Preview any form by entering its unique ID.",
-                    modifier = Modifier.focusRequester(focus),
                     style = MaterialTheme.typography.titleMedium,
                 )
 
@@ -140,6 +144,16 @@ fun Content(
                         onValueChange = {
                             formId = it
                         },
+                        modifier = Modifier
+                            .focusRequester(focus),
+                        keyboardOptions = KeyboardOptions(
+                            imeAction = ImeAction.Done
+                        ),
+                        keyboardActions = KeyboardActions(
+                            onDone = {
+                                download()
+                            },
+                        ),
                         enabled = !downloading,
                         label = {
                             Text(text = "FormID")
@@ -245,12 +259,18 @@ fun Content(
                     when (it) {
                         is Conclusion.Completed -> {
                             Text(text = "Completed")
+
+                            ResponsesView(responses = it.responses)
                         }
                         is Conclusion.Abandoned -> {
                             Text(text = "Abandoned")
+
+                            ResponsesView(responses = it.responses)
                         }
                         is Conclusion.Rejected -> {
                             Text(text = "Rejected")
+
+                            ResponsesView(responses = it.responses)
                         }
                         is Conclusion.Canceled -> {
                             Text(text = "Canceled")
@@ -264,8 +284,8 @@ fun Content(
 
 @Preview(showBackground = true)
 @Composable
-fun ContentPreview() {
+private fun ContentViewPreview() {
     ExampleTheme {
-        Content()
+        ContentView()
     }
 }

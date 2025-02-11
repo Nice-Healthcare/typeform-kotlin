@@ -21,6 +21,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
+import coil3.ImageLoader
 import com.typeform.models.Position
 import com.typeform.models.Responses
 import com.typeform.models.TypeformException
@@ -38,7 +39,6 @@ import com.typeform.ui.fields.NumberView
 import com.typeform.ui.fields.OpinionScaleView
 import com.typeform.ui.fields.RatingView
 import com.typeform.ui.fields.ShortTextView
-import com.typeform.ui.fields.StatementView
 import com.typeform.ui.fields.YesNoView
 import com.typeform.ui.models.Conclusion
 import com.typeform.ui.models.NavigationAction
@@ -61,6 +61,7 @@ internal fun FieldView(
     field: Field,
     group: Group?,
     responses: Responses,
+    imageLoader: ImageLoader? = null,
     header: (@Composable () -> Unit)? = null,
     actionHandler: (NavigationAction) -> Unit,
 ) {
@@ -147,104 +148,119 @@ internal fun FieldView(
                 textStyle = MaterialTheme.typography.h5,
             )
 
-            when (field.properties) {
-                is FieldProperties.DateStampProperties -> {
-                    DateView(
-                        settings = settings,
-                        properties = field.properties.properties,
-                        responseState = responseState,
-                        validations = field.validations,
-                    ) {
-                        handleResponseState(it)
-                    }
-                }
-                is FieldProperties.DropdownProperties -> {
-                    DropdownView(
-                        settings = settings,
-                        properties = field.properties.properties,
-                        responseState = responseState,
-                        validations = field.validations,
-                    ) {
-                        handleResponseState(it)
-                    }
-                }
-                is FieldProperties.GroupProperties -> {
-                    // No additional content
-                }
-                is FieldProperties.LongTextProperties -> {
-                    LongTextView(
-                        settings = settings,
-                        properties = field.properties.properties,
-                        responseState = responseState,
-                        validations = field.validations,
-                    ) {
-                        handleResponseState(it)
-                    }
-                }
-                is FieldProperties.MultipleChoiceProperties -> {
-                    MultipleChoiceView(
-                        settings = settings,
-                        properties = field.properties.properties,
-                        responseState = responseState,
-                        validations = field.validations,
-                    ) {
-                        handleResponseState(it)
-                    }
-                }
-                is FieldProperties.NumberProperties -> {
-                    NumberView(
-                        settings = settings,
-                        properties = field.properties.properties,
-                        responseState = responseState,
-                        validations = field.validations,
-                    ) {
-                        handleResponseState(it)
-                    }
-                }
-                is FieldProperties.OpinionScaleProperties -> {
-                    OpinionScaleView(
-                        settings = settings,
-                        properties = field.properties.properties,
-                        responseState = responseState,
-                        validations = field.validations,
-                    ) {
-                        handleResponseState(it)
-                    }
-                }
-                is FieldProperties.RatingProperties -> {
-                    RatingView(
-                        settings = settings,
-                        properties = field.properties.properties,
-                        responseState = responseState,
-                        validations = field.validations,
-                    ) {
-                        handleResponseState(it)
-                    }
-                }
-                is FieldProperties.ShortTextProperties -> {
-                    ShortTextView(
-                        settings = settings,
-                        properties = field.properties.properties,
-                        responseState = responseState,
-                        validations = field.validations,
-                    ) {
-                        handleResponseState(it)
-                    }
-                }
-                is FieldProperties.StatementProperties -> {
-                    StatementView(
-                        settings = settings,
-                        properties = field.properties.properties,
+            Column(
+                verticalArrangement = Arrangement.spacedBy(settings.presentation.descriptionContentVerticalSpacing),
+            ) {
+                field.properties.description?.let {
+                    StyledTextView(
+                        text = it,
+                        textStyle = MaterialTheme.typography.caption,
                     )
                 }
-                is FieldProperties.YesNoProperties -> {
-                    YesNoView(
-                        settings = settings,
-                        properties = field.properties.properties,
-                        responseState = responseState,
-                        validations = field.validations,
-                    ) {
-                        handleResponseState(it)
+
+                field.attachment?.let {
+                    AttachmentView(
+                        attachment = it,
+                        imageLoader = imageLoader,
+                    )
+                }
+
+                when (field.properties) {
+                    is FieldProperties.DateStampProperties -> {
+                        DateView(
+                            settings = settings,
+                            properties = field.properties.properties,
+                            responseState = responseState,
+                            validations = field.validations,
+                        ) {
+                            handleResponseState(it)
+                        }
+                    }
+                    is FieldProperties.DropdownProperties -> {
+                        DropdownView(
+                            settings = settings,
+                            properties = field.properties.properties,
+                            responseState = responseState,
+                            validations = field.validations,
+                        ) {
+                            handleResponseState(it)
+                        }
+                    }
+                    is FieldProperties.GroupProperties -> {
+                        // No additional content
+                    }
+                    is FieldProperties.LongTextProperties -> {
+                        LongTextView(
+                            settings = settings,
+                            properties = field.properties.properties,
+                            responseState = responseState,
+                            validations = field.validations,
+                        ) {
+                            handleResponseState(it)
+                        }
+                    }
+                    is FieldProperties.MultipleChoiceProperties -> {
+                        MultipleChoiceView(
+                            settings = settings,
+                            properties = field.properties.properties,
+                            responseState = responseState,
+                            validations = field.validations,
+                        ) {
+                            handleResponseState(it)
+                        }
+                    }
+                    is FieldProperties.NumberProperties -> {
+                        NumberView(
+                            settings = settings,
+                            properties = field.properties.properties,
+                            responseState = responseState,
+                            validations = field.validations,
+                        ) {
+                            handleResponseState(it)
+                        }
+                    }
+                    is FieldProperties.OpinionScaleProperties -> {
+                        OpinionScaleView(
+                            settings = settings,
+                            properties = field.properties.properties,
+                            responseState = responseState,
+                            validations = field.validations,
+                        ) {
+                            handleResponseState(it)
+                        }
+                    }
+                    is FieldProperties.RatingProperties -> {
+                        RatingView(
+                            settings = settings,
+                            properties = field.properties.properties,
+                            responseState = responseState,
+                            validations = field.validations,
+                        ) {
+                            handleResponseState(it)
+                        }
+                    }
+                    is FieldProperties.ShortTextProperties -> {
+                        ShortTextView(
+                            settings = settings,
+                            properties = field.properties.properties,
+                            responseState = responseState,
+                            validations = field.validations,
+                        ) {
+                            handleResponseState(it)
+                        }
+                    }
+                    is FieldProperties.StatementProperties -> {
+                        // No additional content
+                    }
+                    is FieldProperties.YesNoProperties -> {
+                        YesNoView(
+                            settings = settings,
+                            properties = field.properties.properties,
+                            responseState = responseState,
+                            validations = field.validations,
+                        ) {
+                            handleResponseState(it)
+                        }
                     }
                 }
             }
