@@ -1,10 +1,12 @@
 package com.typeform.contracts
 
+import com.typeform.models.Upload
 import com.typeform.schema.Choice
 import com.typeform.schema.DateStamp
 import com.typeform.schema.Dropdown
 import com.typeform.schema.FieldProperties
 import com.typeform.schema.FieldType
+import com.typeform.schema.FileUpload
 import com.typeform.schema.Group
 import com.typeform.schema.LongText
 import com.typeform.schema.MultipleChoice
@@ -90,9 +92,17 @@ data class FieldPropertiesContract(
                 FieldProperties.DropdownProperties(
                     Dropdown(
                         choices = choices ?: emptyList(),
+                        description = null,
                         randomize = randomize == true,
                         alphabetical_order = alphabeticalOrder == true,
                     ),
+                )
+            }
+            FieldType.FILE_UPLOAD -> {
+                FieldProperties.FileUploadProperties(
+                    FileUpload(
+                        description = null,
+                    )
                 )
             }
             FieldType.GROUP -> {

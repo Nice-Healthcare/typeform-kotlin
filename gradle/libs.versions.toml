@@ -5,6 +5,7 @@ coil = "3.1.0"
 compose = "1.7.1"
 composeBom = "2025.01.01"
 coreKtx = "1.15.0"
+googleAccompanist = "0.37.0"
 kotlin = "2.1.0"
 kotlinxSerializationJson = "1.7.3"
 ktlint = "12.1.1"
@@ -29,6 +30,7 @@ androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-toolin
 coil-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil" }
 coil-compose-core = { module = "io.coil-kt.coil3:coil-compose-core", version.ref = "coil" }
 coil-network = { module = "io.coil-kt.coil3:coil-network-ktor3", version.ref = "coil" }
+google-accompanist = { group = "com.google.accompanist", name = "accompanist-permissions", version.ref = "googleAccompanist" }
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
 ktor-android = { module = "io.ktor:ktor-client-android", version.ref = "ktor" }

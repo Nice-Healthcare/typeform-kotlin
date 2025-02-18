@@ -33,6 +33,7 @@ import com.typeform.schema.ThankYouScreen
 import com.typeform.ui.components.StyledTextView
 import com.typeform.ui.fields.DateView
 import com.typeform.ui.fields.DropdownView
+import com.typeform.ui.fields.FileUploadView
 import com.typeform.ui.fields.LongTextView
 import com.typeform.ui.fields.MultipleChoiceView
 import com.typeform.ui.fields.NumberView
@@ -178,6 +179,16 @@ internal fun FieldView(
                     }
                     is FieldProperties.DropdownProperties -> {
                         DropdownView(
+                            settings = settings,
+                            properties = field.properties.properties,
+                            responseState = responseState,
+                            validations = field.validations,
+                        ) {
+                            handleResponseState(it)
+                        }
+                    }
+                    is FieldProperties.FileUploadProperties -> {
+                        FileUploadView(
                             settings = settings,
                             properties = field.properties.properties,
                             responseState = responseState,

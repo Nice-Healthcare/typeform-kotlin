@@ -40,6 +40,7 @@ val Field.Companion.previewDropdown: Field
                     Choice.previewHot,
                     Choice.previewCold,
                 ),
+                description = null,
                 randomize = false,
                 alphabetical_order = false,
             ),

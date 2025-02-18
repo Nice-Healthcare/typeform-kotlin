@@ -54,6 +54,16 @@ fun Responses.invalidResponseValuesGiven(fields: List<Field>): List<String> {
                         }
                     }
                 }
+                is FieldProperties.FileUploadProperties -> {
+                    when (element.value) {
+                        is ResponseValue.UploadValue -> {
+                            // Expected Type
+                        }
+                        else -> {
+                            ref = element.key
+                        }
+                    }
+                }
                 is FieldProperties.GroupProperties -> {
                     ref = element.key
                 }

@@ -16,6 +16,8 @@ sealed class ResponseValue {
 
     data class StringValue(val value: String) : ResponseValue()
 
+    data class UploadValue(val value: Upload) : ResponseValue()
+
     fun asBoolean(): Boolean? {
         return when (this) {
             is BooleanValue -> {
@@ -77,6 +79,17 @@ sealed class ResponseValue {
     fun asString(): String? {
         return when (this) {
             is StringValue -> {
+                this.value
+            }
+            else -> {
+                null
+            }
+        }
+    }
+
+    fun asUpload(): Upload? {
+        return when (this) {
+            is UploadValue -> {
                 this.value
             }
             else -> {

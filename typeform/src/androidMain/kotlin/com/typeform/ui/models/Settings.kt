@@ -64,6 +64,10 @@ data class Settings(
         val abandonConfirmationAction: String = "Abandon",
         val emptyChoice: String = "Select an Option",
         val nullDate: String = "I'm not sure…",
+        val uploadAction: String = "Select File",
+        val uploadCamera: String = "Camera",
+        val uploadPhotoLibrary: String = "Photo Library",
+        val uploadDocument: String = "Documents",
     )
 
     data class Presentation(
