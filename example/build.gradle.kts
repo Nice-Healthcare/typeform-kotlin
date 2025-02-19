@@ -47,6 +47,7 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     implementation(libs.coil.compose)
     implementation(libs.coil.network)
+    implementation(libs.google.accompanist)
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.ktor.android)
     implementation(libs.ktor.client)

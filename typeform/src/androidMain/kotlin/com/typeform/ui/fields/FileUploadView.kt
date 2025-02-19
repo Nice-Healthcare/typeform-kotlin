@@ -5,9 +5,9 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
-import androidx.compose.material.Button
+import androidx.compose.material.DropdownMenu
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material3.DropdownMenu
+import androidx.compose.material.OutlinedButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -18,13 +18,16 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.typeform.models.ResponseValue
 import com.typeform.models.Upload
 import com.typeform.schema.FileUpload
 import com.typeform.schema.Validations
 import com.typeform.ui.components.StyledTextView
+import com.typeform.ui.components.UploadImageView
 import com.typeform.ui.components.UploadPickerView
 import com.typeform.ui.models.ResponseState
 import com.typeform.ui.models.Settings
+import com.typeform.ui.models.UploadHelper
 import com.typeform.ui.preview.ThemePreview
 
 @Composable
@@ -33,17 +36,35 @@ internal fun FileUploadView(
     properties: FileUpload,
     responseState: ResponseState,
     validations: Validations?,
+    uploadHelper: UploadHelper? = null,
     stateHandler: (ResponseState) -> Unit,
 ) {
-    var value: Upload? by remember { mutableStateOf(responseState.response?.asUpload()) }
+    var upload: Upload? by remember { mutableStateOf(responseState.response?.asUpload()) }
     var expanded: Boolean by remember { mutableStateOf(false) }
-    var path: Upload.Path? by remember { mutableStateOf(null) }
     var exception: Throwable? by remember { mutableStateOf(null) }
 
     fun updateState() {
+        var state = responseState
+
+        state = if (upload != null) {
+            state.copy(response = ResponseValue.UploadValue(upload!!))
+        } else {
+            state.copy(response = null)
+        }
+
+        state = if (validations != null && validations.required) {
+            state.copy(invalid = state.response == null)
+        } else {
+            state.copy(invalid = false)
+        }
+
+        stateHandler(state)
     }
 
-    fun selectFile() {
+    fun select(file: Upload?) {
+        upload = file
+
+        updateState()
     }
 
     LaunchedEffect(Unit) {
@@ -54,15 +75,37 @@ internal fun FileUploadView(
         verticalArrangement = Arrangement.spacedBy(settings.presentation.contentVerticalSpacing),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        Button(
-            onClick = {
-                expanded = true
-            },
-            modifier = Modifier.fillMaxWidth(),
-        ) {
+        if (upload != null) {
+            UploadImageView(
+                upload = upload!!,
+                settings = settings,
+                uploadHelper = uploadHelper,
+            ) {
+                select(null)
+            }
+        } else {
+            OutlinedButton(
+                onClick = {
+                    expanded = true
+                },
+                modifier = Modifier.fillMaxWidth(),
+                elevation = null,
+                shape = settings.outlinedButton.shape,
+                border = settings.outlinedButton.border,
+                colors = settings.outlinedButton.colors,
+                contentPadding = settings.outlinedButton.contentPadding,
+            ) {
+                StyledTextView(
+                    text = settings.localization.uploadAction,
+                    textStyle = MaterialTheme.typography.body1,
+                )
+            }
+        }
+
+        exception?.let {
             StyledTextView(
-                text = settings.localization.uploadAction,
-                textStyle = MaterialTheme.typography.body1,
+                text = it.message ?: "An error occurred.",
+                textStyle = MaterialTheme.typography.subtitle1,
             )
         }
 
@@ -74,15 +117,16 @@ internal fun FileUploadView(
         ) {
             UploadPickerView(
                 settings = settings,
+                uploadHelper = uploadHelper,
             ) { result ->
                 expanded = false
                 result?.fold(
                     onSuccess = {
-                        value = it
+                        select(it)
                     },
                     onFailure = {
                         exception = it
-                    }
+                    },
                 )
             }
         }
@@ -99,7 +143,7 @@ private fun FileUploadViewPreview() {
             FileUploadView(
                 settings = Settings(),
                 properties = FileUpload(
-                    description = "Select a file."
+                    description = "Select a file.",
                 ),
                 responseState = ResponseState(),
                 validations = null,

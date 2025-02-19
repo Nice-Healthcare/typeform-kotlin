@@ -45,6 +45,7 @@ import com.typeform.ui.models.Conclusion
 import com.typeform.ui.models.NavigationAction
 import com.typeform.ui.models.ResponseState
 import com.typeform.ui.models.Settings
+import com.typeform.ui.models.UploadHelper
 import com.typeform.ui.preview.ThemePreview
 import com.typeform.ui.preview.preview
 import com.typeform.ui.preview.previewDate
@@ -63,6 +64,7 @@ internal fun FieldView(
     group: Group?,
     responses: Responses,
     imageLoader: ImageLoader? = null,
+    uploadHelper: UploadHelper? = null,
     header: (@Composable () -> Unit)? = null,
     actionHandler: (NavigationAction) -> Unit,
 ) {
@@ -193,6 +195,7 @@ internal fun FieldView(
                             properties = field.properties.properties,
                             responseState = responseState,
                             validations = field.validations,
+                            uploadHelper = uploadHelper,
                         ) {
                             handleResponseState(it)
                         }

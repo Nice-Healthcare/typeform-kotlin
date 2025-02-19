@@ -1,6 +1,5 @@
 package com.typeform.contracts
 
-import com.typeform.models.Upload
 import com.typeform.schema.Choice
 import com.typeform.schema.DateStamp
 import com.typeform.schema.Dropdown
@@ -102,7 +101,7 @@ data class FieldPropertiesContract(
                 FieldProperties.FileUploadProperties(
                     FileUpload(
                         description = null,
-                    )
+                    ),
                 )
             }
             FieldType.GROUP -> {
