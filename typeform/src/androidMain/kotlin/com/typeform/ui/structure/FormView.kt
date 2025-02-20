@@ -44,6 +44,7 @@ import com.typeform.ui.components.StyledTextView
 import com.typeform.ui.models.Conclusion
 import com.typeform.ui.models.NavigationAction
 import com.typeform.ui.models.Settings
+import com.typeform.ui.models.UploadHelper
 import com.typeform.ui.preview.ThemePreview
 import com.typeform.ui.preview.preview
 
@@ -56,6 +57,7 @@ fun FormView(
     settings: Settings = Settings(),
     responses: Responses = mutableMapOf(),
     imageLoader: ImageLoader? = null,
+    uploadHelper: UploadHelper? = null,
     conclusion: (Conclusion) -> Unit,
     header: (@Composable () -> Unit)? = null,
 ) {
@@ -262,6 +264,7 @@ fun FormView(
                     group = group,
                     responses = responses,
                     imageLoader = imageLoader,
+                    uploadHelper = uploadHelper,
                     header = header,
                     actionHandler = { navigationAction ->
                         navigateUsing(navigationAction)

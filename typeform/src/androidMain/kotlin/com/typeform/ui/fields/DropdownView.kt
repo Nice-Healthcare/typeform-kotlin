@@ -176,6 +176,7 @@ private fun DropdownViewPreview() {
         settings = Settings(),
         properties = Dropdown(
             choices = emptyList(),
+            description = null,
             randomize = false,
             alphabetical_order = false,
         ),

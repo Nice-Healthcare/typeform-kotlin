@@ -120,6 +120,7 @@ All of the _structural_ components are supported: Welcome Screen, Ending, Statem
 
 * Date
 * Dropdown
+* File Upload
 * Long Text
 * Opinion Scale
 * Multiple Choice
@@ -127,6 +128,36 @@ All of the _structural_ components are supported: Welcome Screen, Ending, Statem
 * Rating
 * Short Text
 * Yes/No
+
+### File Upload
+
+To enable the broadest support for file uploading a `UploadHelper` should be supplied to the `FormView` when initialized.
+The helper is responsible for creating writable `Uri`s for camera capture and for creating `Bitmap` representations for display.
+Your app manifest should include the following to support uploading:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+  <uses-feature
+    android:name="android.hardware.camera"
+    android:required="false" />
+
+  <uses-permission android:name="android.permission.CAMERA" />
+
+  <application>
+    <provider
+      android:name="androidx.core.content.FileProvider"
+      android:authorities="${applicationId}"
+      android:grantUriPermissions="true"
+      android:exported="false"
+      tools:replace="android:authorities">
+      <meta-data
+        android:name="android.support.FILE_PROVIDER_PATHS"
+        android:resource="@xml/file_paths"/>
+    </provider>
+  </application>
+</manifest>
+```
 
 ## Customization
 

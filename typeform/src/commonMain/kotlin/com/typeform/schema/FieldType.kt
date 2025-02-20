@@ -7,6 +7,7 @@ import kotlinx.serialization.Serializable
 enum class FieldType(val rawValue: String) {
     DATE("date"),
     DROPDOWN("dropdown"),
+    FILE_UPLOAD("file_upload"),
     GROUP("group"),
     LONG_TEXT("long_text"),
     MULTIPLE_CHOICE("multiple_choice"),

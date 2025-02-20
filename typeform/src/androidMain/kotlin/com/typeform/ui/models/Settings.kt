@@ -2,6 +2,7 @@ package com.typeform.ui.models
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.ButtonColors
 import androidx.compose.material.CheckboxColors
 import androidx.compose.material.RadioButtonColors
@@ -9,6 +10,7 @@ import androidx.compose.material.SliderColors
 import androidx.compose.material.SwitchColors
 import androidx.compose.material.TextFieldColors
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
@@ -35,10 +37,12 @@ data class Settings(
     val calendar: Calendar = Calendar(),
     val switch: Switch = Switch(),
     val button: Button = Button(),
+    val outlinedButton: OutlinedButton = OutlinedButton(),
     val checkbox: Checkbox = Checkbox(),
     val radio: Radio = Radio(),
     val rating: Rating = Rating(),
     val opinionScale: OpinionScale = OpinionScale(),
+    val upload: Upload = Upload(),
 ) {
     companion object {
         val defaultUnselectedButtonBorderStroke = BorderStroke(
@@ -64,6 +68,10 @@ data class Settings(
         val abandonConfirmationAction: String = "Abandon",
         val emptyChoice: String = "Select an Option",
         val nullDate: String = "I'm not sure…",
+        val uploadAction: String = "Select File",
+        val uploadCamera: String = "Camera",
+        val uploadPhotoLibrary: String = "Photo Library",
+        val uploadDocument: String = "Documents",
     )
 
     data class Presentation(
@@ -116,6 +124,13 @@ data class Settings(
         val contentPadding: PaddingValues = PaddingValues(10.dp),
     )
 
+    data class OutlinedButton(
+        val colors: ButtonColors = TypeformButtonColors.outlinedColors,
+        val shape: Shape = RoundedCornerShape(6.dp),
+        val border: BorderStroke? = defaultSelectedButtonBorderStroke,
+        val contentPadding: PaddingValues = PaddingValues(10.dp),
+    )
+
     data class Checkbox(
         val colors: CheckboxColors = TypeformCheckboxColors(),
     )
@@ -130,5 +145,11 @@ data class Settings(
 
     data class OpinionScale(
         val colors: SliderColors = TypeformSliderColors.opinionScaleColors,
+    )
+
+    data class Upload(
+        val colors: ButtonColors = TypeformButtonColors.uploadColors,
+        val shape: Shape = RoundedCornerShape(16.dp),
+        val maxWidth: Dp? = 200.dp,
     )
 }

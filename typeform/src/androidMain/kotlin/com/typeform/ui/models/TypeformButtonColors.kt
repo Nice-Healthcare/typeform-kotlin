@@ -16,6 +16,13 @@ data class TypeformButtonColors(
     companion object {
         val defaultColors: TypeformButtonColors = TypeformButtonColors()
 
+        val outlinedColors: TypeformButtonColors = TypeformButtonColors()
+
+        val uploadColors: TypeformButtonColors = TypeformButtonColors(
+            backgroundColor = Color.Blue,
+            contentColor = Color.White,
+        )
+
         val ratingColors: TypeformButtonColors = TypeformButtonColors(
             backgroundColor = Color.Black,
             contentColor = Color.Blue,

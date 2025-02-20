@@ -45,6 +45,9 @@ fun ResponsesView(
                 is ResponseValue.StringValue -> {
                     Text(text = value.value)
                 }
+                is ResponseValue.UploadValue -> {
+                    Text(text = value.value.mimeType)
+                }
             }
         }
     }

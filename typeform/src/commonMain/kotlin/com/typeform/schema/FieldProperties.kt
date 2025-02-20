@@ -5,6 +5,8 @@ sealed class FieldProperties {
 
     data class DropdownProperties(val properties: Dropdown) : FieldProperties()
 
+    data class FileUploadProperties(val properties: FileUpload) : FieldProperties()
+
     data class GroupProperties(val properties: Group) : FieldProperties()
 
     data class LongTextProperties(val properties: LongText) : FieldProperties()
@@ -40,6 +42,17 @@ sealed class FieldProperties {
     fun asDropdown(): Dropdown? {
         return when (this) {
             is DropdownProperties -> {
+                this.properties
+            }
+            else -> {
+                null
+            }
+        }
+    }
+
+    fun asFileUpload(): FileUpload? {
+        return when (this) {
+            is FileUploadProperties -> {
                 this.properties
             }
             else -> {
@@ -150,6 +163,12 @@ sealed class FieldProperties {
     val description: String?
         get() = when (this) {
             is DateStampProperties -> {
+                this.properties.description
+            }
+            is DropdownProperties -> {
+                this.properties.description
+            }
+            is FileUploadProperties -> {
                 this.properties.description
             }
             is LongTextProperties -> {

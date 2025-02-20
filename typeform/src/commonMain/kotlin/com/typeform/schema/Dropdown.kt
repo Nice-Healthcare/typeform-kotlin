@@ -5,6 +5,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class Dropdown(
     val choices: List<Choice>,
+    val description: String?,
     val randomize: Boolean,
     val alphabetical_order: Boolean,
 ) {

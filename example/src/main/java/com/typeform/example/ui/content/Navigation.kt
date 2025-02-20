@@ -1,5 +1,6 @@
 package com.typeform.example.ui.content
 
+import android.Manifest
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -12,12 +13,16 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import coil3.SingletonImageLoader
 import coil3.compose.LocalPlatformContext
+import com.google.accompanist.permissions.ExperimentalPermissionsApi
+import com.google.accompanist.permissions.rememberPermissionState
+import com.typeform.example.model.ExampleUploadHelper
 import com.typeform.example.ui.theme.ExampleTheme
 import com.typeform.schema.Form
 import com.typeform.ui.models.Conclusion
 import com.typeform.ui.models.Settings
 import com.typeform.ui.structure.FormView
 
+@OptIn(ExperimentalPermissionsApi::class)
 @Composable
 fun Navigation(
     modifier: Modifier = Modifier,
@@ -26,6 +31,7 @@ fun Navigation(
     var form: Form? by remember { mutableStateOf(null) }
     var settings: Settings by remember { mutableStateOf(Settings()) }
     var conclusion: Conclusion? by remember { mutableStateOf(null) }
+    val cameraPermissionState = rememberPermissionState(permission = Manifest.permission.CAMERA)
 
     NavHost(
         navController = navController,
@@ -53,6 +59,9 @@ fun Navigation(
                     form = it,
                     settings = settings,
                     imageLoader = SingletonImageLoader.get(LocalPlatformContext.current),
+                    uploadHelper = ExampleUploadHelper(
+                        cameraPermissionState = cameraPermissionState,
+                    ),
                     conclusion = {
                         conclusion = it
                         navController.navigate("content")
