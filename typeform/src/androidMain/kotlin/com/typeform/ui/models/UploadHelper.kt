@@ -60,7 +60,7 @@ fun UploadHelper.constructImage(
         bytes = uploadBytes,
         path = path,
         mimeType = "image/jpeg",
-        fileName = uri.path ?: "New Image.jpg",
+        fileName = uri.lastPathSegment ?: "New Image.jpg",
     )
 
     return Result.success(upload)

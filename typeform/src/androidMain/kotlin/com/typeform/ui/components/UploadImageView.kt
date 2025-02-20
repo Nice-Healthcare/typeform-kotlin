@@ -68,7 +68,9 @@ fun UploadImageView(
                 Image(
                     bitmap = bitmap!!.asImageBitmap(),
                     contentDescription = null,
-                    modifier = Modifier.fillMaxSize(),
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(padding),
                     alignment = Alignment.Center,
                     contentScale = ContentScale.Fit,
                 )
