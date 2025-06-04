@@ -39,6 +39,9 @@ fun ResponsesView(
                 is ResponseValue.DateValue -> {
                     Text(text = value.value.toString())
                 }
+                is ResponseValue.InstantValue -> {
+                    Text(text = value.value.toString())
+                }
                 is ResponseValue.IntValue -> {
                     Text(text = value.value.toString())
                 }
@@ -71,9 +74,7 @@ fun ChoiceView(
 private fun ResponsesViewPreview() {
     ExampleTheme {
         ResponsesView(
-            responses = mutableMapOf(
-
-            )
+            responses = mapOf()
         )
     }
 }

@@ -102,7 +102,7 @@ internal fun FieldView(
     fun handleResponseState(state: ResponseState) {
         responseState = state
 
-        val currentResponses = collectedResponses
+        val currentResponses = collectedResponses.toMutableMap()
 
         if (state.response != null) {
             currentResponses[field.ref] = state.response
@@ -297,7 +297,7 @@ private fun FieldViewPreview(
             settings = Settings(),
             field = field,
             group = null,
-            responses = mutableMapOf(),
+            responses = mapOf(),
             header = {
                 Row(
                     modifier = Modifier

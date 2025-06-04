@@ -12,11 +12,11 @@ class MedicalIntake35Tests : TypeformTestCase() {
     override val jsonResource: String
         get() = "MedicalIntake35.json"
 
-    private var responses: Responses = mutableMapOf()
+    private var responses: Responses = mapOf()
 
     @Test
     fun testMultipleLogicPaths() {
-        responses = mutableMapOf(
+        responses = mapOf(
             Pair(
                 "appointment-state",
                 ResponseValue.ChoiceValue(

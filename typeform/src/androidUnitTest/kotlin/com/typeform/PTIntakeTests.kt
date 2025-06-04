@@ -15,7 +15,7 @@ class PTIntakeTests : TypeformTestCase() {
 
     @Test
     fun testLastFieldToThankYouScreen() {
-        val responses: Responses = mutableMapOf(
+        val responses: Responses = mapOf(
             Pair("age-category", ResponseValue.IntValue(30)),
             Pair(
                 "biological-sex",

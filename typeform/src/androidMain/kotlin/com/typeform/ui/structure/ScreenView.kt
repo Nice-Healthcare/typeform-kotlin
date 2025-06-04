@@ -90,7 +90,7 @@ private fun ScreenViewPreview() {
             form = form,
             settings = Settings(),
             screen = screen,
-            responses = mutableMapOf(),
+            responses = mapOf(),
             actionHandler = { },
         )
     }

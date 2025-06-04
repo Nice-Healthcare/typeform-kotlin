@@ -55,7 +55,7 @@ import com.typeform.ui.preview.preview
 fun FormView(
     form: Form,
     settings: Settings = Settings(),
-    responses: Responses = mutableMapOf(),
+    responses: Responses = mapOf(),
     imageLoader: ImageLoader? = null,
     uploadHelper: UploadHelper? = null,
     conclusion: (Conclusion) -> Unit,
@@ -358,7 +358,7 @@ private fun FormViewPreview() {
     ThemePreview {
         FormView(
             Form.preview,
-            responses = mutableMapOf(
+            responses = mapOf(
                 Pair("", ResponseValue.BooleanValue(false)),
             ),
             conclusion = { },
