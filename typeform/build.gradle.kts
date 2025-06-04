@@ -73,6 +73,11 @@ android {
             withJavadocJar()
         }
     }
+    lint {
+        checkReleaseBuilds = false
+        checkDependencies = false
+        checkTestSources = false
+    }
 }
 
 ktlint {
