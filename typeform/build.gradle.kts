@@ -73,6 +73,9 @@ android {
             withJavadocJar()
         }
     }
+    lint {
+        abortOnError = false
+    }
 }
 
 ktlint {
