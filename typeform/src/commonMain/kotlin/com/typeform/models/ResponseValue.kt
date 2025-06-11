@@ -1,8 +1,11 @@
 package com.typeform.models
 
 import com.typeform.schema.Choice
+import com.typeform.serializers.ResponseValueSerializer
 import java.util.Date
+import kotlinx.serialization.Serializable
 
+@Serializable(with = ResponseValueSerializer::class)
 sealed class ResponseValue {
     data class BooleanValue(val value: Boolean) : ResponseValue()
 
@@ -44,9 +47,6 @@ sealed class ResponseValue {
         return when (this) {
             is ChoicesValue -> {
                 this.value
-            }
-            is ChoiceValue -> {
-                listOf(this.value)
             }
             else -> {
                 null

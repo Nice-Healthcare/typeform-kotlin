@@ -17,7 +17,7 @@ class PreloadedResponsesTests : TypeformTestCase() {
 
     @Test
     fun testNotSkippingWelcomeEmptyResponses() {
-        val responses: Responses = mutableMapOf()
+        val responses: Responses = mapOf()
         val position: Position
         try {
             position = form.firstPosition(skipWelcomeScreen = false, responses = responses)
@@ -38,7 +38,7 @@ class PreloadedResponsesTests : TypeformTestCase() {
 
     @Test
     fun testNotSkippingWelcomeFirstFieldResponses() {
-        val responses: Responses = mutableMapOf(
+        val responses: Responses = mapOf(
             Pair(
                 "508ea9df-177c-4cda-8371-8f7cc1bc60a2",
                 ResponseValue.ChoiceValue(
@@ -71,7 +71,7 @@ class PreloadedResponsesTests : TypeformTestCase() {
 
     @Test
     fun testSkippingWelcomeEmptyResponses() {
-        val responses: Responses = mutableMapOf()
+        val responses: Responses = mapOf()
 
         val position: Position
         try {
@@ -92,7 +92,7 @@ class PreloadedResponsesTests : TypeformTestCase() {
 
     @Test
     fun testSkippingWelcomeFirstFieldResponses() {
-        val responses: Responses = mutableMapOf(
+        val responses: Responses = mapOf(
             Pair(
                 "508ea9df-177c-4cda-8371-8f7cc1bc60a2",
                 ResponseValue.ChoiceValue(
@@ -125,7 +125,7 @@ class PreloadedResponsesTests : TypeformTestCase() {
     // There is a 'Statement' field after the first response, and before the second response.
     @Test
     fun testSkippingWelcomePostStatementResponses() {
-        val responses: Responses = mutableMapOf(
+        val responses: Responses = mapOf(
             Pair(
                 "508ea9df-177c-4cda-8371-8f7cc1bc60a2",
                 ResponseValue.ChoiceValue(

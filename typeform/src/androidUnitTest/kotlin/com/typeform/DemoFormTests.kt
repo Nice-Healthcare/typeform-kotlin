@@ -21,7 +21,7 @@ class DemoFormTests : TypeformTestCase() {
     fun testFormStart() {
         var position = form.firstPosition(
             skipWelcomeScreen = false,
-            responses = mutableMapOf(),
+            responses = mapOf(),
         )
 
         when (position) {
@@ -33,7 +33,7 @@ class DemoFormTests : TypeformTestCase() {
             }
         }
 
-        position = form.nextPosition(position, mutableMapOf())
+        position = form.nextPosition(position, mapOf())
 
         when (position) {
             is Position.FieldPosition -> {
@@ -45,7 +45,7 @@ class DemoFormTests : TypeformTestCase() {
             }
         }
 
-        position = form.nextPosition(position, mutableMapOf())
+        position = form.nextPosition(position, mapOf())
 
         when (position) {
             is Position.FieldPosition -> {

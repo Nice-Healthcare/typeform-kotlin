@@ -4,8 +4,9 @@ import com.typeform.schema.Field
 import com.typeform.schema.FieldProperties
 import com.typeform.schema.fieldWithRef
 
+@Deprecated(message = "Not Used")
 typealias Response = (String, ResponseValue?) -> Unit
-typealias Responses = MutableMap<String, ResponseValue>
+typealias Responses = Map<String, ResponseValue>
 
 /**
  * Verify that [ResponseValue]s in the collection are valid given the [Field] definitions.

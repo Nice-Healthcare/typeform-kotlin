@@ -14,7 +14,7 @@ import kotlin.test.fail
 
 class PositionTests : TypeformTestCase() {
 
-    private var responses: Responses = mutableMapOf()
+    private var responses: Responses = mapOf()
 
     /**
      * Verify the transition from a [WelcomeScreen] to the first [Field] in a [Form].
@@ -66,7 +66,7 @@ class PositionTests : TypeformTestCase() {
             fail("Invalid States")
         }
 
-        responses = mutableMapOf(
+        responses = mapOf(
             Pair(stateField.ref, ResponseValue.ChoiceValue(states.second)),
         )
 
@@ -89,7 +89,7 @@ class PositionTests : TypeformTestCase() {
             }
         }
 
-        responses = mutableMapOf(
+        responses = mapOf(
             Pair(stateField.ref, ResponseValue.ChoiceValue(states.first)),
         )
 
@@ -115,7 +115,7 @@ class PositionTests : TypeformTestCase() {
      */
     @Test
     fun testBeginGroup() {
-        responses = mutableMapOf(
+        responses = mapOf(
             Pair(VISIT_STATE, ResponseValue.ChoiceValue(minnesota)),
             Pair(PATIENT_AGE, ResponseValue.ChoiceValue(adult)),
             Pair(PATIENT_BIOLOGICAL_SEX, ResponseValue.ChoiceValue(male)),
@@ -166,7 +166,7 @@ class PositionTests : TypeformTestCase() {
      */
     @Test
     fun testEndGroup() {
-        responses = mutableMapOf(
+        responses = mapOf(
             Pair(VISIT_STATE, ResponseValue.ChoiceValue(minnesota)),
             Pair(PATIENT_AGE, ResponseValue.ChoiceValue(adult)),
             Pair(PATIENT_BIOLOGICAL_SEX, ResponseValue.ChoiceValue(male)),
@@ -222,7 +222,7 @@ class PositionTests : TypeformTestCase() {
      */
     @Test
     fun testNoLogicNextField() {
-        responses = mutableMapOf(
+        responses = mapOf(
             Pair(VISIT_STATE, ResponseValue.ChoiceValue(minnesota)),
             Pair(PATIENT_AGE, ResponseValue.ChoiceValue(adult)),
             Pair(PATIENT_BIOLOGICAL_SEX, ResponseValue.ChoiceValue(male)),
@@ -262,7 +262,7 @@ class PositionTests : TypeformTestCase() {
 
     @Test
     fun testAcuteSymptomsFlow() {
-        responses = mutableMapOf(
+        responses = mapOf(
             Pair(VISIT_STATE, ResponseValue.ChoiceValue(minnesota)),
             Pair(PATIENT_AGE, ResponseValue.ChoiceValue(adult)),
             Pair(PATIENT_BIOLOGICAL_SEX, ResponseValue.ChoiceValue(male)),

@@ -71,9 +71,7 @@ fun ChoiceView(
 private fun ResponsesViewPreview() {
     ExampleTheme {
         ResponsesView(
-            responses = mutableMapOf(
-
-            )
+            responses = mapOf()
         )
     }
 }

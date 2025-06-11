@@ -19,7 +19,7 @@ class ImageAttachmentTests : TypeformTestCase() {
     fun testFormStart() {
         val firstPosition = form.firstPosition(
             skipWelcomeScreen = false,
-            responses = mutableMapOf(),
+            responses = mapOf(),
         )
 
         when (firstPosition) {

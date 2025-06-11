@@ -61,7 +61,7 @@ private fun RejectedViewPreview() {
     RejectedView(
         scaffoldPadding = PaddingValues(0.dp),
         settings = Settings(),
-        responses = mutableMapOf(),
+        responses = mapOf(),
         onClick = {},
     )
 }

@@ -42,7 +42,7 @@ Forms contain [`Field`](typeform/src/commonMain/kotlin/com/typeform/schema/Field
 ```kotlin
 val form = Form()
 val position = Position.screen(form.firstScreen!!)
-val responses: Map<Reference, ResponseValue> = mutableMapOf()
+val responses: Map<Reference, ResponseValue> = mapOf()
 val nextPosition = form.nextPosition(from = position, responses = responses)
 ```
 

@@ -20,7 +20,7 @@ class HealthHistoryFormTests : TypeformTestCase() {
 
     @Test
     fun testMinorImmunization() {
-        val responses: Responses = mutableMapOf(
+        val responses: Responses = mapOf(
             Pair("health-history-form-completed", ResponseValue.BooleanValue(false)),
             Pair("patient-age", ResponseValue.IntValue(17)),
             Pair(
