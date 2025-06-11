@@ -40,9 +40,6 @@ fun Responses.invalidResponseValuesGiven(fields: List<Field>): List<String> {
                         is ResponseValue.DateValue -> {
                             // Expected Type
                         }
-                        is ResponseValue.InstantValue -> {
-                            // Expected Type
-                        }
                         else -> {
                             ref = element.key
                         }

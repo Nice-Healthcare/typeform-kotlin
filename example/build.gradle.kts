@@ -51,7 +51,6 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.coil.compose)
     implementation(libs.coil.network)
-    implementation(libs.kotlinx.datetime)
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.ktor.android)
     implementation(libs.ktor.client)

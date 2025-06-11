@@ -26,8 +26,7 @@ import com.typeform.schema.Validations
 import com.typeform.ui.components.StyledTextView
 import com.typeform.ui.models.ResponseState
 import com.typeform.ui.models.Settings
-import kotlinx.datetime.Clock
-import kotlinx.datetime.Instant
+import java.util.Date
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -38,10 +37,8 @@ internal fun DateView(
     validations: Validations?,
     stateHandler: (ResponseState) -> Unit,
 ) {
-    val pickerState = rememberDatePickerState(
-        initialSelectedDateMillis = (responseState.response?.asInstant() ?: Clock.System.now()).toEpochMilliseconds(),
-    )
-    var milliseconds by remember { mutableStateOf(responseState.response?.asInstant()?.toEpochMilliseconds()) }
+    val pickerState = rememberDatePickerState((responseState.response?.asDate() ?: Date()).time)
+    var milliseconds by remember { mutableStateOf(responseState.response?.asDate()?.time) }
     var isNotSure by remember { mutableStateOf(false) }
 
     val isOptional = validations?.required != true
@@ -51,7 +48,7 @@ internal fun DateView(
 
         val millis = milliseconds
         state = if (millis != null && !isNotSure) {
-            state.copy(response = ResponseValue.InstantValue(Instant.fromEpochMilliseconds(millis)))
+            state.copy(response = ResponseValue.DateValue(Date(millis)))
         } else {
             state.copy(response = null)
         }
@@ -101,7 +98,7 @@ internal fun DateView(
                         if (isNotSure) {
                             select(null)
                         } else {
-                            select(pickerState.selectedDateMillis ?: Clock.System.now().toEpochMilliseconds())
+                            select(pickerState.selectedDateMillis ?: Date().time)
                         }
                     },
                     colors = settings.switch.colors,

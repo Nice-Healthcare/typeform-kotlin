@@ -5,8 +5,6 @@ import com.typeform.serializers.OpSerializer
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
-import kotlinx.datetime.Instant
-import kotlinx.datetime.toKotlinInstant
 import kotlinx.serialization.Serializable
 
 @Serializable(with = OpSerializer::class)
@@ -91,7 +89,6 @@ enum class Op(val rawValue: String) {
         }
     }
 
-    @Deprecated(replaceWith = ReplaceWith("compareInstant()"), message = "Use kotlinx-datetime")
     @Throws(TypeformException::class)
     fun compareDate(
         response: Date,
@@ -101,41 +98,6 @@ enum class Op(val rawValue: String) {
             ?: throw TypeformException.ResponseTypeMismatch(Date::class.simpleName ?: "Date")
 
         val comparison = response.compareTo(conditionDate)
-
-        when (this) {
-            EARLIER_THAN -> {
-                return comparison < 0
-            }
-            EARLIER_THAN_OR_ON -> {
-                return comparison <= 0
-            }
-            LATER_THAN -> {
-                return comparison > 0
-            }
-            LATER_THAN_OR_ON -> {
-                return comparison >= 0
-            }
-            NOT_ON -> {
-                return comparison != 0
-            }
-            ON -> {
-                return comparison == 0
-            }
-            else -> {
-                throw TypeformException.UnexpectedOperation(this)
-            }
-        }
-    }
-
-    @Throws(TypeformException::class)
-    fun compareInstant(
-        response: Instant,
-        condition: String,
-    ): Boolean {
-        val conditionDate = yearMonthDay.parse(condition)
-            ?: throw TypeformException.ResponseTypeMismatch(Date::class.simpleName ?: "Date")
-
-        val comparison = response.compareTo(conditionDate.toInstant().toKotlinInstant())
 
         when (this) {
             EARLIER_THAN -> {

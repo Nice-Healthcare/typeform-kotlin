@@ -87,13 +87,6 @@ fun List<Var>.matchGiven(
                         null
                     }
                 }
-                is ResponseValue.InstantValue -> {
-                    try {
-                        op.compareInstant(response.value, valueVar.value.value)
-                    } catch (_: Exception) {
-                        null
-                    }
-                }
                 else -> {
                     null
                 }
