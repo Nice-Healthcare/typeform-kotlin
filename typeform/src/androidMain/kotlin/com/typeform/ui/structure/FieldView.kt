@@ -102,15 +102,11 @@ internal fun FieldView(
     fun handleResponseState(state: ResponseState) {
         responseState = state
 
-        val currentResponses = collectedResponses.toMutableMap()
-
-        if (state.response != null) {
-            currentResponses[field.ref] = state.response
+        collectedResponses = if (state.response != null) {
+            collectedResponses + (field.ref to state.response)
         } else {
-            currentResponses.remove(field.ref)
+            collectedResponses.filterNot { it.key == field.ref }
         }
-
-        collectedResponses = currentResponses
 
         determineNext()
     }
@@ -130,13 +126,13 @@ internal fun FieldView(
                 when (it) {
                     is Position.ScreenPosition -> {
                         if (it.screen is ThankYouScreen && settings.presentation.skipEndingScreen) {
-                            actionHandler(NavigationAction.ConclusionAction(Conclusion.Completed(responses, it.screen)))
+                            actionHandler(NavigationAction.ConclusionAction(Conclusion.Completed(collectedResponses, it.screen)))
                         } else {
-                            actionHandler(NavigationAction.PositionAction(it))
+                            actionHandler(NavigationAction.PositionAction(it, collectedResponses))
                         }
                     }
                     else -> {
-                        actionHandler(NavigationAction.PositionAction(it))
+                        actionHandler(NavigationAction.PositionAction(it, collectedResponses))
                     }
                 }
             }
