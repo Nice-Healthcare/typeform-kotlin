@@ -16,37 +16,39 @@ import com.typeform.schema.Choice
 fun ResponsesView(
     responses: Responses,
 ) {
-    Row(
-      horizontalArrangement = Arrangement.spacedBy(10.dp),
-    ) {
+    Column {
         responses.forEach { (key, value) ->
-            Text(
-                text = key,
-            )
+            Row(
+                horizontalArrangement = Arrangement.spacedBy(10.dp),
+            ) {
+                Text(
+                    text = key,
+                )
 
-            when (value) {
-                is ResponseValue.BooleanValue -> {
-                    Text(text = value.value.toString())
-                }
-                is ResponseValue.ChoiceValue -> {
-                    ChoiceView(value.value)
-                }
-                is ResponseValue.ChoicesValue -> {
-                    value.value.forEach {
-                        ChoiceView(it)
+                when (value) {
+                    is ResponseValue.BooleanValue -> {
+                        Text(text = value.value.toString())
                     }
-                }
-                is ResponseValue.DateValue -> {
-                    Text(text = value.value.toString())
-                }
-                is ResponseValue.IntValue -> {
-                    Text(text = value.value.toString())
-                }
-                is ResponseValue.StringValue -> {
-                    Text(text = value.value)
-                }
-                is ResponseValue.UploadValue -> {
-                    Text(text = value.value.mimeType)
+                    is ResponseValue.ChoiceValue -> {
+                        ChoiceView(value.value)
+                    }
+                    is ResponseValue.ChoicesValue -> {
+                        value.value.forEach {
+                            ChoiceView(it)
+                        }
+                    }
+                    is ResponseValue.DateValue -> {
+                        Text(text = value.value.toString())
+                    }
+                    is ResponseValue.IntValue -> {
+                        Text(text = value.value.toString())
+                    }
+                    is ResponseValue.StringValue -> {
+                        Text(text = value.value)
+                    }
+                    is ResponseValue.UploadValue -> {
+                        Text(text = value.value.mimeType)
+                    }
                 }
             }
         }
@@ -71,7 +73,10 @@ fun ChoiceView(
 private fun ResponsesViewPreview() {
     ExampleTheme {
         ResponsesView(
-            responses = mapOf()
+            responses = mapOf(
+                "example-1" to ResponseValue.StringValue("Hello World!"),
+                "example-2" to ResponseValue.BooleanValue(false)
+            )
         )
     }
 }

@@ -64,6 +64,7 @@ fun FormView(
     val navController = rememberNavController()
     var showBackNavigation by remember { mutableStateOf(false) }
     var showConfirmCancel by remember { mutableStateOf(false) }
+    var collectedResponses: Responses by remember { mutableStateOf(responses) }
 
     val startPosition: Position? = remember {
         try {
@@ -94,6 +95,8 @@ fun FormView(
     fun navigateUsing(navigationAction: NavigationAction) {
         when (navigationAction) {
             is NavigationAction.PositionAction -> {
+                collectedResponses = navigationAction.responses.toMutableMap()
+
                 when (navigationAction.position) {
                     is Position.FieldPosition -> {
                         navController.navigate(TypeformRoute.makeField(navigationAction.position.field.id))
@@ -147,7 +150,7 @@ fun FormView(
                             Text(
                                 text = settings.localization.exit,
                                 modifier = Modifier.clickable {
-                                    if (responses.isEmpty()) {
+                                    if (collectedResponses.isEmpty()) {
                                         conclusion(Conclusion.Canceled)
                                     } else {
                                         showConfirmCancel = true
@@ -185,7 +188,7 @@ fun FormView(
                     RejectedView(
                         scaffoldPadding = scaffoldPadding,
                         settings = settings,
-                        responses = responses,
+                        responses = collectedResponses,
                     ) { rejection ->
                         conclusion(rejection)
                     }
@@ -197,7 +200,7 @@ fun FormView(
                     RejectedView(
                         scaffoldPadding = scaffoldPadding,
                         settings = settings,
-                        responses = responses,
+                        responses = collectedResponses,
                     ) { rejection ->
                         conclusion(rejection)
                     }
@@ -209,7 +212,7 @@ fun FormView(
                     form = form,
                     settings = settings,
                     screen = screen,
-                    responses = responses,
+                    responses = collectedResponses,
                     imageLoader = imageLoader,
                     actionHandler = { navigationAction ->
                         navigateUsing(navigationAction)
@@ -232,7 +235,7 @@ fun FormView(
                     RejectedView(
                         scaffoldPadding = scaffoldPadding,
                         settings = settings,
-                        responses = responses,
+                        responses = collectedResponses,
                     ) { rejection ->
                         conclusion(rejection)
                     }
@@ -246,7 +249,7 @@ fun FormView(
                     RejectedView(
                         scaffoldPadding = scaffoldPadding,
                         settings = settings,
-                        responses = responses,
+                        responses = collectedResponses,
                     ) { rejection ->
                         conclusion(rejection)
                     }
@@ -262,7 +265,7 @@ fun FormView(
                     settings = settings,
                     field = field,
                     group = group,
-                    responses = responses,
+                    responses = collectedResponses,
                     imageLoader = imageLoader,
                     uploadHelper = uploadHelper,
                     header = header,
@@ -280,7 +283,7 @@ fun FormView(
                 RejectedView(
                     scaffoldPadding = scaffoldPadding,
                     settings = settings,
-                    responses = responses,
+                    responses = collectedResponses,
                 ) { rejection ->
                     conclusion(rejection)
                 }
@@ -302,7 +305,7 @@ fun FormView(
                 ) {
                     TextButton(
                         onClick = {
-                            conclusion(Conclusion.Abandoned(responses))
+                            conclusion(Conclusion.Abandoned(collectedResponses))
                         },
                     ) {
                         StyledTextView(

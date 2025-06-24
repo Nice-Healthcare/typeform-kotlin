@@ -51,7 +51,7 @@ internal fun ScreenView(
         title = screen.properties.button_text ?: settings.localization.next,
         onClick = {
             if (next != null) {
-                actionHandler(NavigationAction.PositionAction(next))
+                actionHandler(NavigationAction.PositionAction(next, responses))
             } else if (!isWelcomeScreen) {
                 actionHandler(NavigationAction.ConclusionAction(Conclusion.Completed(responses, screen as ThankYouScreen)))
             } else {
