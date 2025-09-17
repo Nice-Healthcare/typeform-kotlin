@@ -1,8 +1,8 @@
 package com.typeform.models
 
 import com.typeform.schema.Field
-import com.typeform.schema.Group
-import com.typeform.schema.Screen
+import com.typeform.schema.structure.Group
+import com.typeform.schema.structure.Screen
 
 sealed class Position {
     data class ScreenPosition(val screen: Screen) : Position()

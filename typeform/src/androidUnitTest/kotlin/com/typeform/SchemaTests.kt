@@ -1,6 +1,6 @@
 package com.typeform
 
-import com.typeform.schema.WelcomeScreen
+import com.typeform.schema.structure.WelcomeScreen
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
@@ -25,7 +25,7 @@ class SchemaTests : TypeformTestCase() {
 
     @Test
     fun testDefaultOrFirstThankYouScreen() {
-        val defaultThankYouScreen = assertUnwrap(form.defaultOrFirstThankYouScreen)
+        val defaultThankYouScreen = assertUnwrap(form.defaultOrFirstEndingScreen)
         assertEquals("DefaultTyScreen", defaultThankYouScreen.id)
         assertEquals("default_tys", defaultThankYouScreen.ref)
         assertEquals("All done! Thanks for your time.", defaultThankYouScreen.title)

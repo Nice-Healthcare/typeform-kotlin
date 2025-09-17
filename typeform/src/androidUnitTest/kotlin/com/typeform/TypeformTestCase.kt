@@ -2,6 +2,7 @@ package com.typeform
 
 import com.typeform.schema.Choice
 import com.typeform.schema.Form
+import com.typeform.schema.translation.TranslatedForm
 
 open class TypeformTestCase {
     companion object {
@@ -66,5 +67,17 @@ open class TypeformTestCase {
         val formBytes = resources.contentOfResource(jsonResource)
         val json = String(formBytes)
         form = Typeform.json.decodeFromString(json)
+    }
+
+    fun decodeFormFromResource(named: String): Form {
+        val bytes = resources.contentOfResource(named)
+        val json = String(bytes)
+        return Typeform.json.decodeFromString(json)
+    }
+
+    fun decodeTranslationFromResource(named: String): TranslatedForm {
+        val bytes = resources.contentOfResource(named)
+        val json = String(bytes)
+        return Typeform.json.decodeFromString(json)
     }
 }

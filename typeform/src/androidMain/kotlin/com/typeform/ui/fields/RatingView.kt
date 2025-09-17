@@ -23,8 +23,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.typeform.models.ResponseValue
-import com.typeform.schema.Rating
 import com.typeform.schema.Validations
+import com.typeform.schema.questions.Rating
 import com.typeform.ui.components.StyledTextView
 import com.typeform.ui.models.ResponseState
 import com.typeform.ui.models.Settings

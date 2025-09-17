@@ -1,5 +1,18 @@
 package com.typeform.schema
 
+import com.typeform.schema.questions.DateStamp
+import com.typeform.schema.questions.Dropdown
+import com.typeform.schema.questions.FileUpload
+import com.typeform.schema.questions.LongText
+import com.typeform.schema.questions.MultipleChoice
+import com.typeform.schema.questions.Number
+import com.typeform.schema.questions.OpinionScale
+import com.typeform.schema.questions.Rating
+import com.typeform.schema.questions.ShortText
+import com.typeform.schema.questions.YesNo
+import com.typeform.schema.structure.Group
+import com.typeform.schema.structure.Statement
+
 sealed class FieldProperties {
     data class DateStampProperties(val properties: DateStamp) : FieldProperties()
 
@@ -181,6 +194,9 @@ sealed class FieldProperties {
                 this.properties.description
             }
             is RatingProperties -> {
+                this.properties.description
+            }
+            is ShortTextProperties -> {
                 this.properties.description
             }
             is StatementProperties -> {

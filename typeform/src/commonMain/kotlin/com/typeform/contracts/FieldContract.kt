@@ -1,9 +1,9 @@
 package com.typeform.contracts
 
-import com.typeform.schema.Attachment
 import com.typeform.schema.Field
 import com.typeform.schema.FieldType
 import com.typeform.schema.Validations
+import com.typeform.schema.structure.Attachment
 import kotlinx.serialization.Serializable
 
 @Serializable

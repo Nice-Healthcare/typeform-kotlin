@@ -1,9 +1,12 @@
-package com.typeform.schema
+package com.typeform.schema.structure
 
 import kotlinx.serialization.Serializable
 
+@Deprecated(message = "", replaceWith = ReplaceWith("EndingScreen"))
+typealias ThankYouScreen = EndingScreen
+
 @Serializable
-data class ThankYouScreen(
+data class EndingScreen(
     override val id: String,
     val ref: String,
     val type: String,
@@ -12,7 +15,7 @@ data class ThankYouScreen(
     override val properties: ScreenProperties,
 ) : Screen {
     /**
-     * Indicates whether this [ThankYouScreen] is considered the _default_ for the [Form].
+     * Indicates whether this [ThankYouScreen] is considered the _default_ for the [com.typeform.schema.Form].
      */
     val isDefault: Boolean
         get() = ref.compareTo("default_tys", true) == 0

@@ -15,8 +15,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import com.typeform.models.ResponseValue
-import com.typeform.schema.Number
 import com.typeform.schema.Validations
+import com.typeform.schema.questions.Number
 import com.typeform.ui.models.ResponseState
 import com.typeform.ui.models.Settings
 

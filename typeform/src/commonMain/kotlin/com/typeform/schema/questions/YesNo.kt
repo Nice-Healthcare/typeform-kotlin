@@ -1,8 +1,8 @@
-package com.typeform.schema
+package com.typeform.schema.questions
 
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class FileUpload(
+data class YesNo(
     val description: String?,
 )

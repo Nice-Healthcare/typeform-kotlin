@@ -1,4 +1,4 @@
-package com.typeform.schema
+package com.typeform.schema.questions
 
 import kotlinx.serialization.Serializable
 

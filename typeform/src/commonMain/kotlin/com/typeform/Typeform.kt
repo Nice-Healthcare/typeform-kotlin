@@ -12,5 +12,9 @@ class Typeform {
                 ignoreUnknownKeys = true
                 explicitNulls = false
             }
+
+        val prettyJson = Json(json) {
+            prettyPrint = true
+        }
     }
 }

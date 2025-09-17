@@ -14,9 +14,9 @@ import com.typeform.models.Position
 import com.typeform.models.Responses
 import com.typeform.models.TypeformException
 import com.typeform.schema.Form
-import com.typeform.schema.Screen
-import com.typeform.schema.ThankYouScreen
-import com.typeform.schema.WelcomeScreen
+import com.typeform.schema.structure.EndingScreen
+import com.typeform.schema.structure.Screen
+import com.typeform.schema.structure.WelcomeScreen
 import com.typeform.ui.components.StyledTextView
 import com.typeform.ui.models.Conclusion
 import com.typeform.ui.models.NavigationAction
@@ -53,7 +53,7 @@ internal fun ScreenView(
             if (next != null) {
                 actionHandler(NavigationAction.PositionAction(next, responses))
             } else if (!isWelcomeScreen) {
-                actionHandler(NavigationAction.ConclusionAction(Conclusion.Completed(responses, screen as ThankYouScreen)))
+                actionHandler(NavigationAction.ConclusionAction(Conclusion.Completed(responses, screen as EndingScreen)))
             } else {
                 actionHandler(NavigationAction.ConclusionAction(Conclusion.Rejected(responses)))
             }
@@ -82,7 +82,7 @@ internal fun ScreenView(
 @Composable
 private fun ScreenViewPreview() {
     val form = Form.preview
-    val screen = form.welcome_screens!!.first()
+    val screen = form.welcomeScreens!!.first()
 
     ThemePreview {
         ScreenView(

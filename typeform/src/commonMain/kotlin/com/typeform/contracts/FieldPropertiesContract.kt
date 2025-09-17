@@ -1,20 +1,20 @@
 package com.typeform.contracts
 
 import com.typeform.schema.Choice
-import com.typeform.schema.DateStamp
-import com.typeform.schema.Dropdown
 import com.typeform.schema.FieldProperties
 import com.typeform.schema.FieldType
-import com.typeform.schema.FileUpload
-import com.typeform.schema.Group
-import com.typeform.schema.LongText
-import com.typeform.schema.MultipleChoice
-import com.typeform.schema.Number
-import com.typeform.schema.OpinionScale
-import com.typeform.schema.Rating
-import com.typeform.schema.ShortText
-import com.typeform.schema.Statement
-import com.typeform.schema.YesNo
+import com.typeform.schema.questions.DateStamp
+import com.typeform.schema.questions.Dropdown
+import com.typeform.schema.questions.FileUpload
+import com.typeform.schema.questions.LongText
+import com.typeform.schema.questions.MultipleChoice
+import com.typeform.schema.questions.Number
+import com.typeform.schema.questions.OpinionScale
+import com.typeform.schema.questions.Rating
+import com.typeform.schema.questions.ShortText
+import com.typeform.schema.questions.YesNo
+import com.typeform.schema.structure.Group
+import com.typeform.schema.structure.Statement
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 

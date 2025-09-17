@@ -7,6 +7,7 @@ data class Settings(
     val meta: Meta,
     val is_trial: Boolean,
     val language: String,
+    val translation_languages: List<String>?,
     val is_public: Boolean,
     val capabilities: Capabilities?,
     val progress_bar: String,
