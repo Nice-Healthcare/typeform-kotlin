@@ -42,6 +42,9 @@ kotlin {
                 implementation(libs.androidx.activity.compose)
                 implementation(libs.androidx.navigation.compose)
                 implementation(libs.coil.compose.core)
+                implementation(libs.ktor.android)
+                implementation(libs.ktor.client)
+                implementation(libs.ktor.engine)
             }
         }
 

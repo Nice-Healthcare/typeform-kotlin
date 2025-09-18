@@ -1,4 +1,6 @@
-package com.typeform.schema
+package com.typeform.schema.structure
+
+import com.typeform.schema.Field
 
 data class Group(
     val button_text: String,

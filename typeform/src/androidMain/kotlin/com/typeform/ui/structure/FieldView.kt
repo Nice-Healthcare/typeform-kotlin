@@ -28,8 +28,8 @@ import com.typeform.models.TypeformException
 import com.typeform.schema.Field
 import com.typeform.schema.FieldProperties
 import com.typeform.schema.Form
-import com.typeform.schema.Group
-import com.typeform.schema.ThankYouScreen
+import com.typeform.schema.structure.EndingScreen
+import com.typeform.schema.structure.Group
 import com.typeform.ui.components.StyledTextView
 import com.typeform.ui.fields.DateView
 import com.typeform.ui.fields.DropdownView
@@ -125,7 +125,7 @@ internal fun FieldView(
             next?.let {
                 when (it) {
                     is Position.ScreenPosition -> {
-                        if (it.screen is ThankYouScreen && settings.presentation.skipEndingScreen) {
+                        if (it.screen is EndingScreen && settings.presentation.skipEndingScreen) {
                             actionHandler(NavigationAction.ConclusionAction(Conclusion.Completed(collectedResponses, it.screen)))
                         } else {
                             actionHandler(NavigationAction.PositionAction(it, collectedResponses))

@@ -1,4 +1,4 @@
-package com.typeform.schema
+package com.typeform.schema.structure
 
 interface Screen {
     val id: String

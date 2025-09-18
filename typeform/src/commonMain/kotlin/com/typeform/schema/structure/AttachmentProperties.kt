@@ -1,8 +1,8 @@
-package com.typeform.schema
+package com.typeform.schema.structure
 
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class LongText(
+data class AttachmentProperties(
     val description: String?,
 )

@@ -1,6 +1,6 @@
 package com.typeform.serializers
 
-import com.typeform.schema.AttachmentType
+import com.typeform.schema.structure.AttachmentType
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.SerializationException
 import kotlinx.serialization.descriptors.PrimitiveKind

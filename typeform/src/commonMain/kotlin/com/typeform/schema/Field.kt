@@ -1,6 +1,8 @@
 package com.typeform.schema
 
 import com.typeform.models.Position
+import com.typeform.schema.structure.Attachment
+import com.typeform.schema.structure.Group
 import com.typeform.serializers.FieldSerializer
 import kotlinx.serialization.Serializable
 
@@ -76,7 +78,7 @@ fun List<Field>.fieldWithRef(ref: String): Field? {
  * **This always assumes that you are starting at the top of a `Form` hierarchy, and should only be used there.**
  *
  * @param id Unique identifier of the [Field] being requested.
- * @param group The optional [Group] of which the field provided belongs.
+ * @param group The optional [com.typeform.schema.structure.Group] of which the field provided belongs.
  * @return The [Position] associated to the parent if located.
  */
 internal fun List<Field>.parentForFieldWithId(

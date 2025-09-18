@@ -1,0 +1,1444 @@
+{
+    "fields": [
+        {
+            "id": "KITQv13MCNaH",
+            "title": "Si sufre una emergencia médica, por favor llame al 911 o solicite atención médica inmediata.",
+            "properties": {
+                "description": "Los signos de una emergencia pueden incluir: \n \n • Sentimientos suicidas u homicidas activos \n\n • Síntomas de dolor torácico o ataque cardíaco \n \n • Dificultad significativa para respirar \n \n • Síntomas de accidente o derrame cerebrovascular (caída facial, debilidad de los brazos, dificultad para hablar) \n \n • Reacción alérgica grave  \n\n • Fiebre de más de 104,5 °F / 40,2 °C\n \n • Tos y/o vómitos con sangre \n \n • Dolor repentino, intenso e incontrolable \n \n • Dolor de cabeza intenso \n\n • Pérdida del conocimiento o cambios en el estado mental \n \n • Envenenamiento o inhalación de sustancias \n \n • Quemaduras/heridas moderadas o graves\n  \n • Convulsiones/crisis epiléptica\n \n • Traumatismos significativos o lesiones en la cabeza \n \n • Complicaciones del embarazo (sangrado vaginal, retortijones o dolor abdominal)",
+                "button_text": "Continuar"
+            }
+        },
+        {
+            "id": "ZhEmNRURGjY3",
+            "title": "¿Está inscrito actualmente en Medicaid?",
+            "properties": {
+                "description": "Algunos servicios de Nice son limitados para los beneficiarios de Medicaid."
+            }
+        },
+        {
+            "id": "khigc98uTY9a",
+            "title": "Los servicios de Nice son limitados para los beneficiarios de Medicaid.",
+            "properties": {
+                "description": "Las recetas, así como algunos servicios de laboratorio y diagnóstico por imágenes, no están disponibles con Nice si actualmente está inscrito en Medicaid. \n\nPara obtener más información, póngase en contacto con el Equipo de Apoyo por chat.",
+                "button_text": "Ok"
+            }
+        },
+        {
+            "id": "HPOcaOvP8CHs",
+            "title": "¿Es elegible para las citas en persona?"
+        },
+        {
+            "id": "yTBHTSskKZ3J",
+            "title": "¿Es usted un nuevo paciente de Nice?"
+        },
+        {
+            "id": "sDTpZzjlIc3t",
+            "title": "¿Cual es su edad?"
+        },
+        {
+            "id": "Eoez9zwVyItS",
+            "title": "¿Qué sexo le asignaron al nacer?",
+            "properties": {
+                "description": "Usamos esta información para proveer un tratamiento médico seguro.",
+                "choices": [
+                    {
+                        "id": "2N25F5XXVdeQ",
+                        "label": "Feminino"
+                    },
+                    {
+                        "id": "DjIt8mLNrRtC",
+                        "label": "Masculino"
+                    }
+                ]
+            }
+        },
+        {
+            "id": "w73nv6WkWAN0",
+            "title": "¿Estará presente un tutor legal durante la cita?"
+        },
+        {
+            "id": "ypuSgLR0LqQs",
+            "title": "Comparta el nombre y la relación del tutor legal que estará presente en esta cita."
+        },
+        {
+            "id": "8Neeb3k98K7G",
+            "title": "Se requiere un formulario de consentimiento para tratar a un menor (13 años o más) sin la presencia de un adulto. Revise sus mensajes de chat después de programar su cita para llenar y firmar un formulario de consentimiento.",
+            "properties": {
+                "button_text": "Ok"
+            }
+        },
+        {
+            "id": "iNyE9vXVv3Xt",
+            "title": "Comparta el nombre y la relación del tutor legal que estará presente en esta cita.",
+            "properties": {
+                "description": "Los pacientes menores de 12 años deben tener un tutor legal presente en todas las citas."
+            }
+        },
+        {
+            "id": "YiL34H6ZL0Hx",
+            "title": "Para los padres y tutores, respondan a todas las preguntas relacionadas con el paciente, no con respecto a usted.",
+            "properties": {
+                "button_text": "Ok"
+            }
+        },
+        {
+            "id": "Zfb9EqBkYAn1",
+            "title": "¿Cuál era su estatura reciente (en pulgadas)?",
+            "properties": {
+                "description": "Usamos esta información para recetar medicamentos de manera segura."
+            }
+        },
+        {
+            "id": "awTm39rnjU1R",
+            "title": "¿Cuál era su peso reciente (en libras)?",
+            "properties": {
+                "description": "Usamos esta información para recetar medicamentos de manera segura."
+            }
+        },
+        {
+            "id": "bK1JUXxGAFGe",
+            "title": "¿Está embarazada o amamantando actualmente?",
+            "properties": {
+                "choices": [
+                    {
+                        "id": "KxxmnCbVfe0l",
+                        "label": "No hay posibilidad de embarazo y no estoy amamantando"
+                    },
+                    {
+                        "id": "j0aWOa8vTtHX",
+                        "label": "Existe la posibilidad de embarazo"
+                    },
+                    {
+                        "id": "WHcoZZZxrWmB",
+                        "label": "Actualmente estoy embarazada"
+                    },
+                    {
+                        "id": "n6QGwhXLEEew",
+                        "label": "Actualmente estoy amamantando"
+                    }
+                ]
+            }
+        },
+        {
+            "id": "SOsdwICVha1W",
+            "title": "¿Sabe la fecha de su último ciclo menstrual?"
+        },
+        {
+            "id": "oPaD0BNzvahH",
+            "title": "¿Cuándo comenzó su último ciclo menstrual?"
+        },
+        {
+            "id": "ziasRV8akCLQ",
+            "title": "¿Cómo podemos ayudar?",
+            "properties": {
+                "description": "Seleccione el tipo de atención que mejor se adapte a sus necesidades para esta cita.",
+                "choices": [
+                    {
+                        "id": "bI45sX7a1I8W",
+                        "label": "Cuidados agudos: trate los síntomas recientes, como la tos, el dolor de la garganta, el sarpullido, etc."
+                    },
+                    {
+                        "id": "iBA82nJ2lobR",
+                        "label": "Atención Para Pacientes Crónicos: apoyo para problemas de condiciones de salud crónicas como diabetes, presión arterial alta, problemas de tiroides, etc."
+                    },
+                    {
+                        "id": "lTQDBEXctUGn",
+                        "label": "Atención Preventiva: Chequeo médico anual, control de la natalidad, etc."
+                    }
+                ]
+            }
+        },
+        {
+            "id": "9oOmDhuo6zTb",
+            "title": "Cuidado Agudo",
+            "properties": {
+                "button_text": "Continuar",
+                "fields": [
+                    {
+                        "id": "ouw1j9UExTQ2",
+                        "title": "¿Cuál de las siguientes opciones describe mejor el motivo de su cita?",
+                        "properties": {
+                            "choices": [
+                                {
+                                    "id": "I8aW6ET1AU2e",
+                                    "label": "Síntomas de alergia"
+                                },
+                                {
+                                    "id": "vPA0lqTwWMmk",
+                                    "label": "Síntomas parecidos a los de un catarro o gripe"
+                                },
+                                {
+                                    "id": "O7W0ZbsOF3tC",
+                                    "label": "Otros síntomas en los oídos, la nariz, la garganta o los ojos"
+                                },
+                                {
+                                    "id": "h6l0JkHkiPZp",
+                                    "label": "Síntomas urinarios"
+                                },
+                                {
+                                    "id": "ZZ9qulWyyJjd",
+                                    "label": "Síntomas en la piel o las uñas"
+                                },
+                                {
+                                    "id": "pTokS8VXF5bt",
+                                    "label": "Problemas gastrointestinales - estomocales y/o digestivos"
+                                },
+                                {
+                                    "id": "Dc9kvpZRUzU4",
+                                    "label": "Síntomas vaginales"
+                                },
+                                {
+                                    "id": "9ATJ5JoBNZbV",
+                                    "label": "Síntomas musculares o articulares"
+                                },
+                                {
+                                    "id": "TQMOgh9gavi2",
+                                    "label": "Otros (por favor, describa)"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "id": "MwNJO8LfdiLw",
+                        "title": "Describa otro problema de salud que quiera atender. ",
+                        "properties": {
+                            "description": "En pocas palabras, describa su problema o inquietud principal."
+                        }
+                    },
+                    {
+                        "id": "QSLoP8E1wDKk",
+                        "title": "¿Se trata de una cita de seguimiento?"
+                    },
+                    {
+                        "id": "UsPsuLgUtmPN",
+                        "title": "¿Padece alguno de los siguientes síntomas?",
+                        "properties": {
+                            "description": "Seleccione todas las que correspondan",
+                            "choices": [
+                                {
+                                    "id": "ZWSrx5aNnISP",
+                                    "label": "Goteo o congestión nasal"
+                                },
+                                {
+                                    "id": "998NTQoQNtBK",
+                                    "label": "Estornudos"
+                                },
+                                {
+                                    "id": "3rBjWnL3CgeF",
+                                    "label": "Picazón de la nariz o los ojos"
+                                },
+                                {
+                                    "id": "nfGbxLG3OpKU",
+                                    "label": "Ojos enrojecidos, llorosos o irritados"
+                                },
+                                {
+                                    "id": "NIIU8HLxshpT",
+                                    "label": "Otros (por favor, describa)"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "id": "7g6I7nOZdHGu",
+                        "title": "¿Padece alguno de los siguientes síntomas?",
+                        "properties": {
+                            "description": "Seleccione todas las que correspondan",
+                            "choices": [
+                                {
+                                    "id": "rahKH9djdOqY",
+                                    "label": "Fiebre (temperatura superior a 100.4 °F)"
+                                },
+                                {
+                                    "id": "qPkAIKGjI22I",
+                                    "label": "Dolores musculares"
+                                },
+                                {
+                                    "id": "lvHyhIbIrBZA",
+                                    "label": "Escalofríos o sudores"
+                                },
+                                {
+                                    "id": "PjWsiOpttI3A",
+                                    "label": "Dolor de cabeza"
+                                },
+                                {
+                                    "id": "R3dhOhAGdmWP",
+                                    "label": "Fatiga o debilidad"
+                                },
+                                {
+                                    "id": "XBAeUbkkNrDf",
+                                    "label": "Dolor de garganta"
+                                },
+                                {
+                                    "id": "aLzrJW7xjHTg",
+                                    "label": "Goteo o congestión nasal"
+                                },
+                                {
+                                    "id": "ATeuS58wbbRv",
+                                    "label": "Tos"
+                                },
+                                {
+                                    "id": "hXDgZ32Cprh5",
+                                    "label": "Ganglios linfáticos inflamados o sensibles en el cuello"
+                                },
+                                {
+                                    "id": "8xQbEtM5UgMo",
+                                    "label": "Dificultad para respirar"
+                                },
+                                {
+                                    "id": "G562I5CnzPe5",
+                                    "label": "Otros (por favor, describa)"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "id": "lFgFxtnuaVYt",
+                        "title": "¿Padece alguno de los siguientes síntomas?",
+                        "properties": {
+                            "description": "Seleccione todas las que correspondan",
+                            "choices": [
+                                {
+                                    "id": "jZMxqIPKTCSx",
+                                    "label": "Dolor de garganta"
+                                },
+                                {
+                                    "id": "u3xiQ3YFsQkt",
+                                    "label": "Dolor o presión sinusal"
+                                },
+                                {
+                                    "id": "nNHqW96qCWh5",
+                                    "label": "Goteo o congestión nasal"
+                                },
+                                {
+                                    "id": "fD3ll8mdLa2Y",
+                                    "label": "Fiebre (temperatura superior a 100.4 °F)"
+                                },
+                                {
+                                    "id": "k9mMnhJ15A7g",
+                                    "label": "Ganglios linfáticos inflamados o sensibles en el cuello"
+                                },
+                                {
+                                    "id": "IYyct18r70hV",
+                                    "label": "Dolor o molestia en los oídos"
+                                },
+                                {
+                                    "id": "IUy7op5nIoci",
+                                    "label": "Secreción de líquido de uno o ambos oídos"
+                                },
+                                {
+                                    "id": "abdBQqNNMfig",
+                                    "label": "Picor, enrojecimiento, o irritación de los ojos"
+                                },
+                                {
+                                    "id": "PYTETbd50TX9",
+                                    "label": "Secreción o supuración de uno o ambos ojos"
+                                },
+                                {
+                                    "id": "xzeAUqPPG2Ck",
+                                    "label": "Hinchazón o dolor ocular"
+                                },
+                                {
+                                    "id": "4YdtAyTc3aRQ",
+                                    "label": "Sensibilidad a la luz"
+                                },
+                                {
+                                    "id": "8b68rBlYw5rL",
+                                    "label": "Visión borrosa"
+                                },
+                                {
+                                    "id": "GUybj134jCpM",
+                                    "label": "Otros (por favor, describa)"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "id": "eloT9Oaip8Tx",
+                        "title": "¿Padece alguno de los siguientes síntomas?",
+                        "properties": {
+                            "description": "Seleccione todas las que correspondan",
+                            "choices": [
+                                {
+                                    "id": "JTMB4iHggfZX",
+                                    "label": "Necesidad intensa y/o frecuente de orinar"
+                                },
+                                {
+                                    "id": "51pkjL2wBxnL",
+                                    "label": "Sensación de ardor al orinar"
+                                },
+                                {
+                                    "id": "sjz19BS1ASzi",
+                                    "label": "Orinar con frecuencia"
+                                },
+                                {
+                                    "id": "MzBZgvHeEEYe",
+                                    "label": "Orina que parece turbia"
+                                },
+                                {
+                                    "id": "N4ptbzS8dvMX",
+                                    "label": "Orina que se ve rosada o contiene sangre"
+                                },
+                                {
+                                    "id": "Ax36gco7la59",
+                                    "label": "Fiebre (temperatura superior a 100.4 °F)"
+                                },
+                                {
+                                    "id": "2Fj4TdDRH6eg",
+                                    "label": "Otros (por favor, describa)"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "id": "ReEekcdWpDO9",
+                        "title": "¿Padece alguno de los siguientes síntomas?",
+                        "properties": {
+                            "description": "Seleccione todas las que correspondan",
+                            "choices": [
+                                {
+                                    "id": "eFmrLPpszaQQ",
+                                    "label": "Enrojecimiento, picazón o irritación"
+                                },
+                                {
+                                    "id": "Vchad6ipvBO4",
+                                    "label": "Protuberancias, abultamientos, o crecimientos en la piel"
+                                },
+                                {
+                                    "id": "jtwTJxUgfIHE",
+                                    "label": "Piel seca, escamosa o agrietada"
+                                },
+                                {
+                                    "id": "biFfaprJwln8",
+                                    "label": "Verruga (s)"
+                                },
+                                {
+                                    "id": "ByURJNkXAEz4",
+                                    "label": "Sarpullido circular o en forma de anillo"
+                                },
+                                {
+                                    "id": "2jusI33j2Kf9",
+                                    "label": "Ardor"
+                                },
+                                {
+                                    "id": "UHzVer8N1CDh",
+                                    "label": "Hinchazón"
+                                },
+                                {
+                                    "id": "LZYDlXcSNM7i",
+                                    "label": "Secreción o supuración"
+                                },
+                                {
+                                    "id": "w44SiC8LX8tJ",
+                                    "label": "Fiebre (temperatura superior a 100.4 °F)"
+                                },
+                                {
+                                    "id": "WHn8vGZgXxxj",
+                                    "label": "Otros (por favor, describa)"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "id": "wFXs0n5c4W4i",
+                        "title": "¿Padece a alguno de los siguientes síntomas?",
+                        "properties": {
+                            "description": "Seleccione todas las que correspondan",
+                            "choices": [
+                                {
+                                    "id": "NSDqxWYflOVF",
+                                    "label": "Náusea"
+                                },
+                                {
+                                    "id": "trHCp40HQdyn",
+                                    "label": "Vómitos"
+                                },
+                                {
+                                    "id": "d2bdseTi9WSL",
+                                    "label": "Diarrea"
+                                },
+                                {
+                                    "id": "vsHRCilc6gFw",
+                                    "label": "Calambres o dolor abdominal"
+                                },
+                                {
+                                    "id": "FISBxKVOTHuU",
+                                    "label": "Fiebre (temperatura superior a 100.4 °F)"
+                                },
+                                {
+                                    "id": "xEEZmAJKvoMG",
+                                    "label": "Acidez"
+                                },
+                                {
+                                    "id": "T1gY3wUzSKXi",
+                                    "label": "Estreñimiento"
+                                },
+                                {
+                                    "id": "5N0Hmb0h085d",
+                                    "label": "Otros (por favor, describa)"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "id": "hMK3AhzU6lwl",
+                        "title": "¿Padece alguno de los siguientes síntomas?",
+                        "properties": {
+                            "description": "Seleccione todas las que correspondan",
+                            "choices": [
+                                {
+                                    "id": "o7VRmivwfPFA",
+                                    "label": "Picazón o irritación vaginal"
+                                },
+                                {
+                                    "id": "JM7ChLFT4hc9",
+                                    "label": "Dolor durante las relaciones sexuales"
+                                },
+                                {
+                                    "id": "kcMIBF2LvcOk",
+                                    "label": "Dolor al orinar"
+                                },
+                                {
+                                    "id": "UU0yEyGeeiBy",
+                                    "label": "Cambio en el color, el olor o la cantidad de flujo vaginal"
+                                },
+                                {
+                                    "id": "7jLkpivmPBRT",
+                                    "label": "Sangramiento o manchas"
+                                },
+                                {
+                                    "id": "SyTEVeSQiPoy",
+                                    "label": "Otros (por favor, describa)"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "id": "Pxj7UMq7kLUz",
+                        "title": "¿Cual región del cuerpo le preocupa más?",
+                        "properties": {
+                            "choices": [
+                                {
+                                    "id": "xSO2GXRaDan9",
+                                    "label": "Cabeza/cuello"
+                                },
+                                {
+                                    "id": "3gMNf54jziws",
+                                    "label": "Parte superior de la espalda"
+                                },
+                                {
+                                    "id": "bdPjvqopcjAw",
+                                    "label": "Parte inferior de la espalda"
+                                },
+                                {
+                                    "id": "vOdNnOy2K0hR",
+                                    "label": "Hombro"
+                                },
+                                {
+                                    "id": "9Y4yUhv8TUIk",
+                                    "label": "Brazo"
+                                },
+                                {
+                                    "id": "RNIxtkmz3kaO",
+                                    "label": "Mano/muñeca"
+                                },
+                                {
+                                    "id": "LeixIXxpW8cS",
+                                    "label": "Cadera"
+                                },
+                                {
+                                    "id": "RXipIiaH7h13",
+                                    "label": "Pelvis"
+                                },
+                                {
+                                    "id": "s7mvKuB5LFAA",
+                                    "label": "Rodilla"
+                                },
+                                {
+                                    "id": "aIC3PhiLWAyy",
+                                    "label": "Pierna"
+                                },
+                                {
+                                    "id": "8Q9ZY0t99OVA",
+                                    "label": "Tobillo/pie"
+                                },
+                                {
+                                    "id": "COjxO3ei91hg",
+                                    "label": "Otros (por favor, describa)"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "id": "cxS22OGZWp7k",
+                        "title": "Describa la otra región del cuerpo por favor."
+                    },
+                    {
+                        "id": "XcXDSmE3t4tV",
+                        "title": "¿Padece alguno de los siguientes síntomas?",
+                        "properties": {
+                            "description": "Seleccione todos los que correspondan",
+                            "choices": [
+                                {
+                                    "id": "60tfs2yTvDX8",
+                                    "label": "Dolor o sensibilidad"
+                                },
+                                {
+                                    "id": "HlMiLTngACox",
+                                    "label": "Rigidez"
+                                },
+                                {
+                                    "id": "lFvofrQn3Vr9",
+                                    "label": "Hinchazón"
+                                },
+                                {
+                                    "id": "b8dpZfFj9SzJ",
+                                    "label": "Entumecimiento u hormigueo"
+                                },
+                                {
+                                    "id": "pz2SE2tCU5yx",
+                                    "label": "Disminución del rango de movimiento"
+                                },
+                                {
+                                    "id": "UdHVqTT2ogov",
+                                    "label": "Otros (por favor, describa)"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "id": "gf8gsY06UJNL",
+                        "title": "Describa sus otros síntomas."
+                    },
+                    {
+                        "id": "Kd5XYGSEeLr9",
+                        "title": "¿Cuál fue su temperatura más reciente?",
+                        "properties": {
+                            "description": "Respuesta en grados Fahrenheit"
+                        }
+                    },
+                    {
+                        "id": "OBY3hgoKULcq",
+                        "title": "¿Cuál de las siguientes opciones describe mejor su dificultad respiratoria?",
+                        "properties": {
+                            "choices": [
+                                {
+                                    "id": "XNNSild87YKy",
+                                    "label": "Leve: causa una ligera limitación durante las actividades normales"
+                                },
+                                {
+                                    "id": "99sRnkpAaJDb",
+                                    "label": "Mediano: provoca limitaciones durante las actividades de bajo impacto, como caminar despacio o vestirse"
+                                },
+                                {
+                                    "id": "ctBPPAminXzs",
+                                    "label": "Grave: hay dificultad para respirar incluso en reposo"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "id": "8qrIhhNvCnFn",
+                        "title": "¿Por cuánto tiempo ha tenido estos síntomas?",
+                        "properties": {
+                            "choices": [
+                                {
+                                    "id": "JIKi4UxVVXmb",
+                                    "label": "Alrededor de un día"
+                                },
+                                {
+                                    "id": "qVYhhlmUttok",
+                                    "label": "2-4 días"
+                                },
+                                {
+                                    "id": "c3Kt3RYI9ezg",
+                                    "label": "Alrededor de una semana"
+                                },
+                                {
+                                    "id": "ZZ5bO3yGrLRO",
+                                    "label": "1-2 semanas"
+                                },
+                                {
+                                    "id": "d4HLpgM628Du",
+                                    "label": "2-4 semanas"
+                                },
+                                {
+                                    "id": "iTf9CgieAaiE",
+                                    "label": "1 mes o más"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "id": "QvZlcPCC9xGd",
+                        "title": "¿En qué medida están limitadas sus actividades diarias por sus síntomas?",
+                        "properties": {
+                            "choices": [
+                                {
+                                    "id": "22sVyi9Ewabu",
+                                    "label": "De ningún modo limitado"
+                                },
+                                {
+                                    "id": "D6VEgrh5LXhM",
+                                    "label": "Algo limitado"
+                                },
+                                {
+                                    "id": "IK8h4qS5WSIY",
+                                    "label": "Muy limitado"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "id": "pXhaDwq1spHB",
+                        "title": "Compartir una foto puede ayudar a su proveedor.",
+                        "properties": {
+                            "description": "Para los síntomas que se puede observar, como un sarpullido o dolor de la garganta, subir una foto a la sección de archivos puede ayudar al proveedor a crear un plan de tratamiento.  ",
+                            "button_text": "Ok"
+                        }
+                    },
+                    {
+                        "id": "ohc6sH4rIezv",
+                        "title": "Cuéntenos más sobre el motivo de su cita.",
+                        "properties": {
+                            "description": "Comparta más información sobre sus síntomas o inquietudes y sobre lo que le gustaría hablar durante su cita."
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "id": "yhBzAtt6Gd1r",
+            "title": "Cuidados crónicos",
+            "properties": {
+                "button_text": "Continuar",
+                "fields": [
+                    {
+                        "id": "6EWhPFuJ14Yv",
+                        "title": "¿Sobre cuáles de los siguientes problemas de salud le gustaría hablar?",
+                        "properties": {
+                            "choices": [
+                                {
+                                    "id": "ZvoYHOT4kLVS",
+                                    "label": "Diabetes tipo 2 o prediabetes"
+                                },
+                                {
+                                    "id": "if4IU8y8RV7b",
+                                    "label": "Presión arterial elevada"
+                                },
+                                {
+                                    "id": "AeAghUfx7bfn",
+                                    "label": "Colesterol alto"
+                                },
+                                {
+                                    "id": "LTkG59vq7MEe",
+                                    "label": "Trastorno tiroideo"
+                                },
+                                {
+                                    "id": "xa4qBRDA8SqA",
+                                    "label": "Alergias estacionales"
+                                },
+                                {
+                                    "id": "dnolOpSGQnKt",
+                                    "label": "Asma, EPOC u otras afecciones respiratorias"
+                                },
+                                {
+                                    "id": "xQ1IxaIOB5Yt",
+                                    "label": "Problemas estomacales, digestivos o intestinales"
+                                },
+                                {
+                                    "id": "WbWV1WB4IMSF",
+                                    "label": "Salud mental"
+                                },
+                                {
+                                    "id": "ICKK9LZAICQa",
+                                    "label": "Problemas musculares, articulares u óseos"
+                                },
+                                {
+                                    "id": "829bLc52kSop",
+                                    "label": "Gestión del peso corporal"
+                                },
+                                {
+                                    "id": "FXWWBNhJQwxI",
+                                    "label": "Otros (por favor, describa)"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "id": "QhpFLspDGWNE",
+                        "title": "Describa otro problema de salud que quiera atender. ",
+                        "properties": {
+                            "description": "En pocas palabras, describa su problema o inquietud principal."
+                        }
+                    },
+                    {
+                        "id": "F6vyVCpo4oIa",
+                        "title": "¿Cuál de las siguientes opciones describe mejor sus necesidades para esta cita?",
+                        "properties": {
+                            "choices": [
+                                {
+                                    "id": "FhmTreWIjC7K",
+                                    "label": "Un chequeo médico general"
+                                },
+                                {
+                                    "id": "ZGUoex6SlXn9",
+                                    "label": "Atender a preocupaciones específicas sobre mi(s) afección(es)"
+                                },
+                                {
+                                    "id": "YcOSWHxgMiGd",
+                                    "label": "Gestionar los medicamentos"
+                                },
+                                {
+                                    "id": "SOeB0DvYvWnu",
+                                    "label": "Hablar sobre los resultados de laboratorio o de imágenes diagnósticas"
+                                },
+                                {
+                                    "id": "mI3fQLwQjaCA",
+                                    "label": "Otra cosa"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "id": "PDrA6fumIYeW",
+                        "title": "¿Es esta cita una continuación de una cita anterior con Nice?"
+                    },
+                    {
+                        "id": "8vVYTS8y48n0",
+                        "title": "Cuéntenos más sobre el motivo de su cita.",
+                        "properties": {
+                            "description": "Comparta cualquier pregunta, inquietud o tema que quiera tratar durante su cita."
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "id": "Pv2ed6jaKBQU",
+            "title": "Bienestar y Atención Preventiva",
+            "properties": {
+                "button_text": "Continuar",
+                "fields": [
+                    {
+                        "id": "RgYeNr2Brl9C",
+                        "title": "¿Cuál de las siguientes opciones describe mejor el motivo de su cita?",
+                        "properties": {
+                            "choices": [
+                                {
+                                    "id": "1Ps0sk5lGhET",
+                                    "label": "Chequeo médico anual (para adultos)"
+                                },
+                                {
+                                    "id": "XMYM6siLDLzI",
+                                    "label": "Chequeo médico anual para niño"
+                                },
+                                {
+                                    "id": "UFbHxJaaD9gB",
+                                    "label": "Gestión del control de la natalidad y anticoncepción"
+                                },
+                                {
+                                    "id": "cNFprp6r4QLP",
+                                    "label": "Examen físico deportivo o de campamento"
+                                },
+                                {
+                                    "id": "lUnBueT0XEXi",
+                                    "label": "Examen físico preoperatorio"
+                                },
+                                {
+                                    "id": "EkBP71g7J83Q",
+                                    "label": "Otra cosa (por favor, describa)"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "id": "KePmxVSEvwMw",
+                        "title": "¿Cuál de las siguientes opciones describe mejor el motivo de su cita de atención preventiva?",
+                        "properties": {
+                            "description": "Su membresía (sólo virtual) no incluye exámenes físicos ni otros servicios presenciales. Como resultado, las opciones de atención preventiva son limitadas.",
+                            "choices": [
+                                {
+                                    "id": "6KL6k3CYC03y",
+                                    "label": "Gestión del control de la natalidad"
+                                },
+                                {
+                                    "id": "BYvZHlYdmUzl",
+                                    "label": "Otra cosa (por favor, describa)"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "id": "6XSsUj4R96aH",
+                        "title": "Describa otro motivo de su cita de atención preventiva"
+                    },
+                    {
+                        "id": "AOpxwluOEeE0",
+                        "title": "¿Cuándo fue su chequeo médico más reciente?",
+                        "properties": {
+                            "description": "Indique el mes y el año aproximados"
+                        }
+                    },
+                    {
+                        "id": "Z46rqvwfJnFq",
+                        "title": "¿Se aplica alguna de las siguientes opciones?",
+                        "properties": {
+                            "description": "Esta información ayudará a su proveedor a determinar si se necesita algunas pruebas de laboratorio menos frecuentes además de las pruebas más típicos. Omita si no se aplica ninguna.",
+                            "choices": [
+                                {
+                                    "id": "o8IM3k7XxAGb",
+                                    "label": "Fatiga"
+                                },
+                                {
+                                    "id": "E5TH60Cy5LC9",
+                                    "label": "Cabello o uñas quebradizos, caída o adelgazamiento del cabello"
+                                },
+                                {
+                                    "id": "MSwU53khWs0K",
+                                    "label": "Cambios de peso inexplicables"
+                                },
+                                {
+                                    "id": "tH0e2uq4NOBI",
+                                    "label": "Tener sensación de frío o calor inusual"
+                                },
+                                {
+                                    "id": "z0utUtTXLmYQ",
+                                    "label": "Antecedentes personales o familiares de enfermedad tiroidea"
+                                },
+                                {
+                                    "id": "hSIrCgjdySBL",
+                                    "label": "Cirugía tiroidea previa o radiación en el cuello"
+                                },
+                                {
+                                    "id": "NagOAccBBdlv",
+                                    "label": "Antecedentes personales o familiares de enfermedades autoinmunes"
+                                },
+                                {
+                                    "id": "GFOSJJTnCil5",
+                                    "label": "Osteoporosis, disminución de la densidad mineral ósea, o dolor óseo"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "id": "GKcINnvForEB",
+                        "title": "Cuéntenos más sobre sus objetivos para esta cita",
+                        "properties": {
+                            "description": "Comparta cualquier pregunta, preocupación o tema que quiera tratar"
+                        }
+                    },
+                    {
+                        "id": "jbH4Iu8I52xc",
+                        "title": "A continuación, vamos a preguntarle sobre su salud mental",
+                        "properties": {
+                            "description": "Los exámenes de salud mental son una parte importante de un chequeo médico. Los siguientes cuestionarios, denominados PHQ9 y GAD7, fueron diseñados por expertos en salud mental para identificar problemas como la ansiedad y la depresión. \n\nAl responder, piense en las últimas 2 semanas. ¿Que tan seguido ha tenido molestias debido a los siguientes problemas?",
+                            "button_text": "Continuar"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "id": "9iuUXcAhCSYo",
+            "title": "Salud mental",
+            "properties": {
+                "button_text": "Continuar",
+                "fields": [
+                    {
+                        "id": "RxomYtU97CZd",
+                        "title": "¿Cuál de las siguientes opciones describe mejor el motivo por el que buscas atención de salud mental?",
+                        "properties": {
+                            "description": "Seleccione todas las que correspondan",
+                            "choices": [
+                                {
+                                    "id": "bYAZMCBK3ixM",
+                                    "label": "Sentirse decaído o deprimido"
+                                },
+                                {
+                                    "id": "wqeNRgGJRuk5",
+                                    "label": "Sentirse ansioso o con los nervious de punta"
+                                },
+                                {
+                                    "id": "4i45AbrOTMZi",
+                                    "label": "Sentirse estresado o agotado"
+                                },
+                                {
+                                    "id": "i9klylgABkRd",
+                                    "label": "Dificultades para dormir"
+                                },
+                                {
+                                    "id": "XbrqVLdmBDUt",
+                                    "label": "Otros (por favor, describa)"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "id": "lq4olxeQ2S7h",
+                        "title": "Describa otro problema de salud mental que quiera atender.",
+                        "properties": {
+                            "description": "En pocas palabras, describa su problema o inquietud principal."
+                        }
+                    },
+                    {
+                        "id": "18nIywULv0T2",
+                        "title": "La atención de salud mental en Nice es limitada para pacientes mayores de 18 años.",
+                        "properties": {
+                            "description": "La terapia de salud mental en Nice no está disponible para pacientes menores de 18 años. Para estos pacientes, nuestros proveedores de atención primaria pueden: \n \n • Detectar afecciones de salud mental comunes, como la ansiedad y la depresión. \n\n• Recomendar proximos pasos para tratamiento. \n\n• Conectar a los pacientes y sus familias con recursos externos y remitirlos a especialistas cuando sea necesario.",
+                            "button_text": "Ok"
+                        }
+                    },
+                    {
+                        "id": "zGhlQo91M17o",
+                        "title": "Los siguientes cuestionarios, denominados PHQ9 y GAD7, fueron diseñados por expertos en salud mental para evaluar los síntomas de la depresión y la ansiedad.",
+                        "properties": {
+                            "description": "Al responder, piense en las últimas 2 semanas. ¿Con qué frecuencia ha sentido molestias por los siguientes problemas? ",
+                            "button_text": "Continuar"
+                        }
+                    },
+                    {
+                        "id": "t23kvDWGDCWm",
+                        "title": "[PHQ9] Poco interés o placer en hacer cosas",
+                        "properties": {
+                            "description": "En las últimas 2 semanas, ¿con qué frecuencia le ha molestado este problema?",
+                            "choices": [
+                                {
+                                    "id": "AJsIxbMKx4u4",
+                                    "label": "0 - Ningún día"
+                                },
+                                {
+                                    "id": "NFLF708hHV6m",
+                                    "label": "1 - Varios días"
+                                },
+                                {
+                                    "id": "0g3z9xWvDnDs",
+                                    "label": "2 - Más de la mitad de los días"
+                                },
+                                {
+                                    "id": "U45eRz5talmC",
+                                    "label": "3 - Casi todos los días"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "id": "LeLHl7fGdq8h",
+                        "title": "[PHQ9] Se ha sentido decaído(a), deprimido(a) o sin esperanzas",
+                        "properties": {
+                            "description": "En las últimas 2 semanas, ¿con qué frecuencia le ha molestado este problema?",
+                            "choices": [
+                                {
+                                    "id": "AAZtSTYPgsrn",
+                                    "label": "0 - Ningún día"
+                                },
+                                {
+                                    "id": "r5tOar9I1KBY",
+                                    "label": "1 - Varios días"
+                                },
+                                {
+                                    "id": "oWfYwfnuCjQq",
+                                    "label": "2 - Más de la mitad de los días"
+                                },
+                                {
+                                    "id": "QpBbGCBO9Mi5",
+                                    "label": "3 - Casi todos los días"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "id": "eqQCWCkVE53U",
+                        "title": "[PHQ9] Ha tenido dificultad para quedarse o permanecer dormido(a), o ha dormido demasiado",
+                        "properties": {
+                            "description": "En las últimas 2 semanas, ¿con qué frecuencia ha sentido molestia por este problema?",
+                            "choices": [
+                                {
+                                    "id": "F7fbZuLH0Unz",
+                                    "label": "0 - Nunca"
+                                },
+                                {
+                                    "id": "kSD9AS7Jd65G",
+                                    "label": "1 - Varios días"
+                                },
+                                {
+                                    "id": "6vImei8WT8LI",
+                                    "label": "2 - Más de la mitad de los días"
+                                },
+                                {
+                                    "id": "JBb790e2dflh",
+                                    "label": "3 - Casi todos los días"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "id": "H7evujswLt9J",
+                        "title": "[PHQ9] Se ha sentido cansado(a) o con poca energía",
+                        "properties": {
+                            "description": "En las últimas 2 semanas, ¿con qué frecuencia ha sentido molestia por este problema?",
+                            "choices": [
+                                {
+                                    "id": "uMC8atTjOJNC",
+                                    "label": "0 - Nunca"
+                                },
+                                {
+                                    "id": "xU7fOgGqyKAW",
+                                    "label": "1 - Varios días"
+                                },
+                                {
+                                    "id": "OBGyXuqTJHEb",
+                                    "label": "2 - Más de la mitad de los días"
+                                },
+                                {
+                                    "id": "nyeUO5cUURd4",
+                                    "label": "3 - Casi todos los días"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "id": "DvLh4RBfh01U",
+                        "title": "[PHQ9] Sin apetito o ha comido en exceso",
+                        "properties": {
+                            "description": "En las últimas 2 semanas, ¿con qué frecuencia ha sentido molestia por este problema?",
+                            "choices": [
+                                {
+                                    "id": "6EzhVuGbA9gV",
+                                    "label": "0 - Ningún dia"
+                                },
+                                {
+                                    "id": "MVCkN1UIOsKU",
+                                    "label": "1 - Varios días"
+                                },
+                                {
+                                    "id": "jtFtdN5efGG0",
+                                    "label": "2 - Más de la mitad de los días"
+                                },
+                                {
+                                    "id": "21H6kDlYWxRy",
+                                    "label": "3 - Casi todos los días"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "id": "QjgYf5NJpElb",
+                        "title": "[PHQ9] Se ha sentido mal con usted mismo(a) - o que es un fracaso o que ha quedado mal con usted mimo(a) o con su familia. ",
+                        "properties": {
+                            "description": "En las últimas 2 semanas, ¿con qué frecuencia ha sentido molestia por este problema?",
+                            "choices": [
+                                {
+                                    "id": "01lGbLn6eka0",
+                                    "label": "0 - Ningún día"
+                                },
+                                {
+                                    "id": "tYVpTmlsw20h",
+                                    "label": "1 - Varios días"
+                                },
+                                {
+                                    "id": "g8CqGDKzEzNc",
+                                    "label": "2 - Más de la mitad de los días"
+                                },
+                                {
+                                    "id": "i5eW5OXNhr9L",
+                                    "label": "3 - Casi todos los días"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "id": "xVVXDpxhRmFN",
+                        "title": "[PHQ9] Ha tenido dificultad para concentrarse en ciertas actividades, tales como leer el periódico o ver la televisión",
+                        "properties": {
+                            "description": "En las últimas 2 semanas, ¿con qué frecuencia ha sentido molestia por este problema?",
+                            "choices": [
+                                {
+                                    "id": "uKFkTZ6XZXBO",
+                                    "label": "0 - Ningún día"
+                                },
+                                {
+                                    "id": "UCpvWM16s4el",
+                                    "label": "1 - Varios días"
+                                },
+                                {
+                                    "id": "sQaBfGoJ4RCT",
+                                    "label": "2 - Más de la mitad de los días"
+                                },
+                                {
+                                    "id": "sHkHJARCxUMW",
+                                    "label": "3 - Casi todos los días"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "id": "d8yjWShz4Jfn",
+                        "title": "[PHQ9] Se ha movido o hablado tan lento que otras personas podrían haberlo notado? o lo contrario - muy inquieto(a) o agitado(a) que ha estado moviendosemucho más de lo normal",
+                        "properties": {
+                            "description": "En las últimas 2 semanas, ¿con qué frecuencia ha sentido molestia por este problema?",
+                            "choices": [
+                                {
+                                    "id": "557Pz9wJtODV",
+                                    "label": "0 - Ningún día"
+                                },
+                                {
+                                    "id": "ip33w3KM3khF",
+                                    "label": "1 - Varios días"
+                                },
+                                {
+                                    "id": "lgDfl1h4nK8N",
+                                    "label": "2 - Más de la mitad de los días"
+                                },
+                                {
+                                    "id": "qjqziWDvOrcW",
+                                    "label": "3 - Casi todos los días"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "id": "CruAV29Nvu5W",
+                        "title": "[PHQ9] Pensamientos de que estaría mejor muerto o de lastimarse de alguna manera",
+                        "properties": {
+                            "description": "En las últimas 2 semanas, ¿con qué frecuencia ha sentido molestia por este problema?",
+                            "choices": [
+                                {
+                                    "id": "e7dmF4Ycpufa",
+                                    "label": "0 - Ningún día"
+                                },
+                                {
+                                    "id": "XjgDocpCe7SG",
+                                    "label": "1 - Varios días"
+                                },
+                                {
+                                    "id": "HL8lfcLsskJ2",
+                                    "label": "2 - Más de la mitad de los días"
+                                },
+                                {
+                                    "id": "rQ5XbXC6v5M1",
+                                    "label": "3 - Casi todos los días"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "id": "Gyl352RiGhgg",
+                        "title": "[GAD7] Sentirse nervioso(a), intranquilo(a) o con los nervios de punta",
+                        "properties": {
+                            "description": "En las últimas 2 semanas, ¿con qué frecuencia ha sentido molestia por este problema?",
+                            "choices": [
+                                {
+                                    "id": "BulN7d3PDowY",
+                                    "label": "0 - Nunca"
+                                },
+                                {
+                                    "id": "m3u930C6eLqd",
+                                    "label": "1 - Varios días"
+                                },
+                                {
+                                    "id": "hyooDUJVIfHk",
+                                    "label": "2 - Más de la mitad de los días"
+                                },
+                                {
+                                    "id": "A3KYHsdokfRv",
+                                    "label": "3 - Casi todos los días"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "id": "1Tf0oW3jmu0K",
+                        "title": "[GAD7] No poder dejar de procuparse o no poder controlar la preocupación",
+                        "properties": {
+                            "description": "En las últimas 2 semanas, ¿con qué frecuencia ha sentido molestia por este problema?",
+                            "choices": [
+                                {
+                                    "id": "j3XnQeY4cd70",
+                                    "label": "0 - Nunca"
+                                },
+                                {
+                                    "id": "hgKXUyNgdGja",
+                                    "label": "1 - Varios días"
+                                },
+                                {
+                                    "id": "ECSqVpP0sYcJ",
+                                    "label": "2 - Más de la mitad de los días"
+                                },
+                                {
+                                    "id": "kNx4utNlDcdd",
+                                    "label": "3 - Casi todos los días"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "id": "BYehgZZT7wIu",
+                        "title": "[GAD7] Preocuparse demasiado por diferentes cosas",
+                        "properties": {
+                            "description": "En las últimas 2 semanas, ¿con qué frecuencia ha sentido molestia por este problema?",
+                            "choices": [
+                                {
+                                    "id": "XmF6pEfBo1Wd",
+                                    "label": "0 - Nunca"
+                                },
+                                {
+                                    "id": "rhDhsL8TZN7A",
+                                    "label": "1 - Varios días"
+                                },
+                                {
+                                    "id": "xO5t2zx2ROKY",
+                                    "label": "2 - Más de la mitad de los días"
+                                },
+                                {
+                                    "id": "UVz8ATbINV5X",
+                                    "label": "3 - Casi todos los días"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "id": "l0DGYfCWAXEH",
+                        "title": "[GAD7] Dificultad para relajarse",
+                        "properties": {
+                            "description": "En las últimas 2 semanas, ¿con qué frecuencia ha sentido molestia por este problema?",
+                            "choices": [
+                                {
+                                    "id": "GpjkdmLAChEa",
+                                    "label": "0 - Nunca"
+                                },
+                                {
+                                    "id": "MqgpXAWtpo77",
+                                    "label": "1 - Varios días"
+                                },
+                                {
+                                    "id": "4YFmCNPsyVVZ",
+                                    "label": "2 - Más de la mitad de los días"
+                                },
+                                {
+                                    "id": "rDQpEAI86uON",
+                                    "label": "3 - Casi todos los días"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "id": "nweyYb2D4IDX",
+                        "title": "[GAD7] Estar tan inquieto que es difícil permanecer sentado(a) tranquilmente",
+                        "properties": {
+                            "description": "En las últimas 2 semanas, ¿con qué frecuencia ha sentido molestia por este problema?",
+                            "choices": [
+                                {
+                                    "id": "5IERaGvbAR5l",
+                                    "label": "0 - Nunca"
+                                },
+                                {
+                                    "id": "VdXMCW6Y1bn9",
+                                    "label": "1 - Varios días"
+                                },
+                                {
+                                    "id": "ZeGL0VIkkfDM",
+                                    "label": "2 - Más de la mitad de los días"
+                                },
+                                {
+                                    "id": "NOLF2oOcgEkn",
+                                    "label": "3 - Casi todos los días"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "id": "ctSFMJEpOXF4",
+                        "title": "[GAD7] Molestarse o ponerse irritable fácilmente",
+                        "properties": {
+                            "description": "En las últimas 2 semanas, ¿con qué frecuencia ha sentido molestia por este problema?",
+                            "choices": [
+                                {
+                                    "id": "s3KxtpJN1q5B",
+                                    "label": "0 - Nunca"
+                                },
+                                {
+                                    "id": "ISE32t0I9exM",
+                                    "label": "1 - Varios días"
+                                },
+                                {
+                                    "id": "Ua55q2sPlUXD",
+                                    "label": "2 - Más de la mitad de los días"
+                                },
+                                {
+                                    "id": "hDY4XGCEY2eh",
+                                    "label": "3 - Casi todos los días"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "id": "olGtbPlXnItZ",
+                        "title": "[GAD7] Sentir miedo como si algo terrible pudiera pasar",
+                        "properties": {
+                            "description": "En las últimas 2 semanas, ¿con qué frecuencia ha sentido molestia por este problema?",
+                            "choices": [
+                                {
+                                    "id": "A7U0sssALLUa",
+                                    "label": "0 - Nunca"
+                                },
+                                {
+                                    "id": "ghHkZToBLItJ",
+                                    "label": "1 - Varios días"
+                                },
+                                {
+                                    "id": "frBDhvakhVt4",
+                                    "label": "2 - Más de la mitad de los días"
+                                },
+                                {
+                                    "id": "1f66DcSUglHS",
+                                    "label": "3 - Casi todos los días"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "id": "nB0wCyil53i5",
+                        "title": "Si respondió «Varios días», «Más de la mitad de los días» o «Casi todos los días» a cualquiera de las preguntas anteriores, ¿qué tan difícil le han hecho estos problemas para hacer su trabajo, encargarse de las tareas del hogar, o llevarse bien con otras personas?",
+                        "properties": {
+                            "description": "Omita si respondió «Nunca» a todas las preguntas anteriores.",
+                            "choices": [
+                                {
+                                    "id": "mxlbGTRBvc6c",
+                                    "label": "No ha sido difícil"
+                                },
+                                {
+                                    "id": "sJ21qatQxIqx",
+                                    "label": "Un poco difícil"
+                                },
+                                {
+                                    "id": "cszyFSdk38wj",
+                                    "label": "Muy difícil"
+                                },
+                                {
+                                    "id": "RfSrAUCw60eu",
+                                    "label": "Extremadamente difícil"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "id": "nu4LrBRgkkoV",
+                        "title": "Cuéntenos más sobre el motivo de su cita.",
+                        "properties": {
+                            "description": "Comparta cualquier pregunta, inquietud o tema que quiera tratar durante su cita."
+                        }
+                    }
+                ]
+            }
+        }
+    ],
+    "thankyou_screens": [
+        {
+            "id": "nSZ9CqDlmnNi",
+            "title": "Gracias por completar el formulario de admisión. A continuación, programaremos su cita.",
+            "properties": {
+                "button_text": "De nuevo"
+            }
+        }
+    ]
+}

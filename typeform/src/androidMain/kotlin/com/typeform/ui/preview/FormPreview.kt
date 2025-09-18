@@ -1,17 +1,17 @@
 package com.typeform.ui.preview
 
-import com.typeform.schema.Attachment
-import com.typeform.schema.AttachmentProperties
-import com.typeform.schema.AttachmentType
 import com.typeform.schema.Field
 import com.typeform.schema.Form
 import com.typeform.schema.FormType
 import com.typeform.schema.Links
-import com.typeform.schema.ScreenProperties
 import com.typeform.schema.Settings
 import com.typeform.schema.Theme
-import com.typeform.schema.WelcomeScreen
 import com.typeform.schema.Workspace
+import com.typeform.schema.structure.Attachment
+import com.typeform.schema.structure.AttachmentProperties
+import com.typeform.schema.structure.AttachmentType
+import com.typeform.schema.structure.ScreenProperties
+import com.typeform.schema.structure.WelcomeScreen
 import java.net.URL
 
 val Form.Companion.preview: Form
@@ -23,7 +23,7 @@ val Form.Companion.preview: Form
             href = URL("https://www.typeform.com"),
         ),
         title = "",
-        _links = Links(
+        links = Links(
             display = URL("https://www.typeform.com"),
         ),
         fields = listOf(
@@ -37,7 +37,8 @@ val Form.Companion.preview: Form
                 allow_indexing = false,
             ),
             is_trial = false,
-            language = "en_US",
+            language = "en",
+            translation_languages = null,
             is_public = true,
             capabilities = Settings.Capabilities(
                 e2e_encryption = Settings.EndToEndEncryption(
@@ -58,7 +59,7 @@ val Form.Companion.preview: Form
         workspace = Workspace(
             href = URL("https://www.typeform.com"),
         ),
-        welcome_screens = listOf(
+        welcomeScreens = listOf(
             WelcomeScreen(
                 id = "welcome1",
                 ref = "welcome1",
@@ -78,5 +79,5 @@ val Form.Companion.preview: Form
                 ),
             ),
         ),
-        thankyou_screens = emptyList(),
+        endingScreens = emptyList(),
     )

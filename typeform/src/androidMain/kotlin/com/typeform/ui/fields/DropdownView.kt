@@ -28,8 +28,8 @@ import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.tooling.preview.Preview
 import com.typeform.models.ResponseValue
 import com.typeform.schema.Choice
-import com.typeform.schema.Dropdown
 import com.typeform.schema.Validations
+import com.typeform.schema.questions.Dropdown
 import com.typeform.ui.models.ResponseState
 import com.typeform.ui.models.Settings
 

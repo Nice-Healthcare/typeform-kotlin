@@ -4,6 +4,10 @@ import com.typeform.models.Position
 import com.typeform.models.Responses
 import com.typeform.models.TypeformException
 import com.typeform.models.responseRequiredFor
+import com.typeform.schema.structure.EndingScreen
+import com.typeform.schema.structure.Group
+import com.typeform.schema.structure.Screen
+import com.typeform.schema.structure.WelcomeScreen
 import com.typeform.serializers.FormSerializer
 import kotlinx.serialization.Serializable
 
@@ -14,48 +18,56 @@ data class Form(
     val logic: List<Logic>,
     val theme: Theme,
     val title: String,
-    val _links: Links,
+    val links: Links,
     val fields: List<Field>,
     val hidden: List<String>?,
     val settings: Settings,
     val workspace: Workspace,
-    val welcome_screens: List<WelcomeScreen>?,
-    val thankyou_screens: List<ThankYouScreen>,
+    val welcomeScreens: List<WelcomeScreen>?,
+    val endingScreens: List<EndingScreen>,
 ) {
     companion object {
     }
 
+    @Deprecated(message = "", replaceWith = ReplaceWith("links"))
+    val _links: Links
+        get() = links
+
+    @Deprecated(message = "", replaceWith = ReplaceWith("welcomeScreens"))
+    val welcome_screens: List<WelcomeScreen>?
+        get() = welcomeScreens
+
+    @Deprecated(message = "", replaceWith = ReplaceWith("endingScreens"))
+    val thankyou_screens: List<EndingScreen>
+        get() = endingScreens
+
     /**
-     * The first [Screen] that is presented for a specific [Form].
+     * The first [com.typeform.schema.structure.Screen] that is presented for a specific [Form].
      *
      * In a properly formatted [Form] this will be a [WelcomeScreen].
      */
     val firstScreen: Screen?
         get() {
-            return welcome_screens?.firstOrNull()
+            return welcomeScreens?.firstOrNull()
         }
 
     /**
-     * The [ThankYouScreen] identified as the **default**, or the first available if none.
+     * The [EndingScreen] identified as the **default**, or the first available if none.
      */
-    val defaultOrFirstThankYouScreen: ThankYouScreen?
+    val defaultOrFirstEndingScreen: EndingScreen?
         get() {
-            return thankyou_screens.firstOrNull { it.isDefault } ?: thankyou_screens.firstOrNull()
+            return endingScreens.firstOrNull { it.isDefault } ?: endingScreens.firstOrNull()
         }
+
+    /**
+     * The [com.typeform.schema.structure.ThankYouScreen] identified as the **default**, or the first available if none.
+     */
+    @Deprecated(message = "", replaceWith = ReplaceWith("defaultOrFirstEndingScreen"))
+    val defaultOrFirstThankYouScreen: EndingScreen?
+        get() = defaultOrFirstEndingScreen
 
     fun screenWithId(id: String): Screen? {
-        var screen: Screen?
-        screen = welcome_screens?.firstOrNull { it.id == id }
-        if (screen != null) {
-            return screen
-        }
-
-        screen = thankyou_screens.firstOrNull { it.id == id }
-        if (screen != null) {
-            return screen
-        }
-
-        return screen
+        return welcomeScreens?.firstOrNull { it.id == id } ?: endingScreens.firstOrNull { it.id == id }
     }
 
     /**
@@ -163,7 +175,7 @@ data class Form(
 
         val field = fields.firstOrNull()
         if (field == null) {
-            defaultOrFirstThankYouScreen?.let {
+            defaultOrFirstEndingScreen?.let {
                 return Position.ScreenPosition(it)
             }
 
@@ -202,7 +214,7 @@ data class Form(
                             return Position.FieldPosition(field, null)
                         }
 
-                        val screen = defaultOrFirstThankYouScreen
+                        val screen = defaultOrFirstEndingScreen
                         if (screen != null) {
                             return Position.ScreenPosition(screen)
                         }
@@ -275,12 +287,12 @@ private fun Form.nextPositionFrom(
                     return parentForFieldWithRef(action.details.to.value) ?: throw TypeformException.NextPosition(currentPosition)
                 }
                 ActionDetails.ToType.THANK_YOU -> {
-                    var screen = thankyou_screens.firstOrNull { it.ref == action.details.to.value }
+                    var screen = endingScreens.firstOrNull { it.ref == action.details.to.value }
                     if (screen != null) {
                         return Position.ScreenPosition(screen)
                     }
 
-                    screen = thankyou_screens.firstOrNull { it.isDefault }
+                    screen = endingScreens.firstOrNull { it.isDefault }
                     if (screen != null) {
                         return Position.ScreenPosition(screen)
                     }
@@ -328,7 +340,7 @@ private fun Form.nextPositionFrom(
     if (index != -1) {
         when (val nextIndex = index + 1) {
             fields.count() -> {
-                defaultOrFirstThankYouScreen?.let {
+                defaultOrFirstEndingScreen?.let {
                     return Position.ScreenPosition(it)
                 }
             }

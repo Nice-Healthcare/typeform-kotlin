@@ -7,7 +7,7 @@ import androidx.compose.ui.layout.ContentScale
 import coil3.ImageLoader
 import coil3.compose.AsyncImage
 import coil3.toUri
-import com.typeform.schema.Attachment
+import com.typeform.schema.structure.Attachment
 
 @Composable
 internal fun AttachmentView(

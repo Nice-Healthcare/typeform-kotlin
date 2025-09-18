@@ -2,6 +2,8 @@
 
 Multi-platform Kotlin library for parsing and displaying [Typeform](https://www.typeform.com) questionnaires.
 
+[![](https://jitpack.io/v/Nice-Healthcare/typeform-kotlin.svg)](https://jitpack.io/#Nice-Healthcare/typeform-kotlin)
+
 If you're just getting started with Typeform, be sure to check out the [Developer Platform Documentation](https://www.typeform.com/developers/get-started/).
 
 ## Installation
@@ -109,6 +111,37 @@ class MainActivity {
       … // Your content
     }
   }
+}
+```
+
+## Translation
+
+Typeform has support for language translation. Every additional supported language for a specific `Form` is noted in its `Settings`. Translations, when retrieved from the API, only have a subset of changed values, so those changes must be _merged_ into a `Form` in order to make it usable in the TypeformUI code. For example:
+
+```kotlin
+val form = Form()
+val translation = TranslatedForm()
+val translatedForm = form.merging(translatedForm: translation)
+```
+
+This merging process leaves the original `Form` logic and metadata intact, but displays the questions using the translated text. There is a helper `Downloader` for retrieval and translation:
+
+```kotlin
+interface Downloader {
+    // https://api.typeform.com/forms/{id}
+    suspend fun downloadForm(id: String) -> Result<Form>
+    // https://api.typeform.com/forms/{id}/translation/{language}
+    suspend fun downloadTranslation(language: String, formId: String) -> Result<Form>
+}
+
+// Available in Android
+val downloader: Downloader = TypeformDownloader()
+try {    
+    // Base language 'en' (English)
+    val form = downloader.downloadForm("abcde12345").getOrThrow()
+    // form.settings.translation_languages contains 'es' (Spanish)
+    val translatedForm = downloader.downloadTranslation("es", "abcde12345")
+} catch (exception: Exception) {
 }
 ```
 
