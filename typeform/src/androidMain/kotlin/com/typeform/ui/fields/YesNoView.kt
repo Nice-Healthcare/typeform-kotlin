@@ -2,6 +2,7 @@ package com.typeform.ui.fields
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -9,16 +10,20 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.typeform.models.ResponseValue
 import com.typeform.schema.questions.YesNo
 import com.typeform.schema.structure.Validations
 import com.typeform.ui.components.IntermittentChoiceButton
+import com.typeform.ui.components.StyledTextView
+import com.typeform.ui.models.LocalLocalization
+import com.typeform.ui.models.LocalPresentation
 import com.typeform.ui.models.ResponseState
-import com.typeform.ui.models.Settings
+import com.typeform.ui.preview.DarkThemePreviewParameter
+import com.typeform.ui.preview.MaterialThemePreview
 
 @Composable
 internal fun YesNoView(
-    settings: Settings,
     properties: YesNo,
     responseState: ResponseState,
     validations: Validations?,
@@ -72,19 +77,24 @@ internal fun YesNoView(
     }
 
     Column(
-        verticalArrangement = Arrangement.spacedBy(settings.presentation.contentVerticalSpacing),
+        verticalArrangement = Arrangement.spacedBy(LocalPresentation.current.contentVerticalSpacing),
     ) {
+        properties.description?.let {
+            StyledTextView(
+                text = it,
+                textStyle = MaterialTheme.typography.labelMedium,
+            )
+        }
+
         IntermittentChoiceButton(
-            settings = settings,
-            text = settings.localization.yes,
+            text = LocalLocalization.current.yes,
             selected = selected == true,
         ) {
             toggle(true)
         }
 
         IntermittentChoiceButton(
-            settings = settings,
-            text = settings.localization.no,
+            text = LocalLocalization.current.no,
             selected = selected == false,
         ) {
             toggle(false)
@@ -92,16 +102,21 @@ internal fun YesNoView(
     }
 }
 
-@Preview(showBackground = true, showSystemUi = true)
+@Preview
 @Composable
-private fun YesNoViewPreview() {
-    YesNoView(
-        settings = Settings(),
-        properties = YesNo(
-            description = null,
-        ),
-        responseState = ResponseState(),
-        validations = null,
+private fun YesNoViewPreview(
+    @PreviewParameter(DarkThemePreviewParameter::class) darkTheme: Boolean,
+) {
+    MaterialThemePreview(
+        darkTheme = darkTheme,
     ) {
+        YesNoView(
+            properties = YesNo(
+                description = null,
+            ),
+            responseState = ResponseState(),
+            validations = null,
+        ) {
+        }
     }
 }

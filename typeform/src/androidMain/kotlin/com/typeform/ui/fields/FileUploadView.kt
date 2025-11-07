@@ -1,13 +1,11 @@
 package com.typeform.ui.fields
 
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.size
-import androidx.compose.material.DropdownMenu
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.OutlinedButton
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -17,7 +15,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
+import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.typeform.models.ResponseValue
 import com.typeform.models.Upload
 import com.typeform.schema.questions.FileUpload
@@ -25,14 +23,15 @@ import com.typeform.schema.structure.Validations
 import com.typeform.ui.components.StyledTextView
 import com.typeform.ui.components.UploadImageView
 import com.typeform.ui.components.UploadPickerView
+import com.typeform.ui.models.LocalLocalization
+import com.typeform.ui.models.LocalPresentation
 import com.typeform.ui.models.ResponseState
-import com.typeform.ui.models.Settings
 import com.typeform.ui.models.UploadHelper
-import com.typeform.ui.preview.ThemePreview
+import com.typeform.ui.preview.DarkThemePreviewParameter
+import com.typeform.ui.preview.MaterialThemePreview
 
 @Composable
 internal fun FileUploadView(
-    settings: Settings,
     properties: FileUpload,
     responseState: ResponseState,
     validations: Validations?,
@@ -72,13 +71,19 @@ internal fun FileUploadView(
     }
 
     Column(
-        verticalArrangement = Arrangement.spacedBy(settings.presentation.contentVerticalSpacing),
+        verticalArrangement = Arrangement.spacedBy(LocalPresentation.current.contentVerticalSpacing),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
+        properties.description?.let {
+            StyledTextView(
+                text = it,
+                textStyle = MaterialTheme.typography.labelMedium,
+            )
+        }
+
         if (upload != null) {
             UploadImageView(
                 upload = upload!!,
-                settings = settings,
                 uploadHelper = uploadHelper,
             ) {
                 select(null)
@@ -89,15 +94,11 @@ internal fun FileUploadView(
                     expanded = true
                 },
                 modifier = Modifier.fillMaxWidth(),
-                elevation = null,
-                shape = settings.outlinedButton.shape,
-                border = settings.outlinedButton.border,
-                colors = settings.outlinedButton.colors,
-                contentPadding = settings.outlinedButton.contentPadding,
+                contentPadding = LocalPresentation.current.containerPadding,
             ) {
                 StyledTextView(
-                    text = settings.localization.uploadAction,
-                    textStyle = MaterialTheme.typography.body1,
+                    text = LocalLocalization.current.uploadAction,
+                    textStyle = MaterialTheme.typography.bodyMedium,
                 )
             }
         }
@@ -105,7 +106,7 @@ internal fun FileUploadView(
         exception?.let {
             StyledTextView(
                 text = it.message ?: "An error occurred.",
-                textStyle = MaterialTheme.typography.subtitle1,
+                textStyle = MaterialTheme.typography.labelMedium,
             )
         }
 
@@ -116,7 +117,6 @@ internal fun FileUploadView(
             },
         ) {
             UploadPickerView(
-                settings = settings,
                 uploadHelper = uploadHelper,
             ) { result ->
                 expanded = false
@@ -133,22 +133,21 @@ internal fun FileUploadView(
     }
 }
 
-@Preview(showBackground = true)
+@Preview
 @Composable
-private fun FileUploadViewPreview() {
-    ThemePreview {
-        Box(
-            modifier = Modifier.size(200.dp),
+private fun FileUploadViewPreview(
+    @PreviewParameter(DarkThemePreviewParameter::class) darkTheme: Boolean,
+) {
+    MaterialThemePreview(
+        darkTheme = darkTheme,
+    ) {
+        FileUploadView(
+            properties = FileUpload(
+                description = "Select a file.",
+            ),
+            responseState = ResponseState(),
+            validations = null,
         ) {
-            FileUploadView(
-                settings = Settings(),
-                properties = FileUpload(
-                    description = "Select a file.",
-                ),
-                responseState = ResponseState(),
-                validations = null,
-            ) {
-            }
         }
     }
 }

@@ -38,6 +38,7 @@ import com.typeform.example.ui.theme.ExampleTheme
 import com.typeform.schema.structure.Form
 import com.typeform.schema.translation.merging
 import com.typeform.ui.models.Conclusion
+import com.typeform.ui.models.Presentation
 import com.typeform.ui.models.Settings
 import com.typeform.ui.structure.FormView
 import kotlinx.coroutines.CoroutineScope

@@ -4,13 +4,13 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.material.DropdownMenu
-import androidx.compose.material.DropdownMenuItem
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.OutlinedTextField
-import androidx.compose.material.Text
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -22,6 +22,7 @@ import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.typeform.models.ResponseValue
 import com.typeform.resources.Res
 import com.typeform.resources.check_24dp
@@ -30,13 +31,16 @@ import com.typeform.resources.keyboard_arrow_up_24dp
 import com.typeform.schema.questions.Dropdown
 import com.typeform.schema.structure.Choice
 import com.typeform.schema.structure.Validations
+import com.typeform.ui.components.StyledTextView
+import com.typeform.ui.models.LocalLocalization
+import com.typeform.ui.models.LocalPresentation
 import com.typeform.ui.models.ResponseState
-import com.typeform.ui.models.Settings
+import com.typeform.ui.preview.DarkThemePreviewParameter
+import com.typeform.ui.preview.MaterialThemePreview
 import org.jetbrains.compose.resources.vectorResource
 
 @Composable
 internal fun DropdownView(
-    settings: Settings,
     properties: Dropdown,
     responseState: ResponseState,
     validations: Validations?,
@@ -77,9 +81,18 @@ internal fun DropdownView(
         updateState()
     }
 
-    Column {
+    Column(
+        verticalArrangement = Arrangement.spacedBy(LocalPresentation.current.contentVerticalSpacing),
+    ) {
+        properties.description?.let {
+            StyledTextView(
+                text = it,
+                textStyle = MaterialTheme.typography.labelMedium,
+            )
+        }
+
         OutlinedTextField(
-            value = selected?.label ?: settings.localization.emptyChoice,
+            value = selected?.label ?: LocalLocalization.current.emptyChoice,
             onValueChange = {},
             modifier = Modifier
                 .fillMaxWidth()
@@ -97,13 +110,18 @@ internal fun DropdownView(
                     },
                 ) {
                     Icon(
-                        imageVector = vectorResource(if (expanded) Res.drawable.keyboard_arrow_up_24dp else Res.drawable.keyboard_arrow_down_24dp),
-                        contentDescription = settings.localization.emptyChoice,
+                        imageVector = if (expanded) {
+                            vectorResource(
+                                Res.drawable.keyboard_arrow_up_24dp,
+                            )
+                        } else {
+                            vectorResource(Res.drawable.keyboard_arrow_down_24dp)
+                        },
+                        contentDescription = LocalLocalization.current.emptyChoice,
                     )
                 }
             },
             shape = MaterialTheme.shapes.small,
-            colors = settings.field.colors,
         )
 
         DropdownMenu(
@@ -114,29 +132,29 @@ internal fun DropdownView(
             },
         ) {
             DropdownMenuItem(
+                text = {
+                    DropdownChoiceRow(
+                        label = LocalLocalization.current.emptyChoice,
+                        selected = selected == null,
+                    )
+                },
                 onClick = {
                     select(null)
                 },
-            ) {
-                DropdownChoiceRow(
-                    settings = settings,
-                    label = settings.localization.emptyChoice,
-                    selected = selected == null,
-                )
-            }
+            )
 
             choices.forEach { choice ->
                 DropdownMenuItem(
+                    text = {
+                        DropdownChoiceRow(
+                            label = choice.label,
+                            selected = selected == choice,
+                        )
+                    },
                     onClick = {
                         select(choice)
                     },
-                ) {
-                    DropdownChoiceRow(
-                        settings = settings,
-                        label = choice.label,
-                        selected = selected == choice,
-                    )
-                }
+                )
             }
         }
     }
@@ -146,43 +164,45 @@ internal fun DropdownView(
 
 @Composable
 private fun DropdownChoiceRow(
-    settings: Settings,
     label: String,
     selected: Boolean,
 ) {
     Row(
         modifier = Modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.spacedBy(settings.presentation.contentHorizontalSpacing),
+        horizontalArrangement = Arrangement.spacedBy(LocalPresentation.current.contentHorizontalSpacing),
     ) {
         Text(
             text = label,
-            color = MaterialTheme.typography.body1.color,
-            style = MaterialTheme.typography.body1,
+            style = MaterialTheme.typography.bodyMedium,
         )
 
         if (selected) {
             Icon(
                 imageVector = vectorResource(Res.drawable.check_24dp),
                 contentDescription = null,
-                tint = MaterialTheme.typography.button.color,
             )
         }
     }
 }
 
-@Preview(showBackground = true, showSystemUi = true)
+@Preview
 @Composable
-private fun DropdownViewPreview() {
-    DropdownView(
-        settings = Settings(),
-        properties = Dropdown(
-            choices = emptyList(),
-            description = null,
-            randomize = false,
-            alphabetical_order = false,
-        ),
-        responseState = ResponseState(),
-        validations = null,
+private fun DropdownViewPreview(
+    @PreviewParameter(DarkThemePreviewParameter::class) darkTheme: Boolean,
+) {
+    MaterialThemePreview(
+        darkTheme = darkTheme,
     ) {
+        DropdownView(
+            properties = Dropdown(
+                choices = emptyList(),
+                description = null,
+                randomize = false,
+                alphabetical_order = false,
+            ),
+            responseState = ResponseState(),
+            validations = null,
+        ) {
+        }
     }
 }
