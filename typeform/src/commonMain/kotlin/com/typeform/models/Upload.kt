@@ -11,7 +11,9 @@ data class Upload(
     val fileName: String,
 ) {
     @Serializable(with = UploadPathSerializer::class)
-    enum class Path(val rawValue: String) {
+    enum class Path(
+        val rawValue: String,
+    ) {
         CAMERA("camera"),
         DOCUMENTS("documents"),
         PHOTO_LIBRARY("photoLibrary"),

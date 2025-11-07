@@ -5,6 +5,8 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.provider.OpenableColumns
+import androidx.compose.ui.graphics.ImageBitmap
+import androidx.compose.ui.graphics.asImageBitmap
 import androidx.core.database.getStringOrNull
 import com.typeform.models.Upload
 import java.io.ByteArrayInputStream
@@ -111,4 +113,17 @@ fun UploadHelper.constructDocument(
     )
 
     return Result.success(upload)
+}
+
+fun UploadHelper.imageBitmapForUpload(
+    upload: Upload,
+    context: Context,
+): Result<ImageBitmap> {
+    val bitmapResult = bitmapForUpload(upload, context)
+    return try {
+        val bitmap = bitmapResult.getOrThrow()
+        Result.success(bitmap.asImageBitmap())
+    } catch (exception: Exception) {
+        Result.failure(exception)
+    }
 }

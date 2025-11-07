@@ -14,29 +14,53 @@ import com.typeform.schema.structure.Group
 import com.typeform.schema.structure.Statement
 
 sealed class FieldProperties {
-    data class DateStampProperties(val properties: DateStamp) : FieldProperties()
+    data class DateStampProperties(
+        val properties: DateStamp,
+    ) : FieldProperties()
 
-    data class DropdownProperties(val properties: Dropdown) : FieldProperties()
+    data class DropdownProperties(
+        val properties: Dropdown,
+    ) : FieldProperties()
 
-    data class FileUploadProperties(val properties: FileUpload) : FieldProperties()
+    data class FileUploadProperties(
+        val properties: FileUpload,
+    ) : FieldProperties()
 
-    data class GroupProperties(val properties: Group) : FieldProperties()
+    data class GroupProperties(
+        val properties: Group,
+    ) : FieldProperties()
 
-    data class LongTextProperties(val properties: LongText) : FieldProperties()
+    data class LongTextProperties(
+        val properties: LongText,
+    ) : FieldProperties()
 
-    data class MultipleChoiceProperties(val properties: MultipleChoice) : FieldProperties()
+    data class MultipleChoiceProperties(
+        val properties: MultipleChoice,
+    ) : FieldProperties()
 
-    data class NumberProperties(val properties: Number) : FieldProperties()
+    data class NumberProperties(
+        val properties: Number,
+    ) : FieldProperties()
 
-    data class OpinionScaleProperties(val properties: OpinionScale) : FieldProperties()
+    data class OpinionScaleProperties(
+        val properties: OpinionScale,
+    ) : FieldProperties()
 
-    data class RatingProperties(val properties: Rating) : FieldProperties()
+    data class RatingProperties(
+        val properties: Rating,
+    ) : FieldProperties()
 
-    data class ShortTextProperties(val properties: ShortText) : FieldProperties()
+    data class ShortTextProperties(
+        val properties: ShortText,
+    ) : FieldProperties()
 
-    data class StatementProperties(val properties: Statement) : FieldProperties()
+    data class StatementProperties(
+        val properties: Statement,
+    ) : FieldProperties()
 
-    data class YesNoProperties(val properties: YesNo) : FieldProperties()
+    data class YesNoProperties(
+        val properties: YesNo,
+    ) : FieldProperties()
 
     companion object {
     }

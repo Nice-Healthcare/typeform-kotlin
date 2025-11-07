@@ -12,9 +12,15 @@ sealed class TypeformException : Exception {
 
     data object FirstPosition : TypeformException("The first position could not be determined.")
 
-    data class NextPosition(val from: Position) : TypeformException("The next position could not be determined.")
+    data class NextPosition(
+        val from: Position,
+    ) : TypeformException("The next position could not be determined.")
 
-    data class UnexpectedOperation(val op: Op) : TypeformException("The Op was not expected at this time.")
+    data class UnexpectedOperation(
+        val op: Op,
+    ) : TypeformException("The Op was not expected at this time.")
 
-    data class ResponseTypeMismatch(val type: String) : TypeformException("A response had an unexpected type.")
+    data class ResponseTypeMismatch(
+        val type: String,
+    ) : TypeformException("A response had an unexpected type.")
 }

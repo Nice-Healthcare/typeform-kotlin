@@ -4,14 +4,9 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Cloud
-import androidx.compose.material.icons.filled.Star
-import androidx.compose.material.icons.outlined.Cloud
-import androidx.compose.material.icons.outlined.Star
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -21,18 +16,25 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import com.typeform.models.ResponseValue
+import com.typeform.resources.Res
+import com.typeform.resources.cloud_24dp
+import com.typeform.resources.cloud_fill_24dp
+import com.typeform.resources.star_24dp
+import com.typeform.resources.star_fill_24dp
 import com.typeform.schema.Validations
 import com.typeform.schema.questions.Rating
 import com.typeform.ui.components.StyledTextView
+import com.typeform.ui.models.LocalPresentation
 import com.typeform.ui.models.ResponseState
-import com.typeform.ui.models.Settings
-import com.typeform.ui.preview.ThemePreview
+import com.typeform.ui.preview.DarkThemePreviewParameter
+import com.typeform.ui.preview.MaterialThemePreview
+import org.jetbrains.compose.resources.vectorResource
 
 @Composable
 internal fun RatingView(
-    settings: Settings,
     properties: Rating,
     responseState: ResponseState,
     validations: Validations?,
@@ -43,18 +45,18 @@ internal fun RatingView(
     val range = IntRange(1, properties.steps)
     val outlinedImage = when (properties.shape.lowercase()) {
         "cloud" -> {
-            Icons.Outlined.Cloud
+            vectorResource(Res.drawable.cloud_24dp)
         }
         else -> {
-            Icons.Outlined.Star
+            vectorResource(Res.drawable.star_24dp)
         }
     }
     val filledImage = when (properties.shape.lowercase()) {
         "cloud" -> {
-            Icons.Filled.Cloud
+            vectorResource(Res.drawable.cloud_fill_24dp)
         }
         else -> {
-            Icons.Filled.Star
+            vectorResource(Res.drawable.star_fill_24dp)
         }
     }
 
@@ -87,53 +89,61 @@ internal fun RatingView(
         updateState()
     }
 
-    Row(
-        modifier = Modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.SpaceBetween,
+    Column(
+        verticalArrangement = Arrangement.spacedBy(LocalPresentation.current.contentVerticalSpacing),
     ) {
-        range.forEach { step ->
-            val filled = (selected ?: 0) >= step
-            val tint = if (filled) {
-                settings.rating.colors.contentColor(enabled = true)
-            } else {
-                settings.rating.colors.backgroundColor(enabled = true)
-            }
+        properties.description?.let {
+            StyledTextView(
+                text = it,
+                textStyle = MaterialTheme.typography.labelMedium,
+            )
+        }
 
-            IconButton(
-                onClick = {
-                    select(step)
-                },
-                modifier = Modifier.weight(1f),
-            ) {
-                Column(
-                    horizontalAlignment = Alignment.CenterHorizontally,
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween,
+        ) {
+            range.forEach { step ->
+                val filled = (selected ?: 0) >= step
+
+                IconButton(
+                    onClick = {
+                        select(step)
+                    },
+                    modifier = Modifier.weight(1f),
                 ) {
-                    Icon(
-                        imageVector = if (filled) filledImage else outlinedImage,
-                        contentDescription = null,
-                        modifier = Modifier.fillMaxWidth(),
-                        tint = tint.value,
-                    )
+                    Column(
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                    ) {
+                        Icon(
+                            imageVector = if (filled) filledImage else outlinedImage,
+                            contentDescription = null,
+                            modifier = Modifier.fillMaxWidth(),
+                        )
 
-                    StyledTextView(
-                        text = "$step",
-                        textStyle = MaterialTheme.typography.body1,
-                    )
+                        StyledTextView(
+                            text = "$step",
+                            textStyle = MaterialTheme.typography.bodyMedium,
+                        )
+                    }
                 }
             }
         }
     }
 }
 
-@Preview(showBackground = true, showSystemUi = true)
+@Preview
 @Composable
-private fun RatingViewPreview() {
-    ThemePreview {
+private fun RatingViewPreview(
+    @PreviewParameter(DarkThemePreviewParameter::class) darkTheme: Boolean,
+) {
+    MaterialThemePreview(
+        darkTheme = darkTheme,
+    ) {
         Column(
             verticalArrangement = Arrangement.spacedBy(20.dp),
         ) {
             RatingView(
-                settings = Settings(),
                 properties = Rating(
                     shape = "star",
                     steps = 5,
@@ -145,7 +155,6 @@ private fun RatingViewPreview() {
             }
 
             RatingView(
-                settings = Settings(),
                 properties = Rating(
                     shape = "star",
                     steps = 5,

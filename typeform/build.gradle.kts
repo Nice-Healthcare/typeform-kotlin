@@ -30,6 +30,7 @@ kotlin {
         val androidMain by getting {
             dependencies {
                 api(compose.animation)
+                api(compose.components.resources)
                 api(compose.foundation)
                 api(compose.material)
                 api(compose.materialIconsExtended)
@@ -58,9 +59,9 @@ kotlin {
 
 android {
     namespace = "com.typeform"
-    compileSdk = 35
+    compileSdk = 36
     defaultConfig {
-        minSdk = 28
+        minSdk = 31
     }
     compileOptions {
         sourceCompatibility(JavaVersion.VERSION_17)
@@ -79,6 +80,14 @@ android {
         checkReleaseBuilds = false
         checkDependencies = false
         checkTestSources = false
+    }
+}
+
+compose {
+    resources {
+        generateResClass = always
+        publicResClass = true
+        packageOfResClass = "com.typeform.resources"
     }
 }
 

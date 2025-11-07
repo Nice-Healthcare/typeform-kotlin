@@ -6,12 +6,12 @@ plugins {
 
 android {
     namespace = "com.typeform.example"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.typeform.example"
-        minSdk = 28
-        targetSdk = 35
+        minSdk = 31
+        targetSdk = 36
         versionCode = 1
         versionName = "1.0"
     }

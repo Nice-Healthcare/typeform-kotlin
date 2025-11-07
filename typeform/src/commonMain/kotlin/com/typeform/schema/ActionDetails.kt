@@ -14,7 +14,9 @@ data class ActionDetails(
     )
 
     @Serializable(with = ActionDetailsToTypeSerializer::class)
-    enum class ToType(val rawValue: String) {
+    enum class ToType(
+        val rawValue: String,
+    ) {
         FIELD("field"),
         THANK_YOU("thankyou"),
     }

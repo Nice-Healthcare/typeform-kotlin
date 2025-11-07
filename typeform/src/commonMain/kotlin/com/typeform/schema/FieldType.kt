@@ -4,7 +4,9 @@ import com.typeform.serializers.FieldTypeSerializer
 import kotlinx.serialization.Serializable
 
 @Serializable(with = FieldTypeSerializer::class)
-enum class FieldType(val rawValue: String) {
+enum class FieldType(
+    val rawValue: String,
+) {
     DATE("date"),
     DROPDOWN("dropdown"),
     FILE_UPLOAD("file_upload"),
