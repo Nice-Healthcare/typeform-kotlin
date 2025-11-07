@@ -21,7 +21,7 @@ class PositionTests : TypeformTestCase() {
      */
     @Test
     fun testNextFromWelcome() {
-        val welcomeScreen = assertUnwrap(form.welcome_screens!!.firstOrNull())
+        val welcomeScreen = assertUnwrap(form.welcomeScreens!!.firstOrNull())
         val position: Position = Position.ScreenPosition(welcomeScreen)
         val next: Position
         try {

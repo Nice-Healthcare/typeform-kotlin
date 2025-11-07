@@ -1,23 +1,25 @@
 package com.typeform.ui.structure
 
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.Icon
-import androidx.compose.material.MaterialTheme
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import com.typeform.models.Responses
 import com.typeform.resources.Res
 import com.typeform.resources.warning_24dp
 import com.typeform.ui.models.Conclusion
-import com.typeform.ui.models.Settings
+import com.typeform.ui.models.LocalPresentation
+import com.typeform.ui.preview.DarkThemePreviewParameter
+import com.typeform.ui.preview.MaterialThemePreview
 import org.jetbrains.compose.resources.vectorResource
 
 /**
@@ -26,43 +28,46 @@ import org.jetbrains.compose.resources.vectorResource
 @Composable
 internal fun RejectedView(
     scaffoldPadding: PaddingValues,
-    settings: Settings,
     responses: Responses,
     onClick: (Conclusion) -> Unit,
 ) {
     ScrollingContentView(
         scaffoldPadding = scaffoldPadding,
-        settings = settings,
         title = "Finish",
         onClick = {
             onClick(Conclusion.Rejected(responses))
         },
     ) {
         Column(
-            modifier = Modifier.padding(settings.presentation.contentPadding),
-            verticalArrangement = Arrangement.spacedBy(settings.presentation.titleDescriptionVerticalSpacing),
+            modifier = Modifier.padding(LocalPresentation.current.contentPadding),
+            verticalArrangement = Arrangement.spacedBy(LocalPresentation.current.titleDescriptionVerticalSpacing),
         ) {
-            Box(
+            Surface(
                 modifier = Modifier.fillMaxWidth(),
-                contentAlignment = Alignment.Center,
+                shape = MaterialTheme.shapes.small,
+                color = MaterialTheme.colorScheme.errorContainer,
             ) {
                 Icon(
                     imageVector = vectorResource(Res.drawable.warning_24dp),
-                    contentDescription = null,
-                    tint = MaterialTheme.colors.error,
+                    contentDescription = "Indicator of an invalid state.",
                 )
             }
         }
     }
 }
 
-@Preview(showBackground = true, showSystemUi = true)
+@Preview
 @Composable
-private fun RejectedViewPreview() {
-    RejectedView(
-        scaffoldPadding = PaddingValues(0.dp),
-        settings = Settings(),
-        responses = mapOf(),
-        onClick = {},
-    )
+private fun RejectedViewPreview(
+    @PreviewParameter(DarkThemePreviewParameter::class) darkTheme: Boolean,
+) {
+    MaterialThemePreview(
+        darkTheme = darkTheme,
+    ) {
+        RejectedView(
+            scaffoldPadding = PaddingValues(0.dp),
+            responses = mapOf(),
+            onClick = {},
+        )
+    }
 }

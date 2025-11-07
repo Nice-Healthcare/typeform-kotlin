@@ -29,18 +29,6 @@ data class Form(
     companion object {
     }
 
-    @Deprecated(message = "", replaceWith = ReplaceWith("links"))
-    val _links: Links
-        get() = links
-
-    @Deprecated(message = "", replaceWith = ReplaceWith("welcomeScreens"))
-    val welcome_screens: List<WelcomeScreen>?
-        get() = welcomeScreens
-
-    @Deprecated(message = "", replaceWith = ReplaceWith("endingScreens"))
-    val thankyou_screens: List<EndingScreen>
-        get() = endingScreens
-
     /**
      * The first [com.typeform.schema.structure.Screen] that is presented for a specific [Form].
      *
@@ -58,13 +46,6 @@ data class Form(
         get() {
             return endingScreens.firstOrNull { it.isDefault } ?: endingScreens.firstOrNull()
         }
-
-    /**
-     * The [com.typeform.schema.structure.ThankYouScreen] identified as the **default**, or the first available if none.
-     */
-    @Deprecated(message = "", replaceWith = ReplaceWith("defaultOrFirstEndingScreen"))
-    val defaultOrFirstThankYouScreen: EndingScreen?
-        get() = defaultOrFirstEndingScreen
 
     fun screenWithId(id: String): Screen? {
         return welcomeScreens?.firstOrNull { it.id == id } ?: endingScreens.firstOrNull { it.id == id }
@@ -272,7 +253,8 @@ private fun Form.nextPositionFrom(
     // Is this [Field] of type 'group'?
     when (field.properties) {
         is FieldProperties.GroupProperties -> {
-            val firstGroupField = field.properties.properties.fields.firstOrNull() ?: throw TypeformException.NextPosition(currentPosition)
+            val firstGroupField = field.properties.properties.fields
+                .firstOrNull() ?: throw TypeformException.NextPosition(currentPosition)
             return Position.FieldPosition(firstGroupField, field.properties.properties)
         }
         else -> {

@@ -46,6 +46,7 @@ import com.typeform.example.ui.theme.ExampleTheme
 import com.typeform.schema.Form
 import com.typeform.schema.translation.merging
 import com.typeform.ui.models.Conclusion
+import com.typeform.ui.models.Presentation
 import com.typeform.ui.models.Settings
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -129,7 +130,7 @@ fun ContentView(
         val presentedForm = translatedForm ?: form ?: return
 
         val settings = Settings(
-            presentation = Settings.Presentation(
+            presentation = Presentation(
                 skipWelcomeScreen = skipWelcome,
                 skipEndingScreen = skipEnding,
             )

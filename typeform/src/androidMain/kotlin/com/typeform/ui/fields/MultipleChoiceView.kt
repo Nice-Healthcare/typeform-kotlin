@@ -2,6 +2,7 @@ package com.typeform.ui.fields
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -9,20 +10,22 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.typeform.models.ResponseValue
 import com.typeform.schema.Choice
 import com.typeform.schema.Validations
 import com.typeform.schema.questions.MultipleChoice
 import com.typeform.ui.components.IntermittentChoiceButton
+import com.typeform.ui.components.StyledTextView
+import com.typeform.ui.models.LocalPresentation
 import com.typeform.ui.models.ResponseState
-import com.typeform.ui.models.Settings
-import com.typeform.ui.preview.ThemePreview
+import com.typeform.ui.preview.DarkThemePreviewParameter
+import com.typeform.ui.preview.MaterialThemePreview
 import com.typeform.ui.preview.previewCold
 import com.typeform.ui.preview.previewHot
 
 @Composable
 internal fun MultipleChoiceView(
-    settings: Settings,
     properties: MultipleChoice,
     responseState: ResponseState,
     validations: Validations?,
@@ -83,11 +86,17 @@ internal fun MultipleChoiceView(
     }
 
     Column(
-        verticalArrangement = Arrangement.spacedBy(settings.presentation.contentVerticalSpacing),
+        verticalArrangement = Arrangement.spacedBy(LocalPresentation.current.contentVerticalSpacing),
     ) {
+        properties.description?.let {
+            StyledTextView(
+                text = it,
+                textStyle = MaterialTheme.typography.labelMedium,
+            )
+        }
+
         choices.forEach { choice ->
             IntermittentChoiceButton(
-                settings = settings,
                 text = choice.label,
                 allowMultiple = allowMultiple,
                 selected = selected.contains(choice),
@@ -98,12 +107,15 @@ internal fun MultipleChoiceView(
     }
 }
 
-@Preview(showBackground = true)
+@Preview
 @Composable
-private fun MultipleChoiceViewPreview() {
-    ThemePreview {
+private fun MultipleChoiceViewPreview(
+    @PreviewParameter(DarkThemePreviewParameter::class) darkTheme: Boolean,
+) {
+    MaterialThemePreview(
+        darkTheme = darkTheme,
+    ) {
         MultipleChoiceView(
-            settings = Settings(),
             properties = MultipleChoice(
                 choices = listOf(
                     Choice.previewHot,
