@@ -5,9 +5,14 @@ import com.typeform.schema.structure.Group
 import com.typeform.schema.structure.Screen
 
 sealed class Position {
-    data class ScreenPosition(val screen: Screen) : Position()
+    data class ScreenPosition(
+        val screen: Screen,
+    ) : Position()
 
-    data class FieldPosition(val field: Field, val group: Group?) : Position()
+    data class FieldPosition(
+        val field: Field,
+        val group: Group?,
+    ) : Position()
 
     fun associatedScreen(): Screen? {
         return when (this) {

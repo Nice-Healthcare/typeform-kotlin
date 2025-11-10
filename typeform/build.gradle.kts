@@ -17,6 +17,7 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
+                api(compose.components.resources)
                 implementation(libs.kotlinx.serialization.json)
             }
         }
@@ -32,7 +33,6 @@ kotlin {
                 api(compose.animation)
                 api(compose.foundation)
                 api(compose.material)
-                api(compose.materialIconsExtended)
                 api(compose.material3)
                 api(compose.preview)
                 api(compose.runtime)
@@ -58,7 +58,7 @@ kotlin {
 
 android {
     namespace = "com.typeform"
-    compileSdk = 35
+    compileSdk = 36
     defaultConfig {
         minSdk = 28
     }
@@ -79,6 +79,14 @@ android {
         checkReleaseBuilds = false
         checkDependencies = false
         checkTestSources = false
+    }
+}
+
+compose {
+    resources {
+        generateResClass = always
+        publicResClass = false
+        packageOfResClass = "com.typeform.resources"
     }
 }
 

@@ -8,10 +8,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.material.DropdownMenuItem
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.CameraAlt
-import androidx.compose.material.icons.filled.FileUpload
-import androidx.compose.material.icons.filled.PhotoLibrary
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -19,10 +15,15 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
 import com.typeform.models.Upload
+import com.typeform.resources.Res
+import com.typeform.resources.camera_24dp
+import com.typeform.resources.photo_library_24dp
+import com.typeform.resources.upload_file_24dp
 import com.typeform.ui.models.Settings
 import com.typeform.ui.models.UploadHelper
 import com.typeform.ui.models.constructDocument
 import com.typeform.ui.models.constructImage
+import org.jetbrains.compose.resources.vectorResource
 
 @Composable
 internal fun UploadPickerView(
@@ -113,8 +114,8 @@ internal fun UploadPickerView(
     ) {
         Row {
             Icon(
-                imageVector = Icons.Default.CameraAlt,
-                contentDescription = Icons.Default.CameraAlt.name,
+                imageVector = vectorResource(Res.drawable.camera_24dp),
+                contentDescription = "Camera",
             )
 
             StyledTextView(
@@ -131,8 +132,8 @@ internal fun UploadPickerView(
     ) {
         Row {
             Icon(
-                imageVector = Icons.Default.PhotoLibrary,
-                contentDescription = Icons.Default.PhotoLibrary.name,
+                imageVector = vectorResource(Res.drawable.photo_library_24dp),
+                contentDescription = "Photo Library",
             )
 
             StyledTextView(
@@ -150,8 +151,8 @@ internal fun UploadPickerView(
     ) {
         Row {
             Icon(
-                imageVector = Icons.Default.FileUpload,
-                contentDescription = Icons.Default.FileUpload.name,
+                imageVector = vectorResource(Res.drawable.upload_file_24dp),
+                contentDescription = "Upload File",
             )
 
             StyledTextView(

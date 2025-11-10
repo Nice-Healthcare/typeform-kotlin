@@ -8,7 +8,9 @@ import java.util.Locale
 import kotlinx.serialization.Serializable
 
 @Serializable(with = OpSerializer::class)
-enum class Op(val rawValue: String) {
+enum class Op(
+    val rawValue: String,
+) {
     ALWAYS("always"),
     AND("and"),
     BEGINS_WITH("begins_with"),

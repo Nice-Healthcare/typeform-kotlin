@@ -19,8 +19,6 @@ import androidx.compose.material.Scaffold
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.material.TextButton
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.outlined.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -39,6 +37,8 @@ import coil3.ImageLoader
 import com.typeform.models.Position
 import com.typeform.models.ResponseValue
 import com.typeform.models.Responses
+import com.typeform.resources.Res
+import com.typeform.resources.arrow_back_24dp
 import com.typeform.schema.Form
 import com.typeform.ui.components.StyledTextView
 import com.typeform.ui.models.Conclusion
@@ -47,6 +47,7 @@ import com.typeform.ui.models.Settings
 import com.typeform.ui.models.UploadHelper
 import com.typeform.ui.preview.ThemePreview
 import com.typeform.ui.preview.preview
+import org.jetbrains.compose.resources.vectorResource
 
 /**
  * The [FormView] presents a launching point for the typeform presentation.
@@ -134,8 +135,8 @@ fun FormView(
                         ) {
                             if (showBackNavigation) {
                                 Icon(
-                                    imageVector = Icons.AutoMirrored.Outlined.ArrowBack,
-                                    contentDescription = Icons.AutoMirrored.Outlined.ArrowBack.name,
+                                    imageVector = vectorResource(Res.drawable.arrow_back_24dp),
+                                    contentDescription = "Navigate Back",
                                     modifier = Modifier.clickable {
                                         navigateUsing(NavigationAction.Back)
                                     },

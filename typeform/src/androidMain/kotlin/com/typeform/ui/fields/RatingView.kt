@@ -7,11 +7,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Cloud
-import androidx.compose.material.icons.filled.Star
-import androidx.compose.material.icons.outlined.Cloud
-import androidx.compose.material.icons.outlined.Star
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -23,12 +18,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.typeform.models.ResponseValue
+import com.typeform.resources.Res
+import com.typeform.resources.cloud_24dp
+import com.typeform.resources.cloud_fill_24dp
+import com.typeform.resources.star_24dp
+import com.typeform.resources.star_fill_24dp
 import com.typeform.schema.Validations
 import com.typeform.schema.questions.Rating
 import com.typeform.ui.components.StyledTextView
 import com.typeform.ui.models.ResponseState
 import com.typeform.ui.models.Settings
 import com.typeform.ui.preview.ThemePreview
+import org.jetbrains.compose.resources.vectorResource
 
 @Composable
 internal fun RatingView(
@@ -43,18 +44,18 @@ internal fun RatingView(
     val range = IntRange(1, properties.steps)
     val outlinedImage = when (properties.shape.lowercase()) {
         "cloud" -> {
-            Icons.Outlined.Cloud
+            vectorResource(Res.drawable.cloud_24dp)
         }
         else -> {
-            Icons.Outlined.Star
+            vectorResource(Res.drawable.star_24dp)
         }
     }
     val filledImage = when (properties.shape.lowercase()) {
         "cloud" -> {
-            Icons.Filled.Cloud
+            vectorResource(Res.drawable.cloud_fill_24dp)
         }
         else -> {
-            Icons.Filled.Star
+            vectorResource(Res.drawable.star_fill_24dp)
         }
     }
 
