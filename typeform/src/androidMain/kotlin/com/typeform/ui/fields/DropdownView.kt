@@ -11,10 +11,6 @@ import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Check
-import androidx.compose.material.icons.filled.KeyboardArrowDown
-import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -27,11 +23,16 @@ import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.tooling.preview.Preview
 import com.typeform.models.ResponseValue
+import com.typeform.resources.Res
+import com.typeform.resources.check_24dp
+import com.typeform.resources.keyboard_arrow_down_24dp
+import com.typeform.resources.keyboard_arrow_up_24dp
 import com.typeform.schema.Choice
 import com.typeform.schema.Validations
 import com.typeform.schema.questions.Dropdown
 import com.typeform.ui.models.ResponseState
 import com.typeform.ui.models.Settings
+import org.jetbrains.compose.resources.vectorResource
 
 @Composable
 internal fun DropdownView(
@@ -96,7 +97,7 @@ internal fun DropdownView(
                     },
                 ) {
                     Icon(
-                        imageVector = if (expanded) Icons.Default.KeyboardArrowUp else Icons.Default.KeyboardArrowDown,
+                        imageVector = vectorResource(if (expanded) Res.drawable.keyboard_arrow_up_24dp else Res.drawable.keyboard_arrow_down_24dp),
                         contentDescription = settings.localization.emptyChoice,
                     )
                 }
@@ -161,7 +162,7 @@ private fun DropdownChoiceRow(
 
         if (selected) {
             Icon(
-                imageVector = Icons.Default.Check,
+                imageVector = vectorResource(Res.drawable.check_24dp),
                 contentDescription = null,
                 tint = MaterialTheme.typography.button.color,
             )

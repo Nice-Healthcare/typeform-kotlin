@@ -1,19 +1,19 @@
 [versions]
-agp = "8.7.3" # Android Gradle Plugin
-androidPermissions = "0.34.0"
-androidxActivity = "1.10.1"
-androidxComposeMaterial3 = "1.3.2"
-androidxCore = "1.16.0"
-androidxLifecycle = "2.8.7"
-androidxNavigation = "2.9.0"
-coil = "3.1.0"
-compose = "1.7.1"
-composeBom = "2025.01.01"
-kotlin = "2.1.0"
-kotlinxSerializationJson = "1.7.3"
-ktlint = "12.1.1"
-ktor = "3.0.3"
-testLogger = "3.2.0"
+agp = "8.13.0" # Android Gradle Plugin
+androidPermissions = "0.37.3"
+androidxActivity = "1.11.0"
+androidxComposeMaterial3 = "1.4.0"
+androidxCore = "1.17.0"
+androidxLifecycle = "2.9.4"
+androidxNavigation = "2.9.6"
+coil = "3.3.0"
+compose = "1.9.3"
+composeBom = "2025.11.00"
+kotlin = "2.2.21"
+kotlinxSerializationJson = "1.9.0"
+ktlint = "13.1.0"
+ktor = "3.3.2"
+testLogger = "4.0.0"
 
 [libraries]
 android-permissions = { group = "com.google.accompanist", name = "accompanist-permissions", version.ref = "androidPermissions" }

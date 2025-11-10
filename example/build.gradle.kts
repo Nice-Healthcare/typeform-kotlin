@@ -1,12 +1,21 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
 }
 
+kotlin {
+    compilerOptions {
+        jvmTarget = JvmTarget.JVM_17
+    }
+    jvmToolchain(17)
+}
+
 android {
     namespace = "com.typeform.example"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.typeform.example"
@@ -16,22 +25,22 @@ android {
         versionName = "1.0"
     }
 
+    buildFeatures {
+        compose = true
+    }
+
     buildTypes {
         release {
             isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
-    kotlinOptions {
-        jvmTarget = "17"
-    }
-    buildFeatures {
-        compose = true
-    }
+
     lint {
         checkReleaseBuilds = false
         checkDependencies = false

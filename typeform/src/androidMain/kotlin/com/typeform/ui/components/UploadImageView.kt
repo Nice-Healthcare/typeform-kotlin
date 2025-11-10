@@ -17,9 +17,6 @@ import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.LocalMinimumInteractiveComponentEnforcement
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Close
-import androidx.compose.material.icons.filled.FilePresent
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
@@ -37,9 +34,13 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import com.typeform.models.Upload
+import com.typeform.resources.Res
+import com.typeform.resources.close_24dp
+import com.typeform.resources.file_present_24dp
 import com.typeform.ui.models.Settings
 import com.typeform.ui.models.UploadHelper
 import com.typeform.ui.preview.ThemePreview
+import org.jetbrains.compose.resources.vectorResource
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -93,7 +94,7 @@ fun UploadImageView(
                         ),
                 ) {
                     Icon(
-                        imageVector = Icons.Default.Close,
+                        imageVector = vectorResource(Res.drawable.close_24dp),
                         contentDescription = null,
                         tint = settings.upload.colors.contentColor(true).value,
                     )
@@ -131,8 +132,8 @@ fun UploadPlaceholderView(
         contentAlignment = Alignment.Center,
     ) {
         Icon(
-            imageVector = Icons.Default.FilePresent,
-            contentDescription = Icons.Default.FilePresent.name,
+            imageVector = vectorResource(Res.drawable.file_present_24dp),
+            contentDescription = "File Placeholder",
             modifier = Modifier.size(glyphWidth),
             tint = settings.upload.colors.contentColor(true).value,
         )

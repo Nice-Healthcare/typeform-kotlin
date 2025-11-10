@@ -7,19 +7,33 @@ import kotlinx.serialization.Serializable
 
 @Serializable(with = ResponseValueSerializer::class)
 sealed class ResponseValue {
-    data class BooleanValue(val value: Boolean) : ResponseValue()
+    data class BooleanValue(
+        val value: Boolean,
+    ) : ResponseValue()
 
-    data class ChoiceValue(val value: Choice) : ResponseValue()
+    data class ChoiceValue(
+        val value: Choice,
+    ) : ResponseValue()
 
-    data class ChoicesValue(val value: List<Choice>) : ResponseValue()
+    data class ChoicesValue(
+        val value: List<Choice>,
+    ) : ResponseValue()
 
-    data class DateValue(val value: Date) : ResponseValue()
+    data class DateValue(
+        val value: Date,
+    ) : ResponseValue()
 
-    data class IntValue(val value: Int) : ResponseValue()
+    data class IntValue(
+        val value: Int,
+    ) : ResponseValue()
 
-    data class StringValue(val value: String) : ResponseValue()
+    data class StringValue(
+        val value: String,
+    ) : ResponseValue()
 
-    data class UploadValue(val value: Upload) : ResponseValue()
+    data class UploadValue(
+        val value: Upload,
+    ) : ResponseValue()
 
     fun asBoolean(): Boolean? {
         return when (this) {

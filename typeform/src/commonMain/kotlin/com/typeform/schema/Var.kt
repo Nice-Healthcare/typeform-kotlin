@@ -11,11 +11,17 @@ data class Var(
 ) {
     @Serializable(with = VarValueSerializer::class)
     sealed class Value {
-        data class Bool(val value: Boolean) : Value()
+        data class Bool(
+            val value: Boolean,
+        ) : Value()
 
-        data class Integer(val value: Int) : Value()
+        data class Integer(
+            val value: Int,
+        ) : Value()
 
-        data class RefOrString(val value: String) : Value()
+        data class RefOrString(
+            val value: String,
+        ) : Value()
     }
 }
 

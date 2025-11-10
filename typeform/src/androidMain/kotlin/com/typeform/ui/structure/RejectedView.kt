@@ -8,16 +8,17 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Warning
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.typeform.models.Responses
+import com.typeform.resources.Res
+import com.typeform.resources.warning_24dp
 import com.typeform.ui.models.Conclusion
 import com.typeform.ui.models.Settings
+import org.jetbrains.compose.resources.vectorResource
 
 /**
  * View the represents a general failure of the Typeform parser or responses.
@@ -46,7 +47,7 @@ internal fun RejectedView(
                 contentAlignment = Alignment.Center,
             ) {
                 Icon(
-                    imageVector = Icons.Default.Warning,
+                    imageVector = vectorResource(Res.drawable.warning_24dp),
                     contentDescription = null,
                     tint = MaterialTheme.colors.error,
                 )
