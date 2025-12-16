@@ -1,6 +1,6 @@
 package com.typeform.ui.preview
 
-import com.typeform.schema.Choice
+import com.typeform.schema.structure.Choice
 
 val Choice.Companion.previewHot: Choice
     get() = Choice(

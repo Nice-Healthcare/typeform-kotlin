@@ -1,4 +1,4 @@
-package com.typeform.schema.structure
+package com.typeform.schema.logic
 
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializable
@@ -9,29 +9,28 @@ import kotlinx.serialization.descriptors.SerialDescriptor
 import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
 
-@Serializable(with = AttachmentType.Serializer::class)
-enum class AttachmentType(
+@Serializable(with = ActionType.Serializer::class)
+enum class ActionType(
     val rawValue: String,
 ) {
-    IMAGE("image"),
-    VIDEO("video"),
+    JUMP("jump"),
     ;
 
-    private object Serializer : KSerializer<AttachmentType> {
+    private object Serializer : KSerializer<ActionType> {
         override val descriptor: SerialDescriptor
-            get() = PrimitiveSerialDescriptor("AttachmentType", PrimitiveKind.STRING)
+            get() = PrimitiveSerialDescriptor("ActionType", PrimitiveKind.STRING)
 
         override fun serialize(
             encoder: Encoder,
-            value: AttachmentType,
+            value: ActionType,
         ) {
             encoder.encodeString(value.rawValue)
         }
 
-        override fun deserialize(decoder: Decoder): AttachmentType {
+        override fun deserialize(decoder: Decoder): ActionType {
             val rawValue = decoder.decodeString()
-            return AttachmentType.entries.firstOrNull { it.rawValue == rawValue }
-                ?: throw SerializationException("Unhandled 'AttachmentType' value '$rawValue'.")
+            return ActionType.entries.firstOrNull { it.rawValue == rawValue }
+                ?: throw SerializationException("Unhandled 'ActionType' value '$rawValue'.")
         }
     }
 }

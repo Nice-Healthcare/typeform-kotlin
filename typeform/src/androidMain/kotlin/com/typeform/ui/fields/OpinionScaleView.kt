@@ -21,8 +21,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.typeform.models.ResponseValue
-import com.typeform.schema.Validations
 import com.typeform.schema.questions.OpinionScale
+import com.typeform.schema.structure.Validations
 import com.typeform.ui.components.StyledTextView
 import com.typeform.ui.models.ResponseState
 import com.typeform.ui.models.Settings

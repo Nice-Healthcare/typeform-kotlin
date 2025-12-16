@@ -1,6 +1,6 @@
 package com.typeform
 
-import com.typeform.schema.Form
+import com.typeform.schema.structure.Form
 import com.typeform.schema.translation.TranslatedForm
 
 interface Downloader {

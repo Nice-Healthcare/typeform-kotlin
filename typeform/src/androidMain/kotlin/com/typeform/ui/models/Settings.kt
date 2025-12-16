@@ -15,7 +15,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
 /**
- * Control the layout behaviors and styling of a [com.typeform.schema.Form] presentation.
+ * Control the layout behaviors and styling of a [com.typeform.schema.structure.Form] presentation.
  *
  * @param localization String values used in the presentation of the form.
  * @param presentation General padding & spacing applied across every screen.

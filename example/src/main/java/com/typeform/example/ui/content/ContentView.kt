@@ -35,7 +35,7 @@ import com.typeform.TypeformDownloader
 import com.typeform.example.model.ExampleUploadHelper
 import com.typeform.example.model.RecentHandler
 import com.typeform.example.ui.theme.ExampleTheme
-import com.typeform.schema.Form
+import com.typeform.schema.structure.Form
 import com.typeform.schema.translation.merging
 import com.typeform.ui.models.Conclusion
 import com.typeform.ui.models.Settings

@@ -1,15 +1,23 @@
-package com.typeform.schema
+package com.typeform.schema.logic
 
 import com.typeform.models.ResponseValue
 import com.typeform.models.Responses
-import com.typeform.serializers.VarValueSerializer
+import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.SerializationException
+import kotlinx.serialization.descriptors.SerialDescriptor
+import kotlinx.serialization.encoding.Decoder
+import kotlinx.serialization.encoding.Encoder
+import kotlinx.serialization.json.JsonPrimitive
+import kotlinx.serialization.json.booleanOrNull
+import kotlinx.serialization.json.contentOrNull
+import kotlinx.serialization.json.intOrNull
 
 data class Var(
     val type: VarType,
     val value: Value,
 ) {
-    @Serializable(with = VarValueSerializer::class)
+    @Serializable(with = Value.Serializer::class)
     sealed class Value {
         data class Bool(
             val value: Boolean,
@@ -22,6 +30,49 @@ data class Var(
         data class RefOrString(
             val value: String,
         ) : Value()
+
+        private object Serializer : KSerializer<Value> {
+
+            private val primitiveSerializer = JsonPrimitive.serializer()
+
+            override val descriptor: SerialDescriptor
+                get() = primitiveSerializer.descriptor
+
+            override fun serialize(
+                encoder: Encoder,
+                value: Value,
+            ) {
+                when (value) {
+                    is Bool -> {
+                        primitiveSerializer.serialize(encoder, JsonPrimitive(value.value))
+                    }
+                    is Integer -> {
+                        primitiveSerializer.serialize(encoder, JsonPrimitive(value.value))
+                    }
+                    is RefOrString -> {
+                        primitiveSerializer.serialize(encoder, JsonPrimitive(value.value))
+                    }
+                }
+            }
+
+            override fun deserialize(decoder: Decoder): Var.Value {
+                val primitive = primitiveSerializer.deserialize(decoder)
+
+                primitive.booleanOrNull?.let {
+                    return Bool(it)
+                }
+
+                primitive.intOrNull?.let {
+                    return Integer(it)
+                }
+
+                primitive.contentOrNull?.let {
+                    return RefOrString(it)
+                }
+
+                throw SerializationException("Unknown Var.Value Type")
+            }
+        }
     }
 }
 

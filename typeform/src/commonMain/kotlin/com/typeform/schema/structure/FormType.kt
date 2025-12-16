@@ -9,29 +9,28 @@ import kotlinx.serialization.descriptors.SerialDescriptor
 import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
 
-@Serializable(with = AttachmentType.Serializer::class)
-enum class AttachmentType(
+@Serializable(with = FormType.Serializer::class)
+enum class FormType(
     val rawValue: String,
 ) {
-    IMAGE("image"),
-    VIDEO("video"),
+    QUIZ("quiz"),
     ;
 
-    private object Serializer : KSerializer<AttachmentType> {
+    private object Serializer : KSerializer<FormType> {
         override val descriptor: SerialDescriptor
-            get() = PrimitiveSerialDescriptor("AttachmentType", PrimitiveKind.STRING)
+            get() = PrimitiveSerialDescriptor("FormType", PrimitiveKind.STRING)
 
         override fun serialize(
             encoder: Encoder,
-            value: AttachmentType,
+            value: FormType,
         ) {
             encoder.encodeString(value.rawValue)
         }
 
-        override fun deserialize(decoder: Decoder): AttachmentType {
+        override fun deserialize(decoder: Decoder): FormType {
             val rawValue = decoder.decodeString()
-            return AttachmentType.entries.firstOrNull { it.rawValue == rawValue }
-                ?: throw SerializationException("Unhandled 'AttachmentType' value '$rawValue'.")
+            return FormType.entries.firstOrNull { it.rawValue == rawValue }
+                ?: throw SerializationException("Unhandled 'FormType' value '$rawValue'.")
         }
     }
 }

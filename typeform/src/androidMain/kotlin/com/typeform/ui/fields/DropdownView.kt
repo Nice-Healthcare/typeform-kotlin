@@ -27,9 +27,9 @@ import com.typeform.resources.Res
 import com.typeform.resources.check_24dp
 import com.typeform.resources.keyboard_arrow_down_24dp
 import com.typeform.resources.keyboard_arrow_up_24dp
-import com.typeform.schema.Choice
-import com.typeform.schema.Validations
 import com.typeform.schema.questions.Dropdown
+import com.typeform.schema.structure.Choice
+import com.typeform.schema.structure.Validations
 import com.typeform.ui.models.ResponseState
 import com.typeform.ui.models.Settings
 import org.jetbrains.compose.resources.vectorResource

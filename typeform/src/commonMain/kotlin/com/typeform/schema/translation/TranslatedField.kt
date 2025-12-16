@@ -1,7 +1,7 @@
 package com.typeform.schema.translation
 
-import com.typeform.schema.Field
-import com.typeform.schema.FieldProperties
+import com.typeform.schema.structure.Field
+import com.typeform.schema.structure.FieldProperties
 import kotlinx.serialization.Serializable
 
 @Serializable

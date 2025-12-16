@@ -23,8 +23,8 @@ import com.typeform.resources.cloud_24dp
 import com.typeform.resources.cloud_fill_24dp
 import com.typeform.resources.star_24dp
 import com.typeform.resources.star_fill_24dp
-import com.typeform.schema.Validations
 import com.typeform.schema.questions.Rating
+import com.typeform.schema.structure.Validations
 import com.typeform.ui.components.StyledTextView
 import com.typeform.ui.models.ResponseState
 import com.typeform.ui.models.Settings

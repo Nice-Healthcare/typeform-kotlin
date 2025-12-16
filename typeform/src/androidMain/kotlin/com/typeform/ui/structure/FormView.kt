@@ -39,7 +39,7 @@ import com.typeform.models.ResponseValue
 import com.typeform.models.Responses
 import com.typeform.resources.Res
 import com.typeform.resources.arrow_back_24dp
-import com.typeform.schema.Form
+import com.typeform.schema.structure.Form
 import com.typeform.ui.components.StyledTextView
 import com.typeform.ui.models.Conclusion
 import com.typeform.ui.models.NavigationAction

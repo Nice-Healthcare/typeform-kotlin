@@ -10,8 +10,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.tooling.preview.Preview
 import com.typeform.models.ResponseValue
-import com.typeform.schema.Validations
 import com.typeform.schema.questions.YesNo
+import com.typeform.schema.structure.Validations
 import com.typeform.ui.components.IntermittentChoiceButton
 import com.typeform.ui.models.ResponseState
 import com.typeform.ui.models.Settings

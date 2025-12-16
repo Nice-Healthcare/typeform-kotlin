@@ -1,8 +1,8 @@
 package com.typeform.models
 
-import com.typeform.schema.Field
-import com.typeform.schema.FieldProperties
-import com.typeform.schema.fieldWithRef
+import com.typeform.schema.structure.Field
+import com.typeform.schema.structure.FieldProperties
+import com.typeform.schema.structure.fieldWithRef
 
 @Deprecated(message = "Not Used")
 typealias Response = (String, ResponseValue?) -> Unit

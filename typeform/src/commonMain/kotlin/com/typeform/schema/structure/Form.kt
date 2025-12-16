@@ -1,17 +1,18 @@
-package com.typeform.schema
+package com.typeform.schema.structure
 
 import com.typeform.models.Position
 import com.typeform.models.Responses
 import com.typeform.models.TypeformException
 import com.typeform.models.responseRequiredFor
-import com.typeform.schema.structure.EndingScreen
-import com.typeform.schema.structure.Group
-import com.typeform.schema.structure.Screen
-import com.typeform.schema.structure.WelcomeScreen
-import com.typeform.serializers.FormSerializer
+import com.typeform.schema.logic.ActionDetails
+import kotlinx.serialization.KSerializer
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.descriptors.SerialDescriptor
+import kotlinx.serialization.encoding.Decoder
+import kotlinx.serialization.encoding.Encoder
 
-@Serializable(with = FormSerializer::class)
+@Serializable(with = Form.Serializer::class)
 data class Form(
     val id: String,
     val type: FormType,
@@ -27,22 +28,11 @@ data class Form(
     val endingScreens: List<EndingScreen>,
 ) {
     companion object {
+        private val serializer = Contract.serializer()
     }
 
-    @Deprecated(message = "", replaceWith = ReplaceWith("links"))
-    val _links: Links
-        get() = links
-
-    @Deprecated(message = "", replaceWith = ReplaceWith("welcomeScreens"))
-    val welcome_screens: List<WelcomeScreen>?
-        get() = welcomeScreens
-
-    @Deprecated(message = "", replaceWith = ReplaceWith("endingScreens"))
-    val thankyou_screens: List<EndingScreen>
-        get() = endingScreens
-
     /**
-     * The first [com.typeform.schema.structure.Screen] that is presented for a specific [Form].
+     * The first [Screen] that is presented for a specific [Form].
      *
      * In a properly formatted [Form] this will be a [WelcomeScreen].
      */
@@ -58,13 +48,6 @@ data class Form(
         get() {
             return endingScreens.firstOrNull { it.isDefault } ?: endingScreens.firstOrNull()
         }
-
-    /**
-     * The [com.typeform.schema.structure.ThankYouScreen] identified as the **default**, or the first available if none.
-     */
-    @Deprecated(message = "", replaceWith = ReplaceWith("defaultOrFirstEndingScreen"))
-    val defaultOrFirstThankYouScreen: EndingScreen?
-        get() = defaultOrFirstEndingScreen
 
     fun screenWithId(id: String): Screen? {
         return welcomeScreens?.firstOrNull { it.id == id } ?: endingScreens.firstOrNull { it.id == id }
@@ -248,10 +231,81 @@ data class Form(
                     }
 
                     return next
-                } catch (exception: TypeformException.ResponseValueRequired) {
+                } catch (_: TypeformException.ResponseValueRequired) {
                     return next
                 }
             }
+        }
+    }
+
+    /**
+     * A version of [Form] with simplified & flattened structures that has been optimized
+     * for out-of-the-box de/serialization using **kotlinx-serialization**.
+     */
+    @Serializable
+    private data class Contract(
+        val id: String,
+        val type: FormType,
+        val logic: List<Logic.Contract>?,
+        val theme: Theme,
+        val title: String,
+        @SerialName("_links")
+        val links: Links,
+        val fields: List<Field.Contract>,
+        val hidden: List<String>?,
+        val settings: Settings,
+        val workspace: Workspace,
+        @SerialName("welcome_screens")
+        val welcomeScreens: List<WelcomeScreen>?,
+        @SerialName("thankyou_screens")
+        val thankYouScreens: List<EndingScreen>,
+    ) {
+        constructor(form: Form) : this(
+            id = form.id,
+            type = form.type,
+            logic = form.logic.map { Logic.Contract(it) },
+            theme = form.theme,
+            title = form.title,
+            links = form.links,
+            fields = form.fields.map { Field.Contract(it) },
+            hidden = form.hidden,
+            settings = form.settings,
+            workspace = form.workspace,
+            welcomeScreens = form.welcomeScreens,
+            thankYouScreens = form.endingScreens,
+        )
+
+        fun toForm(): Form {
+            return Form(
+                id = id,
+                type = type,
+                logic = (logic ?: emptyList()).map { it.toLogic() },
+                theme = theme,
+                title = title,
+                links = links,
+                fields = fields.map { it.toField() },
+                hidden = hidden,
+                settings = settings,
+                workspace = workspace,
+                welcomeScreens = welcomeScreens,
+                endingScreens = thankYouScreens,
+            )
+        }
+    }
+
+    private object Serializer : KSerializer<Form> {
+        override val descriptor: SerialDescriptor
+            get() = serializer.descriptor
+
+        override fun serialize(
+            encoder: Encoder,
+            value: Form,
+        ) {
+            serializer.serialize(encoder, Contract(value))
+        }
+
+        override fun deserialize(decoder: Decoder): Form {
+            return serializer.deserialize(decoder).toForm()
         }
     }
 }

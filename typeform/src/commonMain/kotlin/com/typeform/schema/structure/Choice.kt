@@ -1,4 +1,4 @@
-package com.typeform.schema
+package com.typeform.schema.structure
 
 import kotlinx.serialization.Serializable
 

@@ -1,11 +1,16 @@
 package com.typeform.models
 
-import com.typeform.schema.Choice
-import com.typeform.serializers.ResponseValueSerializer
+import com.typeform.schema.structure.Choice
+import com.typeform.serializers.DateSerializer
 import java.util.Date
+import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.SerializationException
+import kotlinx.serialization.descriptors.SerialDescriptor
+import kotlinx.serialization.encoding.Decoder
+import kotlinx.serialization.encoding.Encoder
 
-@Serializable(with = ResponseValueSerializer::class)
+@Serializable(with = ResponseValue.Serializer::class)
 sealed class ResponseValue {
     data class BooleanValue(
         val value: Boolean,
@@ -34,6 +39,10 @@ sealed class ResponseValue {
     data class UploadValue(
         val value: Upload,
     ) : ResponseValue()
+
+    companion object {
+        private val serializer = Contract.serializer()
+    }
 
     fun asBoolean(): Boolean? {
         return when (this) {
@@ -109,6 +118,67 @@ sealed class ResponseValue {
             else -> {
                 null
             }
+        }
+    }
+
+    @Serializable
+    internal data class Contract(
+        val bool: Boolean?,
+        val choice: Choice?,
+        val choices: List<Choice>?,
+        @Serializable(with = DateSerializer::class)
+        val date: Date?,
+        val int: Int?,
+        val string: String?,
+        val upload: Upload?,
+    ) {
+        constructor(responseValue: ResponseValue) : this(
+            bool = responseValue.asBoolean(),
+            choice = responseValue.asChoice(),
+            choices = responseValue.asChoices(),
+            date = responseValue.asDate(),
+            int = responseValue.asInt(),
+            string = responseValue.asString(),
+            upload = responseValue.asUpload(),
+        )
+
+        fun toResponseValue(): ResponseValue? {
+            return if (bool != null) {
+                ResponseValue.BooleanValue(bool)
+            } else if (choice != null) {
+                ResponseValue.ChoiceValue(choice)
+            } else if (choices != null) {
+                ResponseValue.ChoicesValue(choices)
+            } else if (date != null) {
+                ResponseValue.DateValue(date)
+            } else if (int != null) {
+                ResponseValue.IntValue(int)
+            } else if (string != null) {
+                ResponseValue.StringValue(string)
+            } else if (upload != null) {
+                ResponseValue.UploadValue(upload)
+            } else {
+                null
+            }
+        }
+    }
+
+    private object Serializer : KSerializer<ResponseValue> {
+        override val descriptor: SerialDescriptor
+            get() = serializer.descriptor
+
+        override fun serialize(
+            encoder: Encoder,
+            value: ResponseValue,
+        ) {
+            serializer.serialize(encoder, Contract(value))
+        }
+
+        override fun deserialize(decoder: Decoder): ResponseValue {
+            val responseValue = serializer.deserialize(decoder).toResponseValue()
+                ?: throw SerializationException("Unable to deserializer ResponseValue.")
+
+            return responseValue
         }
     }
 }

@@ -1,7 +1,7 @@
 package com.typeform
 
 import com.typeform.models.Position
-import com.typeform.schema.FieldType
+import com.typeform.schema.structure.FieldType
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
