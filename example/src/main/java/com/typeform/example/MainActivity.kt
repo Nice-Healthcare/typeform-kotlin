@@ -10,7 +10,7 @@ import androidx.compose.ui.Modifier
 import coil3.ImageLoader
 import coil3.compose.setSingletonImageLoaderFactory
 import coil3.network.ktor3.KtorNetworkFetcherFactory
-import com.typeform.example.ui.content.Navigation
+import com.typeform.example.ui.content.ContentView
 import com.typeform.example.ui.theme.ExampleTheme
 import io.ktor.client.HttpClient
 
@@ -35,7 +35,7 @@ class MainActivity : ComponentActivity() {
             }
 
             ExampleTheme {
-                Navigation(
+                ContentView(
                     modifier = Modifier
                         .imePadding()
                         .systemBarsPadding()
