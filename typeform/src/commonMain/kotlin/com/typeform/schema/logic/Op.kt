@@ -1,13 +1,19 @@
-package com.typeform.schema
+package com.typeform.schema.logic
 
 import com.typeform.models.TypeformException
-import com.typeform.serializers.OpSerializer
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
+import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.SerializationException
+import kotlinx.serialization.descriptors.PrimitiveKind
+import kotlinx.serialization.descriptors.PrimitiveSerialDescriptor
+import kotlinx.serialization.descriptors.SerialDescriptor
+import kotlinx.serialization.encoding.Decoder
+import kotlinx.serialization.encoding.Encoder
 
-@Serializable(with = OpSerializer::class)
+@Serializable(with = Op.Serializer::class)
 enum class Op(
     val rawValue: String,
 ) {
@@ -123,6 +129,24 @@ enum class Op(
             else -> {
                 throw TypeformException.UnexpectedOperation(this)
             }
+        }
+    }
+
+    private object Serializer : KSerializer<Op> {
+        override val descriptor: SerialDescriptor
+            get() = PrimitiveSerialDescriptor("Op", PrimitiveKind.STRING)
+
+        override fun serialize(
+            encoder: Encoder,
+            value: Op,
+        ) {
+            encoder.encodeString(value.rawValue)
+        }
+
+        override fun deserialize(decoder: Decoder): Op {
+            val rawValue = decoder.decodeString()
+            return Op.entries.firstOrNull { it.rawValue == rawValue }
+                ?: throw SerializationException("Unhandled 'Op' value '$rawValue'.")
         }
     }
 }

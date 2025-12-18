@@ -3,7 +3,7 @@ package com.typeform
 import com.typeform.models.Position
 import com.typeform.models.ResponseValue
 import com.typeform.models.Responses
-import com.typeform.schema.Choice
+import com.typeform.schema.structure.Choice
 import kotlin.test.Test
 import kotlin.test.assertEquals
 

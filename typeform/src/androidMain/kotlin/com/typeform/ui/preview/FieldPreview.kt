@@ -1,13 +1,13 @@
 package com.typeform.ui.preview
 
-import com.typeform.schema.Choice
-import com.typeform.schema.Field
-import com.typeform.schema.FieldProperties
-import com.typeform.schema.FieldType
-import com.typeform.schema.Validations
 import com.typeform.schema.questions.DateStamp
 import com.typeform.schema.questions.Dropdown
+import com.typeform.schema.structure.Choice
+import com.typeform.schema.structure.Field
+import com.typeform.schema.structure.FieldProperties
+import com.typeform.schema.structure.FieldType
 import com.typeform.schema.structure.Statement
+import com.typeform.schema.structure.Validations
 
 val Field.Companion.previewDate: Field
     get() = Field(

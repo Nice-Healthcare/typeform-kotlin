@@ -1,4 +1,4 @@
-package com.typeform.models
+package com.typeform.schema.logic
 
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializable
@@ -10,39 +10,39 @@ import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
 
 @Serializable
-data class Upload(
-    val bytes: ByteArray,
-    val path: Path,
-    val mimeType: String,
-    val fileName: String,
+data class ActionDetails(
+    val to: To,
 ) {
-    @Serializable(with = Path.Serializer::class)
-    enum class Path(
+    @Serializable
+    data class To(
+        val type: ToType,
+        val value: String,
+    )
+
+    @Serializable(with = ToType.Serializer::class)
+    enum class ToType(
         val rawValue: String,
     ) {
-        CAMERA("camera"),
-        DOCUMENTS("documents"),
-        PHOTO_LIBRARY("photoLibrary"),
+        FIELD("field"),
+        THANK_YOU("thankyou"),
         ;
 
-        private object Serializer : KSerializer<Path> {
+        private object Serializer : KSerializer<ToType> {
             override val descriptor: SerialDescriptor
-                get() = PrimitiveSerialDescriptor("Upload.Path", PrimitiveKind.STRING)
+                get() = PrimitiveSerialDescriptor("ActionDetails.ToType", PrimitiveKind.STRING)
 
             override fun serialize(
                 encoder: Encoder,
-                value: Path,
+                value: ToType,
             ) {
                 encoder.encodeString(value.rawValue)
             }
 
-            override fun deserialize(decoder: Decoder): Path {
+            override fun deserialize(decoder: Decoder): ToType {
                 val rawValue = decoder.decodeString()
-                return Path.entries.firstOrNull { it.rawValue == rawValue }
-                    ?: throw SerializationException("Unhandled 'Upload.Path' value '$rawValue'.")
+                return ToType.entries.firstOrNull { it.rawValue == rawValue }
+                    ?: throw SerializationException("Unhandled 'ActionDetails.ToType' value '$rawValue'.")
             }
         }
     }
-
-    companion object
 }

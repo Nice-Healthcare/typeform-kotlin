@@ -2,8 +2,8 @@ package com.typeform.ui.models
 
 import com.typeform.models.ResponseValue
 import com.typeform.models.Responses
-import com.typeform.schema.Field
-import com.typeform.schema.FieldProperties
+import com.typeform.schema.structure.Field
+import com.typeform.schema.structure.FieldProperties
 
 data class ResponseState(
     val response: ResponseValue? = null,

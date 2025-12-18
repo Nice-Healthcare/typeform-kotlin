@@ -1,12 +1,13 @@
-package com.typeform.schema
+package com.typeform.schema.structure
 
 import com.typeform.models.Position
-import com.typeform.schema.structure.Attachment
-import com.typeform.schema.structure.Group
-import com.typeform.serializers.FieldSerializer
+import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.descriptors.SerialDescriptor
+import kotlinx.serialization.encoding.Decoder
+import kotlinx.serialization.encoding.Encoder
 
-@Serializable(with = FieldSerializer::class)
+@Serializable(with = Field.Serializer::class)
 data class Field(
     val id: String,
     val ref: String,
@@ -17,6 +18,56 @@ data class Field(
     val attachment: Attachment?,
 ) {
     companion object {
+        private val serializer = Contract.serializer()
+    }
+
+    @Serializable
+    internal data class Contract(
+        val id: String,
+        val ref: String,
+        val type: FieldType,
+        val title: String,
+        val properties: FieldProperties.Contract,
+        val validations: Validations?,
+        val attachment: Attachment?,
+    ) {
+        constructor(field: Field) : this(
+            id = field.id,
+            ref = field.ref,
+            type = field.type,
+            title = field.title,
+            properties = FieldProperties.Contract(field.properties),
+            validations = field.validations,
+            attachment = field.attachment,
+        )
+
+        fun toField(): Field {
+            return Field(
+                id = id,
+                ref = ref,
+                type = type,
+                title = title,
+                properties = properties.toFieldProperties(type),
+                validations = validations,
+                attachment = attachment,
+            )
+        }
+    }
+
+    private object Serializer : KSerializer<Field> {
+        override val descriptor: SerialDescriptor
+            get() = serializer.descriptor
+
+        override fun serialize(
+            encoder: Encoder,
+            value: Field,
+        ) {
+            serializer.serialize(encoder, Contract(value))
+        }
+
+        override fun deserialize(decoder: Decoder): Field {
+            return serializer.deserialize(decoder).toField()
+        }
     }
 }
 
@@ -78,7 +129,7 @@ fun List<Field>.fieldWithRef(ref: String): Field? {
  * **This always assumes that you are starting at the top of a `Form` hierarchy, and should only be used there.**
  *
  * @param id Unique identifier of the [Field] being requested.
- * @param group The optional [com.typeform.schema.structure.Group] of which the field provided belongs.
+ * @param group The optional [Group] of which the field provided belongs.
  * @return The [Position] associated to the parent if located.
  */
 internal fun List<Field>.parentForFieldWithId(

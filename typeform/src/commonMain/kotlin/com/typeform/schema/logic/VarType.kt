@@ -1,4 +1,4 @@
-package com.typeform.schema.structure
+package com.typeform.schema.logic
 
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializable
@@ -9,29 +9,30 @@ import kotlinx.serialization.descriptors.SerialDescriptor
 import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
 
-@Serializable(with = AttachmentType.Serializer::class)
-enum class AttachmentType(
+@Serializable(with = VarType.Serializer::class)
+enum class VarType(
     val rawValue: String,
 ) {
-    IMAGE("image"),
-    VIDEO("video"),
+    CHOICE("choice"),
+    CONSTANT("constant"),
+    FIELD("field"),
     ;
 
-    private object Serializer : KSerializer<AttachmentType> {
+    private object Serializer : KSerializer<VarType> {
         override val descriptor: SerialDescriptor
-            get() = PrimitiveSerialDescriptor("AttachmentType", PrimitiveKind.STRING)
+            get() = PrimitiveSerialDescriptor("VarType", PrimitiveKind.STRING)
 
         override fun serialize(
             encoder: Encoder,
-            value: AttachmentType,
+            value: VarType,
         ) {
             encoder.encodeString(value.rawValue)
         }
 
-        override fun deserialize(decoder: Decoder): AttachmentType {
+        override fun deserialize(decoder: Decoder): VarType {
             val rawValue = decoder.decodeString()
-            return AttachmentType.entries.firstOrNull { it.rawValue == rawValue }
-                ?: throw SerializationException("Unhandled 'AttachmentType' value '$rawValue'.")
+            return VarType.entries.firstOrNull { it.rawValue == rawValue }
+                ?: throw SerializationException("Unhandled 'VarType' value '$rawValue'.")
         }
     }
 }

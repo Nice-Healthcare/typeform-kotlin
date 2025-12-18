@@ -25,10 +25,10 @@ import coil3.ImageLoader
 import com.typeform.models.Position
 import com.typeform.models.Responses
 import com.typeform.models.TypeformException
-import com.typeform.schema.Field
-import com.typeform.schema.FieldProperties
-import com.typeform.schema.Form
 import com.typeform.schema.structure.EndingScreen
+import com.typeform.schema.structure.Field
+import com.typeform.schema.structure.FieldProperties
+import com.typeform.schema.structure.Form
 import com.typeform.schema.structure.Group
 import com.typeform.ui.components.StyledTextView
 import com.typeform.ui.fields.DateView

@@ -1,11 +1,10 @@
 package com.typeform
 
-import com.typeform.Typeform.Companion.json
 import com.typeform.models.ResponseValue
 import com.typeform.models.Responses
 import com.typeform.models.invalidResponseValuesGiven
 import com.typeform.models.validResponseValuesGiven
-import com.typeform.schema.Choice
+import com.typeform.schema.structure.Choice
 import java.util.Calendar
 import java.util.Date
 import java.util.TimeZone
@@ -13,7 +12,6 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
-import kotlinx.serialization.encodeToString
 
 class ResponsesTests : TypeformTestCase() {
 

@@ -3,10 +3,10 @@ package com.typeform
 import com.typeform.models.Position
 import com.typeform.models.ResponseValue
 import com.typeform.models.Responses
-import com.typeform.schema.Choice
-import com.typeform.schema.FieldProperties
-import com.typeform.schema.FieldType
-import com.typeform.schema.fieldWithId
+import com.typeform.schema.structure.Choice
+import com.typeform.schema.structure.FieldProperties
+import com.typeform.schema.structure.FieldType
+import com.typeform.schema.structure.fieldWithId
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNull
@@ -21,7 +21,7 @@ class PositionTests : TypeformTestCase() {
      */
     @Test
     fun testNextFromWelcome() {
-        val welcomeScreen = assertUnwrap(form.welcome_screens!!.firstOrNull())
+        val welcomeScreen = assertUnwrap(form.welcomeScreens!!.firstOrNull())
         val position: Position = Position.ScreenPosition(welcomeScreen)
         val next: Position
         try {

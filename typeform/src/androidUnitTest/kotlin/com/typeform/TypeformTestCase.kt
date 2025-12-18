@@ -1,7 +1,7 @@
 package com.typeform
 
-import com.typeform.schema.Choice
-import com.typeform.schema.Form
+import com.typeform.schema.structure.Choice
+import com.typeform.schema.structure.Form
 import com.typeform.schema.translation.TranslatedForm
 
 open class TypeformTestCase {

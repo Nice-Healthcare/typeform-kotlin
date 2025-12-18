@@ -10,7 +10,7 @@ import androidx.compose.ui.unit.dp
 import com.typeform.example.ui.theme.ExampleTheme
 import com.typeform.models.ResponseValue
 import com.typeform.models.Responses
-import com.typeform.schema.Choice
+import com.typeform.schema.structure.Choice
 
 @Composable
 fun ResponsesView(

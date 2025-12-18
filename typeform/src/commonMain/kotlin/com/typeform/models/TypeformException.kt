@@ -1,6 +1,6 @@
 package com.typeform.models
 
-import com.typeform.schema.Op
+import com.typeform.schema.logic.Op
 
 sealed class TypeformException : Exception {
     private constructor() : super()

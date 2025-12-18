@@ -1,6 +1,6 @@
 package com.typeform
 
-import com.typeform.schema.Form
+import com.typeform.schema.structure.Form
 import com.typeform.schema.translation.TranslatedForm
 import io.ktor.client.HttpClient
 import io.ktor.client.request.get

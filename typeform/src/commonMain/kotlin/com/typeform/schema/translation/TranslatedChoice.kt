@@ -1,6 +1,6 @@
 package com.typeform.schema.translation
 
-import com.typeform.schema.Choice
+import com.typeform.schema.structure.Choice
 import kotlinx.serialization.Serializable
 
 @Serializable

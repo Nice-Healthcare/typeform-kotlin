@@ -1,17 +1,17 @@
 package com.typeform.ui.preview
 
-import com.typeform.schema.Field
-import com.typeform.schema.Form
-import com.typeform.schema.FormType
-import com.typeform.schema.Links
-import com.typeform.schema.Settings
-import com.typeform.schema.Theme
-import com.typeform.schema.Workspace
 import com.typeform.schema.structure.Attachment
 import com.typeform.schema.structure.AttachmentProperties
 import com.typeform.schema.structure.AttachmentType
+import com.typeform.schema.structure.Field
+import com.typeform.schema.structure.Form
+import com.typeform.schema.structure.FormType
+import com.typeform.schema.structure.Links
 import com.typeform.schema.structure.ScreenProperties
+import com.typeform.schema.structure.Settings
+import com.typeform.schema.structure.Theme
 import com.typeform.schema.structure.WelcomeScreen
+import com.typeform.schema.structure.Workspace
 import java.net.URL
 
 val Form.Companion.preview: Form

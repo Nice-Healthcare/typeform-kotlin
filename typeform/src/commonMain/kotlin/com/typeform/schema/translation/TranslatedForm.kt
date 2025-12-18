@@ -1,6 +1,6 @@
 package com.typeform.schema.translation
 
-import com.typeform.schema.Form
+import com.typeform.schema.structure.Form
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 

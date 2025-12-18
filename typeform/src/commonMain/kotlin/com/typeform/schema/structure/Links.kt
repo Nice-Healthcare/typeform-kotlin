@@ -1,4 +1,4 @@
-package com.typeform.schema
+package com.typeform.schema.structure
 
 import com.typeform.serializers.URLSerializer
 import java.net.URL

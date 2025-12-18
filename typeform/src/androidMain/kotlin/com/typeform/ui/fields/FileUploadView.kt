@@ -20,8 +20,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.typeform.models.ResponseValue
 import com.typeform.models.Upload
-import com.typeform.schema.Validations
 import com.typeform.schema.questions.FileUpload
+import com.typeform.schema.structure.Validations
 import com.typeform.ui.components.StyledTextView
 import com.typeform.ui.components.UploadImageView
 import com.typeform.ui.components.UploadPickerView

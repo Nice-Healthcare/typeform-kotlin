@@ -15,7 +15,7 @@ data class EndingScreen(
     override val properties: ScreenProperties,
 ) : Screen {
     /**
-     * Indicates whether this [ThankYouScreen] is considered the _default_ for the [com.typeform.schema.Form].
+     * Indicates whether this [ThankYouScreen] is considered the _default_ for the [Form].
      */
     val isDefault: Boolean
         get() = ref.compareTo("default_tys", true) == 0
