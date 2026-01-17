@@ -24,6 +24,10 @@ sealed class ResponseValue {
         val value: List<Choice>,
     ) : ResponseValue()
 
+    data class ChoicesByReferenceValue(
+        val value: Map<String, List<Choice>>
+    ) : ResponseValue()
+
     data class DateValue(
         val value: Date,
     ) : ResponseValue()
@@ -69,6 +73,17 @@ sealed class ResponseValue {
     fun asChoices(): List<Choice>? {
         return when (this) {
             is ChoicesValue -> {
+                this.value
+            }
+            else -> {
+                null
+            }
+        }
+    }
+
+    fun asChoicesByReference(): Map<String, List<Choice>>? {
+        return when (this) {
+            is ChoicesByReferenceValue -> {
                 this.value
             }
             else -> {
@@ -126,6 +141,7 @@ sealed class ResponseValue {
         val bool: Boolean?,
         val choice: Choice?,
         val choices: List<Choice>?,
+        val choicesByReference: Map<String, List<Choice>>?,
         @Serializable(with = DateSerializer::class)
         val date: Date?,
         val int: Int?,
@@ -136,6 +152,7 @@ sealed class ResponseValue {
             bool = responseValue.asBoolean(),
             choice = responseValue.asChoice(),
             choices = responseValue.asChoices(),
+            choicesByReference = responseValue.asChoicesByReference(),
             date = responseValue.asDate(),
             int = responseValue.asInt(),
             string = responseValue.asString(),
@@ -149,6 +166,8 @@ sealed class ResponseValue {
                 ResponseValue.ChoiceValue(choice)
             } else if (choices != null) {
                 ResponseValue.ChoicesValue(choices)
+            } else if (choicesByReference != null) {
+                ResponseValue.ChoicesByReferenceValue(choicesByReference)
             } else if (date != null) {
                 ResponseValue.DateValue(date)
             } else if (int != null) {

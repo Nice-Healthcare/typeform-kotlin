@@ -37,6 +37,9 @@ fun ResponsesView(
                             ChoiceView(it)
                         }
                     }
+                    is ResponseValue.ChoicesByReferenceValue -> {
+                        ChoicesByReferenceView(value.value)
+                    }
                     is ResponseValue.DateValue -> {
                         Text(text = value.value.toString())
                     }
@@ -66,6 +69,13 @@ fun ChoiceView(
         Text(text = choice.ref)
         Text(text = choice.label)
     }
+}
+
+@Composable
+fun ChoicesByReferenceView(
+    choices: Map<String, List<Choice>>,
+) {
+
 }
 
 @Preview(showBackground = true)

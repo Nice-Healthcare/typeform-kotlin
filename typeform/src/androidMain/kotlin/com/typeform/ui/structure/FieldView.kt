@@ -35,6 +35,7 @@ import com.typeform.ui.fields.DateView
 import com.typeform.ui.fields.DropdownView
 import com.typeform.ui.fields.FileUploadView
 import com.typeform.ui.fields.LongTextView
+import com.typeform.ui.fields.MatrixView
 import com.typeform.ui.fields.MultipleChoiceView
 import com.typeform.ui.fields.NumberView
 import com.typeform.ui.fields.OpinionScaleView
@@ -208,6 +209,10 @@ internal fun FieldView(
                         ) {
                             handleResponseState(it)
                         }
+                    }
+                    is FieldProperties.MatrixProperties -> {
+                        // Note `properties.validations` as `Matrix` utilize their `fields` validations.
+                        MatrixView()
                     }
                     is FieldProperties.MultipleChoiceProperties -> {
                         MultipleChoiceView(

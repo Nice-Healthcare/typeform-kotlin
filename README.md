@@ -58,7 +58,7 @@ The [`FormView`](typeform/src/androidMain/kotlin/com/typeform/ui/structure/FormV
 @Composable
 fun MyNavGraph(form: Form) {
     val navController = rememberNavController()
-    
+
     NavHost(
         navController = navController,
         startDestination = "typeform-form",
@@ -136,7 +136,7 @@ interface Downloader {
 
 // Available in Android
 val downloader: Downloader = TypeformDownloader()
-try {    
+try {
     // Base language 'en' (English)
     val form = downloader.downloadForm("abcde12345").getOrThrow()
     // form.settings.translation_languages contains 'es' (Spanish)
@@ -155,9 +155,10 @@ All of the _structural_ components are supported: Welcome Screen, Ending, Statem
 * Dropdown
 * File Upload
 * Long Text
-* Opinion Scale
+* Matrix
 * Multiple Choice
 * Number
+* Opinion Scale
 * Rating
 * Short Text
 * Yes/No

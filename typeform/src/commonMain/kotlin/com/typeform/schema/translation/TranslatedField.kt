@@ -61,6 +61,13 @@ fun FieldProperties.merging(translatedProperties: TranslatedProperties?): FieldP
                 ),
             )
         }
+        is FieldProperties.MatrixProperties -> {
+            this.copy(
+                properties = this.properties.copy(
+                    fields = this.properties.fields.merging(translatedProperties.fields),
+                )
+            )
+        }
         is FieldProperties.MultipleChoiceProperties -> {
             this.copy(
                 properties = this.properties.copy(

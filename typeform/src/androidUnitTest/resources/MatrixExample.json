@@ -1,0 +1,248 @@
+{
+  "id": "WkORBn0g",
+  "type": "quiz",
+  "title": "Test Matrix Question",
+  "workspace": {
+    "href": "https://api.typeform.com/workspaces/5PY2Nu"
+  },
+  "theme": {
+    "href": "https://api.typeform.com/themes/qHWOQ7"
+  },
+  "settings": {
+    "language": "en",
+    "progress_bar": "proportion",
+    "meta": {
+      "allow_indexing": false
+    },
+    "hide_navigation": false,
+    "is_public": true,
+    "is_trial": false,
+    "show_progress_bar": true,
+    "show_typeform_branding": true,
+    "are_uploads_public": false,
+    "show_time_to_complete": true,
+    "show_number_of_submissions": false,
+    "show_cookie_consent": false,
+    "show_question_number": true,
+    "show_key_hint_on_choices": true,
+    "autosave_progress": true,
+    "free_form_navigation": false,
+    "use_lead_qualification": false,
+    "pro_subdomain_enabled": false,
+    "auto_translate": true,
+    "partial_responses_to_all_integrations": false
+  },
+  "thankyou_screens": [
+    {
+      "id": "uJZN2GUByVOG",
+      "ref": "thankyou-screen",
+      "title": "",
+      "type": "thankyou_screen",
+      "properties": {
+        "show_button": true,
+        "share_icons": true,
+        "button_mode": "default_redirect",
+        "button_text": "Create a typeform"
+      }
+    },
+    {
+      "id": "DefaultTyScreen",
+      "ref": "default_tys",
+      "title": "Thanks for completing this typeform\nNow *create your own* — it's free, easy, \u0026 beautiful",
+      "type": "thankyou_screen",
+      "properties": {
+        "show_button": true,
+        "share_icons": false,
+        "button_mode": "default_redirect",
+        "button_text": "Create a *typeform*"
+      },
+      "attachment": {
+        "type": "image",
+        "href": "https://public-assets.typeform.com/public/admin/2dpnUBBkz2VN.gif"
+      }
+    }
+  ],
+  "fields": [
+    {
+      "id": "TtPOCtVhBebk",
+      "title": "Let's test the matrix question",
+      "ref": "0c9c6470-c193-4043-a60c-0273d56e5876",
+      "properties": {
+        "button_text": "Continue",
+        "hide_marks": false
+      },
+      "type": "statement"
+    },
+    {
+      "id": "3LifzqG22m1P",
+      "title": "Do any of the following apply to the reason you’re seeking care?",
+      "ref": "e60f0f83-6f1b-4d0b-81ca-b05e11dfebcd",
+      "properties": {
+        "fields": [
+          {
+            "id": "Fg0BEvAfhgJ5",
+            "title": "Pain from a broken bone",
+            "ref": "707fbfbd-9e4e-46ac-b767-7a982c2c996e",
+            "properties": {
+              "randomize": false,
+              "allow_multiple_selection": false,
+              "allow_other_choice": false,
+              "vertical_alignment": true,
+              "choices": [
+                {
+                  "id": "LcSOZ2D6GN9V",
+                  "ref": "d0962818-9402-4d40-91be-25daa203cfa7",
+                  "label": "Yes"
+                },
+                {
+                  "id": "YZ10oAwDUq6K",
+                  "ref": "22279395-5972-46d7-a5b7-2f2b9e4a12e6",
+                  "label": "No"
+                }
+              ]
+            },
+            "validations": {
+              "required": true
+            },
+            "type": "multiple_choice"
+          },
+          {
+            "id": "XNP75E1RPXKD",
+            "title": "Concussion",
+            "ref": "d7799e3f-8647-44a2-8a8b-5039c1ac253c",
+            "properties": {
+              "randomize": false,
+              "allow_multiple_selection": false,
+              "allow_other_choice": false,
+              "vertical_alignment": true,
+              "choices": [
+                {
+                  "id": "fluKtoKs3UbG",
+                  "ref": "9d01e6d3-8040-479c-95fb-7d1fceca6f8f",
+                  "label": "Yes"
+                },
+                {
+                  "id": "XIMW5ga0dENm",
+                  "ref": "0617e0e8-a49e-40d2-8eb5-4b3dae5f84b3",
+                  "label": "No"
+                }
+              ]
+            },
+            "validations": {
+              "required": true
+            },
+            "type": "multiple_choice"
+          },
+          {
+            "id": "l81tBCQxJesj",
+            "title": "Pain from a motor vehicle accident",
+            "ref": "67396128-6aef-430f-afc7-6f8f645b7628",
+            "properties": {
+              "randomize": false,
+              "allow_multiple_selection": false,
+              "allow_other_choice": false,
+              "vertical_alignment": true,
+              "choices": [
+                {
+                  "id": "3HUgFvzJRdq4",
+                  "ref": "d7fb394d-05c2-4857-962e-165fb4a419b8",
+                  "label": "Yes"
+                },
+                {
+                  "id": "VnAGMTm3Drpd",
+                  "ref": "18888961-b879-4fbc-8404-095f913d2b45",
+                  "label": "No"
+                }
+              ]
+            },
+            "validations": {
+              "required": true
+            },
+            "type": "multiple_choice"
+          },
+          {
+            "id": "mmQfnap0BWOf",
+            "title": "Surgery",
+            "ref": "377ef32b-c729-4b68-9aca-d78c4f804aab",
+            "properties": {
+              "randomize": false,
+              "allow_multiple_selection": false,
+              "allow_other_choice": false,
+              "vertical_alignment": true,
+              "choices": [
+                {
+                  "id": "nOjbo3ms0mnl",
+                  "ref": "aea0eb13-1551-47cc-99ff-628492f23409",
+                  "label": "Yes"
+                },
+                {
+                  "id": "N5cMaqUuccL9",
+                  "ref": "8e134dd4-1dea-4691-80fa-1a18fec2531b",
+                  "label": "No"
+                }
+              ]
+            },
+            "validations": {
+              "required": true
+            },
+            "type": "multiple_choice"
+          },
+          {
+            "id": "wYLMwy4yZnPP",
+            "title": "Workplace injury requiring workers’ compensation paperwork",
+            "ref": "f0b547e1-3e65-4f9a-a33f-e5e73e11a592",
+            "properties": {
+              "randomize": false,
+              "allow_multiple_selection": false,
+              "allow_other_choice": false,
+              "vertical_alignment": true,
+              "choices": [
+                {
+                  "id": "vzfZyu7RkwBK",
+                  "ref": "d232cc12-f876-4473-adab-48373ae6a615",
+                  "label": "Yes"
+                },
+                {
+                  "id": "303uyQ6E225C",
+                  "ref": "dad30226-09f7-445a-bdf6-a2833410e1fe",
+                  "label": "No"
+                }
+              ]
+            },
+            "validations": {
+              "required": true
+            },
+            "type": "multiple_choice"
+          }
+        ]
+      },
+      "type": "matrix"
+    },
+    {
+      "id": "AiLMuk79LuFg",
+      "title": "Can we publish multiple choice with only one response?",
+      "ref": "ec3aebc0-bb55-448a-b0f6-7b4d8b756f4f",
+      "properties": {
+        "randomize": false,
+        "allow_multiple_selection": false,
+        "allow_other_choice": false,
+        "vertical_alignment": true,
+        "choices": [
+          {
+            "id": "DgAAqvBO9cWs",
+            "ref": "8cee11d0-b298-4155-80a4-ce499e622c08",
+            "label": "Cool"
+          }
+        ]
+      },
+      "validations": {
+        "required": true
+      },
+      "type": "multiple_choice"
+    }
+  ],
+  "_links": {
+    "display": "https://tohanuk.typeform.com/to/WkORBn0g",
+    "responses": "https://api.typeform.com/forms/WkORBn0g/responses"
+  }
+}

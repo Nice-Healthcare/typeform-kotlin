@@ -78,6 +78,16 @@ fun Responses.invalidResponseValuesGiven(fields: List<Field>): List<String> {
                         }
                     }
                 }
+                is FieldProperties.MatrixProperties -> {
+                    when (element.value) {
+                        is ResponseValue.ChoicesByReferenceValue -> {
+                            // Expected Type
+                        }
+                        else -> {
+                            ref = element.key
+                        }
+                    }
+                }
                 is FieldProperties.MultipleChoiceProperties -> {
                     if (field.properties.properties.allow_multiple_selection) {
                         when (element.value) {
