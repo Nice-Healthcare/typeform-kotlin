@@ -212,7 +212,14 @@ internal fun FieldView(
                     }
                     is FieldProperties.MatrixProperties -> {
                         // Note `properties.validations` as `Matrix` utilize their `fields` validations.
-                        MatrixView()
+                        MatrixView(
+                            settings = settings,
+                            properties = field.properties.properties,
+                            responseState = responseState,
+                            validations = field.properties.properties.validations,
+                        ) {
+                            handleResponseState(it)
+                        }
                     }
                     is FieldProperties.MultipleChoiceProperties -> {
                         MultipleChoiceView(

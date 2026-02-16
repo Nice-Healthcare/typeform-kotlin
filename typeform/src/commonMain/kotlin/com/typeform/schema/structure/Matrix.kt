@@ -18,12 +18,21 @@ data class Matrix(
 
     val questions: List<Iteration>
         get() {
-            return listOf()
+            return fields.mapNotNull { field ->
+                val multipleChoice = field.properties.asMultipleChoice() ?: return@mapNotNull null
+                return@mapNotNull Iteration(
+                    id = field.id,
+                    ref = field.ref,
+                    title = field.title,
+                    question = multipleChoice,
+                )
+            }
         }
 
     val columns: List<String>
         get() {
-            return listOf()
+            val multipleChoice = fields.firstOrNull()?.properties?.asMultipleChoice() ?: return emptyList()
+            return multipleChoice.choices.map { it.label }
         }
 
     val rows: List<String>

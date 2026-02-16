@@ -154,7 +154,6 @@ internal fun List<Field>.parentForFieldWithId(
                 return match
             }
         }
-
     }
 
     return null

@@ -25,7 +25,7 @@ sealed class ResponseValue {
     ) : ResponseValue()
 
     data class ChoicesByReferenceValue(
-        val value: Map<String, List<Choice>>
+        val value: Map<String, List<Choice>>,
     ) : ResponseValue()
 
     data class DateValue(
