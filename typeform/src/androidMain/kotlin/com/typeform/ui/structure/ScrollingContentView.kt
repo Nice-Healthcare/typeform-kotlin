@@ -33,6 +33,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.typeform.ui.LocalSettings
 import com.typeform.ui.models.Settings
 import com.typeform.ui.preview.ThemePreview
 import kotlin.math.abs
@@ -44,13 +45,13 @@ import kotlin.math.abs
 @Composable
 internal fun ScrollingContentView(
     scaffoldPadding: PaddingValues,
-    settings: Settings,
     title: String = "",
     onClick: () -> Unit,
     enabled: Boolean = true,
     header: (@Composable () -> Unit)? = null,
     content: @Composable BoxScope.() -> Unit,
 ) {
+    val settings = LocalSettings.current
     val scrollState = rememberScrollState()
     val isKeyboardVisible by rememberUpdatedState(if (LocalInspectionMode.current) false else WindowInsets.isImeVisible)
     val animationDuration = 300
@@ -117,7 +118,6 @@ private fun ScrollingContentViewPreview(settings: Settings = Settings()) {
     ThemePreview {
         ScrollingContentView(
             scaffoldPadding = PaddingValues(0.dp),
-            settings = settings,
             title = "Preview",
             onClick = {},
             header = {

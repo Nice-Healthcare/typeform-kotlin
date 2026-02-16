@@ -18,11 +18,9 @@ import com.typeform.models.ResponseValue
 import com.typeform.schema.questions.LongText
 import com.typeform.schema.structure.Validations
 import com.typeform.ui.models.ResponseState
-import com.typeform.ui.models.Settings
 
 @Composable
 internal fun LongTextView(
-    settings: Settings,
     properties: LongText,
     responseState: ResponseState,
     validations: Validations?,
@@ -78,7 +76,6 @@ internal fun LongTextView(
 @Composable
 private fun LongTextViewPreview() {
     LongTextView(
-        settings = Settings(),
         properties = LongText(
             description = null,
         ),

@@ -12,18 +12,18 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.typeform.models.ResponseValue
 import com.typeform.schema.questions.YesNo
 import com.typeform.schema.structure.Validations
+import com.typeform.ui.LocalSettings
 import com.typeform.ui.components.IntermittentChoiceButton
 import com.typeform.ui.models.ResponseState
-import com.typeform.ui.models.Settings
 
 @Composable
 internal fun YesNoView(
-    settings: Settings,
     properties: YesNo,
     responseState: ResponseState,
     validations: Validations?,
     stateHandler: (ResponseState) -> Unit,
 ) {
+    val settings = LocalSettings.current
     var selected: Boolean? by remember { mutableStateOf(responseState.response?.asBoolean()) }
 
     fun updateState() {
@@ -75,7 +75,6 @@ internal fun YesNoView(
         verticalArrangement = Arrangement.spacedBy(settings.presentation.contentVerticalSpacing),
     ) {
         IntermittentChoiceButton(
-            settings = settings,
             text = settings.localization.yes,
             selected = selected == true,
         ) {
@@ -83,7 +82,6 @@ internal fun YesNoView(
         }
 
         IntermittentChoiceButton(
-            settings = settings,
             text = settings.localization.no,
             selected = selected == false,
         ) {
@@ -96,7 +94,6 @@ internal fun YesNoView(
 @Composable
 private fun YesNoViewPreview() {
     YesNoView(
-        settings = Settings(),
         properties = YesNo(
             description = null,
         ),

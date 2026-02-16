@@ -18,11 +18,9 @@ import com.typeform.models.ResponseValue
 import com.typeform.schema.questions.Number
 import com.typeform.schema.structure.Validations
 import com.typeform.ui.models.ResponseState
-import com.typeform.ui.models.Settings
 
 @Composable
 internal fun NumberView(
-    settings: Settings,
     properties: Number,
     responseState: ResponseState,
     validations: Validations?,
@@ -79,7 +77,6 @@ internal fun NumberView(
 @Composable
 private fun NumberViewPreview() {
     NumberView(
-        settings = Settings(),
         properties = Number(
             description = null,
         ),

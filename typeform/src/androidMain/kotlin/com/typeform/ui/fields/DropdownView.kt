@@ -30,18 +30,19 @@ import com.typeform.resources.keyboard_arrow_up_24dp
 import com.typeform.schema.questions.Dropdown
 import com.typeform.schema.structure.Choice
 import com.typeform.schema.structure.Validations
+import com.typeform.ui.LocalSettings
 import com.typeform.ui.models.ResponseState
 import com.typeform.ui.models.Settings
 import org.jetbrains.compose.resources.vectorResource
 
 @Composable
 internal fun DropdownView(
-    settings: Settings,
     properties: Dropdown,
     responseState: ResponseState,
     validations: Validations?,
     stateHandler: (ResponseState) -> Unit,
 ) {
+    val settings = LocalSettings.current
     val focusRequester = remember { FocusRequester() }
     val focusManager = LocalFocusManager.current
     var selected by remember { mutableStateOf(responseState.response?.asChoice()) }
@@ -174,7 +175,6 @@ private fun DropdownChoiceRow(
 @Composable
 private fun DropdownViewPreview() {
     DropdownView(
-        settings = Settings(),
         properties = Dropdown(
             choices = emptyList(),
             description = null,

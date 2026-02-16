@@ -13,21 +13,21 @@ import com.typeform.models.ResponseValue
 import com.typeform.schema.questions.MultipleChoice
 import com.typeform.schema.structure.Choice
 import com.typeform.schema.structure.Validations
+import com.typeform.ui.LocalSettings
 import com.typeform.ui.components.IntermittentChoiceButton
 import com.typeform.ui.models.ResponseState
-import com.typeform.ui.models.Settings
 import com.typeform.ui.preview.ThemePreview
 import com.typeform.ui.preview.previewCold
 import com.typeform.ui.preview.previewHot
 
 @Composable
 internal fun MultipleChoiceView(
-    settings: Settings,
     properties: MultipleChoice,
     responseState: ResponseState,
     validations: Validations?,
     stateHandler: (ResponseState) -> Unit,
 ) {
+    val settings = LocalSettings.current
     var selected: List<Choice> by remember { mutableStateOf(responseState.response?.asChoices() ?: emptyList()) }
 
     val choices = properties.orderedChoices()
@@ -87,7 +87,6 @@ internal fun MultipleChoiceView(
     ) {
         choices.forEach { choice ->
             IntermittentChoiceButton(
-                settings = settings,
                 text = choice.label,
                 allowMultiple = allowMultiple,
                 selected = selected.contains(choice),
@@ -103,7 +102,6 @@ internal fun MultipleChoiceView(
 private fun MultipleChoiceViewPreview() {
     ThemePreview {
         MultipleChoiceView(
-            settings = Settings(),
             properties = MultipleChoice(
                 choices = listOf(
                     Choice.previewHot,

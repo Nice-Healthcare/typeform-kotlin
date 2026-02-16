@@ -21,7 +21,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
-import coil3.ImageLoader
 import com.typeform.models.Position
 import com.typeform.models.Responses
 import com.typeform.models.TypeformException
@@ -30,6 +29,7 @@ import com.typeform.schema.structure.Field
 import com.typeform.schema.structure.FieldProperties
 import com.typeform.schema.structure.Form
 import com.typeform.schema.structure.Group
+import com.typeform.ui.LocalSettings
 import com.typeform.ui.components.StyledTextView
 import com.typeform.ui.fields.DateView
 import com.typeform.ui.fields.DropdownView
@@ -45,8 +45,6 @@ import com.typeform.ui.fields.YesNoView
 import com.typeform.ui.models.Conclusion
 import com.typeform.ui.models.NavigationAction
 import com.typeform.ui.models.ResponseState
-import com.typeform.ui.models.Settings
-import com.typeform.ui.models.UploadHelper
 import com.typeform.ui.preview.ThemePreview
 import com.typeform.ui.preview.preview
 import com.typeform.ui.preview.previewDate
@@ -60,15 +58,13 @@ import com.typeform.ui.preview.previewStatement
 internal fun FieldView(
     scaffoldPadding: PaddingValues,
     form: Form,
-    settings: Settings,
     field: Field,
     group: Group?,
     responses: Responses,
-    imageLoader: ImageLoader? = null,
-    uploadHelper: UploadHelper? = null,
     header: (@Composable () -> Unit)? = null,
     actionHandler: (NavigationAction) -> Unit,
 ) {
+    val settings = LocalSettings.current
     var collectedResponses: Responses by remember { mutableStateOf(responses) }
     var responseState: ResponseState by remember {
         mutableStateOf(
@@ -118,7 +114,6 @@ internal fun FieldView(
 
     ScrollingContentView(
         scaffoldPadding = scaffoldPadding,
-        settings = settings,
         title = nextTitle,
         enabled = (next != null && !responseState.invalid),
         header = header,
@@ -161,14 +156,12 @@ internal fun FieldView(
                 field.attachment?.let {
                     AttachmentView(
                         attachment = it,
-                        imageLoader = imageLoader,
                     )
                 }
 
                 when (field.properties) {
                     is FieldProperties.DateStampProperties -> {
                         DateView(
-                            settings = settings,
                             properties = field.properties.properties,
                             responseState = responseState,
                             validations = field.validations,
@@ -178,7 +171,6 @@ internal fun FieldView(
                     }
                     is FieldProperties.DropdownProperties -> {
                         DropdownView(
-                            settings = settings,
                             properties = field.properties.properties,
                             responseState = responseState,
                             validations = field.validations,
@@ -188,11 +180,9 @@ internal fun FieldView(
                     }
                     is FieldProperties.FileUploadProperties -> {
                         FileUploadView(
-                            settings = settings,
                             properties = field.properties.properties,
                             responseState = responseState,
                             validations = field.validations,
-                            uploadHelper = uploadHelper,
                         ) {
                             handleResponseState(it)
                         }
@@ -202,7 +192,6 @@ internal fun FieldView(
                     }
                     is FieldProperties.LongTextProperties -> {
                         LongTextView(
-                            settings = settings,
                             properties = field.properties.properties,
                             responseState = responseState,
                             validations = field.validations,
@@ -213,7 +202,6 @@ internal fun FieldView(
                     is FieldProperties.MatrixProperties -> {
                         // Note `properties.validations` as `Matrix` utilize their `fields` validations.
                         MatrixView(
-                            settings = settings,
                             properties = field.properties.properties,
                             responseState = responseState,
                             validations = field.properties.properties.validations,
@@ -223,7 +211,6 @@ internal fun FieldView(
                     }
                     is FieldProperties.MultipleChoiceProperties -> {
                         MultipleChoiceView(
-                            settings = settings,
                             properties = field.properties.properties,
                             responseState = responseState,
                             validations = field.validations,
@@ -233,7 +220,6 @@ internal fun FieldView(
                     }
                     is FieldProperties.NumberProperties -> {
                         NumberView(
-                            settings = settings,
                             properties = field.properties.properties,
                             responseState = responseState,
                             validations = field.validations,
@@ -243,7 +229,6 @@ internal fun FieldView(
                     }
                     is FieldProperties.OpinionScaleProperties -> {
                         OpinionScaleView(
-                            settings = settings,
                             properties = field.properties.properties,
                             responseState = responseState,
                             validations = field.validations,
@@ -253,7 +238,6 @@ internal fun FieldView(
                     }
                     is FieldProperties.RatingProperties -> {
                         RatingView(
-                            settings = settings,
                             properties = field.properties.properties,
                             responseState = responseState,
                             validations = field.validations,
@@ -263,7 +247,6 @@ internal fun FieldView(
                     }
                     is FieldProperties.ShortTextProperties -> {
                         ShortTextView(
-                            settings = settings,
                             properties = field.properties.properties,
                             responseState = responseState,
                             validations = field.validations,
@@ -276,7 +259,6 @@ internal fun FieldView(
                     }
                     is FieldProperties.YesNoProperties -> {
                         YesNoView(
-                            settings = settings,
                             properties = field.properties.properties,
                             responseState = responseState,
                             validations = field.validations,
@@ -302,7 +284,6 @@ private fun FieldViewPreview(
         FieldView(
             scaffoldPadding = PaddingValues(0.dp),
             form = form,
-            settings = Settings(),
             field = field,
             group = null,
             responses = mapOf(),
