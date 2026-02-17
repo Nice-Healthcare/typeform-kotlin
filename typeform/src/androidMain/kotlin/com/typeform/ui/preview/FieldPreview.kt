@@ -2,6 +2,7 @@ package com.typeform.ui.preview
 
 import com.typeform.schema.questions.DateStamp
 import com.typeform.schema.questions.Dropdown
+import com.typeform.schema.questions.MultipleChoice
 import com.typeform.schema.structure.Choice
 import com.typeform.schema.structure.Field
 import com.typeform.schema.structure.FieldProperties
@@ -65,5 +66,98 @@ val Field.Companion.previewStatement: Field
             ),
         ),
         validations = null,
+        attachment = null,
+    )
+
+val Field.Companion.previewMatrix1: Field
+    get() = Field(
+        id = "Fg0BEvAfhgJ5",
+        ref = "707fbfbd-9e4e-46ac-b767-7a982c2c996e",
+        type = FieldType.MULTIPLE_CHOICE,
+        title = "Pain from a broken bone",
+        properties = FieldProperties.MultipleChoiceProperties(
+            properties = MultipleChoice(
+                choices = listOf(
+                    Choice(
+                        id = "LcSOZ2D6GN9V",
+                        ref = "d0962818-9402-4d40-91be-25daa203cfa7",
+                        label = "Yes",
+                    ),
+                    Choice(
+                        id = "YZ10oAwDUq6K",
+                        ref = "22279395-5972-46d7-a5b7-2f2b9e4a12e6",
+                        label = "No",
+                    ),
+                ),
+                randomize = false,
+                allow_multiple_selection = false,
+                allow_other_choice = false,
+                vertical_alignment = true,
+                description = null,
+            ),
+        ),
+        validations = Validations(true),
+        attachment = null,
+    )
+
+val Field.Companion.previewMatrix2: Field
+    get() = Field(
+        id = "XNP75E1RPXKD",
+        ref = "d7799e3f-8647-44a2-8a8b-5039c1ac253c",
+        type = FieldType.MULTIPLE_CHOICE,
+        title = "Concussion",
+        properties = FieldProperties.MultipleChoiceProperties(
+            properties = MultipleChoice(
+                choices = listOf(
+                    Choice(
+                        id = "fluKtoKs3UbG",
+                        ref = "9d01e6d3-8040-479c-95fb-7d1fceca6f8f",
+                        label = "Yes",
+                    ),
+                    Choice(
+                        id = "XIMW5ga0dENm",
+                        ref = "0617e0e8-a49e-40d2-8eb5-4b3dae5f84b3",
+                        label = "No",
+                    ),
+                ),
+                randomize = false,
+                allow_multiple_selection = false,
+                allow_other_choice = false,
+                vertical_alignment = true,
+                description = null,
+            ),
+        ),
+        validations = Validations(true),
+        attachment = null,
+    )
+
+val Field.Companion.previewMatrix3: Field
+    get() = Field(
+        id = "l81tBCQxJesj",
+        ref = "67396128-6aef-430f-afc7-6f8f645b7628",
+        type = FieldType.MULTIPLE_CHOICE,
+        title = "Pain from a motor vehicle accident",
+        properties = FieldProperties.MultipleChoiceProperties(
+            properties = MultipleChoice(
+                choices = listOf(
+                    Choice(
+                        id = "3HUgFvzJRdq4",
+                        ref = "d7fb394d-05c2-4857-962e-165fb4a419b8",
+                        label = "Yes",
+                    ),
+                    Choice(
+                        id = "VnAGMTm3Drpd",
+                        ref = "18888961-b879-4fbc-8404-095f913d2b45",
+                        label = "No",
+                    ),
+                ),
+                randomize = false,
+                allow_multiple_selection = false,
+                allow_other_choice = false,
+                vertical_alignment = true,
+                description = null,
+            ),
+        ),
+        validations = Validations(true),
         attachment = null,
     )

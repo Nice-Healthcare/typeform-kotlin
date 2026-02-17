@@ -129,20 +129,26 @@ fun List<Field>.fieldWithRef(ref: String): Field? {
  * **This always assumes that you are starting at the top of a `Form` hierarchy, and should only be used there.**
  *
  * @param id Unique identifier of the [Field] being requested.
- * @param group The optional [Group] of which the field provided belongs.
+ * @param container The optional [FieldContainer] of which the field provided belongs.
  * @return The [Position] associated to the parent if located.
  */
 internal fun List<Field>.parentForFieldWithId(
     id: String,
-    group: Group? = null,
+    container: FieldContainer? = null,
 ): Position? {
     for (field in this) {
         if (field.id == id) {
-            return Position.FieldPosition(field, group)
+            return Position.FieldPosition(field, container as? Group)
         }
 
-        val subGroup = field.properties.asGroup()
-        if (subGroup != null) {
+        field.properties.asGroup()?.let { subGroup ->
+            val match = subGroup.fields.parentForFieldWithId(id, subGroup)
+            if (match != null) {
+                return match
+            }
+        }
+
+        field.properties.asMatrix()?.let { subGroup ->
             val match = subGroup.fields.parentForFieldWithId(id, subGroup)
             if (match != null) {
                 return match
@@ -159,20 +165,26 @@ internal fun List<Field>.parentForFieldWithId(
  * **This always assumes that you are starting at the top of a `Form` hierarchy, and should only be used there.**
  *
  * @param ref _Reference_ identifier of the [Field] being requested.
- * @param group The optional [Group] of which the field provided belongs.
+ * @param container The optional [FieldContainer] of which the field provided belongs.
  * @return The [Position] associated to the parent if located.
  */
 internal fun List<Field>.parentForFieldWithRef(
     ref: String,
-    group: Group? = null,
+    container: FieldContainer? = null,
 ): Position? {
     for (field in this) {
         if (field.ref == ref) {
-            return Position.FieldPosition(field, group)
+            return Position.FieldPosition(field, container as? Group)
         }
 
-        val subGroup = field.properties.asGroup()
-        if (subGroup != null) {
+        field.properties.asGroup()?.let { subGroup ->
+            val match = subGroup.fields.parentForFieldWithRef(ref, subGroup)
+            if (match != null) {
+                return match
+            }
+        }
+
+        field.properties.asMatrix()?.let { subGroup ->
             val match = subGroup.fields.parentForFieldWithRef(ref, subGroup)
             if (match != null) {
                 return match

@@ -34,6 +34,10 @@ sealed class FieldProperties {
         val properties: LongText,
     ) : FieldProperties()
 
+    data class MatrixProperties(
+        val properties: Matrix,
+    ) : FieldProperties()
+
     data class MultipleChoiceProperties(
         val properties: MultipleChoice,
     ) : FieldProperties()
@@ -112,6 +116,17 @@ sealed class FieldProperties {
     fun asLongText(): LongText? {
         return when (this) {
             is LongTextProperties -> {
+                this.properties
+            }
+            else -> {
+                null
+            }
+        }
+    }
+
+    fun asMatrix(): Matrix? {
+        return when (this) {
+            is MatrixProperties -> {
                 this.properties
             }
             else -> {
@@ -378,6 +393,9 @@ sealed class FieldProperties {
             is GroupProperties -> {
                 this.properties.fields
             }
+            is MatrixProperties -> {
+                this.properties.fields
+            }
             else -> {
                 null
             }
@@ -502,6 +520,13 @@ sealed class FieldProperties {
                     LongTextProperties(
                         LongText(
                             description = description,
+                        ),
+                    )
+                }
+                FieldType.MATRIX -> {
+                    MatrixProperties(
+                        Matrix(
+                            fields = fields?.map { it.toField() } ?: emptyList(),
                         ),
                     )
                 }

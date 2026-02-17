@@ -18,6 +18,7 @@ enum class FieldType(
     FILE_UPLOAD("file_upload"),
     GROUP("group"),
     LONG_TEXT("long_text"),
+    MATRIX("matrix"),
     MULTIPLE_CHOICE("multiple_choice"),
     NUMBER("number"),
     OPINION_SCALE("opinion_scale"),
