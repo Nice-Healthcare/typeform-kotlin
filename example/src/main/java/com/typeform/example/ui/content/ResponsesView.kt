@@ -3,8 +3,11 @@ package com.typeform.example.ui.content
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.typeform.example.ui.theme.ExampleTheme
@@ -23,6 +26,9 @@ fun ResponsesView(
             ) {
                 Text(
                     text = key,
+                    modifier = Modifier.widthIn(min = 150.dp, max = 150.dp),
+                    overflow = TextOverflow.MiddleEllipsis,
+                    maxLines = 1,
                 )
 
                 when (value) {
@@ -66,7 +72,12 @@ fun ChoiceView(
         verticalArrangement = Arrangement.spacedBy(5.dp),
     ) {
         Text(text = choice.id)
-        Text(text = choice.ref)
+        Text(
+            text = choice.ref,
+            modifier = Modifier.widthIn(max = 100.dp),
+            overflow = TextOverflow.Ellipsis,
+            maxLines = 1,
+        )
         Text(text = choice.label)
     }
 }
@@ -75,7 +86,23 @@ fun ChoiceView(
 fun ChoicesByReferenceView(
     choices: Map<String, List<Choice>>,
 ) {
-
+    Column(
+        verticalArrangement = Arrangement.spacedBy(5.dp),
+    ) {
+        choices.forEach { (key, list) ->
+            Row {
+                Text(
+                    text = key,
+                    modifier = Modifier.widthIn(max = 100.dp),
+                    overflow = TextOverflow.Ellipsis,
+                    maxLines = 1,
+                )
+                list.forEach { choice ->
+                    Text(text = "✔️${choice.label}")
+                }
+            }
+        }
+    }
 }
 
 @Preview(showBackground = true)
@@ -85,7 +112,14 @@ private fun ResponsesViewPreview() {
         ResponsesView(
             responses = mapOf(
                 "example-1" to ResponseValue.StringValue("Hello World!"),
-                "example-2" to ResponseValue.BooleanValue(false)
+                "example-2" to ResponseValue.BooleanValue(false),
+                "something-a-bit-longer" to ResponseValue.ChoiceValue(
+                    Choice(
+                        id = "j8HD74ns83k",
+                        ref = "AD521595-C697-415D-ACD9-F82861393904",
+                        label = "Some Selection",
+                    )
+                )
             )
         )
     }
