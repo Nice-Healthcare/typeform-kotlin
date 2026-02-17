@@ -134,6 +134,7 @@ internal fun MatrixView(
                     text = iteration.title,
                     textStyle = MaterialTheme.typography.body1,
                     modifier = Modifier.weight(1f),
+                    textAlign = TextAlign.End,
                 )
 
                 iteration.question.choices.forEach { choice ->
