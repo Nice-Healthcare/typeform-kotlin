@@ -21,21 +21,22 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.Button
-import androidx.compose.material.Divider
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.material3.Button
+import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalInspectionMode
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import com.typeform.ui.LocalSettings
-import com.typeform.ui.models.Settings
-import com.typeform.ui.preview.ThemePreview
+import com.typeform.ui.models.LocalPresentation
+import com.typeform.ui.preview.MaterialThemePreview
 import kotlin.math.abs
 
 /**
@@ -56,55 +57,50 @@ internal fun ScrollingContentView(
     val isKeyboardVisible by rememberUpdatedState(if (LocalInspectionMode.current) false else WindowInsets.isImeVisible)
     val animationDuration = 300
 
-    Column(
-        modifier = Modifier
-            .background(MaterialTheme.colors.background)
-            .padding(scaffoldPadding),
-        verticalArrangement = Arrangement.spacedBy(0.dp),
-    ) {
-        header?.let {
-            it()
-        }
-
-        Box(
-            modifier = Modifier.weight(1f),
+    Surface {
+        Column(
+            modifier = Modifier
+                .padding(scaffoldPadding),
+            verticalArrangement = Arrangement.spacedBy(0.dp),
         ) {
+            header?.let {
+                it()
+            }
+
             Box(
-                modifier = Modifier.verticalScroll(scrollState),
+                modifier = Modifier
+                    .verticalScroll(scrollState)
+                    .weight(1f)
+                    .fillMaxWidth(),
                 content = content,
             )
-        }
 
-        AnimatedVisibility(
-            visible = !isKeyboardVisible,
-            enter = slideInVertically(tween(animationDuration)) { abs(it) } + fadeIn(tween(animationDuration)),
-            exit = slideOutVertically(tween(animationDuration)) { abs(it) } + fadeOut(tween(animationDuration)),
-        ) {
-            Box(
-                modifier = Modifier.background(settings.callToAction.backgroundColor),
+            AnimatedVisibility(
+                visible = !isKeyboardVisible,
+                enter = slideInVertically(tween(animationDuration)) { abs(it) } + fadeIn(tween(animationDuration)),
+                exit = slideOutVertically(tween(animationDuration)) { abs(it) } + fadeOut(tween(animationDuration)),
             ) {
-                Divider(
-                    modifier = Modifier.fillMaxWidth(),
-                    color = settings.callToAction.dividerColor,
-                    thickness = 1.dp,
-                )
-
-                Column(
-                    modifier = Modifier
-                        .padding(settings.callToAction.containerPadding),
+                Surface(
+                    color = MaterialTheme.colorScheme.surfaceContainer,
                 ) {
-                    Button(
-                        onClick = onClick,
+                    HorizontalDivider(
                         modifier = Modifier.fillMaxWidth(),
-                        enabled = enabled,
-                        elevation = null,
-                        colors = settings.callToAction.colors,
-                        contentPadding = settings.callToAction.contentPadding,
+                        thickness = 1.dp,
+                    )
+
+                    Box(
+                        modifier = Modifier
+                            .padding(LocalPresentation.current.containerPadding),
                     ) {
-                        Text(
-                            text = title,
-                            color = settings.callToAction.colors.contentColor(enabled = enabled).value,
-                        )
+                        Button(
+                            onClick = onClick,
+                            modifier = Modifier.fillMaxWidth(),
+                            enabled = enabled,
+                        ) {
+                            Text(
+                                text = title,
+                            )
+                        }
                     }
                 }
             }
@@ -112,26 +108,27 @@ internal fun ScrollingContentView(
     }
 }
 
-@Preview(showBackground = true, showSystemUi = true)
+@PreviewLightDark
 @Composable
-private fun ScrollingContentViewPreview(settings: Settings = Settings()) {
-    ThemePreview {
+private fun ScrollingContentViewPreview() {
+    MaterialThemePreview {
         ScrollingContentView(
             scaffoldPadding = PaddingValues(0.dp),
             title = "Preview",
             onClick = {},
             header = {
-                Box(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .background(Color.Cyan)
-                        .height(50.dp),
-                )
+                Surface(
+                    color = MaterialTheme.colorScheme.surfaceContainer,
+                ) {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(50.dp),
+                    )
+                }
             },
         ) {
-            Column(
-                modifier = Modifier.padding(settings.presentation.contentPadding),
-            ) {
+            Column {
                 Box(
                     modifier = Modifier
                         .height(300.dp)

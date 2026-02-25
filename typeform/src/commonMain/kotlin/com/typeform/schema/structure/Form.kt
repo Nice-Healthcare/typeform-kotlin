@@ -326,7 +326,8 @@ private fun Form.nextPositionFrom(
     // Is this [Field] of type 'group'?
     when (field.properties) {
         is FieldProperties.GroupProperties -> {
-            val firstGroupField = field.properties.properties.fields.firstOrNull() ?: throw TypeformException.NextPosition(currentPosition)
+            val firstGroupField = field.properties.properties.fields
+                .firstOrNull() ?: throw TypeformException.NextPosition(currentPosition)
             return Position.FieldPosition(firstGroupField, field.properties.properties)
         }
         else -> {

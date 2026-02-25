@@ -1,10 +1,11 @@
 package com.typeform.ui.fields
 
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.OutlinedTextField
-import androidx.compose.material.TextFieldDefaults
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -13,11 +14,14 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.typeform.models.ResponseValue
 import com.typeform.schema.questions.Number
 import com.typeform.schema.structure.Validations
+import com.typeform.ui.components.StyledTextView
+import com.typeform.ui.models.LocalPresentation
 import com.typeform.ui.models.ResponseState
+import com.typeform.ui.preview.MaterialThemePreview
 
 @Composable
 internal fun NumberView(
@@ -57,31 +61,41 @@ internal fun NumberView(
         updateState()
     }
 
-    OutlinedTextField(
-        value = "${selected ?: ""}",
-        onValueChange = { value ->
-            select(value.toIntOrNull())
-        },
-        modifier = Modifier.fillMaxWidth(),
-        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-        singleLine = true,
-        colors = TextFieldDefaults.outlinedTextFieldColors(
-            textColor = MaterialTheme.typography.body1.color,
-            backgroundColor = MaterialTheme.colors.background,
-            focusedBorderColor = MaterialTheme.colors.primary,
-        ),
-    )
+    Column(
+        verticalArrangement = Arrangement.spacedBy(LocalPresentation.current.contentVerticalSpacing),
+    ) {
+        properties.description?.let {
+            StyledTextView(
+                text = it,
+                textStyle = MaterialTheme.typography.labelMedium,
+            )
+        }
+
+        OutlinedTextField(
+            value = "${selected ?: ""}",
+            onValueChange = { value ->
+                select(value.toIntOrNull())
+            },
+            modifier = Modifier.fillMaxWidth(),
+            label = {
+            },
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+            singleLine = true,
+        )
+    }
 }
 
-@Preview(showBackground = true, showSystemUi = true)
+@PreviewLightDark
 @Composable
 private fun NumberViewPreview() {
-    NumberView(
-        properties = Number(
-            description = null,
-        ),
-        responseState = ResponseState(),
-        validations = null,
-    ) {
+    MaterialThemePreview {
+        NumberView(
+            properties = Number(
+                description = null,
+            ),
+            responseState = ResponseState(),
+            validations = null,
+        ) {
+        }
     }
 }

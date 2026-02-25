@@ -2,21 +2,24 @@ package com.typeform.ui.fields
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.typeform.models.ResponseValue
 import com.typeform.schema.questions.MultipleChoice
 import com.typeform.schema.structure.Choice
 import com.typeform.schema.structure.Validations
 import com.typeform.ui.LocalSettings
 import com.typeform.ui.components.IntermittentChoiceButton
+import com.typeform.ui.components.StyledTextView
+import com.typeform.ui.models.LocalPresentation
 import com.typeform.ui.models.ResponseState
-import com.typeform.ui.preview.ThemePreview
+import com.typeform.ui.preview.MaterialThemePreview
 import com.typeform.ui.preview.previewCold
 import com.typeform.ui.preview.previewHot
 
@@ -83,8 +86,15 @@ internal fun MultipleChoiceView(
     }
 
     Column(
-        verticalArrangement = Arrangement.spacedBy(settings.presentation.contentVerticalSpacing),
+        verticalArrangement = Arrangement.spacedBy(LocalPresentation.current.contentVerticalSpacing),
     ) {
+        properties.description?.let {
+            StyledTextView(
+                text = it,
+                textStyle = MaterialTheme.typography.labelMedium,
+            )
+        }
+
         choices.forEach { choice ->
             IntermittentChoiceButton(
                 text = choice.label,
@@ -97,10 +107,10 @@ internal fun MultipleChoiceView(
     }
 }
 
-@Preview(showBackground = true)
+@PreviewLightDark
 @Composable
 private fun MultipleChoiceViewPreview() {
-    ThemePreview {
+    MaterialThemePreview {
         MultipleChoiceView(
             properties = MultipleChoice(
                 choices = listOf(

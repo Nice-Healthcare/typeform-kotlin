@@ -4,11 +4,9 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Switch
 import androidx.compose.material3.DatePicker
-import androidx.compose.material3.DatePickerDefaults
-import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Switch
 import androidx.compose.material3.rememberDatePickerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
@@ -19,16 +17,18 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.typeform.models.ResponseValue
 import com.typeform.schema.questions.DateStamp
 import com.typeform.schema.structure.Validations
 import com.typeform.ui.LocalSettings
 import com.typeform.ui.components.StyledTextView
+import com.typeform.ui.models.LocalLocalization
+import com.typeform.ui.models.LocalPresentation
 import com.typeform.ui.models.ResponseState
+import com.typeform.ui.preview.MaterialThemePreview
 import java.util.Date
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun DateView(
     properties: DateStamp,
@@ -78,8 +78,15 @@ internal fun DateView(
     }
 
     Column(
-        verticalArrangement = Arrangement.spacedBy(settings.presentation.contentVerticalSpacing),
+        verticalArrangement = Arrangement.spacedBy(LocalPresentation.current.contentVerticalSpacing),
     ) {
+        properties.description?.let {
+            StyledTextView(
+                text = it,
+                textStyle = MaterialTheme.typography.labelMedium,
+            )
+        }
+
         if (isOptional) {
             Row(
                 modifier = Modifier.fillMaxWidth(),
@@ -87,8 +94,8 @@ internal fun DateView(
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 StyledTextView(
-                    text = settings.localization.nullDate,
-                    textStyle = MaterialTheme.typography.caption,
+                    text = LocalLocalization.current.nullDate,
+                    textStyle = MaterialTheme.typography.bodyMedium,
                 )
 
                 Switch(
@@ -101,7 +108,6 @@ internal fun DateView(
                             select(pickerState.selectedDateMillis ?: Date().time)
                         }
                     },
-                    colors = settings.switch.colors,
                 )
             }
         }
@@ -112,30 +118,24 @@ internal fun DateView(
                 title = null,
                 headline = null,
                 showModeToggle = false,
-                colors = DatePickerDefaults.colors(
-                    weekdayContentColor = settings.calendar.weekdayContentColor,
-                    dayContentColor = settings.calendar.dayContentColor,
-                    selectedDayContentColor = settings.calendar.selectedDayContentColor,
-                    selectedDayContainerColor = settings.calendar.selectedDayContainerColor,
-                    todayContentColor = settings.calendar.todayDateContentColor,
-                    todayDateBorderColor = settings.calendar.todayDateContainerColor,
-                ),
             )
         }
     }
 }
 
-@Preview(showBackground = true, showSystemUi = true)
+@PreviewLightDark
 @Composable
 private fun DateViewPreview() {
-    DateView(
-        properties = DateStamp(
-            separator = "",
-            structure = "",
-            description = null,
-        ),
-        responseState = ResponseState(),
-        validations = null,
-    ) {
+    MaterialThemePreview {
+        DateView(
+            properties = DateStamp(
+                separator = "",
+                structure = "",
+                description = null,
+            ),
+            responseState = ResponseState(),
+            validations = null,
+        ) {
+        }
     }
 }

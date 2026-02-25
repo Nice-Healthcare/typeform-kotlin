@@ -7,8 +7,8 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -16,10 +16,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.tooling.preview.PreviewParameter
-import androidx.compose.ui.tooling.preview.PreviewParameterProvider
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import com.typeform.models.Position
 import com.typeform.models.Responses
@@ -43,12 +40,12 @@ import com.typeform.ui.fields.RatingView
 import com.typeform.ui.fields.ShortTextView
 import com.typeform.ui.fields.YesNoView
 import com.typeform.ui.models.Conclusion
+import com.typeform.ui.models.LocalLocalization
+import com.typeform.ui.models.LocalPresentation
 import com.typeform.ui.models.NavigationAction
 import com.typeform.ui.models.ResponseState
-import com.typeform.ui.preview.ThemePreview
+import com.typeform.ui.preview.MaterialThemePreview
 import com.typeform.ui.preview.preview
-import com.typeform.ui.preview.previewDate
-import com.typeform.ui.preview.previewDropdown
 import com.typeform.ui.preview.previewStatement
 
 /**
@@ -65,6 +62,7 @@ internal fun FieldView(
     actionHandler: (NavigationAction) -> Unit,
 ) {
     val settings = LocalSettings.current
+    val presentation = LocalPresentation.current
     var collectedResponses: Responses by remember { mutableStateOf(responses) }
     var responseState: ResponseState by remember {
         mutableStateOf(
@@ -84,7 +82,7 @@ internal fun FieldView(
             field.properties.properties.button_text
         }
         else -> {
-            settings.localization.next
+            LocalLocalization.current.next
         }
     }
 
@@ -121,7 +119,7 @@ internal fun FieldView(
             next?.let {
                 when (it) {
                     is Position.ScreenPosition -> {
-                        if (it.screen is EndingScreen && settings.presentation.skipEndingScreen) {
+                        if (it.screen is EndingScreen && presentation.skipEndingScreen) {
                             actionHandler(NavigationAction.ConclusionAction(Conclusion.Completed(collectedResponses, it.screen)))
                         } else {
                             actionHandler(NavigationAction.PositionAction(it, collectedResponses))
@@ -135,24 +133,17 @@ internal fun FieldView(
         },
     ) {
         Column(
-            modifier = Modifier.padding(settings.presentation.contentPadding),
-            verticalArrangement = Arrangement.spacedBy(settings.presentation.titleDescriptionVerticalSpacing),
+            modifier = Modifier.padding(presentation.contentPadding),
+            verticalArrangement = Arrangement.spacedBy(presentation.titleDescriptionVerticalSpacing),
         ) {
             StyledTextView(
                 text = field.title,
-                textStyle = MaterialTheme.typography.h5,
+                textStyle = MaterialTheme.typography.titleMedium,
             )
 
             Column(
-                verticalArrangement = Arrangement.spacedBy(settings.presentation.descriptionContentVerticalSpacing),
+                verticalArrangement = Arrangement.spacedBy(presentation.descriptionContentVerticalSpacing),
             ) {
-                field.properties.description?.let {
-                    StyledTextView(
-                        text = it,
-                        textStyle = MaterialTheme.typography.caption,
-                    )
-                }
-
                 field.attachment?.let {
                     AttachmentView(
                         attachment = it,
@@ -272,15 +263,13 @@ internal fun FieldView(
     }
 }
 
-@Preview(showBackground = true, showSystemUi = true)
+@PreviewLightDark
 @Composable
-private fun FieldViewPreview(
-    @PreviewParameter(FieldParameterProvider::class) reference: String,
-) {
+private fun FieldViewPreview() {
     val form = Form.preview
-    val field = form.fieldWithRef(reference) ?: throw Exception("Resource Not Found")
+    val field = form.fieldWithRef(Field.previewStatement.ref) ?: throw Exception("Resource Not Found")
 
-    ThemePreview {
+    MaterialThemePreview {
         FieldView(
             scaffoldPadding = PaddingValues(0.dp),
             form = form,
@@ -291,7 +280,7 @@ private fun FieldViewPreview(
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .background(Color.Magenta),
+                        .background(MaterialTheme.colorScheme.secondaryContainer),
                 ) {
                     Text("Intake for: Patient Name")
                 }
@@ -299,13 +288,4 @@ private fun FieldViewPreview(
             actionHandler = { },
         )
     }
-}
-
-private class FieldParameterProvider : PreviewParameterProvider<String> {
-    override val values: Sequence<String>
-        get() = sequenceOf(
-            Field.previewStatement.ref,
-            Field.previewDropdown.ref,
-            Field.previewDate.ref,
-        )
 }

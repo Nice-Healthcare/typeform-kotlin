@@ -20,7 +20,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import com.typeform.example.ui.theme.ExampleTheme
 import com.typeform.ui.models.Settings
@@ -158,7 +158,7 @@ fun SettingsView(
     }
 }
 
-@Preview
+@PreviewLightDark
 @Composable
 private fun SettingsViewPreview() {
     var settings: Settings by remember { mutableStateOf(Settings()) }

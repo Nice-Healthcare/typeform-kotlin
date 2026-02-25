@@ -1,15 +1,15 @@
 package com.typeform.ui.components
 
 import androidx.compose.foundation.layout.Column
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
-import com.typeform.ui.preview.ThemePreview
+import androidx.compose.ui.tooling.preview.PreviewLightDark
+import com.typeform.ui.preview.MaterialThemePreview
 
 @Composable
 internal fun StyledTextView(
@@ -30,30 +30,30 @@ internal fun StyledTextView(
     )
 }
 
-@Preview(showBackground = true)
+@PreviewLightDark
 @Composable
 private fun StyledTextViewPreview() {
-    ThemePreview {
+    MaterialThemePreview {
         Column {
             StyledTextView(
                 text = "Title Style",
-                textStyle = MaterialTheme.typography.h5,
+                textStyle = MaterialTheme.typography.titleLarge,
             )
             StyledTextView(
                 text = "Subtitle Style",
-                textStyle = MaterialTheme.typography.subtitle1,
+                textStyle = MaterialTheme.typography.titleSmall,
             )
             StyledTextView(
                 text = "Body Style",
-                textStyle = MaterialTheme.typography.body1,
+                textStyle = MaterialTheme.typography.bodyMedium,
             )
             StyledTextView(
                 text = "Prompt Style",
-                textStyle = MaterialTheme.typography.body2,
+                textStyle = MaterialTheme.typography.bodySmall,
             )
             StyledTextView(
                 text = "Caption Style",
-                textStyle = MaterialTheme.typography.caption,
+                textStyle = MaterialTheme.typography.labelMedium,
             )
         }
     }

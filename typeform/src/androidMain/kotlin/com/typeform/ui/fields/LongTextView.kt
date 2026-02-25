@@ -1,10 +1,11 @@
 package com.typeform.ui.fields
 
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.OutlinedTextField
-import androidx.compose.material.TextFieldDefaults
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -12,12 +13,15 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import com.typeform.models.ResponseValue
 import com.typeform.schema.questions.LongText
 import com.typeform.schema.structure.Validations
+import com.typeform.ui.components.StyledTextView
+import com.typeform.ui.models.LocalPresentation
 import com.typeform.ui.models.ResponseState
+import com.typeform.ui.preview.MaterialThemePreview
 
 @Composable
 internal fun LongTextView(
@@ -56,31 +60,41 @@ internal fun LongTextView(
         updateState()
     }
 
-    OutlinedTextField(
-        value = selected,
-        onValueChange = { value ->
-            select(value)
-        },
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(150.dp),
-        colors = TextFieldDefaults.outlinedTextFieldColors(
-            textColor = MaterialTheme.typography.body1.color,
-            backgroundColor = MaterialTheme.colors.background,
-            focusedBorderColor = MaterialTheme.colors.primary,
-        ),
-    )
+    Column(
+        verticalArrangement = Arrangement.spacedBy(LocalPresentation.current.contentVerticalSpacing),
+    ) {
+        properties.description?.let {
+            StyledTextView(
+                text = it,
+                textStyle = MaterialTheme.typography.labelMedium,
+            )
+        }
+
+        OutlinedTextField(
+            value = selected,
+            onValueChange = { value ->
+                select(value)
+            },
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(150.dp),
+            label = {
+            },
+        )
+    }
 }
 
-@Preview(showBackground = true, showSystemUi = true)
+@PreviewLightDark
 @Composable
 private fun LongTextViewPreview() {
-    LongTextView(
-        properties = LongText(
-            description = null,
-        ),
-        responseState = ResponseState(),
-        validations = null,
-    ) {
+    MaterialThemePreview {
+        LongTextView(
+            properties = LongText(
+                description = null,
+            ),
+            responseState = ResponseState(),
+            validations = null,
+        ) {
+        }
     }
 }

@@ -1,8 +1,6 @@
 package com.typeform.ui.structure
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -11,14 +9,14 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.AlertDialog
-import androidx.compose.material.Divider
-import androidx.compose.material.Icon
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Scaffold
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
-import androidx.compose.material.TextButton
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
@@ -27,7 +25,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -36,7 +34,6 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import coil3.ImageLoader
 import com.typeform.models.Position
-import com.typeform.models.ResponseValue
 import com.typeform.models.Responses
 import com.typeform.resources.Res
 import com.typeform.resources.arrow_back_24dp
@@ -46,10 +43,12 @@ import com.typeform.ui.LocalSettings
 import com.typeform.ui.LocalUploadHelper
 import com.typeform.ui.components.StyledTextView
 import com.typeform.ui.models.Conclusion
+import com.typeform.ui.models.LocalLocalization
+import com.typeform.ui.models.LocalPresentation
 import com.typeform.ui.models.NavigationAction
 import com.typeform.ui.models.Settings
 import com.typeform.ui.models.UploadHelper
-import com.typeform.ui.preview.ThemePreview
+import com.typeform.ui.preview.MaterialThemePreview
 import com.typeform.ui.preview.preview
 import org.jetbrains.compose.resources.vectorResource
 
@@ -120,215 +119,211 @@ fun FormView(
         }
     }
 
-    Scaffold(
-        topBar = {
-            Surface(
-                elevation = 5.dp,
-            ) {
-                Box(
-                    modifier = Modifier
-                        .background(MaterialTheme.colors.background)
-                        .fillMaxWidth(),
+    CompositionLocalProvider(
+        LocalPresentation provides settings.presentation,
+        LocalLocalization provides settings.localization,
+    ) {
+        Scaffold(
+            topBar = {
+                Surface(
+                    color = MaterialTheme.colorScheme.surfaceContainer,
                 ) {
-                    Column(
-                        modifier = Modifier.padding(settings.presentation.topBarPadding),
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth(),
                     ) {
-                        Row(
-                            modifier = Modifier.heightIn(min = 48.dp),
-                            verticalAlignment = Alignment.CenterVertically,
+                        Column(
+                            modifier = Modifier.padding(settings.presentation.topBarPadding),
                         ) {
-                            if (showBackNavigation) {
-                                Icon(
-                                    imageVector = vectorResource(Res.drawable.arrow_back_24dp),
-                                    contentDescription = "Navigate Back",
+                            Row(
+                                modifier = Modifier.heightIn(min = 48.dp),
+                                verticalAlignment = Alignment.CenterVertically,
+                            ) {
+                                if (showBackNavigation) {
+                                    Icon(
+                                        imageVector = vectorResource(Res.drawable.arrow_back_24dp),
+                                        contentDescription = "Navigate back",
+                                        modifier = Modifier.clickable {
+                                            navigateUsing(NavigationAction.Back)
+                                        },
+                                    )
+                                }
+
+                                Text(
+                                    text = " ",
+                                    modifier = Modifier.weight(1f),
+                                )
+
+                                Text(
+                                    text = settings.localization.exit,
                                     modifier = Modifier.clickable {
-                                        navigateUsing(NavigationAction.Back)
+                                        if (collectedResponses.isEmpty()) {
+                                            conclusion(Conclusion.Canceled)
+                                        } else {
+                                            showConfirmCancel = true
+                                        }
                                     },
+                                    style = MaterialTheme.typography.bodyMedium,
                                 )
                             }
-
-                            Text(
-                                text = " ",
-                                modifier = Modifier.weight(1f),
-                            )
-
-                            Text(
-                                text = settings.localization.exit,
-                                modifier = Modifier.clickable {
-                                    if (collectedResponses.isEmpty()) {
-                                        conclusion(Conclusion.Canceled)
-                                    } else {
-                                        showConfirmCancel = true
-                                    }
-                                },
-                                color = MaterialTheme.colors.primary,
-                                style = MaterialTheme.typography.subtitle1,
-                            )
                         }
-                    }
 
-                    Divider(
-                        modifier = Modifier.align(Alignment.BottomCenter),
-                    )
+                        HorizontalDivider(
+                            modifier = Modifier.align(Alignment.BottomCenter),
+                        )
+                    }
                 }
-            }
-        },
-    ) { scaffoldPadding ->
-        NavHost(
-            navController = navController,
-            startDestination = startDestination.second,
-        ) {
-            composable(
-                route = TypeformRoute.SCREEN,
-                arguments = listOf(
-                    navArgument("id") {
-                        type = NavType.StringType
-                        nullable = false
-                    },
-                ),
+            },
+        ) { scaffoldPadding ->
+            NavHost(
+                navController = navController,
+                startDestination = startDestination.second,
             ) {
-                showBackNavigation = false
-                val id = (it.arguments?.getString("id") ?: startPosition?.associatedScreen()?.id) ?: form.firstScreen?.id
-                if (id == null) {
-                    CompositionLocalProvider(
-                        LocalSettings provides settings,
-                    ) {
-                        RejectedView(
-                            scaffoldPadding = scaffoldPadding,
-                            responses = collectedResponses,
-                        ) { rejection ->
-                            conclusion(rejection)
-                        }
-                    }
-                    return@composable
-                }
-
-                val screen = form.screenWithId(id)
-                if (screen == null) {
-                    CompositionLocalProvider(
-                        LocalSettings provides settings,
-                    ) {
-                        RejectedView(
-                            scaffoldPadding = scaffoldPadding,
-                            responses = collectedResponses,
-                        ) { rejection ->
-                            conclusion(rejection)
-                        }
-                    }
-                    return@composable
-                }
-
-                CompositionLocalProvider(
-                    LocalSettings provides settings,
-                    LocalImageLoader provides imageLoader,
-                ) {
-                    ScreenView(
-                        scaffoldPadding = scaffoldPadding,
-                        form = form,
-                        screen = screen,
-                        responses = collectedResponses,
-                        actionHandler = { navigationAction ->
-                            navigateUsing(navigationAction)
+                composable(
+                    route = TypeformRoute.SCREEN,
+                    arguments = listOf(
+                        navArgument("id") {
+                            type = NavType.StringType
+                            nullable = false
                         },
-                    )
-                }
-            }
-
-            composable(
-                route = TypeformRoute.FIELD,
-                arguments = listOf(
-                    navArgument("id") {
-                        type = NavType.StringType
-                        nullable = false
-                    },
-                ),
-            ) {
-                val fieldId = (it.arguments?.getString("id") ?: startPosition?.associatedField()?.id) ?: form.fields.firstOrNull()?.id
-                if (fieldId == null) {
+                    ),
+                ) {
                     showBackNavigation = false
+                    val id = (it.arguments?.getString("id") ?: startPosition?.associatedScreen()?.id) ?: form.firstScreen?.id
+                    if (id == null) {
+                        CompositionLocalProvider(
+                            LocalSettings provides settings,
+                        ) {
+                            RejectedView(
+                                scaffoldPadding = scaffoldPadding,
+                                responses = collectedResponses,
+                            ) { rejection ->
+                                conclusion(rejection)
+                            }
+                        }
+                        return@composable
+                    }
+
+                    val screen = form.screenWithId(id)
+                    if (screen == null) {
+                        CompositionLocalProvider(
+                            LocalSettings provides settings,
+                        ) {
+                            RejectedView(
+                                scaffoldPadding = scaffoldPadding,
+                                responses = collectedResponses,
+                            ) { rejection ->
+                                conclusion(rejection)
+                            }
+                        }
+                        return@composable
+                    }
+
                     CompositionLocalProvider(
                         LocalSettings provides settings,
+                        LocalImageLoader provides imageLoader,
                     ) {
-                        RejectedView(
+                        ScreenView(
                             scaffoldPadding = scaffoldPadding,
+                            form = form,
+                            screen = screen,
                             responses = collectedResponses,
-                        ) { rejection ->
-                            conclusion(rejection)
-                        }
+                            actionHandler = { navigationAction ->
+                                navigateUsing(navigationAction)
+                            },
+                        )
                     }
-                    return@composable
                 }
 
-                showBackNavigation = (startDestination.first != TypeformRoute.FIELD || !startDestination.second.contains(fieldId))
-
-                val field = form.fieldWithId(fieldId)
-                if (field == null) {
-                    CompositionLocalProvider(
-                        LocalSettings provides settings,
-                    ) {
-                        RejectedView(
-                            scaffoldPadding = scaffoldPadding,
-                            responses = collectedResponses,
-                        ) { rejection ->
-                            conclusion(rejection)
-                        }
-                    }
-                    return@composable
-                }
-
-                val parent = form.parentForFieldWithId(fieldId)
-                val group = parent?.associatedGroup()
-
-                CompositionLocalProvider(
-                    LocalSettings provides settings,
-                    LocalUploadHelper provides uploadHelper,
-                    LocalImageLoader provides imageLoader,
-                ) {
-                    FieldView(
-                        scaffoldPadding = scaffoldPadding,
-                        form = form,
-                        field = field,
-                        group = group,
-                        responses = collectedResponses,
-                        header = header,
-                        actionHandler = { navigationAction ->
-                            navigateUsing(navigationAction)
+                composable(
+                    route = TypeformRoute.FIELD,
+                    arguments = listOf(
+                        navArgument("id") {
+                            type = NavType.StringType
+                            nullable = false
                         },
-                    )
-                }
-            }
-
-            composable(
-                route = TypeformRoute.REJECTED,
-            ) {
-                showBackNavigation = false
-
-                CompositionLocalProvider(
-                    LocalSettings provides settings,
+                    ),
                 ) {
-                    RejectedView(
-                        scaffoldPadding = scaffoldPadding,
-                        responses = collectedResponses,
-                    ) { rejection ->
-                        conclusion(rejection)
+                    val fieldId = (it.arguments?.getString("id") ?: startPosition?.associatedField()?.id) ?: form.fields.firstOrNull()?.id
+                    if (fieldId == null) {
+                        showBackNavigation = false
+                        CompositionLocalProvider(
+                            LocalSettings provides settings,
+                        ) {
+                            RejectedView(
+                                scaffoldPadding = scaffoldPadding,
+                                responses = collectedResponses,
+                            ) { rejection ->
+                                conclusion(rejection)
+                            }
+                        }
+                        return@composable
+                    }
+
+                    showBackNavigation = (startDestination.first != TypeformRoute.FIELD || !startDestination.second.contains(fieldId))
+
+                    val field = form.fieldWithId(fieldId)
+                    if (field == null) {
+                        CompositionLocalProvider(
+                            LocalSettings provides settings,
+                        ) {
+                            RejectedView(
+                                scaffoldPadding = scaffoldPadding,
+                                responses = collectedResponses,
+                            ) { rejection ->
+                                conclusion(rejection)
+                            }
+                        }
+                        return@composable
+                    }
+
+                    val parent = form.parentForFieldWithId(fieldId)
+                    val group = parent?.associatedGroup()
+
+                    CompositionLocalProvider(
+                        LocalSettings provides settings,
+                        LocalUploadHelper provides uploadHelper,
+                        LocalImageLoader provides imageLoader,
+                    ) {
+                        FieldView(
+                            scaffoldPadding = scaffoldPadding,
+                            form = form,
+                            field = field,
+                            group = group,
+                            responses = collectedResponses,
+                            header = header,
+                            actionHandler = { navigationAction ->
+                                navigateUsing(navigationAction)
+                            },
+                        )
+                    }
+                }
+
+                composable(
+                    route = TypeformRoute.REJECTED,
+                ) {
+                    showBackNavigation = false
+
+                    CompositionLocalProvider(
+                        LocalSettings provides settings,
+                    ) {
+                        RejectedView(
+                            scaffoldPadding = scaffoldPadding,
+                            responses = collectedResponses,
+                        ) { rejection ->
+                            conclusion(rejection)
+                        }
                     }
                 }
             }
         }
-    }
 
-    if (showConfirmCancel) {
-        AlertDialog(
-            onDismissRequest = {
-                showConfirmCancel = false
-            },
-            buttons = {
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(end = 26.dp, bottom = 10.dp),
-                    horizontalArrangement = Arrangement.End,
-                ) {
+        if (showConfirmCancel) {
+            AlertDialog(
+                onDismissRequest = {
+                    showConfirmCancel = false
+                },
+                confirmButton = {
                     TextButton(
                         onClick = {
                             conclusion(Conclusion.Abandoned(collectedResponses))
@@ -336,11 +331,11 @@ fun FormView(
                     ) {
                         StyledTextView(
                             text = settings.localization.abandonConfirmationAction,
-                            textStyle = MaterialTheme.typography.body1,
-                            color = MaterialTheme.colors.error,
+                            textStyle = MaterialTheme.typography.bodyMedium,
                         )
                     }
-
+                },
+                dismissButton = {
                     TextButton(
                         onClick = {
                             showConfirmCancel = false
@@ -348,20 +343,19 @@ fun FormView(
                     ) {
                         StyledTextView(
                             text = settings.localization.cancel,
-                            textStyle = MaterialTheme.typography.body1,
-                            color = MaterialTheme.colors.primary,
+                            textStyle = MaterialTheme.typography.bodyMedium,
                         )
                     }
-                }
-            },
-            title = {
-                Text(text = settings.localization.abandonConfirmationTitle)
-            },
-            text = {
-                Text(text = settings.localization.abandonConfirmationMessage)
-            },
-            shape = RoundedCornerShape(CornerSize(16.dp)),
-        )
+                },
+                title = {
+                    Text(text = settings.localization.abandonConfirmationTitle)
+                },
+                text = {
+                    Text(text = settings.localization.abandonConfirmationMessage)
+                },
+                shape = RoundedCornerShape(CornerSize(16.dp)),
+            )
+        }
     }
 }
 
@@ -381,15 +375,12 @@ internal sealed class TypeformRoute {
     }
 }
 
-@Preview(showBackground = true, showSystemUi = true)
+@PreviewLightDark
 @Composable
 private fun FormViewPreview() {
-    ThemePreview {
+    MaterialThemePreview {
         FormView(
             Form.preview,
-            responses = mapOf(
-                Pair("", ResponseValue.BooleanValue(false)),
-            ),
             conclusion = { },
         )
     }

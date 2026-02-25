@@ -6,9 +6,9 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
-import androidx.compose.material.DropdownMenu
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.OutlinedButton
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -27,8 +27,10 @@ import com.typeform.ui.LocalSettings
 import com.typeform.ui.components.StyledTextView
 import com.typeform.ui.components.UploadImageView
 import com.typeform.ui.components.UploadPickerView
+import com.typeform.ui.models.LocalLocalization
+import com.typeform.ui.models.LocalPresentation
 import com.typeform.ui.models.ResponseState
-import com.typeform.ui.preview.ThemePreview
+import com.typeform.ui.preview.MaterialThemePreview
 
 @Composable
 internal fun FileUploadView(
@@ -71,9 +73,16 @@ internal fun FileUploadView(
     }
 
     Column(
-        verticalArrangement = Arrangement.spacedBy(settings.presentation.contentVerticalSpacing),
+        verticalArrangement = Arrangement.spacedBy(LocalPresentation.current.contentVerticalSpacing),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
+        properties.description?.let {
+            StyledTextView(
+                text = it,
+                textStyle = MaterialTheme.typography.labelMedium,
+            )
+        }
+
         if (upload != null) {
             UploadImageView(
                 upload = upload!!,
@@ -86,15 +95,11 @@ internal fun FileUploadView(
                     expanded = true
                 },
                 modifier = Modifier.fillMaxWidth(),
-                elevation = null,
-                shape = settings.outlinedButton.shape,
-                border = settings.outlinedButton.border,
-                colors = settings.outlinedButton.colors,
-                contentPadding = settings.outlinedButton.contentPadding,
+                contentPadding = LocalPresentation.current.containerPadding,
             ) {
                 StyledTextView(
-                    text = settings.localization.uploadAction,
-                    textStyle = MaterialTheme.typography.body1,
+                    text = LocalLocalization.current.uploadAction,
+                    textStyle = MaterialTheme.typography.bodyMedium,
                 )
             }
         }
@@ -102,7 +107,7 @@ internal fun FileUploadView(
         exception?.let {
             StyledTextView(
                 text = it.message ?: "An error occurred.",
-                textStyle = MaterialTheme.typography.subtitle1,
+                textStyle = MaterialTheme.typography.labelMedium,
             )
         }
 
@@ -130,11 +135,11 @@ internal fun FileUploadView(
 @PreviewLightDark
 @Composable
 private fun FileUploadViewPreview() {
-    ThemePreview {
+    MaterialThemePreview {
         Box(
             modifier = Modifier
                 .size(200.dp)
-                .background(MaterialTheme.colors.background),
+                .background(MaterialTheme.colorScheme.background),
         ) {
             FileUploadView(
                 properties = FileUpload(

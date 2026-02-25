@@ -4,17 +4,18 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.material.Button
-import androidx.compose.material.Checkbox
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.RadioButton
+import androidx.compose.material3.Checkbox
+import androidx.compose.material3.FilledTonalButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.RadioButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import com.typeform.ui.LocalSettings
-import com.typeform.ui.preview.ThemePreview
+import com.typeform.ui.models.LocalPresentation
+import com.typeform.ui.preview.MaterialThemePreview
 
 @Composable
 internal fun IntermittentChoiceButton(
@@ -25,15 +26,12 @@ internal fun IntermittentChoiceButton(
     onClick: () -> Unit,
 ) {
     val settings = LocalSettings.current
-    val borderStroke = if (selected) settings.button.selectedBorderStroke else settings.button.unselectedBorderStroke
 
-    Button(
+    FilledTonalButton(
         onClick = onClick,
         modifier = modifier,
-        elevation = null,
-        border = borderStroke,
-        colors = settings.button.colors,
-        contentPadding = settings.button.contentPadding,
+        shape = MaterialTheme.shapes.small,
+        contentPadding = LocalPresentation.current.containerPadding,
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
@@ -44,19 +42,17 @@ internal fun IntermittentChoiceButton(
                     onCheckedChange = {
                         onClick()
                     },
-                    colors = settings.checkbox.colors,
                 )
             } else {
                 RadioButton(
                     selected = selected,
                     onClick = onClick,
-                    colors = settings.radio.colors,
                 )
             }
 
             StyledTextView(
                 text = text,
-                textStyle = MaterialTheme.typography.body1,
+                textStyle = MaterialTheme.typography.bodyMedium,
                 modifier = Modifier.weight(1f),
             )
         }
@@ -66,9 +62,9 @@ internal fun IntermittentChoiceButton(
 @PreviewLightDark
 @Composable
 private fun IntermittentChoiceButtonPreview() {
-    ThemePreview {
+    MaterialThemePreview {
         Column(
-            modifier = Modifier.background(MaterialTheme.colors.background),
+            modifier = Modifier.background(MaterialTheme.colorScheme.background),
             verticalArrangement = Arrangement.spacedBy(20.dp),
         ) {
             IntermittentChoiceButton(

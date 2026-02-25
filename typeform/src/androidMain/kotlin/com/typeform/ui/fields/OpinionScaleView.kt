@@ -6,8 +6,8 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.safeGesturesPadding
 import androidx.compose.foundation.layout.width
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Slider
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Slider
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -18,15 +18,18 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import com.typeform.models.ResponseValue
 import com.typeform.schema.questions.OpinionScale
 import com.typeform.schema.structure.Validations
 import com.typeform.ui.LocalSettings
 import com.typeform.ui.components.StyledTextView
+import com.typeform.ui.models.LocalLocalization
+import com.typeform.ui.models.LocalPresentation
 import com.typeform.ui.models.ResponseState
-import com.typeform.ui.preview.ThemePreview
+import com.typeform.ui.preview.MaterialThemePreview
+import java.util.Locale
 
 @Composable
 internal fun OpinionScaleView(
@@ -53,14 +56,32 @@ internal fun OpinionScaleView(
     }
 
     val leadingLabel = if (properties.labels != null) {
-        String.format("%d: %s", start, properties.labels.left)
+        String.format(
+            Locale.getDefault(),
+            "%d: %s",
+            start,
+            properties.labels.left,
+        )
     } else {
-        String.format("%d", start)
+        String.format(
+            Locale.getDefault(),
+            "%d",
+            start,
+        )
     }
     val trailingLabel = if (properties.labels != null) {
-        String.format("%d: %s", end, properties.labels.right)
+        String.format(
+            Locale.getDefault(),
+            "%d: %s",
+            end,
+            properties.labels.right,
+        )
     } else {
-        String.format("%d", end)
+        String.format(
+            Locale.getDefault(),
+            "%d",
+            end,
+        )
     }
 
     fun updateState() {
@@ -101,12 +122,12 @@ internal fun OpinionScaleView(
     }
 
     Column(
-        verticalArrangement = Arrangement.spacedBy(settings.presentation.contentVerticalSpacing),
+        verticalArrangement = Arrangement.spacedBy(LocalPresentation.current.contentVerticalSpacing),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         StyledTextView(
-            text = if (selected == null) settings.localization.emptyChoice else "$selected",
-            textStyle = MaterialTheme.typography.body1,
+            text = if (selected == null) LocalLocalization.current.emptyChoice else "$selected",
+            textStyle = MaterialTheme.typography.bodyMedium,
         )
 
         // Additional padding added here to account for the system gesture insets.
@@ -118,7 +139,6 @@ internal fun OpinionScaleView(
             },
             modifier = Modifier.safeGesturesPadding(),
             steps = steps,
-            colors = settings.opinionScale.colors,
         )
 
         Row(
@@ -127,13 +147,13 @@ internal fun OpinionScaleView(
         ) {
             StyledTextView(
                 text = leadingLabel,
-                textStyle = MaterialTheme.typography.caption,
+                textStyle = MaterialTheme.typography.labelMedium,
                 modifier = Modifier.width(120.dp),
             )
 
             StyledTextView(
                 text = trailingLabel,
-                textStyle = MaterialTheme.typography.caption,
+                textStyle = MaterialTheme.typography.labelMedium,
                 modifier = Modifier.width(120.dp),
                 textAlign = TextAlign.End,
             )
@@ -141,10 +161,10 @@ internal fun OpinionScaleView(
     }
 }
 
-@Preview(showBackground = true, showSystemUi = true)
+@PreviewLightDark
 @Composable
 private fun OpinionScaleViewPreview() {
-    ThemePreview {
+    MaterialThemePreview {
         Column {
             OpinionScaleView(
                 properties = OpinionScale(
