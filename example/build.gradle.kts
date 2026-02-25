@@ -50,20 +50,19 @@ android {
 
 dependencies {
     implementation(libs.android.permissions)
-    implementation(libs.androidx.activity.compose)
+    implementation(libs.androidx.activity)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.material3)
-    implementation(libs.androidx.navigation.compose)
+    implementation(libs.androidx.navigation)
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
-    implementation(libs.androidx.ui.tooling.preview)
+    implementation(libs.androidx.ui.preview)
     implementation(libs.coil.compose)
     implementation(libs.coil.network)
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.ktor.android)
     implementation(libs.ktor.client)
     implementation(libs.ktor.engine)
-    implementation(platform(libs.androidx.compose.bom))
     implementation(project(":typeform"))
 }

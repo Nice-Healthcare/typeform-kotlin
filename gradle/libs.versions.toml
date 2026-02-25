@@ -1,31 +1,35 @@
 [versions]
-agp = "8.13.0" # Android Gradle Plugin
+agp = "8.13.2" # Android Gradle Plugin
 androidPermissions = "0.37.3"
-androidxActivity = "1.11.0"
-androidxComposeMaterial3 = "1.4.0"
+androidxActivity = "1.12.4"
+androidxCompose = "1.10.3"
 androidxCore = "1.17.0"
-androidxLifecycle = "2.9.4"
-androidxNavigation = "2.9.6"
-coil = "3.3.0"
-compose = "1.9.3"
-composeBom = "2025.11.00"
-kotlin = "2.2.21"
-kotlinxSerializationJson = "1.9.0"
-ktlint = "13.1.0"
-ktor = "3.3.2"
+androidxLifecycle = "2.10.0"
+androidxMaterial3 = "1.4.0"
+androidxNavigation = "2.9.7"
+coil = "3.4.0"
+jetbrainsCompose = "1.10.1"
+kotlin = "2.3.10"
+kotlinxSerializationJson = "1.10.0"
+ktlint = "14.0.1"
+ktor = "3.4.0"
 testLogger = "4.0.0"
 
 [libraries]
 android-permissions = { group = "com.google.accompanist", name = "accompanist-permissions", version.ref = "androidPermissions" }
-androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "androidxActivity" }
-androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
+androidx-activity = { group = "androidx.activity", name = "activity-compose", version.ref = "androidxActivity" }
+androidx-animation = { group = "androidx.compose.animation", name = "animation", version.ref = "androidxCompose" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "androidxCore" }
+androidx-foundation = { group = "androidx.compose.foundation", name = "foundation", version.ref = "androidxCompose" }
 androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "androidxLifecycle" }
-androidx-material3 = { group = "androidx.compose.material3", name = "material3", version.ref = "androidxComposeMaterial3" }
-androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "androidxNavigation" }
+androidx-material = { group = "androidx.compose.material", name = "material", version.ref = "androidxCompose" }
+androidx-material3 = { group = "androidx.compose.material3", name = "material3", version.ref = "androidxMaterial3" }
+androidx-navigation = { module = "androidx.navigation:navigation-compose", version.ref = "androidxNavigation" }
+androidx-runtime = { group = "androidx.compose.runtime", name = "runtime", version.ref = "androidxCompose" }
 androidx-ui = { group = "androidx.compose.ui", name = "ui" }
 androidx-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
-androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
+androidx-ui-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
+compose-resources = { group = "org.jetbrains.compose.components", name = "components-resources", version.ref = "jetbrainsCompose" }
 coil-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil" }
 coil-compose-core = { module = "io.coil-kt.coil3:coil-compose-core", version.ref = "coil" }
 coil-network = { module = "io.coil-kt.coil3:coil-network-ktor3", version.ref = "coil" }
@@ -38,7 +42,7 @@ ktor-engine = { module = "io.ktor:ktor-client-cio", version.ref = "ktor" }
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 android-library = { id = "com.android.library", version.ref = "agp" }
-compose = { id = "org.jetbrains.compose", version.ref = "compose" }
+compose = { id = "org.jetbrains.compose", version.ref = "jetbrainsCompose" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
