@@ -60,7 +60,7 @@ android {
     namespace = "com.typeform"
     compileSdk = 36
     defaultConfig {
-        minSdk = 28
+        minSdk = 31
     }
     compileOptions {
         sourceCompatibility(JavaVersion.VERSION_21)
