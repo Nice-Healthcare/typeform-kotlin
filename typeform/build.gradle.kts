@@ -17,7 +17,7 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                api(compose.components.resources)
+                implementation(libs.compose.resources)
                 implementation(libs.kotlinx.serialization.json)
             }
         }
@@ -30,17 +30,16 @@ kotlin {
 
         val androidMain by getting {
             dependencies {
-                api(compose.animation)
-                api(compose.foundation)
-                api(compose.material)
-                api(compose.material3)
-                api(compose.preview)
-                api(compose.runtime)
-                api(compose.ui)
-                api(compose.uiTooling)
-
-                implementation(libs.androidx.activity.compose)
-                implementation(libs.androidx.navigation.compose)
+                implementation(libs.androidx.activity)
+                implementation(libs.androidx.animation)
+                implementation(libs.androidx.foundation)
+                implementation(libs.androidx.navigation)
+                implementation(libs.androidx.material)
+                implementation(libs.androidx.material3)
+                implementation(libs.androidx.runtime)
+                implementation(libs.androidx.ui)
+                implementation(libs.androidx.ui.graphics)
+                implementation(libs.androidx.ui.preview)
                 implementation(libs.coil.compose.core)
                 implementation(libs.ktor.android)
                 implementation(libs.ktor.client)
