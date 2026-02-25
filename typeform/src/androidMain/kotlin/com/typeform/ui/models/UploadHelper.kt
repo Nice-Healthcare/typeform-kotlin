@@ -42,7 +42,7 @@ fun UploadHelper.constructImage(
 ): Result<Upload> {
     val contentResolver = context.contentResolver
 
-    var bytes = runBlocking {
+    val bytes = runBlocking {
         withContext(Dispatchers.IO) {
             contentResolver.openInputStream(uri).use {
                 it?.readBytes()
@@ -95,7 +95,7 @@ fun UploadHelper.constructDocument(
         cursor.getStringOrNull(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME)) ?: "New Document"
     }
 
-    var bytes = runBlocking {
+    val bytes = runBlocking {
         withContext(Dispatchers.IO) {
             contentResolver.openInputStream(uri).use {
                 it?.readBytes()
