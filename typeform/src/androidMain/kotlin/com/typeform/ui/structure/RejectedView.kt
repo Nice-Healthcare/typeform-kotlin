@@ -16,8 +16,8 @@ import androidx.compose.ui.unit.dp
 import com.typeform.models.Responses
 import com.typeform.resources.Res
 import com.typeform.resources.warning_24dp
+import com.typeform.ui.LocalSettings
 import com.typeform.ui.models.Conclusion
-import com.typeform.ui.models.Settings
 import org.jetbrains.compose.resources.vectorResource
 
 /**
@@ -26,13 +26,13 @@ import org.jetbrains.compose.resources.vectorResource
 @Composable
 internal fun RejectedView(
     scaffoldPadding: PaddingValues,
-    settings: Settings,
     responses: Responses,
     onClick: (Conclusion) -> Unit,
 ) {
+    val settings = LocalSettings.current
+
     ScrollingContentView(
         scaffoldPadding = scaffoldPadding,
-        settings = settings,
         title = "Finish",
         onClick = {
             onClick(Conclusion.Rejected(responses))
@@ -61,7 +61,6 @@ internal fun RejectedView(
 private fun RejectedViewPreview() {
     RejectedView(
         scaffoldPadding = PaddingValues(0.dp),
-        settings = Settings(),
         responses = mapOf(),
         onClick = {},
     )

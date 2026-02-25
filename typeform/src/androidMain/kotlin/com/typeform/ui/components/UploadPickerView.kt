@@ -19,19 +19,17 @@ import com.typeform.resources.Res
 import com.typeform.resources.camera_24dp
 import com.typeform.resources.photo_library_24dp
 import com.typeform.resources.upload_file_24dp
-import com.typeform.ui.models.Settings
-import com.typeform.ui.models.UploadHelper
+import com.typeform.ui.LocalSettings
+import com.typeform.ui.LocalUploadHelper
 import com.typeform.ui.models.constructDocument
 import com.typeform.ui.models.constructImage
 import org.jetbrains.compose.resources.vectorResource
 
 @Composable
-internal fun UploadPickerView(
-    settings: Settings,
-    uploadHelper: UploadHelper? = null,
-    resultHandler: (Result<Upload>?) -> Unit,
-) {
+internal fun UploadPickerView(resultHandler: (Result<Upload>?) -> Unit) {
     val context = LocalContext.current
+    val settings = LocalSettings.current
+    val uploadHelper = LocalUploadHelper.current
     var photoUri: Uri? by remember { mutableStateOf(null) }
 
     val cameraLauncher = rememberLauncherForActivityResult(

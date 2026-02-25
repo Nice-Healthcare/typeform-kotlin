@@ -23,19 +23,19 @@ import androidx.compose.ui.unit.dp
 import com.typeform.models.ResponseValue
 import com.typeform.schema.questions.OpinionScale
 import com.typeform.schema.structure.Validations
+import com.typeform.ui.LocalSettings
 import com.typeform.ui.components.StyledTextView
 import com.typeform.ui.models.ResponseState
-import com.typeform.ui.models.Settings
 import com.typeform.ui.preview.ThemePreview
 
 @Composable
 internal fun OpinionScaleView(
-    settings: Settings,
     properties: OpinionScale,
     responseState: ResponseState,
     validations: Validations?,
     stateHandler: (ResponseState) -> Unit,
 ) {
+    val settings = LocalSettings.current
     val start = if (properties.start_at_one) 1 else 0
     val end = if (properties.start_at_one) properties.steps else (properties.steps - 1)
     val steps = properties.steps - 1
@@ -147,7 +147,6 @@ private fun OpinionScaleViewPreview() {
     ThemePreview {
         Column {
             OpinionScaleView(
-                settings = Settings(),
                 properties = OpinionScale(
                     steps = 11,
                     labels = OpinionScale.Labels(
@@ -162,7 +161,6 @@ private fun OpinionScaleViewPreview() {
             }
 
             OpinionScaleView(
-                settings = Settings(),
                 properties = OpinionScale(
                     steps = 5,
                     labels = OpinionScale.Labels(

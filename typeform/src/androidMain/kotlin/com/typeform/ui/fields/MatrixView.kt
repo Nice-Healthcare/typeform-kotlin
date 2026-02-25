@@ -23,10 +23,10 @@ import com.typeform.schema.structure.Choice
 import com.typeform.schema.structure.Field
 import com.typeform.schema.structure.Matrix
 import com.typeform.schema.structure.Validations
+import com.typeform.ui.LocalSettings
 import com.typeform.ui.components.IntermittentChoiceButton
 import com.typeform.ui.components.StyledTextView
 import com.typeform.ui.models.ResponseState
-import com.typeform.ui.models.Settings
 import com.typeform.ui.preview.ThemePreview
 import com.typeform.ui.preview.previewMatrix1
 import com.typeform.ui.preview.previewMatrix2
@@ -38,12 +38,12 @@ import com.typeform.ui.preview.previewMatrix3
  */
 @Composable
 internal fun MatrixView(
-    settings: Settings,
     properties: Matrix,
     responseState: ResponseState,
     validations: Validations?,
     stateHandler: (ResponseState) -> Unit,
 ) {
+    val settings = LocalSettings.current
     var selected: Map<String, List<Choice>> by remember { mutableStateOf(responseState.response?.asChoicesByReference() ?: emptyMap()) }
 
     fun updateState() {
@@ -139,7 +139,6 @@ internal fun MatrixView(
 
                 iteration.question.choices.forEach { choice ->
                     IntermittentChoiceButton(
-                        settings = settings,
                         text = "",
                         modifier = Modifier.width(65.dp),
                         allowMultiple = properties.allow_multiple_selections,
@@ -158,7 +157,6 @@ internal fun MatrixView(
 private fun MatrixViewPreview() {
     ThemePreview {
         MatrixView(
-            settings = Settings(),
             properties = Matrix(
                 fields = listOf(
                     Field.previewMatrix1,

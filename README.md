@@ -82,9 +82,9 @@ In order to display images, a `ImageLoader` must be provided in the `FormView` i
 
 ```kotlin
 FormView(
-  …
+  // …
   imageLoader = SingletonImageLoader.get(LocalPlatformContext.current)
-  …
+  // …
 )
 ```
 
@@ -108,7 +108,7 @@ class MainActivity {
         }
         .build()
       }
-      … // Your content
+      // … Your content
     }
   }
 }
@@ -121,7 +121,7 @@ Typeform has support for language translation. Every additional supported langua
 ```kotlin
 val form = Form()
 val translation = TranslatedForm()
-val translatedForm = form.merging(translatedForm: translation)
+val translatedForm = form.merging(translatedForm = translation)
 ```
 
 This merging process leaves the original `Form` logic and metadata intact, but displays the questions using the translated text. There is a helper `Downloader` for retrieval and translation:
@@ -129,9 +129,9 @@ This merging process leaves the original `Form` logic and metadata intact, but d
 ```kotlin
 interface Downloader {
     // https://api.typeform.com/forms/{id}
-    suspend fun downloadForm(id: String) -> Result<Form>
+    suspend fun downloadForm(id: String): Result<Form>
     // https://api.typeform.com/forms/{id}/translation/{language}
-    suspend fun downloadTranslation(language: String, formId: String) -> Result<Form>
+    suspend fun downloadTranslation(language: String, formId: String): Result<Form>
 }
 
 // Available in Android
@@ -149,7 +149,7 @@ try {
 
 > Note, this library is _incomplete_; not every question type or condition has been implemented. Want to help fix a bug or make improvements? Consider becoming a contributor!
 
-All of the _structural_ components are supported: Welcome Screen, Ending, Statement, and Question Group. Learn more about Typeform [Question Types](https://www.typeform.com/help/a/question-types-360051789692/?attribution_user_id=1dbdf7d8-4d28-44f6-8536-d95cf65b0311). The currently supported types are:
+All the _structural_ components are supported: Welcome Screen, Ending, Statement, and Question Group. Learn more about Typeform [Question Types](https://www.typeform.com/help/a/question-types-360051789692/?attribution_user_id=1dbdf7d8-4d28-44f6-8536-d95cf65b0311). The currently supported types are:
 
 * Date
 * Dropdown

@@ -1,5 +1,6 @@
 package com.typeform.ui.components
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -10,20 +11,20 @@ import androidx.compose.material.RadioButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
-import com.typeform.ui.models.Settings
+import com.typeform.ui.LocalSettings
 import com.typeform.ui.preview.ThemePreview
 
 @Composable
 internal fun IntermittentChoiceButton(
-    settings: Settings,
     text: String,
     modifier: Modifier = Modifier,
     allowMultiple: Boolean = false,
     selected: Boolean = false,
     onClick: () -> Unit,
 ) {
+    val settings = LocalSettings.current
     val borderStroke = if (selected) settings.button.selectedBorderStroke else settings.button.unselectedBorderStroke
 
     Button(
@@ -62,22 +63,21 @@ internal fun IntermittentChoiceButton(
     }
 }
 
-@Preview(showBackground = true)
+@PreviewLightDark
 @Composable
 private fun IntermittentChoiceButtonPreview() {
     ThemePreview {
         Column(
+            modifier = Modifier.background(MaterialTheme.colors.background),
             verticalArrangement = Arrangement.spacedBy(20.dp),
         ) {
             IntermittentChoiceButton(
-                settings = Settings(),
                 text = "Example Button",
                 allowMultiple = true,
             ) {
             }
 
             IntermittentChoiceButton(
-                settings = Settings(),
                 text = "Example Button",
                 allowMultiple = true,
                 selected = true,
@@ -85,14 +85,12 @@ private fun IntermittentChoiceButtonPreview() {
             }
 
             IntermittentChoiceButton(
-                settings = Settings(),
                 text = "Example Button",
                 allowMultiple = false,
             ) {
             }
 
             IntermittentChoiceButton(
-                settings = Settings(),
                 text = "Example Button",
                 allowMultiple = false,
                 selected = true,

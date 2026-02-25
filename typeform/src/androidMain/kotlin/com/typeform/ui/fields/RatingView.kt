@@ -25,20 +25,20 @@ import com.typeform.resources.star_24dp
 import com.typeform.resources.star_fill_24dp
 import com.typeform.schema.questions.Rating
 import com.typeform.schema.structure.Validations
+import com.typeform.ui.LocalSettings
 import com.typeform.ui.components.StyledTextView
 import com.typeform.ui.models.ResponseState
-import com.typeform.ui.models.Settings
 import com.typeform.ui.preview.ThemePreview
 import org.jetbrains.compose.resources.vectorResource
 
 @Composable
 internal fun RatingView(
-    settings: Settings,
     properties: Rating,
     responseState: ResponseState,
     validations: Validations?,
     stateHandler: (ResponseState) -> Unit,
 ) {
+    val settings = LocalSettings.current
     var selected: Int? by remember { mutableStateOf(responseState.response?.asInt()) }
 
     val range = IntRange(1, properties.steps)
@@ -134,7 +134,6 @@ private fun RatingViewPreview() {
             verticalArrangement = Arrangement.spacedBy(20.dp),
         ) {
             RatingView(
-                settings = Settings(),
                 properties = Rating(
                     shape = "star",
                     steps = 5,
@@ -146,7 +145,6 @@ private fun RatingViewPreview() {
             }
 
             RatingView(
-                settings = Settings(),
                 properties = Rating(
                     shape = "star",
                     steps = 5,

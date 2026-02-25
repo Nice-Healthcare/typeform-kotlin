@@ -23,20 +23,20 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.typeform.models.ResponseValue
 import com.typeform.schema.questions.DateStamp
 import com.typeform.schema.structure.Validations
+import com.typeform.ui.LocalSettings
 import com.typeform.ui.components.StyledTextView
 import com.typeform.ui.models.ResponseState
-import com.typeform.ui.models.Settings
 import java.util.Date
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun DateView(
-    settings: Settings,
     properties: DateStamp,
     responseState: ResponseState,
     validations: Validations?,
     stateHandler: (ResponseState) -> Unit,
 ) {
+    val settings = LocalSettings.current
     val pickerState = rememberDatePickerState((responseState.response?.asDate() ?: Date()).time)
     var milliseconds by remember { mutableStateOf(responseState.response?.asDate()?.time) }
     var isNotSure by remember { mutableStateOf(false) }
@@ -129,7 +129,6 @@ internal fun DateView(
 @Composable
 private fun DateViewPreview() {
     DateView(
-        settings = Settings(),
         properties = DateStamp(
             separator = "",
             structure = "",

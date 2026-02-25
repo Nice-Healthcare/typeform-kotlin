@@ -29,7 +29,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
@@ -37,20 +37,21 @@ import com.typeform.models.Upload
 import com.typeform.resources.Res
 import com.typeform.resources.close_24dp
 import com.typeform.resources.file_present_24dp
-import com.typeform.ui.models.Settings
-import com.typeform.ui.models.UploadHelper
+import com.typeform.ui.LocalSettings
+import com.typeform.ui.LocalUploadHelper
 import com.typeform.ui.preview.ThemePreview
 import org.jetbrains.compose.resources.vectorResource
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun UploadImageView(
+    modifier: Modifier = Modifier,
     upload: Upload,
-    settings: Settings,
-    uploadHelper: UploadHelper? = null,
     removeAction: () -> Unit,
 ) {
     val context = LocalContext.current
+    val settings = LocalSettings.current
+    val uploadHelper = LocalUploadHelper.current
     val padding = PaddingValues(8.dp)
     var bitmap: Bitmap? by remember { mutableStateOf(null) }
 
@@ -59,6 +60,7 @@ fun UploadImageView(
     }
 
     Column(
+        modifier = modifier,
         horizontalAlignment = Alignment.Start,
     ) {
         Box(
@@ -77,7 +79,6 @@ fun UploadImageView(
                 )
             } else {
                 UploadPlaceholderView(
-                    settings = settings,
                     padding = padding,
                 )
             }
@@ -111,10 +112,8 @@ fun UploadImageView(
 }
 
 @Composable
-fun UploadPlaceholderView(
-    settings: Settings,
-    padding: PaddingValues,
-) {
+fun UploadPlaceholderView(padding: PaddingValues) {
+    val settings = LocalSettings.current
     val glyphWidth: Dp = if (settings.upload.maxWidth != null) {
         settings.upload.maxWidth.times(0.3f)
     } else {
@@ -140,18 +139,18 @@ fun UploadPlaceholderView(
     }
 }
 
-@Preview(showBackground = true)
+@PreviewLightDark
 @Composable
 private fun UploadImageViewPreview() {
     ThemePreview {
         UploadImageView(
+            modifier = Modifier.background(MaterialTheme.colors.background),
             upload = Upload(
                 bytes = byteArrayOf(),
                 path = Upload.Path.CAMERA,
                 mimeType = "image/jpeg",
                 fileName = "IMG_1234567890.jpg",
             ),
-            settings = Settings(),
         ) { }
     }
 }

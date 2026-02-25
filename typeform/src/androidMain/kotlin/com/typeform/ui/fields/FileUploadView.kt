@@ -1,5 +1,6 @@
 package com.typeform.ui.fields
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -16,29 +17,27 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import com.typeform.models.ResponseValue
 import com.typeform.models.Upload
 import com.typeform.schema.questions.FileUpload
 import com.typeform.schema.structure.Validations
+import com.typeform.ui.LocalSettings
 import com.typeform.ui.components.StyledTextView
 import com.typeform.ui.components.UploadImageView
 import com.typeform.ui.components.UploadPickerView
 import com.typeform.ui.models.ResponseState
-import com.typeform.ui.models.Settings
-import com.typeform.ui.models.UploadHelper
 import com.typeform.ui.preview.ThemePreview
 
 @Composable
 internal fun FileUploadView(
-    settings: Settings,
     properties: FileUpload,
     responseState: ResponseState,
     validations: Validations?,
-    uploadHelper: UploadHelper? = null,
     stateHandler: (ResponseState) -> Unit,
 ) {
+    val settings = LocalSettings.current
     var upload: Upload? by remember { mutableStateOf(responseState.response?.asUpload()) }
     var expanded: Boolean by remember { mutableStateOf(false) }
     var exception: Throwable? by remember { mutableStateOf(null) }
@@ -78,8 +77,6 @@ internal fun FileUploadView(
         if (upload != null) {
             UploadImageView(
                 upload = upload!!,
-                settings = settings,
-                uploadHelper = uploadHelper,
             ) {
                 select(null)
             }
@@ -115,10 +112,7 @@ internal fun FileUploadView(
                 expanded = false
             },
         ) {
-            UploadPickerView(
-                settings = settings,
-                uploadHelper = uploadHelper,
-            ) { result ->
+            UploadPickerView { result ->
                 expanded = false
                 result?.fold(
                     onSuccess = {
@@ -133,15 +127,16 @@ internal fun FileUploadView(
     }
 }
 
-@Preview(showBackground = true)
+@PreviewLightDark
 @Composable
 private fun FileUploadViewPreview() {
     ThemePreview {
         Box(
-            modifier = Modifier.size(200.dp),
+            modifier = Modifier
+                .size(200.dp)
+                .background(MaterialTheme.colors.background),
         ) {
             FileUploadView(
-                settings = Settings(),
                 properties = FileUpload(
                     description = "Select a file.",
                 ),

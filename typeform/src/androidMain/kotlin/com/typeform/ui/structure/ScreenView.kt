@@ -9,7 +9,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import coil3.ImageLoader
 import com.typeform.models.Position
 import com.typeform.models.Responses
 import com.typeform.models.TypeformException
@@ -17,10 +16,10 @@ import com.typeform.schema.structure.EndingScreen
 import com.typeform.schema.structure.Form
 import com.typeform.schema.structure.Screen
 import com.typeform.schema.structure.WelcomeScreen
+import com.typeform.ui.LocalSettings
 import com.typeform.ui.components.StyledTextView
 import com.typeform.ui.models.Conclusion
 import com.typeform.ui.models.NavigationAction
-import com.typeform.ui.models.Settings
 import com.typeform.ui.preview.ThemePreview
 import com.typeform.ui.preview.preview
 
@@ -31,12 +30,11 @@ import com.typeform.ui.preview.preview
 internal fun ScreenView(
     scaffoldPadding: PaddingValues,
     form: Form,
-    settings: Settings,
     screen: Screen,
     responses: Responses,
-    imageLoader: ImageLoader? = null,
     actionHandler: (NavigationAction) -> Unit,
 ) {
+    val settings = LocalSettings.current
     val isWelcomeScreen = screen is WelcomeScreen
 
     val next = try {
@@ -47,7 +45,6 @@ internal fun ScreenView(
 
     ScrollingContentView(
         scaffoldPadding = scaffoldPadding,
-        settings = settings,
         title = screen.properties.button_text ?: settings.localization.next,
         onClick = {
             if (next != null) {
@@ -66,7 +63,6 @@ internal fun ScreenView(
             screen.attachment?.let { attachment ->
                 AttachmentView(
                     attachment = attachment,
-                    imageLoader = imageLoader,
                 )
             }
 
@@ -88,7 +84,6 @@ private fun ScreenViewPreview() {
         ScreenView(
             scaffoldPadding = PaddingValues(0.dp),
             form = form,
-            settings = Settings(),
             screen = screen,
             responses = mapOf(),
             actionHandler = { },

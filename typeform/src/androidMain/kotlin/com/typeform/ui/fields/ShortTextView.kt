@@ -16,11 +16,9 @@ import com.typeform.models.ResponseValue
 import com.typeform.schema.questions.ShortText
 import com.typeform.schema.structure.Validations
 import com.typeform.ui.models.ResponseState
-import com.typeform.ui.models.Settings
 
 @Composable
 internal fun ShortTextView(
-    settings: Settings,
     properties: ShortText,
     responseState: ResponseState,
     validations: Validations?,
@@ -75,7 +73,6 @@ internal fun ShortTextView(
 @Composable
 private fun ShortTextViewPreview() {
     ShortTextView(
-        settings = Settings(),
         properties = ShortText(
             description = null,
         ),
