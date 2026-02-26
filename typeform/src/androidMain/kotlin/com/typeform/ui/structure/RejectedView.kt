@@ -1,7 +1,5 @@
 package com.typeform.ui.structure
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -15,7 +13,7 @@ import androidx.compose.ui.unit.dp
 import com.typeform.models.Responses
 import com.typeform.resources.Res
 import com.typeform.resources.warning_24dp
-import com.typeform.ui.LocalPresentation
+import com.typeform.ui.components.HeadlineContainerView
 import com.typeform.ui.models.Conclusion
 import com.typeform.ui.preview.MaterialThemePreview
 import org.jetbrains.compose.resources.vectorResource
@@ -29,19 +27,14 @@ internal fun RejectedView(
     responses: Responses,
     onClick: (Conclusion) -> Unit,
 ) {
-    val presentation = LocalPresentation.current
-
     ScrollingContentView(
-        scaffoldPadding = scaffoldPadding,
+        modifier = Modifier.padding(scaffoldPadding),
         title = "Finish",
         onClick = {
             onClick(Conclusion.Rejected(responses))
         },
     ) {
-        Column(
-            modifier = Modifier.padding(presentation.contentPadding),
-            verticalArrangement = Arrangement.spacedBy(presentation.titleDescriptionVerticalSpacing),
-        ) {
+        HeadlineContainerView {
             Surface(
                 modifier = Modifier.fillMaxWidth(),
                 shape = MaterialTheme.shapes.small,

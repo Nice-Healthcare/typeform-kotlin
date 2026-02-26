@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -25,10 +24,11 @@ import com.typeform.resources.star_24dp
 import com.typeform.resources.star_fill_24dp
 import com.typeform.schema.questions.Rating
 import com.typeform.schema.structure.Validations
-import com.typeform.ui.LocalPresentation
-import com.typeform.ui.components.StyledTextView
+import com.typeform.ui.components.ContentContainerView
+import com.typeform.ui.components.TextView
+import com.typeform.ui.models.Appearance
 import com.typeform.ui.models.ResponseState
-import com.typeform.ui.preview.MaterialThemePreview
+import com.typeform.ui.preview.TypeformPreview
 import org.jetbrains.compose.resources.vectorResource
 
 @Composable
@@ -87,16 +87,9 @@ internal fun RatingView(
         updateState()
     }
 
-    Column(
-        verticalArrangement = Arrangement.spacedBy(LocalPresentation.current.contentVerticalSpacing),
+    ContentContainerView(
+        description = properties.description,
     ) {
-        properties.description?.let {
-            StyledTextView(
-                text = it,
-                textStyle = MaterialTheme.typography.labelMedium,
-            )
-        }
-
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween,
@@ -119,9 +112,9 @@ internal fun RatingView(
                             modifier = Modifier.fillMaxWidth(),
                         )
 
-                        StyledTextView(
-                            text = "$step",
-                            textStyle = MaterialTheme.typography.bodyMedium,
+                        TextView(
+                            text = step.toString(),
+                            typeStyle = Appearance.TypeStyle.LABEL,
                         )
                     }
                 }
@@ -133,7 +126,9 @@ internal fun RatingView(
 @PreviewLightDark
 @Composable
 private fun RatingViewPreview() {
-    MaterialThemePreview {
+    TypeformPreview(
+        headline = "How would you rate the experience so far?",
+    ) {
         Column(
             verticalArrangement = Arrangement.spacedBy(20.dp),
         ) {
@@ -141,7 +136,7 @@ private fun RatingViewPreview() {
                 properties = Rating(
                     shape = "star",
                     steps = 5,
-                    description = null,
+                    description = "These ones are stars.",
                 ),
                 responseState = ResponseState(),
                 validations = null,
@@ -150,9 +145,9 @@ private fun RatingViewPreview() {
 
             RatingView(
                 properties = Rating(
-                    shape = "star",
+                    shape = "cloud",
                     steps = 5,
-                    description = null,
+                    description = "These ones are clouds.",
                 ),
                 responseState = ResponseState(),
                 validations = null,

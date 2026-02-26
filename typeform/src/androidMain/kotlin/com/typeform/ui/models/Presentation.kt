@@ -8,10 +8,9 @@ import androidx.compose.ui.unit.dp
  * General padding & spacing applied across every screen.
  */
 data class Presentation(
-    val titleDescriptionVerticalSpacing: Dp = 30.dp,
-    val descriptionContentVerticalSpacing: Dp = 30.dp,
     val topBarPadding: PaddingValues = PaddingValues(10.dp),
     val contentPadding: PaddingValues = PaddingValues(10.dp),
+    val headlineVerticalSpacing: Dp = 30.dp,
     val contentVerticalSpacing: Dp = 15.dp,
     val contentHorizontalSpacing: Dp = 10.dp,
     val containerPadding: PaddingValues = PaddingValues(10.dp),

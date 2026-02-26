@@ -1,10 +1,7 @@
 package com.typeform.ui.structure
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.PreviewLightDark
@@ -17,15 +14,14 @@ import com.typeform.schema.structure.Form
 import com.typeform.schema.structure.Screen
 import com.typeform.schema.structure.WelcomeScreen
 import com.typeform.ui.LocalLocalization
-import com.typeform.ui.LocalPresentation
-import com.typeform.ui.components.StyledTextView
+import com.typeform.ui.components.HeadlineContainerView
 import com.typeform.ui.models.Conclusion
 import com.typeform.ui.models.NavigationAction
 import com.typeform.ui.preview.MaterialThemePreview
 import com.typeform.ui.preview.preview
 
 /**
- * The [ScreenView] displays a 'welcome' or 'thank you' screen.
+ * Container view that displays a [Screen] ('welcome' or 'thank you').
  */
 @Composable
 internal fun ScreenView(
@@ -44,7 +40,7 @@ internal fun ScreenView(
     }
 
     ScrollingContentView(
-        scaffoldPadding = scaffoldPadding,
+        modifier = Modifier.padding(scaffoldPadding),
         title = screen.properties.button_text ?: LocalLocalization.current.next,
         onClick = {
             if (next != null) {
@@ -56,21 +52,10 @@ internal fun ScreenView(
             }
         },
     ) {
-        Column(
-            modifier = Modifier.padding(LocalPresentation.current.contentPadding),
-            verticalArrangement = Arrangement.spacedBy(LocalPresentation.current.titleDescriptionVerticalSpacing),
-        ) {
-            screen.attachment?.let { attachment ->
-                AttachmentView(
-                    attachment = attachment,
-                )
-            }
-
-            StyledTextView(
-                text = screen.title,
-                textStyle = MaterialTheme.typography.titleLarge,
-            )
-        }
+        HeadlineContainerView(
+            headline = screen.title,
+            attachment = screen.attachment,
+        ) { }
     }
 }
 

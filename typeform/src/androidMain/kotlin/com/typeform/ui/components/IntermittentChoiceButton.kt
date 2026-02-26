@@ -14,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import com.typeform.ui.LocalPresentation
+import com.typeform.ui.models.Appearance
 import com.typeform.ui.preview.MaterialThemePreview
 
 @Composable
@@ -47,10 +48,10 @@ internal fun IntermittentChoiceButton(
                 )
             }
 
-            StyledTextView(
-                text = text,
-                textStyle = MaterialTheme.typography.bodyMedium,
+            TextView(
                 modifier = Modifier.weight(1f),
+                text = text,
+                typeStyle = Appearance.TypeStyle.TITLE,
             )
         }
     }

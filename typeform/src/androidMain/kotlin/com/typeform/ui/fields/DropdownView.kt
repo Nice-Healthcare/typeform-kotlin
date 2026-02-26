@@ -1,8 +1,5 @@
 package com.typeform.ui.fields
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
@@ -10,7 +7,6 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -31,10 +27,11 @@ import com.typeform.schema.questions.Dropdown
 import com.typeform.schema.structure.Choice
 import com.typeform.schema.structure.Validations
 import com.typeform.ui.LocalLocalization
-import com.typeform.ui.LocalPresentation
-import com.typeform.ui.components.StyledTextView
+import com.typeform.ui.components.ContentContainerView
+import com.typeform.ui.components.TextView
+import com.typeform.ui.models.Appearance
 import com.typeform.ui.models.ResponseState
-import com.typeform.ui.preview.MaterialThemePreview
+import com.typeform.ui.preview.TypeformPreview
 import org.jetbrains.compose.resources.vectorResource
 
 @Composable
@@ -79,16 +76,9 @@ internal fun DropdownView(
         updateState()
     }
 
-    Column(
-        verticalArrangement = Arrangement.spacedBy(LocalPresentation.current.contentVerticalSpacing),
+    ContentContainerView(
+        description = properties.description,
     ) {
-        properties.description?.let {
-            StyledTextView(
-                text = it,
-                textStyle = MaterialTheme.typography.labelMedium,
-            )
-        }
-
         OutlinedTextField(
             value = selected?.label ?: LocalLocalization.current.emptyChoice,
             onValueChange = {},
@@ -131,26 +121,44 @@ internal fun DropdownView(
         ) {
             DropdownMenuItem(
                 text = {
-                    DropdownChoiceRow(
-                        label = LocalLocalization.current.emptyChoice,
-                        selected = selected == null,
+                    TextView(
+                        text = LocalLocalization.current.emptyChoice,
+                        typeStyle = Appearance.TypeStyle.TITLE,
                     )
                 },
                 onClick = {
                     select(null)
+                },
+                modifier = Modifier.fillMaxWidth(),
+                trailingIcon = {
+                    if (selected == null) {
+                        Icon(
+                            imageVector = vectorResource(Res.drawable.check_24dp),
+                            contentDescription = null,
+                        )
+                    }
                 },
             )
 
             choices.forEach { choice ->
                 DropdownMenuItem(
                     text = {
-                        DropdownChoiceRow(
-                            label = choice.label,
-                            selected = selected == choice,
+                        TextView(
+                            text = choice.label,
+                            typeStyle = Appearance.TypeStyle.TITLE,
                         )
                     },
                     onClick = {
                         select(choice)
+                    },
+                    modifier = Modifier.fillMaxWidth(),
+                    trailingIcon = {
+                        if (selected == choice) {
+                            Icon(
+                                imageVector = vectorResource(Res.drawable.check_24dp),
+                                contentDescription = null,
+                            )
+                        }
                     },
                 )
             }
@@ -160,37 +168,16 @@ internal fun DropdownView(
     updateState()
 }
 
-@Composable
-private fun DropdownChoiceRow(
-    label: String,
-    selected: Boolean,
-) {
-    Row(
-        modifier = Modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.spacedBy(LocalPresentation.current.contentHorizontalSpacing),
-    ) {
-        Text(
-            text = label,
-            style = MaterialTheme.typography.bodyMedium,
-        )
-
-        if (selected) {
-            Icon(
-                imageVector = vectorResource(Res.drawable.check_24dp),
-                contentDescription = null,
-            )
-        }
-    }
-}
-
 @PreviewLightDark
 @Composable
 private fun DropdownViewPreview() {
-    MaterialThemePreview {
+    TypeformPreview(
+        headline = "What is your quest?",
+    ) {
         DropdownView(
             properties = Dropdown(
                 choices = emptyList(),
-                description = null,
+                description = "If you don't know, you might be in the wrong place.",
                 randomize = false,
                 alphabetical_order = false,
             ),

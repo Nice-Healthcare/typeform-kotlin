@@ -1,8 +1,5 @@
 package com.typeform.ui.fields
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -14,11 +11,10 @@ import com.typeform.models.ResponseValue
 import com.typeform.schema.questions.YesNo
 import com.typeform.schema.structure.Validations
 import com.typeform.ui.LocalLocalization
-import com.typeform.ui.LocalPresentation
+import com.typeform.ui.components.ContentContainerView
 import com.typeform.ui.components.IntermittentChoiceButton
-import com.typeform.ui.components.StyledTextView
 import com.typeform.ui.models.ResponseState
-import com.typeform.ui.preview.MaterialThemePreview
+import com.typeform.ui.preview.TypeformPreview
 
 @Composable
 internal fun YesNoView(
@@ -74,16 +70,9 @@ internal fun YesNoView(
         updateState()
     }
 
-    Column(
-        verticalArrangement = Arrangement.spacedBy(LocalPresentation.current.contentVerticalSpacing),
+    ContentContainerView(
+        description = properties.description,
     ) {
-        properties.description?.let {
-            StyledTextView(
-                text = it,
-                textStyle = MaterialTheme.typography.labelMedium,
-            )
-        }
-
         IntermittentChoiceButton(
             text = LocalLocalization.current.yes,
             selected = selected == true,
@@ -103,10 +92,12 @@ internal fun YesNoView(
 @PreviewLightDark
 @Composable
 private fun YesNoViewPreview() {
-    MaterialThemePreview {
+    TypeformPreview(
+        headline = "Am I Humorous?",
+    ) {
         YesNoView(
             properties = YesNo(
-                description = null,
+                description = "Answer wisely, or you will be thrown from a cliff. Not really, but maybe.",
             ),
             responseState = ResponseState(),
             validations = null,

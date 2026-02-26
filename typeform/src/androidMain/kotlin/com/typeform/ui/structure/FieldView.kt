@@ -1,8 +1,6 @@
 package com.typeform.ui.structure
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -28,7 +26,7 @@ import com.typeform.schema.structure.Form
 import com.typeform.schema.structure.Group
 import com.typeform.ui.LocalLocalization
 import com.typeform.ui.LocalPresentation
-import com.typeform.ui.components.StyledTextView
+import com.typeform.ui.components.HeadlineContainerView
 import com.typeform.ui.fields.DateView
 import com.typeform.ui.fields.DropdownView
 import com.typeform.ui.fields.FileUploadView
@@ -109,7 +107,7 @@ internal fun FieldView(
     }
 
     ScrollingContentView(
-        scaffoldPadding = scaffoldPadding,
+        modifier = Modifier.padding(scaffoldPadding),
         title = nextTitle,
         enabled = (next != null && !responseState.invalid),
         header = header,
@@ -130,130 +128,115 @@ internal fun FieldView(
             }
         },
     ) {
-        Column(
-            modifier = Modifier.padding(presentation.contentPadding),
-            verticalArrangement = Arrangement.spacedBy(presentation.titleDescriptionVerticalSpacing),
+        HeadlineContainerView(
+            headline = field.title,
+            attachment = field.attachment,
         ) {
-            StyledTextView(
-                text = field.title,
-                textStyle = MaterialTheme.typography.titleMedium,
-            )
-
-            Column(
-                verticalArrangement = Arrangement.spacedBy(presentation.descriptionContentVerticalSpacing),
-            ) {
-                field.attachment?.let {
-                    AttachmentView(
-                        attachment = it,
-                    )
+            when (field.properties) {
+                is FieldProperties.DateStampProperties -> {
+                    DateView(
+                        properties = field.properties.properties,
+                        responseState = responseState,
+                        validations = field.validations,
+                    ) {
+                        handleResponseState(it)
+                    }
                 }
-
-                when (field.properties) {
-                    is FieldProperties.DateStampProperties -> {
-                        DateView(
-                            properties = field.properties.properties,
-                            responseState = responseState,
-                            validations = field.validations,
-                        ) {
-                            handleResponseState(it)
-                        }
+                is FieldProperties.DropdownProperties -> {
+                    DropdownView(
+                        properties = field.properties.properties,
+                        responseState = responseState,
+                        validations = field.validations,
+                    ) {
+                        handleResponseState(it)
                     }
-                    is FieldProperties.DropdownProperties -> {
-                        DropdownView(
-                            properties = field.properties.properties,
-                            responseState = responseState,
-                            validations = field.validations,
-                        ) {
-                            handleResponseState(it)
-                        }
+                }
+                is FieldProperties.FileUploadProperties -> {
+                    FileUploadView(
+                        properties = field.properties.properties,
+                        responseState = responseState,
+                        validations = field.validations,
+                    ) {
+                        handleResponseState(it)
                     }
-                    is FieldProperties.FileUploadProperties -> {
-                        FileUploadView(
-                            properties = field.properties.properties,
-                            responseState = responseState,
-                            validations = field.validations,
-                        ) {
-                            handleResponseState(it)
-                        }
+                }
+                is FieldProperties.GroupProperties -> {
+                    // No additional content
+                }
+                is FieldProperties.LongTextProperties -> {
+                    LongTextView(
+                        properties = field.properties.properties,
+                        responseState = responseState,
+                        validations = field.validations,
+                    ) {
+                        handleResponseState(it)
                     }
-                    is FieldProperties.GroupProperties -> {
-                        // No additional content
+                }
+                is FieldProperties.MatrixProperties -> {
+                    // Note `properties.validations` as `Matrix` utilize their `fields` validations.
+                    MatrixView(
+                        properties = field.properties.properties,
+                        responseState = responseState,
+                        validations = field.properties.properties.validations,
+                    ) {
+                        handleResponseState(it)
                     }
-                    is FieldProperties.LongTextProperties -> {
-                        LongTextView(
-                            properties = field.properties.properties,
-                            responseState = responseState,
-                            validations = field.validations,
-                        ) {
-                            handleResponseState(it)
-                        }
+                }
+                is FieldProperties.MultipleChoiceProperties -> {
+                    MultipleChoiceView(
+                        properties = field.properties.properties,
+                        responseState = responseState,
+                        validations = field.validations,
+                    ) {
+                        handleResponseState(it)
                     }
-                    is FieldProperties.MatrixProperties -> {
-                        // Note `properties.validations` as `Matrix` utilize their `fields` validations.
-                        MatrixView(
-                            properties = field.properties.properties,
-                            responseState = responseState,
-                            validations = field.properties.properties.validations,
-                        ) {
-                            handleResponseState(it)
-                        }
+                }
+                is FieldProperties.NumberProperties -> {
+                    NumberView(
+                        properties = field.properties.properties,
+                        responseState = responseState,
+                        validations = field.validations,
+                    ) {
+                        handleResponseState(it)
                     }
-                    is FieldProperties.MultipleChoiceProperties -> {
-                        MultipleChoiceView(
-                            properties = field.properties.properties,
-                            responseState = responseState,
-                            validations = field.validations,
-                        ) {
-                            handleResponseState(it)
-                        }
+                }
+                is FieldProperties.OpinionScaleProperties -> {
+                    OpinionScaleView(
+                        properties = field.properties.properties,
+                        responseState = responseState,
+                        validations = field.validations,
+                    ) {
+                        handleResponseState(it)
                     }
-                    is FieldProperties.NumberProperties -> {
-                        NumberView(
-                            properties = field.properties.properties,
-                            responseState = responseState,
-                            validations = field.validations,
-                        ) {
-                            handleResponseState(it)
-                        }
+                }
+                is FieldProperties.RatingProperties -> {
+                    RatingView(
+                        properties = field.properties.properties,
+                        responseState = responseState,
+                        validations = field.validations,
+                    ) {
+                        handleResponseState(it)
                     }
-                    is FieldProperties.OpinionScaleProperties -> {
-                        OpinionScaleView(
-                            properties = field.properties.properties,
-                            responseState = responseState,
-                            validations = field.validations,
-                        ) {
-                            handleResponseState(it)
-                        }
+                }
+                is FieldProperties.ShortTextProperties -> {
+                    ShortTextView(
+                        properties = field.properties.properties,
+                        responseState = responseState,
+                        validations = field.validations,
+                    ) {
+                        handleResponseState(it)
                     }
-                    is FieldProperties.RatingProperties -> {
-                        RatingView(
-                            properties = field.properties.properties,
-                            responseState = responseState,
-                            validations = field.validations,
-                        ) {
-                            handleResponseState(it)
-                        }
-                    }
-                    is FieldProperties.ShortTextProperties -> {
-                        ShortTextView(
-                            properties = field.properties.properties,
-                            responseState = responseState,
-                            validations = field.validations,
-                        ) {
-                            handleResponseState(it)
-                        }
-                    }
-                    is FieldProperties.StatementProperties -> {
-                        // No additional content
-                    }
-                    is FieldProperties.YesNoProperties -> {
-                        YesNoView(
-                            properties = field.properties.properties,
-                            responseState = responseState,
-                            validations = field.validations,
-                        ) {
-                            handleResponseState(it)
-                        }
+                }
+                is FieldProperties.StatementProperties -> {
+                    // No additional content
+                }
+                is FieldProperties.YesNoProperties -> {
+                    YesNoView(
+                        properties = field.properties.properties,
+                        responseState = responseState,
+                        validations = field.validations,
+                    ) {
+                        handleResponseState(it)
                     }
                 }
             }

@@ -4,8 +4,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.typeform.ui.LocalAppearance
@@ -20,39 +18,12 @@ internal fun TextView(
     textAlign: TextAlign? = null,
 ) {
     val appearance = LocalAppearance.current
-    val textStyle = appearance.textStyle(typeStyle)
 
     Text(
         text = text,
         modifier = modifier,
-        fontSize = textStyle.fontSize,
-        fontWeight = textStyle.fontWeight,
-        fontFamily = textStyle.fontFamily,
         textAlign = textAlign,
-    )
-}
-
-@Deprecated(message = "", replaceWith = ReplaceWith("TextView"))
-@Composable
-internal fun StyledTextView(
-    text: String,
-    textStyle: TextStyle,
-    modifier: Modifier = Modifier,
-    color: Color? = null,
-    textAlign: TextAlign? = null,
-) {
-    val appearance = LocalAppearance.current
-
-    TextView(
-        text = text,
-        typeStyle = when (textStyle) {
-            appearance.display -> Appearance.TypeStyle.DISPLAY
-            appearance.headline -> Appearance.TypeStyle.HEADLINE
-            appearance.title -> Appearance.TypeStyle.TITLE
-            appearance.label -> Appearance.TypeStyle.LABEL
-            else -> Appearance.TypeStyle.BODY
-        },
-        textAlign = textAlign,
+        style = appearance.textStyle(typeStyle),
     )
 }
 

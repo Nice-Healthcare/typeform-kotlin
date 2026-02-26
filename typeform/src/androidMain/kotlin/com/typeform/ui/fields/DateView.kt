@@ -1,11 +1,9 @@
 package com.typeform.ui.fields
 
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.DatePicker
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Switch
 import androidx.compose.material3.rememberDatePickerState
 import androidx.compose.runtime.Composable
@@ -22,10 +20,11 @@ import com.typeform.models.ResponseValue
 import com.typeform.schema.questions.DateStamp
 import com.typeform.schema.structure.Validations
 import com.typeform.ui.LocalLocalization
-import com.typeform.ui.LocalPresentation
-import com.typeform.ui.components.StyledTextView
+import com.typeform.ui.components.ContentContainerView
+import com.typeform.ui.components.TextView
+import com.typeform.ui.models.Appearance
 import com.typeform.ui.models.ResponseState
-import com.typeform.ui.preview.MaterialThemePreview
+import com.typeform.ui.preview.TypeformPreview
 import java.util.Date
 
 @Composable
@@ -75,25 +74,18 @@ internal fun DateView(
         onDispose { }
     }
 
-    Column(
-        verticalArrangement = Arrangement.spacedBy(LocalPresentation.current.contentVerticalSpacing),
+    ContentContainerView(
+        description = properties.description,
     ) {
-        properties.description?.let {
-            StyledTextView(
-                text = it,
-                textStyle = MaterialTheme.typography.labelMedium,
-            )
-        }
-
         if (isOptional) {
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically,
             ) {
-                StyledTextView(
+                TextView(
                     text = LocalLocalization.current.nullDate,
-                    textStyle = MaterialTheme.typography.bodyMedium,
+                    typeStyle = Appearance.TypeStyle.BODY,
                 )
 
                 Switch(
@@ -124,12 +116,14 @@ internal fun DateView(
 @PreviewLightDark
 @Composable
 private fun DateViewPreview() {
-    MaterialThemePreview {
+    TypeformPreview(
+        headline = "What is your birthday?",
+    ) {
         DateView(
             properties = DateStamp(
                 separator = "",
                 structure = "",
-                description = null,
+                description = "This should not be a day in the future.",
             ),
             responseState = ResponseState(),
             validations = null,

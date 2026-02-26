@@ -1,10 +1,7 @@
 package com.typeform.ui.fields
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -18,10 +15,9 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.typeform.models.ResponseValue
 import com.typeform.schema.questions.Number
 import com.typeform.schema.structure.Validations
-import com.typeform.ui.LocalPresentation
-import com.typeform.ui.components.StyledTextView
+import com.typeform.ui.components.ContentContainerView
 import com.typeform.ui.models.ResponseState
-import com.typeform.ui.preview.MaterialThemePreview
+import com.typeform.ui.preview.TypeformPreview
 
 @Composable
 internal fun NumberView(
@@ -61,16 +57,9 @@ internal fun NumberView(
         updateState()
     }
 
-    Column(
-        verticalArrangement = Arrangement.spacedBy(LocalPresentation.current.contentVerticalSpacing),
+    ContentContainerView(
+        description = properties.description,
     ) {
-        properties.description?.let {
-            StyledTextView(
-                text = it,
-                textStyle = MaterialTheme.typography.labelMedium,
-            )
-        }
-
         OutlinedTextField(
             value = "${selected ?: ""}",
             onValueChange = { value ->
@@ -88,10 +77,12 @@ internal fun NumberView(
 @PreviewLightDark
 @Composable
 private fun NumberViewPreview() {
-    MaterialThemePreview {
+    TypeformPreview(
+        headline = "How old are you?",
+    ) {
         NumberView(
             properties = Number(
-                description = null,
+                description = "Only ridiculous answers should be provided.",
             ),
             responseState = ResponseState(),
             validations = null,

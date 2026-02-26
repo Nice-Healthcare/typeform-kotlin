@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.safeGesturesPadding
 import androidx.compose.foundation.layout.width
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Slider
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -24,10 +23,11 @@ import com.typeform.models.ResponseValue
 import com.typeform.schema.questions.OpinionScale
 import com.typeform.schema.structure.Validations
 import com.typeform.ui.LocalLocalization
-import com.typeform.ui.LocalPresentation
-import com.typeform.ui.components.StyledTextView
+import com.typeform.ui.components.ContentContainerView
+import com.typeform.ui.components.TextView
+import com.typeform.ui.models.Appearance
 import com.typeform.ui.models.ResponseState
-import com.typeform.ui.preview.MaterialThemePreview
+import com.typeform.ui.preview.TypeformPreview
 import java.util.Locale
 
 @Composable
@@ -119,13 +119,12 @@ internal fun OpinionScaleView(
         updateState()
     }
 
-    Column(
-        verticalArrangement = Arrangement.spacedBy(LocalPresentation.current.contentVerticalSpacing),
+    ContentContainerView(
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        StyledTextView(
+        TextView(
             text = if (selected == null) LocalLocalization.current.emptyChoice else "$selected",
-            textStyle = MaterialTheme.typography.bodyMedium,
+            typeStyle = Appearance.TypeStyle.TITLE,
         )
 
         // Additional padding added here to account for the system gesture insets.
@@ -143,16 +142,16 @@ internal fun OpinionScaleView(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween,
         ) {
-            StyledTextView(
-                text = leadingLabel,
-                textStyle = MaterialTheme.typography.labelMedium,
+            TextView(
                 modifier = Modifier.width(120.dp),
+                text = leadingLabel,
+                typeStyle = Appearance.TypeStyle.LABEL,
             )
 
-            StyledTextView(
-                text = trailingLabel,
-                textStyle = MaterialTheme.typography.labelMedium,
+            TextView(
                 modifier = Modifier.width(120.dp),
+                text = trailingLabel,
+                typeStyle = Appearance.TypeStyle.LABEL,
                 textAlign = TextAlign.End,
             )
         }
@@ -162,7 +161,9 @@ internal fun OpinionScaleView(
 @PreviewLightDark
 @Composable
 private fun OpinionScaleViewPreview() {
-    MaterialThemePreview {
+    TypeformPreview(
+        headline = "Great example of using native controls.",
+    ) {
         Column {
             OpinionScaleView(
                 properties = OpinionScale(

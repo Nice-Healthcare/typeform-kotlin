@@ -34,6 +34,7 @@ import com.typeform.resources.Res
 import com.typeform.resources.close_24dp
 import com.typeform.resources.file_present_24dp
 import com.typeform.ui.LocalUploadHelper
+import com.typeform.ui.models.Appearance
 import com.typeform.ui.models.imageBitmapForUpload
 import com.typeform.ui.preview.MaterialThemePreview
 import org.jetbrains.compose.resources.vectorResource
@@ -91,10 +92,10 @@ fun UploadImageView(
             }
         }
 
-        StyledTextView(
-            text = upload.fileName,
-            textStyle = MaterialTheme.typography.labelMedium,
+        TextView(
             modifier = Modifier.padding(start = padding.calculateLeftPadding(LayoutDirection.Ltr)),
+            text = upload.fileName,
+            typeStyle = Appearance.TypeStyle.LABEL,
         )
     }
 }

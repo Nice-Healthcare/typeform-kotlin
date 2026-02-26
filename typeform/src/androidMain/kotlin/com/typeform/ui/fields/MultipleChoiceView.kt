@@ -1,8 +1,5 @@
 package com.typeform.ui.fields
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -14,11 +11,10 @@ import com.typeform.models.ResponseValue
 import com.typeform.schema.questions.MultipleChoice
 import com.typeform.schema.structure.Choice
 import com.typeform.schema.structure.Validations
-import com.typeform.ui.LocalPresentation
+import com.typeform.ui.components.ContentContainerView
 import com.typeform.ui.components.IntermittentChoiceButton
-import com.typeform.ui.components.StyledTextView
 import com.typeform.ui.models.ResponseState
-import com.typeform.ui.preview.MaterialThemePreview
+import com.typeform.ui.preview.TypeformPreview
 import com.typeform.ui.preview.previewCold
 import com.typeform.ui.preview.previewHot
 
@@ -83,16 +79,9 @@ internal fun MultipleChoiceView(
         updateState()
     }
 
-    Column(
-        verticalArrangement = Arrangement.spacedBy(LocalPresentation.current.contentVerticalSpacing),
+    ContentContainerView(
+        description = properties.description,
     ) {
-        properties.description?.let {
-            StyledTextView(
-                text = it,
-                textStyle = MaterialTheme.typography.labelMedium,
-            )
-        }
-
         choices.forEach { choice ->
             IntermittentChoiceButton(
                 text = choice.label,
@@ -108,7 +97,9 @@ internal fun MultipleChoiceView(
 @PreviewLightDark
 @Composable
 private fun MultipleChoiceViewPreview() {
-    MaterialThemePreview {
+    TypeformPreview(
+        headline = "How do you prefer your caffeine?",
+    ) {
         MultipleChoiceView(
             properties = MultipleChoice(
                 choices = listOf(
@@ -119,7 +110,7 @@ private fun MultipleChoiceViewPreview() {
                 allow_multiple_selection = false,
                 allow_other_choice = false,
                 vertical_alignment = true,
-                description = null,
+                description = "Select one or more of the following options.",
             ),
             responseState = ResponseState(),
             validations = null,

@@ -1,10 +1,7 @@
 package com.typeform.ui.fields
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -18,10 +15,9 @@ import androidx.compose.ui.unit.dp
 import com.typeform.models.ResponseValue
 import com.typeform.schema.questions.LongText
 import com.typeform.schema.structure.Validations
-import com.typeform.ui.LocalPresentation
-import com.typeform.ui.components.StyledTextView
+import com.typeform.ui.components.ContentContainerView
 import com.typeform.ui.models.ResponseState
-import com.typeform.ui.preview.MaterialThemePreview
+import com.typeform.ui.preview.TypeformPreview
 
 @Composable
 internal fun LongTextView(
@@ -60,16 +56,9 @@ internal fun LongTextView(
         updateState()
     }
 
-    Column(
-        verticalArrangement = Arrangement.spacedBy(LocalPresentation.current.contentVerticalSpacing),
+    ContentContainerView(
+        description = properties.description,
     ) {
-        properties.description?.let {
-            StyledTextView(
-                text = it,
-                textStyle = MaterialTheme.typography.labelMedium,
-            )
-        }
-
         OutlinedTextField(
             value = selected,
             onValueChange = { value ->
@@ -87,10 +76,12 @@ internal fun LongTextView(
 @PreviewLightDark
 @Composable
 private fun LongTextViewPreview() {
-    MaterialThemePreview {
+    TypeformPreview(
+        headline = "How much wood would a woodchuck chuck, if a woodchuck could chuck wood?",
+    ) {
         LongTextView(
             properties = LongText(
-                description = null,
+                description = "Please limit your reply to pamphlet length. No novels.",
             ),
             responseState = ResponseState(),
             validations = null,

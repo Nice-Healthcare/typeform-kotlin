@@ -12,7 +12,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -25,7 +24,6 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberUpdatedState
@@ -35,6 +33,8 @@ import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import com.typeform.ui.LocalPresentation
+import com.typeform.ui.components.TextView
+import com.typeform.ui.models.Appearance
 import com.typeform.ui.preview.MaterialThemePreview
 import kotlin.math.abs
 
@@ -44,7 +44,7 @@ import kotlin.math.abs
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
 internal fun ScrollingContentView(
-    scaffoldPadding: PaddingValues,
+    modifier: Modifier = Modifier,
     title: String = "",
     onClick: () -> Unit,
     enabled: Boolean = true,
@@ -57,8 +57,7 @@ internal fun ScrollingContentView(
 
     Surface {
         Column(
-            modifier = Modifier
-                .padding(scaffoldPadding),
+            modifier = modifier,
             verticalArrangement = Arrangement.spacedBy(0.dp),
         ) {
             header?.let {
@@ -95,8 +94,9 @@ internal fun ScrollingContentView(
                             modifier = Modifier.fillMaxWidth(),
                             enabled = enabled,
                         ) {
-                            Text(
+                            TextView(
                                 text = title,
+                                typeStyle = Appearance.TypeStyle.TITLE,
                             )
                         }
                     }
@@ -111,7 +111,6 @@ internal fun ScrollingContentView(
 private fun ScrollingContentViewPreview() {
     MaterialThemePreview {
         ScrollingContentView(
-            scaffoldPadding = PaddingValues(0.dp),
             title = "Preview",
             onClick = {},
             header = {

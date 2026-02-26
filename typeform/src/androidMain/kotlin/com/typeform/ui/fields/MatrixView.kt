@@ -1,11 +1,9 @@
 package com.typeform.ui.fields
 
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.width
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -24,10 +22,12 @@ import com.typeform.schema.structure.Field
 import com.typeform.schema.structure.Matrix
 import com.typeform.schema.structure.Validations
 import com.typeform.ui.LocalPresentation
+import com.typeform.ui.components.ContentContainerView
 import com.typeform.ui.components.IntermittentChoiceButton
-import com.typeform.ui.components.StyledTextView
+import com.typeform.ui.components.TextView
+import com.typeform.ui.models.Appearance
 import com.typeform.ui.models.ResponseState
-import com.typeform.ui.preview.MaterialThemePreview
+import com.typeform.ui.preview.TypeformPreview
 import com.typeform.ui.preview.previewMatrix1
 import com.typeform.ui.preview.previewMatrix2
 import com.typeform.ui.preview.previewMatrix3
@@ -102,9 +102,7 @@ internal fun MatrixView(
         updateState()
     }
 
-    Column(
-        verticalArrangement = Arrangement.spacedBy(presentation.contentVerticalSpacing),
-    ) {
+    ContentContainerView {
         Row(
             horizontalArrangement = Arrangement.spacedBy(presentation.contentHorizontalSpacing),
             verticalAlignment = Alignment.CenterVertically,
@@ -114,10 +112,10 @@ internal fun MatrixView(
             )
 
             properties.columns.forEach {
-                StyledTextView(
-                    text = it,
-                    textStyle = MaterialTheme.typography.body1,
+                TextView(
                     modifier = Modifier.width(65.dp),
+                    text = it,
+                    typeStyle = Appearance.TypeStyle.TITLE,
                     textAlign = TextAlign.Center,
                 )
             }
@@ -130,10 +128,10 @@ internal fun MatrixView(
                 horizontalArrangement = Arrangement.spacedBy(presentation.contentHorizontalSpacing),
                 verticalAlignment = Alignment.CenterVertically,
             ) {
-                StyledTextView(
-                    text = iteration.title,
-                    textStyle = MaterialTheme.typography.body1,
+                TextView(
                     modifier = Modifier.weight(1f),
+                    text = iteration.title,
+                    typeStyle = Appearance.TypeStyle.BODY,
                     textAlign = TextAlign.End,
                 )
 
@@ -155,7 +153,9 @@ internal fun MatrixView(
 @PreviewLightDark
 @Composable
 private fun MatrixViewPreview() {
-    MaterialThemePreview {
+    TypeformPreview(
+        headline = "Are you suffering any of the following symptoms?",
+    ) {
         MatrixView(
             properties = Matrix(
                 fields = listOf(
