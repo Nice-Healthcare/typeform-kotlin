@@ -14,10 +14,9 @@ import com.typeform.models.ResponseValue
 import com.typeform.schema.questions.MultipleChoice
 import com.typeform.schema.structure.Choice
 import com.typeform.schema.structure.Validations
-import com.typeform.ui.LocalSettings
+import com.typeform.ui.LocalPresentation
 import com.typeform.ui.components.IntermittentChoiceButton
 import com.typeform.ui.components.StyledTextView
-import com.typeform.ui.models.LocalPresentation
 import com.typeform.ui.models.ResponseState
 import com.typeform.ui.preview.MaterialThemePreview
 import com.typeform.ui.preview.previewCold
@@ -30,7 +29,6 @@ internal fun MultipleChoiceView(
     validations: Validations?,
     stateHandler: (ResponseState) -> Unit,
 ) {
-    val settings = LocalSettings.current
     var selected: List<Choice> by remember { mutableStateOf(responseState.response?.asChoices() ?: emptyList()) }
 
     val choices = properties.orderedChoices()

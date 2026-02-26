@@ -1,7 +1,6 @@
 package com.typeform.ui.models
 
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
@@ -19,5 +18,3 @@ data class Presentation(
     val skipWelcomeScreen: Boolean = false,
     val skipEndingScreen: Boolean = false,
 )
-
-internal val LocalPresentation = compositionLocalOf { Presentation() }

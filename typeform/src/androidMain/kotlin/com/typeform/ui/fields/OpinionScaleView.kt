@@ -23,10 +23,9 @@ import androidx.compose.ui.unit.dp
 import com.typeform.models.ResponseValue
 import com.typeform.schema.questions.OpinionScale
 import com.typeform.schema.structure.Validations
-import com.typeform.ui.LocalSettings
+import com.typeform.ui.LocalLocalization
+import com.typeform.ui.LocalPresentation
 import com.typeform.ui.components.StyledTextView
-import com.typeform.ui.models.LocalLocalization
-import com.typeform.ui.models.LocalPresentation
 import com.typeform.ui.models.ResponseState
 import com.typeform.ui.preview.MaterialThemePreview
 import java.util.Locale
@@ -38,7 +37,6 @@ internal fun OpinionScaleView(
     validations: Validations?,
     stateHandler: (ResponseState) -> Unit,
 ) {
-    val settings = LocalSettings.current
     val start = if (properties.start_at_one) 1 else 0
     val end = if (properties.start_at_one) properties.steps else (properties.steps - 1)
     val steps = properties.steps - 1

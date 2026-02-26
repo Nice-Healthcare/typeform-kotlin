@@ -16,8 +16,8 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.typeform.models.ResponseValue
 import com.typeform.schema.questions.ShortText
 import com.typeform.schema.structure.Validations
+import com.typeform.ui.LocalPresentation
 import com.typeform.ui.components.StyledTextView
-import com.typeform.ui.models.LocalPresentation
 import com.typeform.ui.models.ResponseState
 import com.typeform.ui.preview.MaterialThemePreview
 

@@ -25,9 +25,8 @@ import com.typeform.resources.star_24dp
 import com.typeform.resources.star_fill_24dp
 import com.typeform.schema.questions.Rating
 import com.typeform.schema.structure.Validations
-import com.typeform.ui.LocalSettings
+import com.typeform.ui.LocalPresentation
 import com.typeform.ui.components.StyledTextView
-import com.typeform.ui.models.LocalPresentation
 import com.typeform.ui.models.ResponseState
 import com.typeform.ui.preview.MaterialThemePreview
 import org.jetbrains.compose.resources.vectorResource
@@ -39,7 +38,6 @@ internal fun RatingView(
     validations: Validations?,
     stateHandler: (ResponseState) -> Unit,
 ) {
-    val settings = LocalSettings.current
     var selected: Int? by remember { mutableStateOf(responseState.response?.asInt()) }
 
     val range = IntRange(1, properties.steps)

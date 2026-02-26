@@ -13,8 +13,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
-import com.typeform.ui.LocalSettings
-import com.typeform.ui.models.LocalPresentation
+import com.typeform.ui.LocalPresentation
 import com.typeform.ui.preview.MaterialThemePreview
 
 @Composable
@@ -25,8 +24,6 @@ internal fun IntermittentChoiceButton(
     selected: Boolean = false,
     onClick: () -> Unit,
 ) {
-    val settings = LocalSettings.current
-
     FilledTonalButton(
         onClick = onClick,
         modifier = modifier,

@@ -15,9 +15,8 @@ import androidx.compose.ui.unit.dp
 import com.typeform.models.Responses
 import com.typeform.resources.Res
 import com.typeform.resources.warning_24dp
-import com.typeform.ui.LocalSettings
+import com.typeform.ui.LocalPresentation
 import com.typeform.ui.models.Conclusion
-import com.typeform.ui.models.LocalPresentation
 import com.typeform.ui.preview.MaterialThemePreview
 import org.jetbrains.compose.resources.vectorResource
 
@@ -30,7 +29,7 @@ internal fun RejectedView(
     responses: Responses,
     onClick: (Conclusion) -> Unit,
 ) {
-    val settings = LocalSettings.current
+    val presentation = LocalPresentation.current
 
     ScrollingContentView(
         scaffoldPadding = scaffoldPadding,
@@ -40,8 +39,8 @@ internal fun RejectedView(
         },
     ) {
         Column(
-            modifier = Modifier.padding(LocalPresentation.current.contentPadding),
-            verticalArrangement = Arrangement.spacedBy(LocalPresentation.current.titleDescriptionVerticalSpacing),
+            modifier = Modifier.padding(presentation.contentPadding),
+            verticalArrangement = Arrangement.spacedBy(presentation.titleDescriptionVerticalSpacing),
         ) {
             Surface(
                 modifier = Modifier.fillMaxWidth(),

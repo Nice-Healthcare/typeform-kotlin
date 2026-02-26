@@ -23,11 +23,11 @@ import com.typeform.schema.structure.Choice
 import com.typeform.schema.structure.Field
 import com.typeform.schema.structure.Matrix
 import com.typeform.schema.structure.Validations
-import com.typeform.ui.LocalSettings
+import com.typeform.ui.LocalPresentation
 import com.typeform.ui.components.IntermittentChoiceButton
 import com.typeform.ui.components.StyledTextView
 import com.typeform.ui.models.ResponseState
-import com.typeform.ui.preview.ThemePreview
+import com.typeform.ui.preview.MaterialThemePreview
 import com.typeform.ui.preview.previewMatrix1
 import com.typeform.ui.preview.previewMatrix2
 import com.typeform.ui.preview.previewMatrix3
@@ -43,7 +43,7 @@ internal fun MatrixView(
     validations: Validations?,
     stateHandler: (ResponseState) -> Unit,
 ) {
-    val settings = LocalSettings.current
+    val presentation = LocalPresentation.current
     var selected: Map<String, List<Choice>> by remember { mutableStateOf(responseState.response?.asChoicesByReference() ?: emptyMap()) }
 
     fun updateState() {
@@ -103,10 +103,10 @@ internal fun MatrixView(
     }
 
     Column(
-        verticalArrangement = Arrangement.spacedBy(settings.presentation.contentVerticalSpacing),
+        verticalArrangement = Arrangement.spacedBy(presentation.contentVerticalSpacing),
     ) {
         Row(
-            horizontalArrangement = Arrangement.spacedBy(settings.presentation.contentHorizontalSpacing),
+            horizontalArrangement = Arrangement.spacedBy(presentation.contentHorizontalSpacing),
             verticalAlignment = Alignment.CenterVertically,
         ) {
             Spacer(
@@ -127,7 +127,7 @@ internal fun MatrixView(
             HorizontalDivider()
 
             Row(
-                horizontalArrangement = Arrangement.spacedBy(settings.presentation.contentHorizontalSpacing),
+                horizontalArrangement = Arrangement.spacedBy(presentation.contentHorizontalSpacing),
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 StyledTextView(
@@ -155,7 +155,7 @@ internal fun MatrixView(
 @PreviewLightDark
 @Composable
 private fun MatrixViewPreview() {
-    ThemePreview {
+    MaterialThemePreview {
         MatrixView(
             properties = Matrix(
                 fields = listOf(

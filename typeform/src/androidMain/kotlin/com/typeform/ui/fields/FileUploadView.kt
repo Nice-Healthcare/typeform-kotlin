@@ -23,12 +23,11 @@ import com.typeform.models.ResponseValue
 import com.typeform.models.Upload
 import com.typeform.schema.questions.FileUpload
 import com.typeform.schema.structure.Validations
-import com.typeform.ui.LocalSettings
+import com.typeform.ui.LocalLocalization
+import com.typeform.ui.LocalPresentation
 import com.typeform.ui.components.StyledTextView
 import com.typeform.ui.components.UploadImageView
 import com.typeform.ui.components.UploadPickerView
-import com.typeform.ui.models.LocalLocalization
-import com.typeform.ui.models.LocalPresentation
 import com.typeform.ui.models.ResponseState
 import com.typeform.ui.preview.MaterialThemePreview
 
@@ -39,7 +38,6 @@ internal fun FileUploadView(
     validations: Validations?,
     stateHandler: (ResponseState) -> Unit,
 ) {
-    val settings = LocalSettings.current
     var upload: Upload? by remember { mutableStateOf(responseState.response?.asUpload()) }
     var expanded: Boolean by remember { mutableStateOf(false) }
     var exception: Throwable? by remember { mutableStateOf(null) }

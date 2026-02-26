@@ -21,10 +21,9 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.typeform.models.ResponseValue
 import com.typeform.schema.questions.DateStamp
 import com.typeform.schema.structure.Validations
-import com.typeform.ui.LocalSettings
+import com.typeform.ui.LocalLocalization
+import com.typeform.ui.LocalPresentation
 import com.typeform.ui.components.StyledTextView
-import com.typeform.ui.models.LocalLocalization
-import com.typeform.ui.models.LocalPresentation
 import com.typeform.ui.models.ResponseState
 import com.typeform.ui.preview.MaterialThemePreview
 import java.util.Date
@@ -36,7 +35,6 @@ internal fun DateView(
     validations: Validations?,
     stateHandler: (ResponseState) -> Unit,
 ) {
-    val settings = LocalSettings.current
     val pickerState = rememberDatePickerState((responseState.response?.asDate() ?: Date()).time)
     var milliseconds by remember { mutableStateOf(responseState.response?.asDate()?.time) }
     var isNotSure by remember { mutableStateOf(false) }

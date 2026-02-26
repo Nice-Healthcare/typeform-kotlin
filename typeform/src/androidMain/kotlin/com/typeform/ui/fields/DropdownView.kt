@@ -30,10 +30,9 @@ import com.typeform.resources.keyboard_arrow_up_24dp
 import com.typeform.schema.questions.Dropdown
 import com.typeform.schema.structure.Choice
 import com.typeform.schema.structure.Validations
-import com.typeform.ui.LocalSettings
+import com.typeform.ui.LocalLocalization
+import com.typeform.ui.LocalPresentation
 import com.typeform.ui.components.StyledTextView
-import com.typeform.ui.models.LocalLocalization
-import com.typeform.ui.models.LocalPresentation
 import com.typeform.ui.models.ResponseState
 import com.typeform.ui.preview.MaterialThemePreview
 import org.jetbrains.compose.resources.vectorResource
@@ -45,7 +44,6 @@ internal fun DropdownView(
     validations: Validations?,
     stateHandler: (ResponseState) -> Unit,
 ) {
-    val settings = LocalSettings.current
     val focusRequester = remember { FocusRequester() }
     val focusManager = LocalFocusManager.current
     var selected by remember { mutableStateOf(responseState.response?.asChoice()) }

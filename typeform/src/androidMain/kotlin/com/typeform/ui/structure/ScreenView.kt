@@ -16,11 +16,10 @@ import com.typeform.schema.structure.EndingScreen
 import com.typeform.schema.structure.Form
 import com.typeform.schema.structure.Screen
 import com.typeform.schema.structure.WelcomeScreen
-import com.typeform.ui.LocalSettings
+import com.typeform.ui.LocalLocalization
+import com.typeform.ui.LocalPresentation
 import com.typeform.ui.components.StyledTextView
 import com.typeform.ui.models.Conclusion
-import com.typeform.ui.models.LocalLocalization
-import com.typeform.ui.models.LocalPresentation
 import com.typeform.ui.models.NavigationAction
 import com.typeform.ui.preview.MaterialThemePreview
 import com.typeform.ui.preview.preview
@@ -36,7 +35,6 @@ internal fun ScreenView(
     responses: Responses,
     actionHandler: (NavigationAction) -> Unit,
 ) {
-    val settings = LocalSettings.current
     val isWelcomeScreen = screen is WelcomeScreen
 
     val next = try {

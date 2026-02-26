@@ -9,4 +9,5 @@ package com.typeform.ui.models
 data class Settings(
     val localization: Localization = Localization(),
     val presentation: Presentation = Presentation(),
+    val appearance: Appearance = Appearance(),
 )

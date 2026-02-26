@@ -40,6 +40,7 @@ kotlin {
                 implementation(libs.androidx.ui)
                 implementation(libs.androidx.ui.graphics)
                 implementation(libs.androidx.ui.preview)
+                implementation(libs.androidx.ui.tooling)
                 implementation(libs.coil.compose.core)
                 implementation(libs.ktor.android)
                 implementation(libs.ktor.client)

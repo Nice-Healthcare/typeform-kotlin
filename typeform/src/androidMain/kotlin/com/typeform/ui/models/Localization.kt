@@ -1,7 +1,5 @@
 package com.typeform.ui.models
 
-import androidx.compose.runtime.compositionLocalOf
-
 /**
  * String values used in the presentation of the form.
  */
@@ -22,5 +20,3 @@ data class Localization(
     val uploadPhotoLibrary: String = "Photo Library",
     val uploadDocument: String = "Documents",
 )
-
-internal val LocalLocalization = compositionLocalOf { Localization() }

@@ -39,14 +39,14 @@ import com.typeform.resources.Res
 import com.typeform.resources.arrow_back_24dp
 import com.typeform.schema.structure.Form
 import com.typeform.ui.LocalImageLoader
-import com.typeform.ui.LocalSettings
+import com.typeform.ui.LocalLocalization
+import com.typeform.ui.LocalPresentation
 import com.typeform.ui.LocalUploadHelper
 import com.typeform.ui.components.StyledTextView
 import com.typeform.ui.models.Conclusion
-import com.typeform.ui.models.LocalLocalization
-import com.typeform.ui.models.LocalPresentation
 import com.typeform.ui.models.NavigationAction
 import com.typeform.ui.models.Settings
+import com.typeform.ui.models.TypeformRoute
 import com.typeform.ui.models.UploadHelper
 import com.typeform.ui.preview.MaterialThemePreview
 import com.typeform.ui.preview.preview
@@ -122,6 +122,8 @@ fun FormView(
     CompositionLocalProvider(
         LocalPresentation provides settings.presentation,
         LocalLocalization provides settings.localization,
+        LocalUploadHelper provides uploadHelper,
+        LocalImageLoader provides imageLoader,
     ) {
         Scaffold(
             topBar = {
@@ -191,48 +193,35 @@ fun FormView(
                     showBackNavigation = false
                     val id = (it.arguments?.getString("id") ?: startPosition?.associatedScreen()?.id) ?: form.firstScreen?.id
                     if (id == null) {
-                        CompositionLocalProvider(
-                            LocalSettings provides settings,
-                        ) {
-                            RejectedView(
-                                scaffoldPadding = scaffoldPadding,
-                                responses = collectedResponses,
-                            ) { rejection ->
-                                conclusion(rejection)
-                            }
+                        RejectedView(
+                            scaffoldPadding = scaffoldPadding,
+                            responses = collectedResponses,
+                        ) { rejection ->
+                            conclusion(rejection)
                         }
                         return@composable
                     }
 
                     val screen = form.screenWithId(id)
                     if (screen == null) {
-                        CompositionLocalProvider(
-                            LocalSettings provides settings,
-                        ) {
-                            RejectedView(
-                                scaffoldPadding = scaffoldPadding,
-                                responses = collectedResponses,
-                            ) { rejection ->
-                                conclusion(rejection)
-                            }
+                        RejectedView(
+                            scaffoldPadding = scaffoldPadding,
+                            responses = collectedResponses,
+                        ) { rejection ->
+                            conclusion(rejection)
                         }
                         return@composable
                     }
 
-                    CompositionLocalProvider(
-                        LocalSettings provides settings,
-                        LocalImageLoader provides imageLoader,
-                    ) {
-                        ScreenView(
-                            scaffoldPadding = scaffoldPadding,
-                            form = form,
-                            screen = screen,
-                            responses = collectedResponses,
-                            actionHandler = { navigationAction ->
-                                navigateUsing(navigationAction)
-                            },
-                        )
-                    }
+                    ScreenView(
+                        scaffoldPadding = scaffoldPadding,
+                        form = form,
+                        screen = screen,
+                        responses = collectedResponses,
+                        actionHandler = { navigationAction ->
+                            navigateUsing(navigationAction)
+                        },
+                    )
                 }
 
                 composable(
@@ -247,15 +236,11 @@ fun FormView(
                     val fieldId = (it.arguments?.getString("id") ?: startPosition?.associatedField()?.id) ?: form.fields.firstOrNull()?.id
                     if (fieldId == null) {
                         showBackNavigation = false
-                        CompositionLocalProvider(
-                            LocalSettings provides settings,
-                        ) {
-                            RejectedView(
-                                scaffoldPadding = scaffoldPadding,
-                                responses = collectedResponses,
-                            ) { rejection ->
-                                conclusion(rejection)
-                            }
+                        RejectedView(
+                            scaffoldPadding = scaffoldPadding,
+                            responses = collectedResponses,
+                        ) { rejection ->
+                            conclusion(rejection)
                         }
                         return@composable
                     }
@@ -264,15 +249,11 @@ fun FormView(
 
                     val field = form.fieldWithId(fieldId)
                     if (field == null) {
-                        CompositionLocalProvider(
-                            LocalSettings provides settings,
-                        ) {
-                            RejectedView(
-                                scaffoldPadding = scaffoldPadding,
-                                responses = collectedResponses,
-                            ) { rejection ->
-                                conclusion(rejection)
-                            }
+                        RejectedView(
+                            scaffoldPadding = scaffoldPadding,
+                            responses = collectedResponses,
+                        ) { rejection ->
+                            conclusion(rejection)
                         }
                         return@composable
                     }
@@ -280,23 +261,17 @@ fun FormView(
                     val parent = form.parentForFieldWithId(fieldId)
                     val group = parent?.associatedGroup()
 
-                    CompositionLocalProvider(
-                        LocalSettings provides settings,
-                        LocalUploadHelper provides uploadHelper,
-                        LocalImageLoader provides imageLoader,
-                    ) {
-                        FieldView(
-                            scaffoldPadding = scaffoldPadding,
-                            form = form,
-                            field = field,
-                            group = group,
-                            responses = collectedResponses,
-                            header = header,
-                            actionHandler = { navigationAction ->
-                                navigateUsing(navigationAction)
-                            },
-                        )
-                    }
+                    FieldView(
+                        scaffoldPadding = scaffoldPadding,
+                        form = form,
+                        field = field,
+                        group = group,
+                        responses = collectedResponses,
+                        header = header,
+                        actionHandler = { navigationAction ->
+                            navigateUsing(navigationAction)
+                        },
+                    )
                 }
 
                 composable(
@@ -304,15 +279,11 @@ fun FormView(
                 ) {
                     showBackNavigation = false
 
-                    CompositionLocalProvider(
-                        LocalSettings provides settings,
-                    ) {
-                        RejectedView(
-                            scaffoldPadding = scaffoldPadding,
-                            responses = collectedResponses,
-                        ) { rejection ->
-                            conclusion(rejection)
-                        }
+                    RejectedView(
+                        scaffoldPadding = scaffoldPadding,
+                        responses = collectedResponses,
+                    ) { rejection ->
+                        conclusion(rejection)
                     }
                 }
             }
@@ -355,22 +326,6 @@ fun FormView(
                 },
                 shape = RoundedCornerShape(CornerSize(16.dp)),
             )
-        }
-    }
-}
-
-internal sealed class TypeformRoute {
-    companion object {
-        const val SCREEN = "typeform_screen/{id}"
-        const val FIELD = "typeform_field/{id}"
-        const val REJECTED = "typeform_rejected"
-
-        fun makeScreen(id: String): String {
-            return SCREEN.replace("{id}", id)
-        }
-
-        fun makeField(fieldId: String): String {
-            return FIELD.replace("{id}", fieldId)
         }
     }
 }

@@ -33,7 +33,6 @@ import com.typeform.models.Upload
 import com.typeform.resources.Res
 import com.typeform.resources.close_24dp
 import com.typeform.resources.file_present_24dp
-import com.typeform.ui.LocalSettings
 import com.typeform.ui.LocalUploadHelper
 import com.typeform.ui.models.imageBitmapForUpload
 import com.typeform.ui.preview.MaterialThemePreview
@@ -46,7 +45,6 @@ fun UploadImageView(
     removeAction: () -> Unit,
 ) {
     val context = LocalContext.current
-    val settings = LocalSettings.current
     val uploadHelper = LocalUploadHelper.current
     val padding = PaddingValues(8.dp)
     var bitmap: ImageBitmap? by remember { mutableStateOf(null) }

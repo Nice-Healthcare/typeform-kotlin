@@ -26,7 +26,8 @@ import com.typeform.schema.structure.Field
 import com.typeform.schema.structure.FieldProperties
 import com.typeform.schema.structure.Form
 import com.typeform.schema.structure.Group
-import com.typeform.ui.LocalSettings
+import com.typeform.ui.LocalLocalization
+import com.typeform.ui.LocalPresentation
 import com.typeform.ui.components.StyledTextView
 import com.typeform.ui.fields.DateView
 import com.typeform.ui.fields.DropdownView
@@ -40,8 +41,6 @@ import com.typeform.ui.fields.RatingView
 import com.typeform.ui.fields.ShortTextView
 import com.typeform.ui.fields.YesNoView
 import com.typeform.ui.models.Conclusion
-import com.typeform.ui.models.LocalLocalization
-import com.typeform.ui.models.LocalPresentation
 import com.typeform.ui.models.NavigationAction
 import com.typeform.ui.models.ResponseState
 import com.typeform.ui.preview.MaterialThemePreview
@@ -61,7 +60,6 @@ internal fun FieldView(
     header: (@Composable () -> Unit)? = null,
     actionHandler: (NavigationAction) -> Unit,
 ) {
-    val settings = LocalSettings.current
     val presentation = LocalPresentation.current
     var collectedResponses: Responses by remember { mutableStateOf(responses) }
     var responseState: ResponseState by remember {
