@@ -1,7 +1,5 @@
 package com.typeform.ui.structure
 
-import androidx.compose.foundation.shape.CornerSize
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.TextButton
@@ -12,7 +10,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.tooling.preview.PreviewLightDark
-import androidx.compose.ui.unit.dp
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -270,7 +267,7 @@ fun FormView(
                 title = {
                     TextView(
                         text = settings.localization.abandonConfirmationTitle,
-                        typeStyle = Appearance.TypeStyle.TITLE,
+                        typeStyle = Appearance.TypeStyle.HEADLINE,
                     )
                 },
                 text = {
@@ -279,7 +276,6 @@ fun FormView(
                         typeStyle = Appearance.TypeStyle.BODY,
                     )
                 },
-                shape = RoundedCornerShape(CornerSize(16.dp)),
             )
         }
     }
@@ -290,7 +286,7 @@ fun FormView(
 private fun FormViewPreview() {
     MaterialThemePreview {
         FormView(
-            Form.preview,
+            form = Form.preview,
             conclusion = { },
         )
     }

@@ -14,18 +14,18 @@ import kotlinx.serialization.encoding.Encoder
 
 @Serializable(with = Form.Serializer::class)
 data class Form(
-    val id: String,
-    val type: FormType,
-    val logic: List<Logic>,
-    val theme: Theme,
-    val title: String,
-    val links: Links,
-    val fields: List<Field>,
-    val hidden: List<String>?,
-    val settings: Settings,
-    val workspace: Workspace,
-    val welcomeScreens: List<WelcomeScreen>?,
-    val endingScreens: List<EndingScreen>,
+    val id: String = "",
+    val type: FormType = FormType.QUIZ,
+    val logic: List<Logic> = emptyList(),
+    val theme: Theme = Theme(),
+    val title: String = "",
+    val links: Links = Links(),
+    val fields: List<Field> = emptyList(),
+    val hidden: List<String>? = null,
+    val settings: Settings = Settings(),
+    val workspace: Workspace = Workspace(),
+    val welcomeScreens: List<WelcomeScreen>? = null,
+    val endingScreens: List<EndingScreen> = emptyList(),
 ) {
     companion object {
         private val serializer = Contract.serializer()

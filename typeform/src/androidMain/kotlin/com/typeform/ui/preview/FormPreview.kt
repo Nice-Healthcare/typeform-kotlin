@@ -12,7 +12,6 @@ import com.typeform.schema.structure.Settings
 import com.typeform.schema.structure.Theme
 import com.typeform.schema.structure.WelcomeScreen
 import com.typeform.schema.structure.Workspace
-import java.net.URL
 
 val Form.Companion.preview: Form
     get() = Form(
@@ -20,11 +19,11 @@ val Form.Companion.preview: Form
         type = FormType.QUIZ,
         logic = emptyList(),
         theme = Theme(
-            href = URL("https://www.typeform.com"),
+            href = "https://www.typeform.com",
         ),
         title = "",
         links = Links(
-            display = URL("https://www.typeform.com"),
+            display = "https://www.typeform.com",
         ),
         fields = listOf(
             Field.previewStatement,
@@ -57,7 +56,7 @@ val Form.Companion.preview: Form
             show_number_of_submissions = false,
         ),
         workspace = Workspace(
-            href = URL("https://www.typeform.com"),
+            href = "https://www.typeform.com",
         ),
         welcomeScreens = listOf(
             WelcomeScreen(
@@ -65,7 +64,7 @@ val Form.Companion.preview: Form
                 ref = "welcome1",
                 title = "Example Welcome Screen",
                 attachment = Attachment(
-                    href = URL("https://images.typeform.com/images/nicGuchsjTJG"),
+                    href = "https://images.typeform.com/images/nicGuchsjTJG",
                     type = AttachmentType.IMAGE,
                     properties = AttachmentProperties(
                         description = "",
