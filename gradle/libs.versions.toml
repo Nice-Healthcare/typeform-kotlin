@@ -1,18 +1,18 @@
 [versions]
 agp = "8.13.2" # Android Gradle Plugin
 androidPermissions = "0.37.3"
-androidxActivity = "1.12.4"
-androidxCompose = "1.10.4"
-androidxCore = "1.17.0"
+androidxActivity = "1.13.0"
+androidxCompose = "1.11.2"
+androidxCore = "1.18.0"
 androidxLifecycle = "2.10.0"
 androidxMaterial3 = "1.4.0"
-androidxNavigation = "2.9.7"
+androidxNavigation = "2.9.8"
 coil = "3.4.0"
-jetbrainsCompose = "1.10.1"
-kotlin = "2.3.10"
-kotlinxSerializationJson = "1.10.0"
-ktlint = "14.0.1"
-ktor = "3.4.0"
+jetbrainsCompose = "1.11.0"
+kotlin = "2.3.21"
+kotlinxSerializationJson = "1.11.0"
+ktlint = "14.2.0"
+ktor = "3.5.0"
 testLogger = "4.0.0"
 
 [libraries]
