@@ -1,11 +1,8 @@
 package com.typeform.ui.structure
 
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.PreviewLightDark
-import androidx.compose.ui.unit.dp
 import com.typeform.models.Position
 import com.typeform.models.Responses
 import com.typeform.models.TypeformException
@@ -25,7 +22,7 @@ import com.typeform.ui.preview.preview
  */
 @Composable
 internal fun ScreenView(
-    scaffoldPadding: PaddingValues,
+    modifier: Modifier = Modifier,
     form: Form,
     screen: Screen,
     responses: Responses,
@@ -40,7 +37,7 @@ internal fun ScreenView(
     }
 
     ScrollingContentView(
-        modifier = Modifier.padding(scaffoldPadding),
+        modifier = modifier,
         title = screen.properties.button_text ?: LocalLocalization.current.next,
         onClick = {
             if (next != null) {
@@ -67,7 +64,6 @@ private fun ScreenViewPreview() {
 
     MaterialThemePreview {
         ScreenView(
-            scaffoldPadding = PaddingValues(0.dp),
             form = form,
             screen = screen,
             responses = mapOf(),

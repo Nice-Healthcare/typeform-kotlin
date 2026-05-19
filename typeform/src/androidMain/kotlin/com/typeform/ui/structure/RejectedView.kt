@@ -1,15 +1,12 @@
 package com.typeform.ui.structure
 
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.PreviewLightDark
-import androidx.compose.ui.unit.dp
 import com.typeform.models.Responses
 import com.typeform.resources.Res
 import com.typeform.resources.warning_24dp
@@ -23,12 +20,12 @@ import org.jetbrains.compose.resources.vectorResource
  */
 @Composable
 internal fun RejectedView(
-    scaffoldPadding: PaddingValues,
+    modifier: Modifier = Modifier,
     responses: Responses,
     onClick: (Conclusion) -> Unit,
 ) {
     ScrollingContentView(
-        modifier = Modifier.padding(scaffoldPadding),
+        modifier = modifier,
         title = "Finish",
         onClick = {
             onClick(Conclusion.Rejected(responses))
@@ -54,7 +51,6 @@ internal fun RejectedView(
 private fun RejectedViewPreview() {
     MaterialThemePreview {
         RejectedView(
-            scaffoldPadding = PaddingValues(0.dp),
             responses = mapOf(),
             onClick = {},
         )

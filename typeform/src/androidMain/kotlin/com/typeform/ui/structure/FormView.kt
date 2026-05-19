@@ -1,5 +1,6 @@
 package com.typeform.ui.structure
 
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.TextButton
@@ -9,6 +10,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -19,6 +21,7 @@ import coil3.ImageLoader
 import com.typeform.models.Position
 import com.typeform.models.Responses
 import com.typeform.schema.structure.Form
+import com.typeform.ui.LocalAppearance
 import com.typeform.ui.LocalImageLoader
 import com.typeform.ui.LocalLocalization
 import com.typeform.ui.LocalPresentation
@@ -102,6 +105,7 @@ fun FormView(
     }
 
     CompositionLocalProvider(
+        LocalAppearance provides settings.appearance,
         LocalPresentation provides settings.presentation,
         LocalLocalization provides settings.localization,
         LocalUploadHelper provides uploadHelper,
@@ -140,7 +144,7 @@ fun FormView(
                     val id = (it.arguments?.getString("id") ?: startPosition?.associatedScreen()?.id) ?: form.firstScreen?.id
                     if (id == null) {
                         RejectedView(
-                            scaffoldPadding = scaffoldPadding,
+                            modifier = Modifier.padding(scaffoldPadding),
                             responses = collectedResponses,
                         ) { rejection ->
                             conclusion(rejection)
@@ -151,7 +155,7 @@ fun FormView(
                     val screen = form.screenWithId(id)
                     if (screen == null) {
                         RejectedView(
-                            scaffoldPadding = scaffoldPadding,
+                            modifier = Modifier.padding(scaffoldPadding),
                             responses = collectedResponses,
                         ) { rejection ->
                             conclusion(rejection)
@@ -160,7 +164,7 @@ fun FormView(
                     }
 
                     ScreenView(
-                        scaffoldPadding = scaffoldPadding,
+                        modifier = Modifier.padding(scaffoldPadding),
                         form = form,
                         screen = screen,
                         responses = collectedResponses,
@@ -183,7 +187,7 @@ fun FormView(
                     if (fieldId == null) {
                         showBackNavigation = false
                         RejectedView(
-                            scaffoldPadding = scaffoldPadding,
+                            modifier = Modifier.padding(scaffoldPadding),
                             responses = collectedResponses,
                         ) { rejection ->
                             conclusion(rejection)
@@ -196,7 +200,7 @@ fun FormView(
                     val field = form.fieldWithId(fieldId)
                     if (field == null) {
                         RejectedView(
-                            scaffoldPadding = scaffoldPadding,
+                            modifier = Modifier.padding(scaffoldPadding),
                             responses = collectedResponses,
                         ) { rejection ->
                             conclusion(rejection)
@@ -208,7 +212,7 @@ fun FormView(
                     val group = parent?.associatedGroup()
 
                     FieldView(
-                        scaffoldPadding = scaffoldPadding,
+                        modifier = Modifier.padding(scaffoldPadding),
                         form = form,
                         field = field,
                         group = group,
@@ -226,7 +230,7 @@ fun FormView(
                     showBackNavigation = false
 
                     RejectedView(
-                        scaffoldPadding = scaffoldPadding,
+                        modifier = Modifier.padding(scaffoldPadding),
                         responses = collectedResponses,
                     ) { rejection ->
                         conclusion(rejection)

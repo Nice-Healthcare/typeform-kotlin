@@ -1,10 +1,8 @@
 package com.typeform.ui.structure
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -15,7 +13,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.PreviewLightDark
-import androidx.compose.ui.unit.dp
 import com.typeform.models.Position
 import com.typeform.models.Responses
 import com.typeform.models.TypeformException
@@ -50,7 +47,7 @@ import com.typeform.ui.preview.previewStatement
  */
 @Composable
 internal fun FieldView(
-    scaffoldPadding: PaddingValues,
+    modifier: Modifier = Modifier,
     form: Form,
     field: Field,
     group: Group?,
@@ -107,7 +104,7 @@ internal fun FieldView(
     }
 
     ScrollingContentView(
-        modifier = Modifier.padding(scaffoldPadding),
+        modifier = modifier,
         title = nextTitle,
         enabled = (next != null && !responseState.invalid),
         header = header,
@@ -252,7 +249,6 @@ private fun FieldViewPreview() {
 
     MaterialThemePreview {
         FieldView(
-            scaffoldPadding = PaddingValues(0.dp),
             form = form,
             field = field,
             group = null,
