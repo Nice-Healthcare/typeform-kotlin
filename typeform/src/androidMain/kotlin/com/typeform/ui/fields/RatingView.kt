@@ -26,7 +26,7 @@ import com.typeform.schema.questions.Rating
 import com.typeform.schema.structure.Validations
 import com.typeform.ui.components.ContentContainerView
 import com.typeform.ui.components.TextView
-import com.typeform.ui.models.Appearance
+import com.typeform.ui.models.TextStyles
 import com.typeform.ui.models.ResponseState
 import com.typeform.ui.preview.TypeformPreview
 import org.jetbrains.compose.resources.vectorResource
@@ -114,7 +114,7 @@ internal fun RatingView(
 
                         TextView(
                             text = step.toString(),
-                            typeStyle = Appearance.TypeStyle.LABEL,
+                            typeStyle = TextStyles.TypeStyle.LABEL,
                         )
                     }
                 }

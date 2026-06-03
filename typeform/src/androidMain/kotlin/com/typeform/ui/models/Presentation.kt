@@ -14,6 +14,4 @@ data class Presentation(
     val contentVerticalSpacing: Dp = 15.dp,
     val contentHorizontalSpacing: Dp = 10.dp,
     val containerPadding: PaddingValues = PaddingValues(10.dp),
-    val skipWelcomeScreen: Boolean = false,
-    val skipEndingScreen: Boolean = false,
 )

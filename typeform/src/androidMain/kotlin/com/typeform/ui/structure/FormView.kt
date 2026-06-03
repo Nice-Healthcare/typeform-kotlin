@@ -21,10 +21,11 @@ import coil3.ImageLoader
 import com.typeform.models.Position
 import com.typeform.models.Responses
 import com.typeform.schema.structure.Form
-import com.typeform.ui.LocalAppearance
 import com.typeform.ui.LocalImageLoader
 import com.typeform.ui.LocalLocalization
+import com.typeform.ui.LocalLogic
 import com.typeform.ui.LocalPresentation
+import com.typeform.ui.LocalTextStyles
 import com.typeform.ui.LocalUploadHelper
 import com.typeform.ui.components.TextView
 import com.typeform.ui.components.TopNavigationBar
@@ -32,6 +33,7 @@ import com.typeform.ui.models.Appearance
 import com.typeform.ui.models.Conclusion
 import com.typeform.ui.models.NavigationAction
 import com.typeform.ui.models.Settings
+import com.typeform.ui.models.TextStyles
 import com.typeform.ui.models.TypeformRoute
 import com.typeform.ui.models.UploadHelper
 import com.typeform.ui.preview.MaterialThemePreview
@@ -43,12 +45,12 @@ import com.typeform.ui.preview.preview
 @Composable
 fun FormView(
     form: Form,
-    settings: Settings = Settings(),
+    appearance: Appearance = Appearance(),
     responses: Responses = mapOf(),
     imageLoader: ImageLoader? = null,
     uploadHelper: UploadHelper? = null,
-    conclusion: (Conclusion) -> Unit,
     header: (@Composable () -> Unit)? = null,
+    conclusion: (Conclusion) -> Unit,
 ) {
     val navController = rememberNavController()
     var showBackNavigation by remember { mutableStateOf(false) }
@@ -58,7 +60,7 @@ fun FormView(
     val startPosition: Position? = remember {
         try {
             form.firstPosition(
-                skipWelcomeScreen = settings.presentation.skipWelcomeScreen,
+                skipWelcomeScreen = appearance.additionalLogic.skipWelcomeScreen,
                 responses = responses,
             )
         } catch (_: Exception) {
@@ -105,9 +107,10 @@ fun FormView(
     }
 
     CompositionLocalProvider(
-        LocalAppearance provides settings.appearance,
-        LocalPresentation provides settings.presentation,
-        LocalLocalization provides settings.localization,
+        LocalTextStyles provides appearance.textStyles,
+        LocalPresentation provides appearance.presentation,
+        LocalLocalization provides appearance.localization,
+        LocalLogic provides appearance.additionalLogic,
         LocalUploadHelper provides uploadHelper,
         LocalImageLoader provides imageLoader,
     ) {
@@ -251,8 +254,8 @@ fun FormView(
                         },
                     ) {
                         TextView(
-                            text = settings.localization.abandonConfirmationAction,
-                            typeStyle = Appearance.TypeStyle.TITLE,
+                            text = appearance.localization.abandonConfirmationAction,
+                            typeStyle = TextStyles.TypeStyle.TITLE,
                         )
                     }
                 },
@@ -263,26 +266,48 @@ fun FormView(
                         },
                     ) {
                         TextView(
-                            text = settings.localization.cancel,
-                            typeStyle = Appearance.TypeStyle.TITLE,
+                            text = appearance.localization.cancel,
+                            typeStyle = TextStyles.TypeStyle.TITLE,
                         )
                     }
                 },
                 title = {
                     TextView(
-                        text = settings.localization.abandonConfirmationTitle,
-                        typeStyle = Appearance.TypeStyle.HEADLINE,
+                        text = appearance.localization.abandonConfirmationTitle,
+                        typeStyle = TextStyles.TypeStyle.HEADLINE,
                     )
                 },
                 text = {
                     TextView(
-                        text = settings.localization.abandonConfirmationMessage,
-                        typeStyle = Appearance.TypeStyle.BODY,
+                        text = appearance.localization.abandonConfirmationMessage,
+                        typeStyle = TextStyles.TypeStyle.BODY,
                     )
                 },
             )
         }
     }
+}
+
+@Deprecated(message = "Use [appearance] constructor.")
+@Composable
+fun FormView(
+    form: Form,
+    settings: Settings,
+    responses: Responses = mapOf(),
+    imageLoader: ImageLoader? = null,
+    uploadHelper: UploadHelper? = null,
+    conclusion: (Conclusion) -> Unit,
+    header: (@Composable () -> Unit)? = null,
+) {
+    FormView(
+        form = form,
+        appearance = settings,
+        responses = responses,
+        imageLoader = imageLoader,
+        uploadHelper = uploadHelper,
+        header = header,
+        conclusion = conclusion,
+    )
 }
 
 @PreviewLightDark
@@ -291,7 +316,7 @@ private fun FormViewPreview() {
     MaterialThemePreview {
         FormView(
             form = Form.preview,
-            conclusion = { },
-        )
+        ) {
+        }
     }
 }

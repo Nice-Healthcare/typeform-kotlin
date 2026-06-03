@@ -52,6 +52,7 @@ dependencies {
     implementation(libs.android.permissions)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.data.store)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.material3)
     implementation(libs.androidx.navigation)

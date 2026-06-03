@@ -22,7 +22,7 @@ import com.typeform.schema.structure.FieldProperties
 import com.typeform.schema.structure.Form
 import com.typeform.schema.structure.Group
 import com.typeform.ui.LocalLocalization
-import com.typeform.ui.LocalPresentation
+import com.typeform.ui.LocalLogic
 import com.typeform.ui.components.HeadlineContainerView
 import com.typeform.ui.fields.DateView
 import com.typeform.ui.fields.DropdownView
@@ -55,7 +55,7 @@ internal fun FieldView(
     header: (@Composable () -> Unit)? = null,
     actionHandler: (NavigationAction) -> Unit,
 ) {
-    val presentation = LocalPresentation.current
+    val logic = LocalLogic.current
     var collectedResponses: Responses by remember { mutableStateOf(responses) }
     var responseState: ResponseState by remember {
         mutableStateOf(
@@ -112,7 +112,7 @@ internal fun FieldView(
             next?.let {
                 when (it) {
                     is Position.ScreenPosition -> {
-                        if (it.screen is EndingScreen && presentation.skipEndingScreen) {
+                        if (it.screen is EndingScreen && logic.skipEndingScreen) {
                             actionHandler(NavigationAction.ConclusionAction(Conclusion.Completed(collectedResponses, it.screen)))
                         } else {
                             actionHandler(NavigationAction.PositionAction(it, collectedResponses))

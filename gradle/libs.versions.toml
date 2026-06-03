@@ -4,6 +4,7 @@ androidPermissions = "0.37.3"
 androidxActivity = "1.13.0"
 androidxCompose = "1.11.2"
 androidxCore = "1.18.0"
+androidxDataStore = "1.2.1"
 androidxLifecycle = "2.10.0"
 androidxMaterial3 = "1.4.0"
 androidxNavigation = "2.9.8"
@@ -20,6 +21,7 @@ android-permissions = { group = "com.google.accompanist", name = "accompanist-pe
 androidx-activity = { group = "androidx.activity", name = "activity-compose", version.ref = "androidxActivity" }
 androidx-animation = { group = "androidx.compose.animation", name = "animation", version.ref = "androidxCompose" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "androidxCore" }
+androidx-data-store = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "androidxDataStore" }
 androidx-foundation = { group = "androidx.compose.foundation", name = "foundation", version.ref = "androidxCompose" }
 androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "androidxLifecycle" }
 androidx-material = { group = "androidx.compose.material", name = "material", version.ref = "androidxCompose" }

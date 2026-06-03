@@ -1,77 +1,19 @@
 package com.typeform.ui.models
 
-import androidx.compose.material3.Typography
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.sp
+@Deprecated(message = "Avoid confusion with [com.typeform.schema.structure.Settings]", replaceWith = ReplaceWith("Apperance"))
+typealias Settings = Appearance
 
+/**
+ * Control the layout behaviors and styling of a [com.typeform.schema.structure.Form] presentation.
+ *
+ * @param localization String values used in the presentation of the form.
+ * @param presentation General padding & spacing applied across every screen.
+ * @param textStyles Typography styles applied to the form components.
+ * @param additionalLogic Addition settings that manipulate the display & flow of a form.
+ */
 data class Appearance(
-    val display: TextStyle = TextStyle.Default.copy(
-        fontSize = 45.sp,
-        fontWeight = FontWeight(400),
-        lineHeight = 52.sp,
-    ),
-    val headline: TextStyle = TextStyle.Default.copy(
-        fontSize = 28.sp,
-        fontWeight = FontWeight(400),
-        lineHeight = 36.sp,
-    ),
-    val title: TextStyle = TextStyle.Default.copy(
-        fontSize = 16.sp,
-        fontWeight = FontWeight(500),
-        lineHeight = 24.sp,
-    ),
-    val body: TextStyle = TextStyle.Default.copy(
-        fontSize = 14.sp,
-        fontWeight = FontWeight(400),
-        lineHeight = 20.sp,
-    ),
-    val label: TextStyle = TextStyle.Default.copy(
-        fontSize = 12.sp,
-        fontWeight = FontWeight(500),
-        lineHeight = 16.sp,
-    ),
-) {
-    enum class TypeStyle {
-        DISPLAY,
-        HEADLINE,
-        TITLE,
-        BODY,
-        LABEL,
-    }
-
-    companion object {
-        @Composable
-        fun construct(typography: Typography): Appearance {
-            return Appearance(
-                display = typography.displayMedium,
-                headline = typography.headlineMedium,
-                title = typography.titleMedium,
-                body = typography.bodyMedium,
-                label = typography.labelMedium,
-            )
-        }
-
-        @Composable
-        fun construct(typography: androidx.compose.material.Typography): Appearance {
-            return Appearance(
-                display = typography.h5,
-                headline = typography.subtitle1,
-                title = typography.body1,
-                body = typography.body2,
-                label = typography.caption,
-            )
-        }
-    }
-
-    fun textStyle(typeStyle: TypeStyle): TextStyle {
-        return when (typeStyle) {
-            TypeStyle.DISPLAY -> display
-            TypeStyle.HEADLINE -> headline
-            TypeStyle.TITLE -> title
-            TypeStyle.BODY -> body
-            TypeStyle.LABEL -> label
-        }
-    }
-}
+    val localization: Localization = Localization(),
+    val presentation: Presentation = Presentation(),
+    val textStyles: TextStyles = TextStyles(),
+    val additionalLogic: AdditionalLogic = AdditionalLogic(),
+)

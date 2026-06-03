@@ -4,8 +4,10 @@ import android.Manifest
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.BottomSheetScaffold
@@ -13,6 +15,7 @@ import androidx.compose.material3.BottomSheetScaffoldState
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SheetValue
+import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.rememberBottomSheetScaffoldState
@@ -37,8 +40,8 @@ import com.typeform.example.model.RecentHandler
 import com.typeform.example.ui.theme.ExampleTheme
 import com.typeform.schema.structure.Form
 import com.typeform.schema.translation.merging
+import com.typeform.ui.models.Appearance
 import com.typeform.ui.models.Conclusion
-import com.typeform.ui.models.Settings
 import com.typeform.ui.structure.FormView
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -48,6 +51,8 @@ import kotlinx.coroutines.launch
 @Composable
 fun ContentView(
     modifier: Modifier = Modifier,
+    dynamicColors: Boolean = false,
+    onDynamicColorsChange: (Boolean) -> Unit = { },
 ) {
     val context = LocalContext.current
     val scaffoldState: BottomSheetScaffoldState = rememberBottomSheetScaffoldState(
@@ -67,7 +72,7 @@ fun ContentView(
     var downloadFailure: String? by remember { mutableStateOf(null) }
     var form: Form? by remember { mutableStateOf(null) }
     var presentingForm: Form? by remember { mutableStateOf(null) }
-    var settings: Settings by remember { mutableStateOf(Settings()) }
+    var appearance: Appearance by remember { mutableStateOf(Appearance()) }
     var conclusion: Conclusion? by remember { mutableStateOf(null) }
     var language: String? by remember { mutableStateOf(null) }
     var translatedForm: Form? by remember { mutableStateOf(null) }
@@ -138,26 +143,40 @@ fun ContentView(
             presentingForm?.let { form ->
                 FormView(
                     form = form,
-                    settings = settings,
+                    appearance = appearance,
                     imageLoader = SingletonImageLoader.get(LocalPlatformContext.current),
                     uploadHelper = ExampleUploadHelper(
                         cameraPermissionState = cameraPermissionState,
                     ),
-                    conclusion = {
-                        conclude(it)
-                    }
-                )
+                ) {
+                    conclude(it)
+                }
             }
         },
         modifier = modifier.fillMaxSize(),
         scaffoldState = scaffoldState,
         sheetPeekHeight = 0.dp,
+        sheetDragHandle = null,
         sheetSwipeEnabled = false,
         topBar = {
             TopAppBar(
                 title = {
                     Text(text = "Typeform")
-                }
+                },
+                actions = {
+                    Text(
+                        text = "Dynamic Colors?",
+                    )
+                    Spacer(
+                        modifier = Modifier.width(8.dp),
+                    )
+                    Switch(
+                        checked = dynamicColors,
+                        onCheckedChange = {
+                            onDynamicColorsChange(it)
+                        },
+                    )
+                },
             )
         }
     ) { innerPadding ->
@@ -192,29 +211,33 @@ fun ContentView(
                     download()
                 }
 
-                SettingsView(
-                    settings = settings,
-                    language = language,
-                    languagesAvailable = form?.settings?.translation_languages,
-                    enabled = form != null,
-                    onLanguageChange = {
-                        language = it
-                        if (it != null) {
-                            downloadTranslation()
-                        } else {
-                            translatedForm = null
+                form?.let {
+                    SettingsView(
+                        appearance = appearance,
+                        language = language,
+                        languagesAvailable = it.settings.translation_languages,
+                        enabled = form != null,
+                        onLanguageChange = { lang ->
+                            language = lang
+                            if (lang != null) {
+                                downloadTranslation()
+                            } else {
+                                translatedForm = null
+                            }
+                        },
+                        onAppearanceChange = { app ->
+                            appearance = app
                         }
-                    },
-                    onSettingsChange = {
-                        settings = it
+                    ) {
+                        present()
                     }
-                ) {
-                    present()
                 }
 
-                ConclusionView(
-                    conclusion = conclusion,
-                )
+                conclusion?.let {
+                    ConclusionView(
+                        conclusion = it,
+                    )
+                }
             }
         }
     }

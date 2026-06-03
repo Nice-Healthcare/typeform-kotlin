@@ -22,7 +22,7 @@ import com.typeform.schema.structure.Validations
 import com.typeform.ui.LocalLocalization
 import com.typeform.ui.components.ContentContainerView
 import com.typeform.ui.components.TextView
-import com.typeform.ui.models.Appearance
+import com.typeform.ui.models.TextStyles
 import com.typeform.ui.models.ResponseState
 import com.typeform.ui.preview.TypeformPreview
 import java.util.Date
@@ -85,7 +85,7 @@ internal fun DateView(
             ) {
                 TextView(
                     text = LocalLocalization.current.nullDate,
-                    typeStyle = Appearance.TypeStyle.BODY,
+                    typeStyle = TextStyles.TypeStyle.BODY,
                 )
 
                 Switch(

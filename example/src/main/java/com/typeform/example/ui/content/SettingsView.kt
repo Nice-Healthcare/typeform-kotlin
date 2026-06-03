@@ -23,17 +23,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import com.typeform.example.ui.theme.ExampleTheme
-import com.typeform.ui.models.Settings
+import com.typeform.ui.models.Appearance
 
 @Composable
 fun SettingsView(
     modifier: Modifier = Modifier,
-    settings: Settings,
+    appearance: Appearance,
     language: String? = null,
     languagesAvailable: List<String>? = null,
     enabled: Boolean = true,
     onLanguageChange: (String?) -> Unit = { },
-    onSettingsChange: (Settings) -> Unit = { },
+    onAppearanceChange: (Appearance) -> Unit = { },
     onPresent: () -> Unit,
 ) {
     var languageExpanded by remember { mutableStateOf(false) }
@@ -61,14 +61,14 @@ fun SettingsView(
                 Text(text = "Skip Welcome")
 
                 Switch(
-                    checked = settings.presentation.skipWelcomeScreen,
+                    checked = appearance.additionalLogic.skipWelcomeScreen,
                     onCheckedChange = {
-                        val update = settings.copy(
-                            presentation = settings.presentation.copy(
+                        val update = appearance.copy(
+                            additionalLogic = appearance.additionalLogic.copy(
                                 skipWelcomeScreen = it
                             )
                         )
-                        onSettingsChange(update)
+                        onAppearanceChange(update)
                     },
                     enabled = enabled,
                 )
@@ -82,14 +82,14 @@ fun SettingsView(
                 Text(text = "Skip Ending")
 
                 Switch(
-                    checked = settings.presentation.skipEndingScreen,
+                    checked = appearance.additionalLogic.skipEndingScreen,
                     onCheckedChange = {
-                        val update = settings.copy(
-                            presentation = settings.presentation.copy(
+                        val update = appearance.copy(
+                            additionalLogic = appearance.additionalLogic.copy(
                                 skipEndingScreen = it
                             )
                         )
-                        onSettingsChange(update)
+                        onAppearanceChange(update)
                     },
                     enabled = enabled,
                 )
@@ -161,12 +161,12 @@ fun SettingsView(
 @PreviewLightDark
 @Composable
 private fun SettingsViewPreview() {
-    var settings: Settings by remember { mutableStateOf(Settings()) }
+    var appearance: Appearance by remember { mutableStateOf(Appearance()) }
     ExampleTheme {
         SettingsView(
-            settings = settings,
-            onSettingsChange = {
-                settings = it
+            appearance = appearance,
+            onAppearanceChange = {
+                appearance = it
             }
         ) {
         }

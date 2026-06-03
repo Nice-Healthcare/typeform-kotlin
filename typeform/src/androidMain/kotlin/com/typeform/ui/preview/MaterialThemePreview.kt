@@ -11,18 +11,19 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
 import com.typeform.schema.structure.Attachment
-import com.typeform.ui.LocalAppearance
 import com.typeform.ui.LocalLocalization
+import com.typeform.ui.LocalLogic
 import com.typeform.ui.LocalPresentation
+import com.typeform.ui.LocalTextStyles
 import com.typeform.ui.components.HeadlineContainerView
 import com.typeform.ui.components.TopNavigationBar
-import com.typeform.ui.models.Settings
+import com.typeform.ui.models.Appearance
 import com.typeform.ui.structure.ScrollingContentView
 
 @Composable
 internal fun MaterialThemePreview(
     darkTheme: Boolean = isSystemInDarkTheme(),
-    settings: Settings = Settings(),
+    appearance: Appearance = Appearance(),
     content: @Composable () -> Unit,
 ) {
     MaterialTheme(
@@ -33,9 +34,10 @@ internal fun MaterialThemePreview(
         },
     ) {
         CompositionLocalProvider(
-            LocalLocalization provides settings.localization,
-            LocalPresentation provides settings.presentation,
-            LocalAppearance provides settings.appearance,
+            LocalLocalization provides appearance.localization,
+            LocalPresentation provides appearance.presentation,
+            LocalTextStyles provides appearance.textStyles,
+            LocalLogic provides appearance.additionalLogic,
         ) {
             Surface {
                 content()
@@ -51,11 +53,11 @@ internal fun MaterialThemePreview(
 internal fun TypeformPreview(
     headline: String = "Headline",
     attachment: Attachment? = null,
-    settings: Settings = Settings(),
+    appearance: Appearance = Appearance(),
     content: @Composable () -> Unit,
 ) {
     MaterialThemePreview(
-        settings = settings,
+        appearance = appearance,
     ) {
         Scaffold(
             topBar = {

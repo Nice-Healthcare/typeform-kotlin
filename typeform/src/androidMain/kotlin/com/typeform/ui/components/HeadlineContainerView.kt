@@ -7,7 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.typeform.schema.structure.Attachment
 import com.typeform.ui.LocalPresentation
-import com.typeform.ui.models.Appearance
+import com.typeform.ui.models.TextStyles
 import com.typeform.ui.structure.AttachmentView
 
 /**
@@ -30,7 +30,7 @@ internal fun HeadlineContainerView(
         headline?.let {
             TextView(
                 text = it,
-                typeStyle = Appearance.TypeStyle.HEADLINE,
+                typeStyle = TextStyles.TypeStyle.HEADLINE,
             )
         }
 

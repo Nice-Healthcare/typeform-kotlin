@@ -22,7 +22,7 @@ import com.typeform.resources.photo_library_fill_24dp
 import com.typeform.resources.upload_file_fill_24dp
 import com.typeform.ui.LocalLocalization
 import com.typeform.ui.LocalUploadHelper
-import com.typeform.ui.models.Appearance
+import com.typeform.ui.models.TextStyles
 import com.typeform.ui.models.constructDocument
 import com.typeform.ui.models.constructImage
 import com.typeform.ui.preview.MaterialThemePreview
@@ -124,7 +124,7 @@ internal fun UploadPickerView(
 
                     TextView(
                         text = LocalLocalization.current.uploadCamera,
-                        typeStyle = Appearance.TypeStyle.TITLE,
+                        typeStyle = TextStyles.TypeStyle.TITLE,
                     )
                 }
             },
@@ -144,7 +144,7 @@ internal fun UploadPickerView(
 
                     TextView(
                         text = LocalLocalization.current.uploadPhotoLibrary,
-                        typeStyle = Appearance.TypeStyle.TITLE,
+                        typeStyle = TextStyles.TypeStyle.TITLE,
                     )
                 }
             },
@@ -163,7 +163,7 @@ internal fun UploadPickerView(
 
                     TextView(
                         text = LocalLocalization.current.uploadDocument,
-                        typeStyle = Appearance.TypeStyle.TITLE,
+                        typeStyle = TextStyles.TypeStyle.TITLE,
                     )
                 }
             },
