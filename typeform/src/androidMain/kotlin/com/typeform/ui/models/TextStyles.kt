@@ -37,6 +37,11 @@ data class TextStyles(
     ),
 ) {
     companion object {
+        /**
+         * Convenience for constructing a [TextStyle] instance using Material 3 Typography.
+         *
+         * By default, the 'medium' variant of the typography groupings is used.
+         */
         @Composable
         fun construct(typography: Typography): TextStyles {
             return TextStyles(
@@ -48,6 +53,12 @@ data class TextStyles(
             )
         }
 
+        /**
+         * Convenience for constructing a [TextStyle] instance using Material 1 Typography.
+         *
+         * The specific typography choices align to what this framework previously used
+         * in UI components.
+         */
         @Composable
         fun construct(typography: androidx.compose.material.Typography): TextStyles {
             return TextStyles(

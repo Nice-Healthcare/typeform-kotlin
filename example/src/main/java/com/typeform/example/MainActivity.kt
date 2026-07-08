@@ -1,5 +1,7 @@
 package com.typeform.example
 
+import android.app.UiModeManager
+import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -48,8 +50,16 @@ class MainActivity : ComponentActivity() {
                 .isEnabled(false)
                 .collectAsState(false)
 
+            val contrastLevel = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+                val uiModeManager = this.getSystemService(UI_MODE_SERVICE) as UiModeManager
+                uiModeManager.contrast
+            } else {
+                0.0f
+            }
+
             ExampleTheme(
                 dynamicColor = dynamicColor.value,
+                contrastLevel = contrastLevel,
             ) {
                 ContentView(
                     modifier = Modifier
