@@ -21,7 +21,7 @@ import com.typeform.ui.components.TextView
 import com.typeform.ui.components.UploadImageView
 import com.typeform.ui.components.UploadPickerView
 import com.typeform.ui.models.ResponseState
-import com.typeform.ui.models.TextStyles
+import com.typeform.ui.models.Script
 import com.typeform.ui.preview.TypeformPreview
 
 @Composable
@@ -82,7 +82,7 @@ internal fun FileUploadView(
             ) {
                 TextView(
                     text = LocalLocalization.current.uploadAction,
-                    typeStyle = TextStyles.TypeStyle.TITLE,
+                    script = Script.TITLE,
                 )
             }
         }
@@ -90,7 +90,7 @@ internal fun FileUploadView(
         exception?.let {
             TextView(
                 text = it.message ?: "An error occurred.",
-                typeStyle = TextStyles.TypeStyle.BODY,
+                script = Script.BODY,
             )
         }
 

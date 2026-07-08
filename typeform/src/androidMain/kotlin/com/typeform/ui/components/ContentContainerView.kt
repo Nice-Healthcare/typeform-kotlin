@@ -6,7 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.typeform.ui.LocalPresentation
-import com.typeform.ui.models.TextStyles
+import com.typeform.ui.models.Script
 
 /**
  * Container which displays the primary interactive content on any view.
@@ -29,7 +29,7 @@ internal fun ContentContainerView(
         description?.let {
             TextView(
                 text = it,
-                typeStyle = TextStyles.TypeStyle.TITLE,
+                script = Script.TITLE,
             )
         }
 

@@ -26,7 +26,7 @@ import com.typeform.ui.components.ContentContainerView
 import com.typeform.ui.components.IntermittentChoiceButton
 import com.typeform.ui.components.TextView
 import com.typeform.ui.models.ResponseState
-import com.typeform.ui.models.TextStyles
+import com.typeform.ui.models.Script
 import com.typeform.ui.preview.TypeformPreview
 import com.typeform.ui.preview.previewMatrix1
 import com.typeform.ui.preview.previewMatrix2
@@ -115,7 +115,7 @@ internal fun MatrixView(
                 TextView(
                     modifier = Modifier.width(65.dp),
                     text = it,
-                    typeStyle = TextStyles.TypeStyle.TITLE,
+                    script = Script.TITLE,
                     textAlign = TextAlign.Center,
                 )
             }
@@ -131,7 +131,7 @@ internal fun MatrixView(
                 TextView(
                     modifier = Modifier.weight(1f),
                     text = iteration.title,
-                    typeStyle = TextStyles.TypeStyle.BODY,
+                    script = Script.BODY,
                     textAlign = TextAlign.End,
                 )
 

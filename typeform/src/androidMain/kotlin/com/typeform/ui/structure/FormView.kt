@@ -33,7 +33,7 @@ import com.typeform.ui.models.Appearance
 import com.typeform.ui.models.Conclusion
 import com.typeform.ui.models.NavigationAction
 import com.typeform.ui.models.Settings
-import com.typeform.ui.models.TextStyles
+import com.typeform.ui.models.Script
 import com.typeform.ui.models.TypeformRoute
 import com.typeform.ui.models.UploadHelper
 import com.typeform.ui.preview.MaterialThemePreview
@@ -255,7 +255,7 @@ fun FormView(
                     ) {
                         TextView(
                             text = appearance.localization.abandonConfirmationAction,
-                            typeStyle = TextStyles.TypeStyle.TITLE,
+                            script = Script.TITLE,
                         )
                     }
                 },
@@ -267,20 +267,20 @@ fun FormView(
                     ) {
                         TextView(
                             text = appearance.localization.cancel,
-                            typeStyle = TextStyles.TypeStyle.TITLE,
+                            script = Script.TITLE,
                         )
                     }
                 },
                 title = {
                     TextView(
                         text = appearance.localization.abandonConfirmationTitle,
-                        typeStyle = TextStyles.TypeStyle.HEADLINE,
+                        script = Script.HEADLINE,
                     )
                 },
                 text = {
                     TextView(
                         text = appearance.localization.abandonConfirmationMessage,
-                        typeStyle = TextStyles.TypeStyle.BODY,
+                        script = Script.BODY,
                     )
                 },
             )

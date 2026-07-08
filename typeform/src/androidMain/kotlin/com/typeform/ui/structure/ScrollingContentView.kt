@@ -34,7 +34,7 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import com.typeform.ui.LocalPresentation
 import com.typeform.ui.components.TextView
-import com.typeform.ui.models.TextStyles
+import com.typeform.ui.models.Script
 import com.typeform.ui.preview.MaterialThemePreview
 import kotlin.math.abs
 
@@ -96,7 +96,7 @@ internal fun ScrollingContentView(
                         ) {
                             TextView(
                                 text = title,
-                                typeStyle = TextStyles.TypeStyle.TITLE,
+                                script = Script.TITLE,
                             )
                         }
                     }

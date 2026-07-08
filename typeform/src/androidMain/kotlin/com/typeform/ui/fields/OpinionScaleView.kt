@@ -26,7 +26,7 @@ import com.typeform.ui.LocalLocalization
 import com.typeform.ui.components.ContentContainerView
 import com.typeform.ui.components.TextView
 import com.typeform.ui.models.ResponseState
-import com.typeform.ui.models.TextStyles
+import com.typeform.ui.models.Script
 import com.typeform.ui.preview.TypeformPreview
 import java.util.Locale
 
@@ -124,7 +124,7 @@ internal fun OpinionScaleView(
     ) {
         TextView(
             text = if (selected == null) LocalLocalization.current.emptyChoice else "$selected",
-            typeStyle = TextStyles.TypeStyle.TITLE,
+            script = Script.TITLE,
         )
 
         // Additional padding added here to account for the system gesture insets.
@@ -145,13 +145,13 @@ internal fun OpinionScaleView(
             TextView(
                 modifier = Modifier.width(120.dp),
                 text = leadingLabel,
-                typeStyle = TextStyles.TypeStyle.LABEL,
+                script = Script.LABEL,
             )
 
             TextView(
                 modifier = Modifier.width(120.dp),
                 text = trailingLabel,
-                typeStyle = TextStyles.TypeStyle.LABEL,
+                script = Script.LABEL,
                 textAlign = TextAlign.End,
             )
         }

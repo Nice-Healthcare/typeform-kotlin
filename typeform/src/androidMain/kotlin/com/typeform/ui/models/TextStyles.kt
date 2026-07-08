@@ -36,14 +36,6 @@ data class TextStyles(
         lineHeight = 16.sp,
     ),
 ) {
-    enum class TypeStyle {
-        DISPLAY,
-        HEADLINE,
-        TITLE,
-        BODY,
-        LABEL,
-    }
-
     companion object {
         @Composable
         fun construct(typography: Typography): TextStyles {
@@ -68,13 +60,13 @@ data class TextStyles(
         }
     }
 
-    fun textStyle(typeStyle: TypeStyle): TextStyle {
-        return when (typeStyle) {
-            TypeStyle.DISPLAY -> display
-            TypeStyle.HEADLINE -> headline
-            TypeStyle.TITLE -> title
-            TypeStyle.BODY -> body
-            TypeStyle.LABEL -> label
+    fun textStyle(script: Script): TextStyle {
+        return when (script) {
+            Script.DISPLAY -> display
+            Script.HEADLINE -> headline
+            Script.TITLE -> title
+            Script.BODY -> body
+            Script.LABEL -> label
         }
     }
 }

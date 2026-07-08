@@ -22,7 +22,7 @@ import com.typeform.resources.Res
 import com.typeform.resources.arrow_back_24dp
 import com.typeform.ui.LocalLocalization
 import com.typeform.ui.LocalPresentation
-import com.typeform.ui.models.TextStyles
+import com.typeform.ui.models.Script
 import com.typeform.ui.preview.MaterialThemePreview
 import org.jetbrains.compose.resources.vectorResource
 
@@ -75,7 +75,7 @@ internal fun TopNavigationBar(
                     ) {
                         TextView(
                             text = localization.exit,
-                            typeStyle = TextStyles.TypeStyle.TITLE,
+                            script = Script.TITLE,
                         )
                     }
                 }

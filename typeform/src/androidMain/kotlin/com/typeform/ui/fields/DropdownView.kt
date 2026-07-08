@@ -30,7 +30,7 @@ import com.typeform.ui.LocalLocalization
 import com.typeform.ui.components.ContentContainerView
 import com.typeform.ui.components.TextView
 import com.typeform.ui.models.ResponseState
-import com.typeform.ui.models.TextStyles
+import com.typeform.ui.models.Script
 import com.typeform.ui.preview.TypeformPreview
 import org.jetbrains.compose.resources.vectorResource
 
@@ -122,7 +122,7 @@ internal fun DropdownView(
                 text = {
                     TextView(
                         text = localization.emptyChoice,
-                        typeStyle = TextStyles.TypeStyle.TITLE,
+                        script = Script.TITLE,
                     )
                 },
                 onClick = {
@@ -144,7 +144,7 @@ internal fun DropdownView(
                     text = {
                         TextView(
                             text = choice.label,
-                            typeStyle = TextStyles.TypeStyle.TITLE,
+                            script = Script.TITLE,
                         )
                     },
                     onClick = {
