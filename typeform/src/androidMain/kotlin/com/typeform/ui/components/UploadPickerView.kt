@@ -35,6 +35,7 @@ internal fun UploadPickerView(
     resultHandler: (Result<Upload>?) -> Unit,
 ) {
     val context = LocalContext.current
+    val localization = LocalLocalization.current
     val uploadHelper = LocalUploadHelper.current
     var photoUri: Uri? by remember { mutableStateOf(null) }
 
@@ -123,7 +124,7 @@ internal fun UploadPickerView(
                     )
 
                     TextView(
-                        text = LocalLocalization.current.uploadCamera,
+                        text = localization.uploadCamera,
                         typeStyle = TextStyles.TypeStyle.TITLE,
                     )
                 }
@@ -143,7 +144,7 @@ internal fun UploadPickerView(
                     )
 
                     TextView(
-                        text = LocalLocalization.current.uploadPhotoLibrary,
+                        text = localization.uploadPhotoLibrary,
                         typeStyle = TextStyles.TypeStyle.TITLE,
                     )
                 }
@@ -162,7 +163,7 @@ internal fun UploadPickerView(
                     )
 
                     TextView(
-                        text = LocalLocalization.current.uploadDocument,
+                        text = localization.uploadDocument,
                         typeStyle = TextStyles.TypeStyle.TITLE,
                     )
                 }

@@ -23,6 +23,7 @@ internal fun YesNoView(
     validations: Validations?,
     stateHandler: (ResponseState) -> Unit,
 ) {
+    val localization = LocalLocalization.current
     var selected: Boolean? by remember { mutableStateOf(responseState.response?.asBoolean()) }
 
     fun updateState() {
@@ -74,14 +75,14 @@ internal fun YesNoView(
         description = properties.description,
     ) {
         IntermittentChoiceButton(
-            text = LocalLocalization.current.yes,
+            text = localization.yes,
             selected = selected == true,
         ) {
             toggle(true)
         }
 
         IntermittentChoiceButton(
-            text = LocalLocalization.current.no,
+            text = localization.no,
             selected = selected == false,
         ) {
             toggle(false)

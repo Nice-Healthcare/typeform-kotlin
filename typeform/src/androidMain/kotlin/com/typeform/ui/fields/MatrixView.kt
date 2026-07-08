@@ -25,8 +25,8 @@ import com.typeform.ui.LocalPresentation
 import com.typeform.ui.components.ContentContainerView
 import com.typeform.ui.components.IntermittentChoiceButton
 import com.typeform.ui.components.TextView
-import com.typeform.ui.models.TextStyles
 import com.typeform.ui.models.ResponseState
+import com.typeform.ui.models.TextStyles
 import com.typeform.ui.preview.TypeformPreview
 import com.typeform.ui.preview.previewMatrix1
 import com.typeform.ui.preview.previewMatrix2

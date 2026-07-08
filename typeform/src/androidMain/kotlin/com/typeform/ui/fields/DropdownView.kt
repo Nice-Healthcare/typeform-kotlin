@@ -29,8 +29,8 @@ import com.typeform.schema.structure.Validations
 import com.typeform.ui.LocalLocalization
 import com.typeform.ui.components.ContentContainerView
 import com.typeform.ui.components.TextView
-import com.typeform.ui.models.TextStyles
 import com.typeform.ui.models.ResponseState
+import com.typeform.ui.models.TextStyles
 import com.typeform.ui.preview.TypeformPreview
 import org.jetbrains.compose.resources.vectorResource
 
@@ -41,8 +41,9 @@ internal fun DropdownView(
     validations: Validations?,
     stateHandler: (ResponseState) -> Unit,
 ) {
-    val focusRequester = remember { FocusRequester() }
+    val localization = LocalLocalization.current
     val focusManager = LocalFocusManager.current
+    val focusRequester = remember { FocusRequester() }
     var selected by remember { mutableStateOf(responseState.response?.asChoice()) }
     var expanded by remember { mutableStateOf(false) }
     var focused by remember { mutableStateOf(false) }
@@ -80,7 +81,7 @@ internal fun DropdownView(
         description = properties.description,
     ) {
         OutlinedTextField(
-            value = selected?.label ?: LocalLocalization.current.emptyChoice,
+            value = selected?.label ?: localization.emptyChoice,
             onValueChange = {},
             modifier = Modifier
                 .fillMaxWidth()
@@ -99,13 +100,11 @@ internal fun DropdownView(
                 ) {
                     Icon(
                         imageVector = if (expanded) {
-                            vectorResource(
-                                Res.drawable.keyboard_arrow_up_24dp,
-                            )
+                            vectorResource(Res.drawable.keyboard_arrow_up_24dp)
                         } else {
                             vectorResource(Res.drawable.keyboard_arrow_down_24dp)
                         },
-                        contentDescription = LocalLocalization.current.emptyChoice,
+                        contentDescription = localization.emptyChoice,
                     )
                 }
             },
@@ -122,7 +121,7 @@ internal fun DropdownView(
             DropdownMenuItem(
                 text = {
                     TextView(
-                        text = LocalLocalization.current.emptyChoice,
+                        text = localization.emptyChoice,
                         typeStyle = TextStyles.TypeStyle.TITLE,
                     )
                 },
