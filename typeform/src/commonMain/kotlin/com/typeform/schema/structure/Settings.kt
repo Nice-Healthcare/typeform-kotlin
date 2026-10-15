@@ -4,35 +4,35 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class Settings(
-    val meta: Meta,
-    val is_trial: Boolean,
-    val language: String,
-    val translation_languages: List<String>?,
-    val is_public: Boolean,
-    val capabilities: Capabilities?,
-    val progress_bar: String,
-    val hide_navigation: Boolean,
-    val show_progress_bar: Boolean,
-    val are_uploads_public: Boolean,
-    val show_cookie_consent: Boolean,
-    val pro_subdomain_enabled: Boolean,
-    val show_time_to_complete: Boolean,
-    val show_typeform_branding: Boolean,
-    val show_number_of_submissions: Boolean,
+    val meta: Meta = Meta(),
+    val is_trial: Boolean = false,
+    val language: String = "en",
+    val translation_languages: List<String>? = null,
+    val is_public: Boolean = true,
+    val capabilities: Capabilities? = null,
+    val progress_bar: String = "",
+    val hide_navigation: Boolean = false,
+    val show_progress_bar: Boolean = false,
+    val are_uploads_public: Boolean = false,
+    val show_cookie_consent: Boolean = false,
+    val pro_subdomain_enabled: Boolean = false,
+    val show_time_to_complete: Boolean = false,
+    val show_typeform_branding: Boolean = false,
+    val show_number_of_submissions: Boolean = false,
 ) {
     @Serializable
     data class Meta(
-        val allow_indexing: Boolean,
+        val allow_indexing: Boolean = false,
     )
 
     @Serializable
     data class Capabilities(
-        val e2e_encryption: EndToEndEncryption?,
+        val e2e_encryption: EndToEndEncryption? = null,
     )
 
     @Serializable
     data class EndToEndEncryption(
-        val enabled: Boolean,
-        val modifiable: Boolean,
+        val enabled: Boolean = false,
+        val modifiable: Boolean = false,
     )
 }

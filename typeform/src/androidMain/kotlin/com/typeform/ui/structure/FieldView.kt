@@ -1,14 +1,10 @@
 package com.typeform.ui.structure
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -16,11 +12,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.tooling.preview.PreviewParameter
-import androidx.compose.ui.tooling.preview.PreviewParameterProvider
-import androidx.compose.ui.unit.dp
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.typeform.models.Position
 import com.typeform.models.Responses
 import com.typeform.models.TypeformException
@@ -29,8 +21,9 @@ import com.typeform.schema.structure.Field
 import com.typeform.schema.structure.FieldProperties
 import com.typeform.schema.structure.Form
 import com.typeform.schema.structure.Group
-import com.typeform.ui.LocalSettings
-import com.typeform.ui.components.StyledTextView
+import com.typeform.ui.LocalLocalization
+import com.typeform.ui.LocalLogic
+import com.typeform.ui.components.HeadlineContainerView
 import com.typeform.ui.fields.DateView
 import com.typeform.ui.fields.DropdownView
 import com.typeform.ui.fields.FileUploadView
@@ -45,10 +38,8 @@ import com.typeform.ui.fields.YesNoView
 import com.typeform.ui.models.Conclusion
 import com.typeform.ui.models.NavigationAction
 import com.typeform.ui.models.ResponseState
-import com.typeform.ui.preview.ThemePreview
+import com.typeform.ui.preview.MaterialThemePreview
 import com.typeform.ui.preview.preview
-import com.typeform.ui.preview.previewDate
-import com.typeform.ui.preview.previewDropdown
 import com.typeform.ui.preview.previewStatement
 
 /**
@@ -56,7 +47,7 @@ import com.typeform.ui.preview.previewStatement
  */
 @Composable
 internal fun FieldView(
-    scaffoldPadding: PaddingValues,
+    modifier: Modifier = Modifier,
     form: Form,
     field: Field,
     group: Group?,
@@ -64,7 +55,7 @@ internal fun FieldView(
     header: (@Composable () -> Unit)? = null,
     actionHandler: (NavigationAction) -> Unit,
 ) {
-    val settings = LocalSettings.current
+    val logic = LocalLogic.current
     var collectedResponses: Responses by remember { mutableStateOf(responses) }
     var responseState: ResponseState by remember {
         mutableStateOf(
@@ -84,7 +75,7 @@ internal fun FieldView(
             field.properties.properties.button_text
         }
         else -> {
-            settings.localization.next
+            LocalLocalization.current.next
         }
     }
 
@@ -113,7 +104,7 @@ internal fun FieldView(
     }
 
     ScrollingContentView(
-        scaffoldPadding = scaffoldPadding,
+        modifier = modifier,
         title = nextTitle,
         enabled = (next != null && !responseState.invalid),
         header = header,
@@ -121,7 +112,7 @@ internal fun FieldView(
             next?.let {
                 when (it) {
                     is Position.ScreenPosition -> {
-                        if (it.screen is EndingScreen && settings.presentation.skipEndingScreen) {
+                        if (it.screen is EndingScreen && logic.skipEndingScreen) {
                             actionHandler(NavigationAction.ConclusionAction(Conclusion.Completed(collectedResponses, it.screen)))
                         } else {
                             actionHandler(NavigationAction.PositionAction(it, collectedResponses))
@@ -134,137 +125,115 @@ internal fun FieldView(
             }
         },
     ) {
-        Column(
-            modifier = Modifier.padding(settings.presentation.contentPadding),
-            verticalArrangement = Arrangement.spacedBy(settings.presentation.titleDescriptionVerticalSpacing),
+        HeadlineContainerView(
+            headline = field.title,
+            attachment = field.attachment,
         ) {
-            StyledTextView(
-                text = field.title,
-                textStyle = MaterialTheme.typography.h5,
-            )
-
-            Column(
-                verticalArrangement = Arrangement.spacedBy(settings.presentation.descriptionContentVerticalSpacing),
-            ) {
-                field.properties.description?.let {
-                    StyledTextView(
-                        text = it,
-                        textStyle = MaterialTheme.typography.caption,
-                    )
+            when (field.properties) {
+                is FieldProperties.DateStampProperties -> {
+                    DateView(
+                        properties = field.properties.properties,
+                        responseState = responseState,
+                        validations = field.validations,
+                    ) {
+                        handleResponseState(it)
+                    }
                 }
-
-                field.attachment?.let {
-                    AttachmentView(
-                        attachment = it,
-                    )
+                is FieldProperties.DropdownProperties -> {
+                    DropdownView(
+                        properties = field.properties.properties,
+                        responseState = responseState,
+                        validations = field.validations,
+                    ) {
+                        handleResponseState(it)
+                    }
                 }
-
-                when (field.properties) {
-                    is FieldProperties.DateStampProperties -> {
-                        DateView(
-                            properties = field.properties.properties,
-                            responseState = responseState,
-                            validations = field.validations,
-                        ) {
-                            handleResponseState(it)
-                        }
+                is FieldProperties.FileUploadProperties -> {
+                    FileUploadView(
+                        properties = field.properties.properties,
+                        responseState = responseState,
+                        validations = field.validations,
+                    ) {
+                        handleResponseState(it)
                     }
-                    is FieldProperties.DropdownProperties -> {
-                        DropdownView(
-                            properties = field.properties.properties,
-                            responseState = responseState,
-                            validations = field.validations,
-                        ) {
-                            handleResponseState(it)
-                        }
+                }
+                is FieldProperties.GroupProperties -> {
+                    // No additional content
+                }
+                is FieldProperties.LongTextProperties -> {
+                    LongTextView(
+                        properties = field.properties.properties,
+                        responseState = responseState,
+                        validations = field.validations,
+                    ) {
+                        handleResponseState(it)
                     }
-                    is FieldProperties.FileUploadProperties -> {
-                        FileUploadView(
-                            properties = field.properties.properties,
-                            responseState = responseState,
-                            validations = field.validations,
-                        ) {
-                            handleResponseState(it)
-                        }
+                }
+                is FieldProperties.MatrixProperties -> {
+                    // Note `properties.validations` as `Matrix` utilize their `fields` validations.
+                    MatrixView(
+                        properties = field.properties.properties,
+                        responseState = responseState,
+                        validations = field.properties.properties.validations,
+                    ) {
+                        handleResponseState(it)
                     }
-                    is FieldProperties.GroupProperties -> {
-                        // No additional content
+                }
+                is FieldProperties.MultipleChoiceProperties -> {
+                    MultipleChoiceView(
+                        properties = field.properties.properties,
+                        responseState = responseState,
+                        validations = field.validations,
+                    ) {
+                        handleResponseState(it)
                     }
-                    is FieldProperties.LongTextProperties -> {
-                        LongTextView(
-                            properties = field.properties.properties,
-                            responseState = responseState,
-                            validations = field.validations,
-                        ) {
-                            handleResponseState(it)
-                        }
+                }
+                is FieldProperties.NumberProperties -> {
+                    NumberView(
+                        properties = field.properties.properties,
+                        responseState = responseState,
+                        validations = field.validations,
+                    ) {
+                        handleResponseState(it)
                     }
-                    is FieldProperties.MatrixProperties -> {
-                        // Note `properties.validations` as `Matrix` utilize their `fields` validations.
-                        MatrixView(
-                            properties = field.properties.properties,
-                            responseState = responseState,
-                            validations = field.properties.properties.validations,
-                        ) {
-                            handleResponseState(it)
-                        }
+                }
+                is FieldProperties.OpinionScaleProperties -> {
+                    OpinionScaleView(
+                        properties = field.properties.properties,
+                        responseState = responseState,
+                        validations = field.validations,
+                    ) {
+                        handleResponseState(it)
                     }
-                    is FieldProperties.MultipleChoiceProperties -> {
-                        MultipleChoiceView(
-                            properties = field.properties.properties,
-                            responseState = responseState,
-                            validations = field.validations,
-                        ) {
-                            handleResponseState(it)
-                        }
+                }
+                is FieldProperties.RatingProperties -> {
+                    RatingView(
+                        properties = field.properties.properties,
+                        responseState = responseState,
+                        validations = field.validations,
+                    ) {
+                        handleResponseState(it)
                     }
-                    is FieldProperties.NumberProperties -> {
-                        NumberView(
-                            properties = field.properties.properties,
-                            responseState = responseState,
-                            validations = field.validations,
-                        ) {
-                            handleResponseState(it)
-                        }
+                }
+                is FieldProperties.ShortTextProperties -> {
+                    ShortTextView(
+                        properties = field.properties.properties,
+                        responseState = responseState,
+                        validations = field.validations,
+                    ) {
+                        handleResponseState(it)
                     }
-                    is FieldProperties.OpinionScaleProperties -> {
-                        OpinionScaleView(
-                            properties = field.properties.properties,
-                            responseState = responseState,
-                            validations = field.validations,
-                        ) {
-                            handleResponseState(it)
-                        }
-                    }
-                    is FieldProperties.RatingProperties -> {
-                        RatingView(
-                            properties = field.properties.properties,
-                            responseState = responseState,
-                            validations = field.validations,
-                        ) {
-                            handleResponseState(it)
-                        }
-                    }
-                    is FieldProperties.ShortTextProperties -> {
-                        ShortTextView(
-                            properties = field.properties.properties,
-                            responseState = responseState,
-                            validations = field.validations,
-                        ) {
-                            handleResponseState(it)
-                        }
-                    }
-                    is FieldProperties.StatementProperties -> {
-                        // No additional content
-                    }
-                    is FieldProperties.YesNoProperties -> {
-                        YesNoView(
-                            properties = field.properties.properties,
-                            responseState = responseState,
-                            validations = field.validations,
-                        ) {
-                            handleResponseState(it)
-                        }
+                }
+                is FieldProperties.StatementProperties -> {
+                    // No additional content
+                }
+                is FieldProperties.YesNoProperties -> {
+                    YesNoView(
+                        properties = field.properties.properties,
+                        responseState = responseState,
+                        validations = field.validations,
+                    ) {
+                        handleResponseState(it)
                     }
                 }
             }
@@ -272,17 +241,14 @@ internal fun FieldView(
     }
 }
 
-@Preview(showBackground = true, showSystemUi = true)
+@PreviewLightDark
 @Composable
-private fun FieldViewPreview(
-    @PreviewParameter(FieldParameterProvider::class) reference: String,
-) {
+private fun FieldViewPreview() {
     val form = Form.preview
-    val field = form.fieldWithRef(reference) ?: throw Exception("Resource Not Found")
+    val field = form.fieldWithRef(Field.previewStatement.ref) ?: throw Exception("Resource Not Found")
 
-    ThemePreview {
+    MaterialThemePreview {
         FieldView(
-            scaffoldPadding = PaddingValues(0.dp),
             form = form,
             field = field,
             group = null,
@@ -291,7 +257,7 @@ private fun FieldViewPreview(
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .background(Color.Magenta),
+                        .background(MaterialTheme.colorScheme.secondaryContainer),
                 ) {
                     Text("Intake for: Patient Name")
                 }
@@ -299,13 +265,4 @@ private fun FieldViewPreview(
             actionHandler = { },
         )
     }
-}
-
-private class FieldParameterProvider : PreviewParameterProvider<String> {
-    override val values: Sequence<String>
-        get() = sequenceOf(
-            Field.previewStatement.ref,
-            Field.previewDropdown.ref,
-            Field.previewDate.ref,
-        )
 }

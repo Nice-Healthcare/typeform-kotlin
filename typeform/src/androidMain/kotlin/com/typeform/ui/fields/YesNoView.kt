@@ -1,20 +1,20 @@
 package com.typeform.ui.fields
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.typeform.models.ResponseValue
 import com.typeform.schema.questions.YesNo
 import com.typeform.schema.structure.Validations
-import com.typeform.ui.LocalSettings
+import com.typeform.ui.LocalLocalization
+import com.typeform.ui.components.ContentContainerView
 import com.typeform.ui.components.IntermittentChoiceButton
 import com.typeform.ui.models.ResponseState
+import com.typeform.ui.preview.TypeformPreview
 
 @Composable
 internal fun YesNoView(
@@ -23,7 +23,7 @@ internal fun YesNoView(
     validations: Validations?,
     stateHandler: (ResponseState) -> Unit,
 ) {
-    val settings = LocalSettings.current
+    val localization = LocalLocalization.current
     var selected: Boolean? by remember { mutableStateOf(responseState.response?.asBoolean()) }
 
     fun updateState() {
@@ -71,18 +71,18 @@ internal fun YesNoView(
         updateState()
     }
 
-    Column(
-        verticalArrangement = Arrangement.spacedBy(settings.presentation.contentVerticalSpacing),
+    ContentContainerView(
+        description = properties.description,
     ) {
         IntermittentChoiceButton(
-            text = settings.localization.yes,
+            text = localization.yes,
             selected = selected == true,
         ) {
             toggle(true)
         }
 
         IntermittentChoiceButton(
-            text = settings.localization.no,
+            text = localization.no,
             selected = selected == false,
         ) {
             toggle(false)
@@ -90,15 +90,19 @@ internal fun YesNoView(
     }
 }
 
-@Preview(showBackground = true, showSystemUi = true)
+@PreviewLightDark
 @Composable
 private fun YesNoViewPreview() {
-    YesNoView(
-        properties = YesNo(
-            description = null,
-        ),
-        responseState = ResponseState(),
-        validations = null,
+    TypeformPreview(
+        headline = "Am I Humorous?",
     ) {
+        YesNoView(
+            properties = YesNo(
+                description = "Answer wisely, or you will be thrown from a cliff. Not really, but maybe.",
+            ),
+            responseState = ResponseState(),
+            validations = null,
+        ) {
+        }
     }
 }

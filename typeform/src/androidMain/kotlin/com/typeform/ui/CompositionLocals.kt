@@ -2,13 +2,16 @@ package com.typeform.ui
 
 import androidx.compose.runtime.compositionLocalOf
 import coil3.ImageLoader
-import com.typeform.ui.models.Settings
+import com.typeform.ui.models.AdditionalLogic
+import com.typeform.ui.models.Localization
+import com.typeform.ui.models.Presentation
+import com.typeform.ui.models.TextStyles
 import com.typeform.ui.models.UploadHelper
 
-/**
- * Composition Local providing access to UI [Settings] throughout the hierarchy.
- */
-internal val LocalSettings = compositionLocalOf { Settings() }
+internal val LocalTextStyles = compositionLocalOf { TextStyles() }
+internal val LocalPresentation = compositionLocalOf { Presentation() }
+internal val LocalLocalization = compositionLocalOf { Localization() }
+internal val LocalLogic = compositionLocalOf { AdditionalLogic() }
 
 /**
  * Composition Local providing access to a [ImageLoader] throughout the hierarchy.

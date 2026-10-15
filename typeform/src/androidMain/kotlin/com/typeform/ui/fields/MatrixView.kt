@@ -1,11 +1,9 @@
 package com.typeform.ui.fields
 
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.width
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -23,11 +21,13 @@ import com.typeform.schema.structure.Choice
 import com.typeform.schema.structure.Field
 import com.typeform.schema.structure.Matrix
 import com.typeform.schema.structure.Validations
-import com.typeform.ui.LocalSettings
+import com.typeform.ui.LocalPresentation
+import com.typeform.ui.components.ContentContainerView
 import com.typeform.ui.components.IntermittentChoiceButton
-import com.typeform.ui.components.StyledTextView
+import com.typeform.ui.components.TextView
 import com.typeform.ui.models.ResponseState
-import com.typeform.ui.preview.ThemePreview
+import com.typeform.ui.models.Script
+import com.typeform.ui.preview.TypeformPreview
 import com.typeform.ui.preview.previewMatrix1
 import com.typeform.ui.preview.previewMatrix2
 import com.typeform.ui.preview.previewMatrix3
@@ -43,7 +43,7 @@ internal fun MatrixView(
     validations: Validations?,
     stateHandler: (ResponseState) -> Unit,
 ) {
-    val settings = LocalSettings.current
+    val presentation = LocalPresentation.current
     var selected: Map<String, List<Choice>> by remember { mutableStateOf(responseState.response?.asChoicesByReference() ?: emptyMap()) }
 
     fun updateState() {
@@ -102,11 +102,9 @@ internal fun MatrixView(
         updateState()
     }
 
-    Column(
-        verticalArrangement = Arrangement.spacedBy(settings.presentation.contentVerticalSpacing),
-    ) {
+    ContentContainerView {
         Row(
-            horizontalArrangement = Arrangement.spacedBy(settings.presentation.contentHorizontalSpacing),
+            horizontalArrangement = Arrangement.spacedBy(presentation.contentHorizontalSpacing),
             verticalAlignment = Alignment.CenterVertically,
         ) {
             Spacer(
@@ -114,10 +112,10 @@ internal fun MatrixView(
             )
 
             properties.columns.forEach {
-                StyledTextView(
-                    text = it,
-                    textStyle = MaterialTheme.typography.body1,
+                TextView(
                     modifier = Modifier.width(65.dp),
+                    text = it,
+                    script = Script.TITLE,
                     textAlign = TextAlign.Center,
                 )
             }
@@ -127,13 +125,13 @@ internal fun MatrixView(
             HorizontalDivider()
 
             Row(
-                horizontalArrangement = Arrangement.spacedBy(settings.presentation.contentHorizontalSpacing),
+                horizontalArrangement = Arrangement.spacedBy(presentation.contentHorizontalSpacing),
                 verticalAlignment = Alignment.CenterVertically,
             ) {
-                StyledTextView(
-                    text = iteration.title,
-                    textStyle = MaterialTheme.typography.body1,
+                TextView(
                     modifier = Modifier.weight(1f),
+                    text = iteration.title,
+                    script = Script.BODY,
                     textAlign = TextAlign.End,
                 )
 
@@ -155,7 +153,9 @@ internal fun MatrixView(
 @PreviewLightDark
 @Composable
 private fun MatrixViewPreview() {
-    ThemePreview {
+    TypeformPreview(
+        headline = "Are you suffering any of the following symptoms?",
+    ) {
         MatrixView(
             properties = Matrix(
                 fields = listOf(

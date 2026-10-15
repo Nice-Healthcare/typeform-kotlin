@@ -1,14 +1,8 @@
 package com.typeform.ui.structure
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.typeform.models.Position
 import com.typeform.models.Responses
 import com.typeform.models.TypeformException
@@ -16,25 +10,24 @@ import com.typeform.schema.structure.EndingScreen
 import com.typeform.schema.structure.Form
 import com.typeform.schema.structure.Screen
 import com.typeform.schema.structure.WelcomeScreen
-import com.typeform.ui.LocalSettings
-import com.typeform.ui.components.StyledTextView
+import com.typeform.ui.LocalLocalization
+import com.typeform.ui.components.HeadlineContainerView
 import com.typeform.ui.models.Conclusion
 import com.typeform.ui.models.NavigationAction
-import com.typeform.ui.preview.ThemePreview
+import com.typeform.ui.preview.MaterialThemePreview
 import com.typeform.ui.preview.preview
 
 /**
- * The [ScreenView] displays a 'welcome' or 'thank you' screen.
+ * Container view that displays a [Screen] ('welcome' or 'thank you').
  */
 @Composable
 internal fun ScreenView(
-    scaffoldPadding: PaddingValues,
+    modifier: Modifier = Modifier,
     form: Form,
     screen: Screen,
     responses: Responses,
     actionHandler: (NavigationAction) -> Unit,
 ) {
-    val settings = LocalSettings.current
     val isWelcomeScreen = screen is WelcomeScreen
 
     val next = try {
@@ -44,8 +37,8 @@ internal fun ScreenView(
     }
 
     ScrollingContentView(
-        scaffoldPadding = scaffoldPadding,
-        title = screen.properties.button_text ?: settings.localization.next,
+        modifier = modifier,
+        title = screen.properties.button_text ?: LocalLocalization.current.next,
         onClick = {
             if (next != null) {
                 actionHandler(NavigationAction.PositionAction(next, responses))
@@ -56,33 +49,21 @@ internal fun ScreenView(
             }
         },
     ) {
-        Column(
-            modifier = Modifier.padding(settings.presentation.contentPadding),
-            verticalArrangement = Arrangement.spacedBy(settings.presentation.titleDescriptionVerticalSpacing),
-        ) {
-            screen.attachment?.let { attachment ->
-                AttachmentView(
-                    attachment = attachment,
-                )
-            }
-
-            StyledTextView(
-                text = screen.title,
-                textStyle = MaterialTheme.typography.h5,
-            )
-        }
+        HeadlineContainerView(
+            headline = screen.title,
+            attachment = screen.attachment,
+        ) { }
     }
 }
 
-@Preview(showBackground = true, showSystemUi = true)
+@PreviewLightDark
 @Composable
 private fun ScreenViewPreview() {
     val form = Form.preview
     val screen = form.welcomeScreens!!.first()
 
-    ThemePreview {
+    MaterialThemePreview {
         ScreenView(
-            scaffoldPadding = PaddingValues(0.dp),
             form = form,
             screen = screen,
             responses = mapOf(),

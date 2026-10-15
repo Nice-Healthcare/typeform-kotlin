@@ -1,34 +1,28 @@
 package com.typeform.ui.fields
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.size
-import androidx.compose.material.DropdownMenu
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.OutlinedButton
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.PreviewLightDark
-import androidx.compose.ui.unit.dp
 import com.typeform.models.ResponseValue
 import com.typeform.models.Upload
 import com.typeform.schema.questions.FileUpload
 import com.typeform.schema.structure.Validations
-import com.typeform.ui.LocalSettings
-import com.typeform.ui.components.StyledTextView
+import com.typeform.ui.LocalLocalization
+import com.typeform.ui.LocalPresentation
+import com.typeform.ui.components.ContentContainerView
+import com.typeform.ui.components.TextView
 import com.typeform.ui.components.UploadImageView
 import com.typeform.ui.components.UploadPickerView
 import com.typeform.ui.models.ResponseState
-import com.typeform.ui.preview.ThemePreview
+import com.typeform.ui.models.Script
+import com.typeform.ui.preview.TypeformPreview
 
 @Composable
 internal fun FileUploadView(
@@ -37,7 +31,6 @@ internal fun FileUploadView(
     validations: Validations?,
     stateHandler: (ResponseState) -> Unit,
 ) {
-    val settings = LocalSettings.current
     var upload: Upload? by remember { mutableStateOf(responseState.response?.asUpload()) }
     var expanded: Boolean by remember { mutableStateOf(false) }
     var exception: Throwable? by remember { mutableStateOf(null) }
@@ -70,9 +63,8 @@ internal fun FileUploadView(
         updateState()
     }
 
-    Column(
-        verticalArrangement = Arrangement.spacedBy(settings.presentation.contentVerticalSpacing),
-        horizontalAlignment = Alignment.CenterHorizontally,
+    ContentContainerView(
+        description = properties.description,
     ) {
         if (upload != null) {
             UploadImageView(
@@ -86,43 +78,37 @@ internal fun FileUploadView(
                     expanded = true
                 },
                 modifier = Modifier.fillMaxWidth(),
-                elevation = null,
-                shape = settings.outlinedButton.shape,
-                border = settings.outlinedButton.border,
-                colors = settings.outlinedButton.colors,
-                contentPadding = settings.outlinedButton.contentPadding,
+                contentPadding = LocalPresentation.current.containerPadding,
             ) {
-                StyledTextView(
-                    text = settings.localization.uploadAction,
-                    textStyle = MaterialTheme.typography.body1,
+                TextView(
+                    text = LocalLocalization.current.uploadAction,
+                    script = Script.TITLE,
                 )
             }
         }
 
         exception?.let {
-            StyledTextView(
+            TextView(
                 text = it.message ?: "An error occurred.",
-                textStyle = MaterialTheme.typography.subtitle1,
+                script = Script.BODY,
             )
         }
 
-        DropdownMenu(
+        UploadPickerView(
             expanded = expanded,
             onDismissRequest = {
                 expanded = false
             },
-        ) {
-            UploadPickerView { result ->
-                expanded = false
-                result?.fold(
-                    onSuccess = {
-                        select(it)
-                    },
-                    onFailure = {
-                        exception = it
-                    },
-                )
-            }
+        ) { result ->
+            expanded = false
+            result?.fold(
+                onSuccess = {
+                    select(it)
+                },
+                onFailure = {
+                    exception = it
+                },
+            )
         }
     }
 }
@@ -130,20 +116,16 @@ internal fun FileUploadView(
 @PreviewLightDark
 @Composable
 private fun FileUploadViewPreview() {
-    ThemePreview {
-        Box(
-            modifier = Modifier
-                .size(200.dp)
-                .background(MaterialTheme.colors.background),
+    TypeformPreview(
+        headline = "Share a file?",
+    ) {
+        FileUploadView(
+            properties = FileUpload(
+                description = "Provide additional documents or photos.",
+            ),
+            responseState = ResponseState(),
+            validations = null,
         ) {
-            FileUploadView(
-                properties = FileUpload(
-                    description = "Select a file.",
-                ),
-                responseState = ResponseState(),
-                validations = null,
-            ) {
-            }
         }
     }
 }

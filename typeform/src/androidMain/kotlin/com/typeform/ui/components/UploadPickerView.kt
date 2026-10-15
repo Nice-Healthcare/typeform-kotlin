@@ -5,30 +5,37 @@ import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.Row
-import androidx.compose.material.DropdownMenuItem
-import androidx.compose.material.Icon
-import androidx.compose.material.MaterialTheme
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.typeform.models.Upload
 import com.typeform.resources.Res
-import com.typeform.resources.camera_24dp
-import com.typeform.resources.photo_library_24dp
-import com.typeform.resources.upload_file_24dp
-import com.typeform.ui.LocalSettings
+import com.typeform.resources.camera_fill_24dp
+import com.typeform.resources.photo_library_fill_24dp
+import com.typeform.resources.upload_file_fill_24dp
+import com.typeform.ui.LocalLocalization
 import com.typeform.ui.LocalUploadHelper
+import com.typeform.ui.models.Script
 import com.typeform.ui.models.constructDocument
 import com.typeform.ui.models.constructImage
+import com.typeform.ui.preview.MaterialThemePreview
 import org.jetbrains.compose.resources.vectorResource
 
 @Composable
-internal fun UploadPickerView(resultHandler: (Result<Upload>?) -> Unit) {
+internal fun UploadPickerView(
+    expanded: Boolean,
+    onDismissRequest: () -> Unit,
+    resultHandler: (Result<Upload>?) -> Unit,
+) {
     val context = LocalContext.current
-    val settings = LocalSettings.current
+    val localization = LocalLocalization.current
     val uploadHelper = LocalUploadHelper.current
     var photoUri: Uri? by remember { mutableStateOf(null) }
 
@@ -104,59 +111,80 @@ internal fun UploadPickerView(resultHandler: (Result<Upload>?) -> Unit) {
         }
     }
 
-    DropdownMenuItem(
-        onClick = {
-            takePhoto()
-        },
-        enabled = uploadHelper != null,
+    DropdownMenu(
+        expanded = expanded,
+        onDismissRequest = onDismissRequest,
     ) {
-        Row {
-            Icon(
-                imageVector = vectorResource(Res.drawable.camera_24dp),
-                contentDescription = "Camera",
-            )
+        DropdownMenuItem(
+            text = {
+                Row {
+                    Icon(
+                        imageVector = vectorResource(Res.drawable.camera_fill_24dp),
+                        contentDescription = "Camera",
+                    )
 
-            StyledTextView(
-                text = settings.localization.uploadCamera,
-                textStyle = MaterialTheme.typography.body1,
-            )
-        }
+                    TextView(
+                        text = localization.uploadCamera,
+                        script = Script.TITLE,
+                    )
+                }
+            },
+            onClick = {
+                takePhoto()
+            },
+            enabled = uploadHelper != null,
+        )
+
+        DropdownMenuItem(
+            text = {
+                Row {
+                    Icon(
+                        imageVector = vectorResource(Res.drawable.photo_library_fill_24dp),
+                        contentDescription = "Photo Library",
+                    )
+
+                    TextView(
+                        text = localization.uploadPhotoLibrary,
+                        script = Script.TITLE,
+                    )
+                }
+            },
+            onClick = {
+                photoLibraryLauncher.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
+            },
+        )
+
+        DropdownMenuItem(
+            text = {
+                Row {
+                    Icon(
+                        imageVector = vectorResource(Res.drawable.upload_file_fill_24dp),
+                        contentDescription = "Upload File",
+                    )
+
+                    TextView(
+                        text = localization.uploadDocument,
+                        script = Script.TITLE,
+                    )
+                }
+            },
+            onClick = {
+                documentsLauncher.launch(uploadHelper?.allowedDocumentTypes ?: emptyArray())
+            },
+            enabled = uploadHelper != null,
+        )
     }
+}
 
-    DropdownMenuItem(
-        onClick = {
-            photoLibraryLauncher.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
-        },
-    ) {
-        Row {
-            Icon(
-                imageVector = vectorResource(Res.drawable.photo_library_24dp),
-                contentDescription = "Photo Library",
-            )
-
-            StyledTextView(
-                text = settings.localization.uploadPhotoLibrary,
-                textStyle = MaterialTheme.typography.body1,
-            )
-        }
-    }
-
-    DropdownMenuItem(
-        onClick = {
-            documentsLauncher.launch(uploadHelper?.allowedDocumentTypes ?: emptyArray())
-        },
-        enabled = uploadHelper != null,
-    ) {
-        Row {
-            Icon(
-                imageVector = vectorResource(Res.drawable.upload_file_24dp),
-                contentDescription = "Upload File",
-            )
-
-            StyledTextView(
-                text = settings.localization.uploadDocument,
-                textStyle = MaterialTheme.typography.body1,
-            )
+@PreviewLightDark
+@Composable
+private fun UploadPickerViewPreview() {
+    MaterialThemePreview {
+        UploadPickerView(
+            expanded = true,
+            onDismissRequest = {
+            },
+        ) { _ ->
         }
     }
 }

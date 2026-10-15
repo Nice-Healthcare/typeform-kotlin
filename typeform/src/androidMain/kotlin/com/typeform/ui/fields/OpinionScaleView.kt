@@ -6,8 +6,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.safeGesturesPadding
 import androidx.compose.foundation.layout.width
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Slider
+import androidx.compose.material3.Slider
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -18,15 +17,18 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import com.typeform.models.ResponseValue
 import com.typeform.schema.questions.OpinionScale
 import com.typeform.schema.structure.Validations
-import com.typeform.ui.LocalSettings
-import com.typeform.ui.components.StyledTextView
+import com.typeform.ui.LocalLocalization
+import com.typeform.ui.components.ContentContainerView
+import com.typeform.ui.components.TextView
 import com.typeform.ui.models.ResponseState
-import com.typeform.ui.preview.ThemePreview
+import com.typeform.ui.models.Script
+import com.typeform.ui.preview.TypeformPreview
+import java.util.Locale
 
 @Composable
 internal fun OpinionScaleView(
@@ -35,7 +37,6 @@ internal fun OpinionScaleView(
     validations: Validations?,
     stateHandler: (ResponseState) -> Unit,
 ) {
-    val settings = LocalSettings.current
     val start = if (properties.start_at_one) 1 else 0
     val end = if (properties.start_at_one) properties.steps else (properties.steps - 1)
     val steps = properties.steps - 1
@@ -53,14 +54,32 @@ internal fun OpinionScaleView(
     }
 
     val leadingLabel = if (properties.labels != null) {
-        String.format("%d: %s", start, properties.labels.left)
+        String.format(
+            Locale.getDefault(),
+            "%d: %s",
+            start,
+            properties.labels.left,
+        )
     } else {
-        String.format("%d", start)
+        String.format(
+            Locale.getDefault(),
+            "%d",
+            start,
+        )
     }
     val trailingLabel = if (properties.labels != null) {
-        String.format("%d: %s", end, properties.labels.right)
+        String.format(
+            Locale.getDefault(),
+            "%d: %s",
+            end,
+            properties.labels.right,
+        )
     } else {
-        String.format("%d", end)
+        String.format(
+            Locale.getDefault(),
+            "%d",
+            end,
+        )
     }
 
     fun updateState() {
@@ -100,13 +119,12 @@ internal fun OpinionScaleView(
         updateState()
     }
 
-    Column(
-        verticalArrangement = Arrangement.spacedBy(settings.presentation.contentVerticalSpacing),
+    ContentContainerView(
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        StyledTextView(
-            text = if (selected == null) settings.localization.emptyChoice else "$selected",
-            textStyle = MaterialTheme.typography.body1,
+        TextView(
+            text = if (selected == null) LocalLocalization.current.emptyChoice else "$selected",
+            script = Script.TITLE,
         )
 
         // Additional padding added here to account for the system gesture insets.
@@ -118,33 +136,34 @@ internal fun OpinionScaleView(
             },
             modifier = Modifier.safeGesturesPadding(),
             steps = steps,
-            colors = settings.opinionScale.colors,
         )
 
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween,
         ) {
-            StyledTextView(
-                text = leadingLabel,
-                textStyle = MaterialTheme.typography.caption,
+            TextView(
                 modifier = Modifier.width(120.dp),
+                text = leadingLabel,
+                script = Script.LABEL,
             )
 
-            StyledTextView(
-                text = trailingLabel,
-                textStyle = MaterialTheme.typography.caption,
+            TextView(
                 modifier = Modifier.width(120.dp),
+                text = trailingLabel,
+                script = Script.LABEL,
                 textAlign = TextAlign.End,
             )
         }
     }
 }
 
-@Preview(showBackground = true, showSystemUi = true)
+@PreviewLightDark
 @Composable
 private fun OpinionScaleViewPreview() {
-    ThemePreview {
+    TypeformPreview(
+        headline = "Great example of using native controls.",
+    ) {
         Column {
             OpinionScaleView(
                 properties = OpinionScale(

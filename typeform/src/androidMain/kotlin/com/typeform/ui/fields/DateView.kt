@@ -1,14 +1,10 @@
 package com.typeform.ui.fields
 
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Switch
 import androidx.compose.material3.DatePicker
-import androidx.compose.material3.DatePickerDefaults
-import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Switch
 import androidx.compose.material3.rememberDatePickerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
@@ -19,16 +15,18 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.typeform.models.ResponseValue
 import com.typeform.schema.questions.DateStamp
 import com.typeform.schema.structure.Validations
-import com.typeform.ui.LocalSettings
-import com.typeform.ui.components.StyledTextView
+import com.typeform.ui.LocalLocalization
+import com.typeform.ui.components.ContentContainerView
+import com.typeform.ui.components.TextView
 import com.typeform.ui.models.ResponseState
+import com.typeform.ui.models.Script
+import com.typeform.ui.preview.TypeformPreview
 import java.util.Date
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun DateView(
     properties: DateStamp,
@@ -36,7 +34,6 @@ internal fun DateView(
     validations: Validations?,
     stateHandler: (ResponseState) -> Unit,
 ) {
-    val settings = LocalSettings.current
     val pickerState = rememberDatePickerState((responseState.response?.asDate() ?: Date()).time)
     var milliseconds by remember { mutableStateOf(responseState.response?.asDate()?.time) }
     var isNotSure by remember { mutableStateOf(false) }
@@ -77,8 +74,8 @@ internal fun DateView(
         onDispose { }
     }
 
-    Column(
-        verticalArrangement = Arrangement.spacedBy(settings.presentation.contentVerticalSpacing),
+    ContentContainerView(
+        description = properties.description,
     ) {
         if (isOptional) {
             Row(
@@ -86,9 +83,9 @@ internal fun DateView(
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically,
             ) {
-                StyledTextView(
-                    text = settings.localization.nullDate,
-                    textStyle = MaterialTheme.typography.caption,
+                TextView(
+                    text = LocalLocalization.current.nullDate,
+                    script = Script.BODY,
                 )
 
                 Switch(
@@ -101,7 +98,6 @@ internal fun DateView(
                             select(pickerState.selectedDateMillis ?: Date().time)
                         }
                     },
-                    colors = settings.switch.colors,
                 )
             }
         }
@@ -112,30 +108,26 @@ internal fun DateView(
                 title = null,
                 headline = null,
                 showModeToggle = false,
-                colors = DatePickerDefaults.colors(
-                    weekdayContentColor = settings.calendar.weekdayContentColor,
-                    dayContentColor = settings.calendar.dayContentColor,
-                    selectedDayContentColor = settings.calendar.selectedDayContentColor,
-                    selectedDayContainerColor = settings.calendar.selectedDayContainerColor,
-                    todayContentColor = settings.calendar.todayDateContentColor,
-                    todayDateBorderColor = settings.calendar.todayDateContainerColor,
-                ),
             )
         }
     }
 }
 
-@Preview(showBackground = true, showSystemUi = true)
+@PreviewLightDark
 @Composable
 private fun DateViewPreview() {
-    DateView(
-        properties = DateStamp(
-            separator = "",
-            structure = "",
-            description = null,
-        ),
-        responseState = ResponseState(),
-        validations = null,
+    TypeformPreview(
+        headline = "What is your birthday?",
     ) {
+        DateView(
+            properties = DateStamp(
+                separator = "",
+                structure = "",
+                description = "This should not be a day in the future.",
+            ),
+            responseState = ResponseState(),
+            validations = null,
+        ) {
+        }
     }
 }

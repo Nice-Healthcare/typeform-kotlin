@@ -16,7 +16,7 @@ internal fun AttachmentView(
 ) {
     LocalImageLoader.current?.let { loader ->
         AsyncImage(
-            model = attachment.href.toString().toUri(),
+            model = attachment.href.toUri(),
             contentDescription = attachment.properties?.description ?: "No Image Description",
             imageLoader = loader,
             modifier = modifier.fillMaxWidth(),
