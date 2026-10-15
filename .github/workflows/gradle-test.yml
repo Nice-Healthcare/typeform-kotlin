@@ -21,7 +21,7 @@ jobs:
     - uses: actions/checkout@v6
 
     - name: Set up JDK
-      uses: actions/setup-java@v5
+      uses: actions/setup-java@v6
       with:
         java-version: '21'
         distribution: 'liberica'
@@ -29,16 +29,30 @@ jobs:
         settings-path: ${{ github.workspace }} # location for the settings.xml file
 
     - name: Setup Gradle
-      uses: gradle/actions/setup-gradle@v5
+      uses: gradle/actions/setup-gradle@v6
+
+    - name: Cache
+      uses: actions/cache@v5
+      with:
+        path: |
+          ~/.gradle/caches
+          ~/.gradle/wrapper
+        key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties', '**/libs.versions.toml') }}
+        restore-keys: |
+          ${{ runner.os }}-gradle-
 
     - name: Test with Gradle
-      run: ./gradlew testDebugUnitTest
+      shell: bash
+      run: |
+        ./gradlew testDebugUnitTest
+        ./gradlew testAndroidHostTest
 
     - name: Publish Test Results
       uses: EnricoMi/publish-unit-test-result-action@v2
       with:
         files: |
           typeform/build/test-results/testDebugUnitTest/*.xml
+          typeform/build/test-results/testAndroidHostTest/*.xml
 
 #    - name: Perform CodeQL Analysis
 #      uses: github/codeql-action/analyze@v4
