@@ -2,25 +2,43 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
     alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
 }
 
+dependencies {
+    implementation(libs.android.permissions)
+    implementation(libs.androidx.activity.compose)
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.material3)
+    implementation(libs.androidx.navigation.compose)
+    implementation(libs.androidx.ui)
+    implementation(libs.androidx.ui.graphics)
+    implementation(libs.androidx.ui.tooling.preview)
+    implementation(libs.coil.compose)
+    implementation(libs.coil.network)
+    implementation(libs.kotlinx.serialization.json)
+    implementation(libs.ktor.android)
+    implementation(libs.ktor.client)
+    implementation(libs.ktor.engine)
+    implementation(project(":typeform"))
+}
+
 kotlin {
+    jvmToolchain(21)
     compilerOptions {
         jvmTarget = JvmTarget.JVM_21
     }
-    jvmToolchain(21)
 }
 
 android {
     namespace = "com.typeform.example"
-    compileSdk = 36
+    compileSdk = libs.versions.android.compileSdk.get().toInt()
 
     defaultConfig {
         applicationId = "com.typeform.example"
-        minSdk = 31
-        targetSdk = 36
+        minSdk = libs.versions.android.minSdk.get().toInt()
+        targetSdk = libs.versions.android.targetSdk.get().toInt()
         versionCode = 1
         versionName = "1.0"
     }
@@ -46,24 +64,4 @@ android {
         checkDependencies = false
         checkTestSources = false
     }
-}
-
-dependencies {
-    implementation(libs.android.permissions)
-    implementation(libs.androidx.activity.compose)
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.lifecycle.runtime.ktx)
-    implementation(libs.androidx.material3)
-    implementation(libs.androidx.navigation.compose)
-    implementation(libs.androidx.ui)
-    implementation(libs.androidx.ui.graphics)
-    implementation(libs.androidx.ui.tooling.preview)
-    implementation(libs.coil.compose)
-    implementation(libs.coil.network)
-    implementation(libs.kotlinx.serialization.json)
-    implementation(libs.ktor.android)
-    implementation(libs.ktor.client)
-    implementation(libs.ktor.engine)
-    implementation(platform(libs.androidx.compose.bom))
-    implementation(project(":typeform"))
 }

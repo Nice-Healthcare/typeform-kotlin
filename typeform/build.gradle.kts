@@ -1,5 +1,7 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
-    alias(libs.plugins.android.library)
+    alias(libs.plugins.android.kmp.library)
     alias(libs.plugins.compose)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.kotlin.multiplatform)
@@ -9,76 +11,61 @@ plugins {
 }
 
 kotlin {
-    androidTarget {
+    android {
+        namespace = "com.typeform"
+        compileSdk = libs.versions.android.compileSdk.get().toInt()
+        minSdk = libs.versions.android.minSdk.get().toInt()
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_21)
+        }
+        withHostTest {}
+        lint {
+            checkReleaseBuilds = false
+            checkDependencies = false
+            checkTestSources = false
+        }
     }
 
     jvmToolchain(21)
 
     sourceSets {
-        val commonMain by getting {
+        commonMain {
             dependencies {
-                api(compose.components.resources)
+                implementation(libs.jetbrains.compose.resources)
                 implementation(libs.kotlinx.serialization.json)
             }
         }
 
-        val commonTest by getting {
+        commonTest {
             dependencies {
                 implementation(libs.kotlin.test)
             }
         }
 
-        val androidMain by getting {
+        androidMain {
             dependencies {
-                api(compose.animation)
-                api(compose.foundation)
-                api(compose.material)
-                api(compose.material3)
-                api(compose.preview)
-                api(compose.runtime)
-                api(compose.ui)
-                api(compose.uiTooling)
-
                 implementation(libs.androidx.activity.compose)
                 implementation(libs.androidx.navigation.compose)
                 implementation(libs.coil.compose.core)
+                implementation(libs.jetbrains.compose.animation)
+                implementation(libs.jetbrains.compose.foundation)
+                implementation(libs.jetbrains.compose.material)
+                implementation(libs.jetbrains.compose.material3)
+                implementation(libs.jetbrains.compose.preview)
+                implementation(libs.jetbrains.compose.runtime)
+                implementation(libs.jetbrains.compose.ui)
+                implementation(libs.jetbrains.compose.ui.tooling)
                 implementation(libs.ktor.android)
                 implementation(libs.ktor.client)
                 implementation(libs.ktor.engine)
             }
         }
 
-        val androidUnitTest by getting {
+        getByName("androidHostTest") {
             dependencies {
                 implementation(libs.kotlin.test)
             }
         }
-    }
-}
-
-android {
-    namespace = "com.typeform"
-    compileSdk = 36
-    defaultConfig {
-        minSdk = 31
-    }
-    compileOptions {
-        sourceCompatibility(JavaVersion.VERSION_21)
-        targetCompatibility(JavaVersion.VERSION_21)
-    }
-    buildFeatures {
-        compose = true
-    }
-    publishing {
-        singleVariant("release") {
-            withSourcesJar()
-            withJavadocJar()
-        }
-    }
-    lint {
-        checkReleaseBuilds = false
-        checkDependencies = false
-        checkTestSources = false
     }
 }
 
@@ -91,6 +78,6 @@ compose {
 }
 
 ktlint {
-    verbose.set(true)
-    outputToConsole.set(true)
+    verbose = true
+    outputToConsole = true
 }
