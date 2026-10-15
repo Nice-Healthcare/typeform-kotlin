@@ -25,7 +25,7 @@ data class Upload(
         PHOTO_LIBRARY("photoLibrary"),
         ;
 
-        private object Serializer : KSerializer<Path> {
+        internal object Serializer : KSerializer<Path> {
             override val descriptor: SerialDescriptor
                 get() = PrimitiveSerialDescriptor("Upload.Path", PrimitiveKind.STRING)
 

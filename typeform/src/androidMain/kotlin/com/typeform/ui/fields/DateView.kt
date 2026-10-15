@@ -26,7 +26,14 @@ import com.typeform.schema.structure.Validations
 import com.typeform.ui.LocalSettings
 import com.typeform.ui.components.StyledTextView
 import com.typeform.ui.models.ResponseState
-import java.util.Date
+import kotlin.time.Clock
+import kotlin.time.Instant
+import kotlinx.datetime.LocalDateTime
+import kotlinx.datetime.LocalTime
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.toInstant
+import kotlinx.datetime.toJavaLocalDate
+import kotlinx.datetime.toLocalDateTime
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -37,8 +44,25 @@ internal fun DateView(
     stateHandler: (ResponseState) -> Unit,
 ) {
     val settings = LocalSettings.current
-    val pickerState = rememberDatePickerState((responseState.response?.asDate() ?: Date()).time)
-    var milliseconds by remember { mutableStateOf(responseState.response?.asDate()?.time) }
+    val pickerState = rememberDatePickerState(
+        initialSelectedDate = responseState.response?.asDate()?.toJavaLocalDate() ?: java.time.LocalDate.now(),
+    )
+    // DatePickerState.selectedDateMillis ->
+    // A timestamp that represents the selected date start of the day in UTC milliseconds from the epoch.
+    var milliseconds: Long? by remember {
+        mutableStateOf(
+            when (val localDate = responseState.response?.asDate()) {
+                null -> {
+                    null
+                }
+                else -> {
+                    LocalDateTime(localDate, LocalTime(0, 0, 0))
+                        .toInstant(TimeZone.UTC)
+                        .toEpochMilliseconds()
+                }
+            },
+        )
+    }
     var isNotSure by remember { mutableStateOf(false) }
 
     val isOptional = validations?.required != true
@@ -48,7 +72,11 @@ internal fun DateView(
 
         val millis = milliseconds
         state = if (millis != null && !isNotSure) {
-            state.copy(response = ResponseValue.DateValue(Date(millis)))
+            val localDate = Instant
+                .fromEpochMilliseconds(millis)
+                .toLocalDateTime(TimeZone.UTC)
+                .date
+            state.copy(response = ResponseValue.DateValue(localDate))
         } else {
             state.copy(response = null)
         }
@@ -98,7 +126,7 @@ internal fun DateView(
                         if (isNotSure) {
                             select(null)
                         } else {
-                            select(pickerState.selectedDateMillis ?: Date().time)
+                            select(pickerState.selectedDateMillis ?: Clock.System.now().toEpochMilliseconds())
                         }
                     },
                     colors = settings.switch.colors,

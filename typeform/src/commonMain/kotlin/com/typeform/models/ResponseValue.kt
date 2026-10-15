@@ -1,8 +1,7 @@
 package com.typeform.models
 
 import com.typeform.schema.structure.Choice
-import com.typeform.serializers.DateSerializer
-import java.util.Date
+import kotlinx.datetime.LocalDate
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.SerializationException
@@ -29,7 +28,7 @@ sealed class ResponseValue {
     ) : ResponseValue()
 
     data class DateValue(
-        val value: Date,
+        val value: LocalDate,
     ) : ResponseValue()
 
     data class IntValue(
@@ -92,7 +91,7 @@ sealed class ResponseValue {
         }
     }
 
-    fun asDate(): Date? {
+    fun asDate(): LocalDate? {
         return when (this) {
             is DateValue -> {
                 this.value
@@ -142,8 +141,7 @@ sealed class ResponseValue {
         val choice: Choice?,
         val choices: List<Choice>?,
         val choicesByReference: Map<String, List<Choice>>?,
-        @Serializable(with = DateSerializer::class)
-        val date: Date?,
+        val date: LocalDate?,
         val int: Int?,
         val string: String?,
         val upload: Upload?,
@@ -161,28 +159,28 @@ sealed class ResponseValue {
 
         fun toResponseValue(): ResponseValue? {
             return if (bool != null) {
-                ResponseValue.BooleanValue(bool)
+                BooleanValue(bool)
             } else if (choice != null) {
-                ResponseValue.ChoiceValue(choice)
+                ChoiceValue(choice)
             } else if (choices != null) {
-                ResponseValue.ChoicesValue(choices)
+                ChoicesValue(choices)
             } else if (choicesByReference != null) {
-                ResponseValue.ChoicesByReferenceValue(choicesByReference)
+                ChoicesByReferenceValue(choicesByReference)
             } else if (date != null) {
-                ResponseValue.DateValue(date)
+                DateValue(date)
             } else if (int != null) {
-                ResponseValue.IntValue(int)
+                IntValue(int)
             } else if (string != null) {
-                ResponseValue.StringValue(string)
+                StringValue(string)
             } else if (upload != null) {
-                ResponseValue.UploadValue(upload)
+                UploadValue(upload)
             } else {
                 null
             }
         }
     }
 
-    private object Serializer : KSerializer<ResponseValue> {
+    internal object Serializer : KSerializer<ResponseValue> {
         override val descriptor: SerialDescriptor
             get() = serializer.descriptor
 

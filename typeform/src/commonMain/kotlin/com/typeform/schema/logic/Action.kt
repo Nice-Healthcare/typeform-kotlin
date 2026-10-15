@@ -37,7 +37,7 @@ data class Action(
         }
     }
 
-    private object Serializer : KSerializer<Action> {
+    internal object Serializer : KSerializer<Action> {
         override val descriptor: SerialDescriptor
             get() = serializer.descriptor
 

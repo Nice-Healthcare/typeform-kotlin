@@ -16,7 +16,7 @@ enum class ActionType(
     JUMP("jump"),
     ;
 
-    private object Serializer : KSerializer<ActionType> {
+    internal object Serializer : KSerializer<ActionType> {
         override val descriptor: SerialDescriptor
             get() = PrimitiveSerialDescriptor("ActionType", PrimitiveKind.STRING)
 

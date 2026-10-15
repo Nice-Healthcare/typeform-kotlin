@@ -16,7 +16,7 @@ enum class LogicType(
     FIELD("field"),
     ;
 
-    private object Serializer : KSerializer<LogicType> {
+    internal object Serializer : KSerializer<LogicType> {
         override val descriptor: SerialDescriptor
             get() = PrimitiveSerialDescriptor("LogicType", PrimitiveKind.STRING)
 

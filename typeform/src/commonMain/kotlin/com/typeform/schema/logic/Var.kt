@@ -31,7 +31,7 @@ data class Var(
             val value: String,
         ) : Value()
 
-        private object Serializer : KSerializer<Value> {
+        internal object Serializer : KSerializer<Value> {
 
             private val primitiveSerializer = JsonPrimitive.serializer()
 

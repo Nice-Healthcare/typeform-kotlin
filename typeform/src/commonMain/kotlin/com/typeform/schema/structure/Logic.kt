@@ -38,7 +38,7 @@ data class Logic(
         }
     }
 
-    private object Serializer : KSerializer<Logic> {
+    internal object Serializer : KSerializer<Logic> {
         override val descriptor: SerialDescriptor
             get() = serializer.descriptor
 

@@ -195,7 +195,7 @@ fun ContentView(
                 SettingsView(
                     settings = settings,
                     language = language,
-                    languagesAvailable = form?.settings?.translation_languages,
+                    languagesAvailable = form?.settings?.translationLanguages,
                     enabled = form != null,
                     onLanguageChange = {
                         language = it

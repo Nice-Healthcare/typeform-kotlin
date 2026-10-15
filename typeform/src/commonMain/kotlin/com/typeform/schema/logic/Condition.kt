@@ -128,7 +128,7 @@ data class Condition(
         }
     }
 
-    private object Serializer : KSerializer<Condition> {
+    internal object Serializer : KSerializer<Condition> {
         override val descriptor: SerialDescriptor
             get() = serializer.descriptor
 

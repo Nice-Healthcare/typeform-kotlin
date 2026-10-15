@@ -17,7 +17,7 @@ enum class AttachmentType(
     VIDEO("video"),
     ;
 
-    private object Serializer : KSerializer<AttachmentType> {
+    internal object Serializer : KSerializer<AttachmentType> {
         override val descriptor: SerialDescriptor
             get() = PrimitiveSerialDescriptor("AttachmentType", PrimitiveKind.STRING)
 

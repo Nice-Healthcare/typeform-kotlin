@@ -12,7 +12,6 @@ import com.google.accompanist.permissions.shouldShowRationale
 import com.typeform.models.Upload
 import com.typeform.ui.models.UploadHelper
 import java.io.File
-import kotlin.uuid.ExperimentalUuidApi
 import kotlin.uuid.Uuid
 
 class ExampleUploadHelper @OptIn(ExperimentalPermissionsApi::class) constructor(
@@ -25,7 +24,7 @@ class ExampleUploadHelper @OptIn(ExperimentalPermissionsApi::class) constructor(
             "application/pdf",
         )
 
-    @OptIn(ExperimentalUuidApi::class, ExperimentalPermissionsApi::class)
+    @OptIn(ExperimentalPermissionsApi::class)
     override fun uriForCameraImage(context: Context): Result<Uri?> {
         when (cameraPermissionState.status) {
             is PermissionStatus.Denied -> {
