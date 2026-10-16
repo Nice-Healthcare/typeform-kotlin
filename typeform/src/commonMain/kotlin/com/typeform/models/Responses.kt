@@ -11,10 +11,10 @@ typealias Responses = Map<String, ResponseValue>
 /**
  * Verify that [ResponseValue]s in the collection are valid given the [Field] definitions.
  *
- * For instance: if a [MultipleChoice] field which only allows a single-selection has more
- * than one [Choice], this is an invalid state.
+ * For instance: if a [com.typeform.schema.questions.MultipleChoice] field which only allows a single-selection has more
+ * than one [com.typeform.schema.structure.Choice], this is an invalid state.
  *
- * @param fields The fields from a [Form] that are used to validate the collection.
+ * @param fields The fields from a [com.typeform.schema.structure.Form] that are used to validate the collection.
  */
 fun Responses.validResponseValuesGiven(fields: List<Field>): Boolean {
     return invalidResponseValuesGiven(fields).isEmpty()
@@ -23,10 +23,10 @@ fun Responses.validResponseValuesGiven(fields: List<Field>): Boolean {
 /**
  * Collection of invalid _Reference_ keys based on expected [ResponseValue] types.
  *
- * For instance: if a [MultipleChoice] field which only allows a single-selection has more
- * than one [Choice], this is an invalid state.
+ * For instance: if a [com.typeform.schema.questions.MultipleChoice] field which only allows a single-selection has more
+ * than one [com.typeform.schema.structure.Choice], this is an invalid state.
  *
- * @param fields The fields from a [Form] that are used to validate the collection.
+ * @param fields The fields from a [com.typeform.schema.structure.Form] that are used to validate the collection.
  */
 fun Responses.invalidResponseValuesGiven(fields: List<Field>): List<String> {
     return mapNotNull { element ->

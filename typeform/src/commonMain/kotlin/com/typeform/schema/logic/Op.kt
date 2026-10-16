@@ -1,9 +1,8 @@
 package com.typeform.schema.logic
 
 import com.typeform.models.TypeformException
-import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
+import kotlinx.datetime.LocalDate
+import kotlinx.datetime.parseOrNull
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.SerializationException
@@ -38,10 +37,6 @@ enum class Op(
     ON("on"),
     OR("or"),
     ;
-
-    companion object {
-        private var yearMonthDay = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-    }
 
     @Throws(TypeformException.UnexpectedOperation::class)
     fun compareString(
@@ -97,13 +92,14 @@ enum class Op(
         }
     }
 
+    // TODO: Do we need to consider other date formats for this? See [DateStamp].
     @Throws(TypeformException::class)
     fun compareDate(
-        response: Date,
+        response: LocalDate,
         condition: String,
     ): Boolean {
-        val conditionDate = yearMonthDay.parse(condition)
-            ?: throw TypeformException.ResponseTypeMismatch(Date::class.simpleName ?: "Date")
+        val conditionDate = LocalDate.parseOrNull(condition, LocalDate.Formats.ISO)
+            ?: throw TypeformException.ResponseTypeMismatch(LocalDate::class.simpleName ?: "Date")
 
         val comparison = response.compareTo(conditionDate)
 
@@ -132,7 +128,7 @@ enum class Op(
         }
     }
 
-    private object Serializer : KSerializer<Op> {
+    internal object Serializer : KSerializer<Op> {
         override val descriptor: SerialDescriptor
             get() = PrimitiveSerialDescriptor("Op", PrimitiveKind.STRING)
 

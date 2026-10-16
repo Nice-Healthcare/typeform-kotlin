@@ -5,13 +5,14 @@ import com.typeform.models.Responses
 import com.typeform.models.invalidResponseValuesGiven
 import com.typeform.models.validResponseValuesGiven
 import com.typeform.schema.structure.Choice
-import java.util.Calendar
-import java.util.Date
-import java.util.TimeZone
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
+import kotlin.time.Clock
+import kotlinx.datetime.LocalDate
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.toLocalDateTime
 
 class ResponsesTests : TypeformTestCase() {
 
@@ -45,7 +46,7 @@ class ResponsesTests : TypeformTestCase() {
     @Test
     fun testValidResponseValueTypes() {
         responses = mapOf(
-            Pair(DATE, ResponseValue.DateValue(Date())),
+            Pair(DATE, ResponseValue.DateValue(Clock.System.now().toLocalDateTime(TimeZone.UTC).date)),
             Pair(DROPDOWN, ResponseValue.ChoiceValue(Choice())),
             Pair(LONG_TEXT, ResponseValue.StringValue("")),
             Pair(MULTIPLE_CHOICE_MANY, ResponseValue.ChoicesValue(emptyList())),
@@ -62,7 +63,7 @@ class ResponsesTests : TypeformTestCase() {
     fun testInvalidResponseValueTypes() {
         responses = mapOf(
             Pair(DATE, ResponseValue.ChoiceValue(Choice())),
-            Pair(DROPDOWN, ResponseValue.DateValue(Date())),
+            Pair(DROPDOWN, ResponseValue.DateValue(Clock.System.now().toLocalDateTime(TimeZone.UTC).date)),
             Pair(LONG_TEXT, ResponseValue.ChoiceValue(Choice())),
             Pair(MULTIPLE_CHOICE_MANY, ResponseValue.StringValue("")),
             Pair(MULTIPLE_CHOICE_ONE, ResponseValue.ChoicesValue(emptyList())),
@@ -111,10 +112,7 @@ class ResponsesTests : TypeformTestCase() {
 
     @Test
     fun testDefaultResponseValueDecoding() {
-        val calendar = Calendar.getInstance(TimeZone.getTimeZone("America/Chicago"))
-        calendar.set(2025, 5, 10, 13, 27, 0)
-        calendar.set(Calendar.MILLISECOND, 0)
-        val date = calendar.time
+        val localDate = LocalDate(2025, 6, 10)
 
         val json = """
         {
@@ -129,7 +127,7 @@ class ResponsesTests : TypeformTestCase() {
             }
           },
           "beta" : {
-            "date" : "2025-06-10T13:27:00-05:00"
+            "date" : "2025-06-10"
           }
         }
         """
@@ -145,7 +143,7 @@ class ResponsesTests : TypeformTestCase() {
                         label = "Battlestar",
                     ),
                 ),
-                "beta" to ResponseValue.DateValue(date),
+                "beta" to ResponseValue.DateValue(localDate),
             ),
             responses,
         )

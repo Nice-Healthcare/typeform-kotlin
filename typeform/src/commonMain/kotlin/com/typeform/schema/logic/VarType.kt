@@ -18,7 +18,7 @@ enum class VarType(
     FIELD("field"),
     ;
 
-    private object Serializer : KSerializer<VarType> {
+    internal object Serializer : KSerializer<VarType> {
         override val descriptor: SerialDescriptor
             get() = PrimitiveSerialDescriptor("VarType", PrimitiveKind.STRING)
 

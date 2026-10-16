@@ -54,7 +54,7 @@ data class Field(
         }
     }
 
-    private object Serializer : KSerializer<Field> {
+    internal object Serializer : KSerializer<Field> {
         override val descriptor: SerialDescriptor
             get() = serializer.descriptor
 

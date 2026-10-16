@@ -28,7 +28,7 @@ enum class FieldType(
     YES_NO("yes_no"),
     ;
 
-    private object Serializer : KSerializer<FieldType> {
+    internal object Serializer : KSerializer<FieldType> {
         override val descriptor: SerialDescriptor
             get() = PrimitiveSerialDescriptor("FieldType", PrimitiveKind.STRING)
 

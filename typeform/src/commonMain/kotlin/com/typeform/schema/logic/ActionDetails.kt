@@ -27,7 +27,7 @@ data class ActionDetails(
         THANK_YOU("thankyou"),
         ;
 
-        private object Serializer : KSerializer<ToType> {
+        internal object Serializer : KSerializer<ToType> {
             override val descriptor: SerialDescriptor
                 get() = PrimitiveSerialDescriptor("ActionDetails.ToType", PrimitiveKind.STRING)
 

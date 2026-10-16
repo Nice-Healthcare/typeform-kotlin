@@ -13,6 +13,7 @@ androidxNavigation = "2.9.8"
 coil = "3.4.0"
 compose = "1.12.0"
 kotlin = "2.4.0"
+kotlinxDateTime = "0.8.0"
 kotlinxSerializationJson = "1.11.0"
 ktlint = "14.2.0"
 ktor = "3.3.2"
@@ -42,6 +43,7 @@ jetbrains-compose-runtime = { group = "org.jetbrains.compose.runtime", name = "r
 jetbrains-compose-ui = { group = "org.jetbrains.compose.ui", name = "ui", version.ref = "compose" }
 jetbrains-compose-ui-tooling = { group = "org.jetbrains.compose.ui", name = "ui-tooling", version.ref = "compose" }
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
+kotlinx-datetime = { group = "org.jetbrains.kotlinx", name = "kotlinx-datetime", version.ref = "kotlinxDateTime" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
 ktor-android = { module = "io.ktor:ktor-client-android", version.ref = "ktor" }
 ktor-client = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }

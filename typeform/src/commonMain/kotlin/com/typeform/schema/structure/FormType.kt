@@ -16,7 +16,7 @@ enum class FormType(
     QUIZ("quiz"),
     ;
 
-    private object Serializer : KSerializer<FormType> {
+    internal object Serializer : KSerializer<FormType> {
         override val descriptor: SerialDescriptor
             get() = PrimitiveSerialDescriptor("FormType", PrimitiveKind.STRING)
 

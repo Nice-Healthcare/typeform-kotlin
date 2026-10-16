@@ -18,6 +18,9 @@ kotlin {
         compilerOptions {
             jvmTarget.set(JvmTarget.JVM_21)
         }
+        androidResources {
+            enable = true
+        }
         withHostTest {}
         lint {
             checkReleaseBuilds = false
@@ -32,6 +35,7 @@ kotlin {
         commonMain {
             dependencies {
                 implementation(libs.jetbrains.compose.resources)
+                implementation(libs.kotlinx.datetime)
                 implementation(libs.kotlinx.serialization.json)
             }
         }
