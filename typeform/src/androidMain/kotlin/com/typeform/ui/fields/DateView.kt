@@ -1,14 +1,11 @@
 package com.typeform.ui.fields
 
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Switch
 import androidx.compose.material3.DatePicker
-import androidx.compose.material3.DatePickerDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Switch
 import androidx.compose.material3.rememberDatePickerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
@@ -19,13 +16,17 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.typeform.models.ResponseValue
 import com.typeform.schema.questions.DateStamp
 import com.typeform.schema.structure.Validations
-import com.typeform.ui.LocalSettings
-import com.typeform.ui.components.StyledTextView
+import com.typeform.ui.LocalColors
+import com.typeform.ui.LocalLocalization
+import com.typeform.ui.components.ContentContainerView
+import com.typeform.ui.components.TextView
 import com.typeform.ui.models.ResponseState
+import com.typeform.ui.models.Script
+import com.typeform.ui.preview.FieldPreview
 import kotlin.time.Clock
 import kotlin.time.Instant
 import kotlinx.datetime.LocalDateTime
@@ -38,12 +39,14 @@ import kotlinx.datetime.toLocalDateTime
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun DateView(
+    modifier: Modifier = Modifier,
     properties: DateStamp,
     responseState: ResponseState,
     validations: Validations?,
     stateHandler: (ResponseState) -> Unit,
 ) {
-    val settings = LocalSettings.current
+    val localization = LocalLocalization.current
+    val colors = LocalColors.current
     val pickerState = rememberDatePickerState(
         initialSelectedDate = responseState.response?.asDate()?.toJavaLocalDate() ?: java.time.LocalDate.now(),
     )
@@ -105,8 +108,9 @@ internal fun DateView(
         onDispose { }
     }
 
-    Column(
-        verticalArrangement = Arrangement.spacedBy(settings.presentation.contentVerticalSpacing),
+    ContentContainerView(
+        modifier = modifier,
+        description = properties.description,
     ) {
         if (isOptional) {
             Row(
@@ -114,9 +118,9 @@ internal fun DateView(
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically,
             ) {
-                StyledTextView(
-                    text = settings.localization.nullDate,
-                    textStyle = MaterialTheme.typography.caption,
+                TextView(
+                    text = localization.nullDate,
+                    script = Script.BODY,
                 )
 
                 Switch(
@@ -129,7 +133,7 @@ internal fun DateView(
                             select(pickerState.selectedDateMillis ?: Clock.System.now().toEpochMilliseconds())
                         }
                     },
-                    colors = settings.switch.colors,
+                    colors = colors.switchColors,
                 )
             }
         }
@@ -137,33 +141,28 @@ internal fun DateView(
         if (!isOptional || !isNotSure) {
             DatePicker(
                 state = pickerState,
+                colors = colors.datePickerColors,
                 title = null,
                 headline = null,
                 showModeToggle = false,
-                colors = DatePickerDefaults.colors(
-                    weekdayContentColor = settings.calendar.weekdayContentColor,
-                    dayContentColor = settings.calendar.dayContentColor,
-                    selectedDayContentColor = settings.calendar.selectedDayContentColor,
-                    selectedDayContainerColor = settings.calendar.selectedDayContainerColor,
-                    todayContentColor = settings.calendar.todayDateContentColor,
-                    todayDateBorderColor = settings.calendar.todayDateContainerColor,
-                ),
             )
         }
     }
 }
 
-@Preview(showBackground = true, showSystemUi = true)
+@PreviewLightDark
 @Composable
 private fun DateViewPreview() {
-    DateView(
-        properties = DateStamp(
-            separator = "",
-            structure = "",
-            description = null,
-        ),
-        responseState = ResponseState(),
-        validations = null,
-    ) {
+    FieldPreview {
+        DateView(
+            properties = DateStamp(
+                separator = "",
+                structure = "",
+                description = "This should not be a day in the future.",
+            ),
+            responseState = ResponseState(),
+            validations = null,
+        ) {
+        }
     }
 }

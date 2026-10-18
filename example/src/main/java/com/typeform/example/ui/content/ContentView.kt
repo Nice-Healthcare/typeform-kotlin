@@ -25,7 +25,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import coil3.SingletonImageLoader
 import coil3.compose.LocalPlatformContext
@@ -37,8 +37,9 @@ import com.typeform.example.model.RecentHandler
 import com.typeform.example.ui.theme.ExampleTheme
 import com.typeform.schema.structure.Form
 import com.typeform.schema.translation.merging
+import com.typeform.ui.models.ColorConfiguration
 import com.typeform.ui.models.Conclusion
-import com.typeform.ui.models.Settings
+import com.typeform.ui.models.TypographyConfiguration
 import com.typeform.ui.structure.FormView
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -67,7 +68,8 @@ fun ContentView(
     var downloadFailure: String? by remember { mutableStateOf(null) }
     var form: Form? by remember { mutableStateOf(null) }
     var presentingForm: Form? by remember { mutableStateOf(null) }
-    var settings: Settings by remember { mutableStateOf(Settings()) }
+    var skipWelcome by remember { mutableStateOf(false) }
+    var skipEnding by remember { mutableStateOf(false) }
     var conclusion: Conclusion? by remember { mutableStateOf(null) }
     var language: String? by remember { mutableStateOf(null) }
     var translatedForm: Form? by remember { mutableStateOf(null) }
@@ -138,20 +140,23 @@ fun ContentView(
             presentingForm?.let { form ->
                 FormView(
                     form = form,
-                    settings = settings,
+                    skipWelcomeScreen = skipWelcome,
+                    skipEndingScreen = skipEnding,
+                    typography = TypographyConfiguration.construct(MaterialTheme.typography),
+                    color = ColorConfiguration.construct(MaterialTheme.colorScheme),
                     imageLoader = SingletonImageLoader.get(LocalPlatformContext.current),
                     uploadHelper = ExampleUploadHelper(
                         cameraPermissionState = cameraPermissionState,
                     ),
-                    conclusion = {
-                        conclude(it)
-                    }
-                )
+                ) { conclusion ->
+                    conclude(conclusion)
+                }
             }
         },
         modifier = modifier.fillMaxSize(),
         scaffoldState = scaffoldState,
         sheetPeekHeight = 0.dp,
+        sheetDragHandle = null,
         sheetSwipeEnabled = false,
         topBar = {
             TopAppBar(
@@ -193,7 +198,8 @@ fun ContentView(
                 }
 
                 SettingsView(
-                    settings = settings,
+                    skipWelcome = skipWelcome,
+                    skipEnding = skipEnding,
                     language = language,
                     languagesAvailable = form?.settings?.translationLanguages,
                     enabled = form != null,
@@ -205,9 +211,12 @@ fun ContentView(
                             translatedForm = null
                         }
                     },
-                    onSettingsChange = {
-                        settings = it
-                    }
+                    onWelcomeChange = {
+                        skipWelcome = it
+                    },
+                    onEndingChange = {
+                        skipEnding = it
+                    },
                 ) {
                     present()
                 }
@@ -220,7 +229,7 @@ fun ContentView(
     }
 }
 
-@Preview(showBackground = true)
+@PreviewLightDark
 @Composable
 private fun ContentViewPreview() {
     ExampleTheme {

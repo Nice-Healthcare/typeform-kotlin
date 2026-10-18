@@ -1,23 +1,20 @@
 package com.typeform.ui.structure
 
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material.Icon
-import androidx.compose.material.MaterialTheme
+import androidx.compose.material3.Icon
+import androidx.compose.material3.LocalContentColor
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.typeform.models.Responses
 import com.typeform.resources.Res
 import com.typeform.resources.warning_24dp
-import com.typeform.ui.LocalSettings
 import com.typeform.ui.models.Conclusion
+import com.typeform.ui.preview.MaterialThemePreview
 import org.jetbrains.compose.resources.vectorResource
 
 /**
@@ -25,43 +22,38 @@ import org.jetbrains.compose.resources.vectorResource
  */
 @Composable
 internal fun RejectedView(
-    scaffoldPadding: PaddingValues,
+    modifier: Modifier = Modifier,
     responses: Responses,
     onClick: (Conclusion) -> Unit,
 ) {
-    val settings = LocalSettings.current
-
     ScrollingContentView(
-        scaffoldPadding = scaffoldPadding,
         title = "Finish",
         onClick = {
             onClick(Conclusion.Rejected(responses))
         },
+        modifier = modifier,
     ) {
-        Column(
-            modifier = Modifier.padding(settings.presentation.contentPadding),
-            verticalArrangement = Arrangement.spacedBy(settings.presentation.titleDescriptionVerticalSpacing),
+        Box(
+            modifier = Modifier.fillMaxWidth(),
+            contentAlignment = Alignment.Center,
         ) {
-            Box(
-                modifier = Modifier.fillMaxWidth(),
-                contentAlignment = Alignment.Center,
-            ) {
+            CompositionLocalProvider(LocalContentColor provides (Color.Red)) {
                 Icon(
                     imageVector = vectorResource(Res.drawable.warning_24dp),
                     contentDescription = null,
-                    tint = MaterialTheme.colors.error,
                 )
             }
         }
     }
 }
 
-@Preview(showBackground = true, showSystemUi = true)
+@PreviewLightDark
 @Composable
 private fun RejectedViewPreview() {
-    RejectedView(
-        scaffoldPadding = PaddingValues(0.dp),
-        responses = mapOf(),
-        onClick = {},
-    )
+    MaterialThemePreview {
+        RejectedView(
+            responses = mapOf(),
+            onClick = {},
+        )
+    }
 }

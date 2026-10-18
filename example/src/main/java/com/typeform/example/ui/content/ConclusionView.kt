@@ -9,7 +9,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import com.typeform.example.ui.theme.ExampleTheme
 import com.typeform.ui.models.Conclusion
@@ -58,7 +58,7 @@ fun ConclusionView(
     }
 }
 
-@Preview
+@PreviewLightDark
 @Composable
 private fun ConclusionViewPreview() {
     ExampleTheme {

@@ -4,9 +4,8 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
-import androidx.compose.material.MaterialTheme
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -15,8 +14,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.typeform.models.ResponseValue
 import com.typeform.resources.Res
 import com.typeform.resources.cloud_24dp
@@ -25,20 +23,25 @@ import com.typeform.resources.star_24dp
 import com.typeform.resources.star_fill_24dp
 import com.typeform.schema.questions.Rating
 import com.typeform.schema.structure.Validations
-import com.typeform.ui.LocalSettings
-import com.typeform.ui.components.StyledTextView
+import com.typeform.ui.LocalColors
+import com.typeform.ui.LocalPresentation
+import com.typeform.ui.components.ContentContainerView
+import com.typeform.ui.components.TextView
 import com.typeform.ui.models.ResponseState
-import com.typeform.ui.preview.ThemePreview
+import com.typeform.ui.models.Script
+import com.typeform.ui.preview.FieldPreview
 import org.jetbrains.compose.resources.vectorResource
 
 @Composable
 internal fun RatingView(
+    modifier: Modifier = Modifier,
     properties: Rating,
     responseState: ResponseState,
     validations: Validations?,
     stateHandler: (ResponseState) -> Unit,
 ) {
-    val settings = LocalSettings.current
+    val presentation = LocalPresentation.current
+    val colors = LocalColors.current
     var selected: Int? by remember { mutableStateOf(responseState.response?.asInt()) }
 
     val range = IntRange(1, properties.steps)
@@ -88,56 +91,55 @@ internal fun RatingView(
         updateState()
     }
 
-    Row(
-        modifier = Modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.SpaceBetween,
+    ContentContainerView(
+        modifier = modifier,
+        description = properties.description,
     ) {
-        range.forEach { step ->
-            val filled = (selected ?: 0) >= step
-            val tint = if (filled) {
-                settings.rating.colors.contentColor(enabled = true)
-            } else {
-                settings.rating.colors.backgroundColor(enabled = true)
-            }
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween,
+        ) {
+            range.forEach { step ->
+                val filled = (selected ?: 0) >= step
 
-            IconButton(
-                onClick = {
-                    select(step)
-                },
-                modifier = Modifier.weight(1f),
-            ) {
-                Column(
-                    horizontalAlignment = Alignment.CenterHorizontally,
+                IconButton(
+                    onClick = {
+                        select(step)
+                    },
+                    modifier = Modifier.weight(1f),
+                    colors = colors.iconButtonColors,
+                    shape = presentation.buttonShape,
                 ) {
-                    Icon(
-                        imageVector = if (filled) filledImage else outlinedImage,
-                        contentDescription = null,
-                        modifier = Modifier.fillMaxWidth(),
-                        tint = tint.value,
-                    )
+                    Column(
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                    ) {
+                        Icon(
+                            imageVector = if (filled) filledImage else outlinedImage,
+                            contentDescription = null,
+                            modifier = Modifier.fillMaxWidth(),
+                        )
 
-                    StyledTextView(
-                        text = "$step",
-                        textStyle = MaterialTheme.typography.body1,
-                    )
+                        TextView(
+                            text = "$step",
+                            script = Script.LABEL,
+                        )
+                    }
                 }
             }
         }
     }
 }
 
-@Preview(showBackground = true, showSystemUi = true)
+@PreviewLightDark
 @Composable
 private fun RatingViewPreview() {
-    ThemePreview {
-        Column(
-            verticalArrangement = Arrangement.spacedBy(20.dp),
-        ) {
+    FieldPreview {
+        Column {
             RatingView(
                 properties = Rating(
                     shape = "star",
                     steps = 5,
-                    description = null,
+                    description = "How would ou rate your service?",
                 ),
                 responseState = ResponseState(),
                 validations = null,
@@ -146,9 +148,9 @@ private fun RatingViewPreview() {
 
             RatingView(
                 properties = Rating(
-                    shape = "star",
+                    shape = "cloud",
                     steps = 5,
-                    description = null,
+                    description = "How would ou rate your sleep?",
                 ),
                 responseState = ResponseState(),
                 validations = null,

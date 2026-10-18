@@ -53,6 +53,12 @@ data class Form(
         return welcomeScreens?.firstOrNull { it.id == id } ?: endingScreens.firstOrNull { it.id == id }
     }
 
+    fun screenWithOptionalId(id: String?): Screen? {
+        return id?.let {
+            screenWithId(it)
+        }
+    }
+
     /**
      * Locate a [Field] by id.
      *
@@ -62,6 +68,12 @@ data class Form(
      * @return A [Field] anywhere in the hierarchy that matches the parameters.
      */
     fun fieldWithId(id: String): Field? = fields.fieldWithId(id)
+
+    fun fieldWithOptionalId(id: String?): Field? {
+        return id?.let {
+            fieldWithId(it)
+        }
+    }
 
     /**
      * Locate a [Field] by _reference_.

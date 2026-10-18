@@ -6,6 +6,7 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.graphics.Color
 
+@Deprecated(message = "See [ColorConfiguration]")
 data class TypeformRadioButtonColors(
     val unselectedColor: Color = Color.Black,
     val selectedColor: Color = Color.Blue,

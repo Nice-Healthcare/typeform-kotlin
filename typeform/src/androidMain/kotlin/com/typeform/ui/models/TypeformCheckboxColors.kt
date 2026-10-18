@@ -7,6 +7,7 @@ import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.state.ToggleableState
 
+@Deprecated(message = "See [ColorConfiguration]")
 data class TypeformCheckboxColors(
     val uncheckedBorderColor: Color = Color.Black,
     val checkedBorderColor: Color = Color.Blue,

@@ -32,6 +32,7 @@ import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import com.typeform.example.ui.theme.ExampleTheme
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -163,7 +164,7 @@ fun RetrieveView(
     }
 }
 
-@Preview
+@PreviewLightDark
 @Composable
 private fun RetrieveViewPreview() {
     var formId: String by remember { mutableStateOf("") }
