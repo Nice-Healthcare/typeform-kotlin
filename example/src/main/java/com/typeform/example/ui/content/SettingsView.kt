@@ -20,20 +20,21 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import com.typeform.example.ui.theme.ExampleTheme
-import com.typeform.ui.models.Settings
 
 @Composable
 fun SettingsView(
     modifier: Modifier = Modifier,
-    settings: Settings,
+    skipWelcome: Boolean = false,
+    skipEnding: Boolean = false,
     language: String? = null,
     languagesAvailable: List<String>? = null,
     enabled: Boolean = true,
     onLanguageChange: (String?) -> Unit = { },
-    onSettingsChange: (Settings) -> Unit = { },
+    onWelcomeChange: (Boolean) -> Unit = { },
+    onEndingChange: (Boolean) -> Unit = { },
     onPresent: () -> Unit,
 ) {
     var languageExpanded by remember { mutableStateOf(false) }
@@ -61,14 +62,9 @@ fun SettingsView(
                 Text(text = "Skip Welcome")
 
                 Switch(
-                    checked = settings.presentation.skipWelcomeScreen,
+                    checked = skipWelcome,
                     onCheckedChange = {
-                        val update = settings.copy(
-                            presentation = settings.presentation.copy(
-                                skipWelcomeScreen = it
-                            )
-                        )
-                        onSettingsChange(update)
+                        onWelcomeChange(!skipWelcome)
                     },
                     enabled = enabled,
                 )
@@ -82,14 +78,9 @@ fun SettingsView(
                 Text(text = "Skip Ending")
 
                 Switch(
-                    checked = settings.presentation.skipEndingScreen,
+                    checked = skipEnding,
                     onCheckedChange = {
-                        val update = settings.copy(
-                            presentation = settings.presentation.copy(
-                                skipEndingScreen = it
-                            )
-                        )
-                        onSettingsChange(update)
+                        onEndingChange(!skipEnding)
                     },
                     enabled = enabled,
                 )
@@ -158,17 +149,11 @@ fun SettingsView(
     }
 }
 
-@Preview
+@PreviewLightDark
 @Composable
 private fun SettingsViewPreview() {
-    var settings: Settings by remember { mutableStateOf(Settings()) }
     ExampleTheme {
-        SettingsView(
-            settings = settings,
-            onSettingsChange = {
-                settings = it
-            }
-        ) {
+        SettingsView {
         }
     }
 }

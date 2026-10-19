@@ -1,33 +1,32 @@
 package com.typeform.ui.fields
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.typeform.models.ResponseValue
 import com.typeform.schema.questions.MultipleChoice
 import com.typeform.schema.structure.Choice
 import com.typeform.schema.structure.Validations
-import com.typeform.ui.LocalSettings
+import com.typeform.ui.components.ContentContainerView
 import com.typeform.ui.components.IntermittentChoiceButton
 import com.typeform.ui.models.ResponseState
-import com.typeform.ui.preview.ThemePreview
+import com.typeform.ui.preview.FieldPreview
 import com.typeform.ui.preview.previewCold
 import com.typeform.ui.preview.previewHot
 
 @Composable
 internal fun MultipleChoiceView(
+    modifier: Modifier = Modifier,
     properties: MultipleChoice,
     responseState: ResponseState,
     validations: Validations?,
     stateHandler: (ResponseState) -> Unit,
 ) {
-    val settings = LocalSettings.current
     var selected: List<Choice> by remember { mutableStateOf(responseState.response?.asChoices() ?: emptyList()) }
 
     val choices = properties.orderedChoices()
@@ -82,8 +81,9 @@ internal fun MultipleChoiceView(
         updateState()
     }
 
-    Column(
-        verticalArrangement = Arrangement.spacedBy(settings.presentation.contentVerticalSpacing),
+    ContentContainerView(
+        modifier = modifier,
+        description = properties.description,
     ) {
         choices.forEach { choice ->
             IntermittentChoiceButton(
@@ -97,10 +97,10 @@ internal fun MultipleChoiceView(
     }
 }
 
-@Preview(showBackground = true)
+@PreviewLightDark
 @Composable
 private fun MultipleChoiceViewPreview() {
-    ThemePreview {
+    FieldPreview {
         MultipleChoiceView(
             properties = MultipleChoice(
                 choices = listOf(
@@ -111,7 +111,7 @@ private fun MultipleChoiceViewPreview() {
                 allow_multiple_selection = false,
                 allow_other_choice = false,
                 vertical_alignment = true,
-                description = null,
+                description = "Select one or more of the following options.",
             ),
             responseState = ResponseState(),
             validations = null,

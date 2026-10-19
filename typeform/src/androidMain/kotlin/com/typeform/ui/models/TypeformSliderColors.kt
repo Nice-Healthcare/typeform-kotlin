@@ -6,6 +6,7 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.graphics.Color
 
+@Deprecated(message = "See [ColorConfiguration]")
 data class TypeformSliderColors(
     val thumbColor: Color = Color.Blue,
     val tickColor: Color = Color.Black,

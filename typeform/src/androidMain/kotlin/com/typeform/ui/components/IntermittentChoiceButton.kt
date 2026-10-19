@@ -1,20 +1,21 @@
 package com.typeform.ui.components
 
-import androidx.compose.foundation.background
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.material.Button
-import androidx.compose.material.Checkbox
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.RadioButton
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Checkbox
+import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.RadioButton
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
-import com.typeform.ui.LocalSettings
-import com.typeform.ui.preview.ThemePreview
+import com.typeform.ui.LocalColors
+import com.typeform.ui.LocalPresentation
+import com.typeform.ui.models.Script
+import com.typeform.ui.preview.MaterialThemePreview
 
 @Composable
 internal fun IntermittentChoiceButton(
@@ -24,77 +25,78 @@ internal fun IntermittentChoiceButton(
     selected: Boolean = false,
     onClick: () -> Unit,
 ) {
-    val settings = LocalSettings.current
-    val borderStroke = if (selected) settings.button.selectedBorderStroke else settings.button.unselectedBorderStroke
+    val presentation = LocalPresentation.current
+    val colors = LocalColors.current
 
-    Button(
+    OutlinedButton(
         onClick = onClick,
         modifier = modifier,
-        elevation = null,
-        border = borderStroke,
-        colors = settings.button.colors,
-        contentPadding = settings.button.contentPadding,
+        shape = presentation.buttonShape,
+        colors = colors.outlinedButtonColors(selected),
+        border = BorderStroke(
+            width = if (selected) 2.dp else 1.dp,
+            color = if (selected) colors.outlinedButton.selectedStrokeColor else colors.outlinedButton.unselectedStrokeColor,
+        ),
+        contentPadding = presentation.elementPadding,
     ) {
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-        ) {
-            if (allowMultiple) {
-                Checkbox(
-                    checked = selected,
-                    onCheckedChange = {
-                        onClick()
-                    },
-                    colors = settings.checkbox.colors,
-                )
-            } else {
-                RadioButton(
-                    selected = selected,
-                    onClick = onClick,
-                    colors = settings.radio.colors,
-                )
-            }
-
-            StyledTextView(
-                text = text,
-                textStyle = MaterialTheme.typography.body1,
-                modifier = Modifier.weight(1f),
+        if (allowMultiple) {
+            Checkbox(
+                checked = selected,
+                onCheckedChange = {
+                    onClick()
+                },
+                colors = colors.checkboxColors,
+            )
+        } else {
+            RadioButton(
+                selected = selected,
+                onClick = onClick,
+                colors = colors.radioButtonColors,
             )
         }
+
+        TextView(
+            modifier = Modifier.weight(1f),
+            text = text,
+            script = Script.TITLE,
+        )
     }
 }
 
 @PreviewLightDark
 @Composable
 private fun IntermittentChoiceButtonPreview() {
-    ThemePreview {
-        Column(
-            modifier = Modifier.background(MaterialTheme.colors.background),
-            verticalArrangement = Arrangement.spacedBy(20.dp),
-        ) {
-            IntermittentChoiceButton(
-                text = "Example Button",
-                allowMultiple = true,
+    MaterialThemePreview {
+        Surface {
+            Column(
+                modifier = Modifier.padding(20.dp),
+                verticalArrangement = Arrangement.spacedBy(20.dp),
             ) {
-            }
+                IntermittentChoiceButton(
+                    text = "Multiple Unselected",
+                    allowMultiple = true,
+                ) {
+                }
 
-            IntermittentChoiceButton(
-                text = "Example Button",
-                allowMultiple = true,
-                selected = true,
-            ) {
-            }
+                IntermittentChoiceButton(
+                    text = "Multiple Selected",
+                    allowMultiple = true,
+                    selected = true,
+                ) {
+                }
 
-            IntermittentChoiceButton(
-                text = "Example Button",
-                allowMultiple = false,
-            ) {
-            }
+                IntermittentChoiceButton(
+                    text = "Single Unselected",
+                    allowMultiple = false,
+                ) {
+                }
 
-            IntermittentChoiceButton(
-                text = "Example Button",
-                allowMultiple = false,
-                selected = true,
-            ) {
+                IntermittentChoiceButton(
+                    text = "Single Selected",
+                    allowMultiple = false,
+                    selected = true,
+                ) {
+                }
             }
         }
     }
