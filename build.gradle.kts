@@ -28,7 +28,7 @@ publishing {
             groupId = "healthcare.nice"
             artifactId = "typeform"
             version = System.getenv().getOrDefault("VERSION", System.getProperties().getProperty("version"))
-            artifact("${layout.projectDirectory}/typeform/build/outputs/aar/typeform-release.aar")
+            artifact("${layout.projectDirectory}/typeform/build/outputs/aar/typeform.aar")
         }
     }
 }
