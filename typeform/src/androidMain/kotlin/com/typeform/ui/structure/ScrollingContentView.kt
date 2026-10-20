@@ -27,6 +27,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
+import com.typeform.ui.LocalColors
 import com.typeform.ui.LocalPresentation
 import com.typeform.ui.components.CallToActionContainerView
 import com.typeform.ui.components.CallToActionContentView
@@ -47,6 +48,7 @@ internal fun ScrollingContentView(
     content: @Composable ColumnScope.() -> Unit,
 ) {
     val presentation = LocalPresentation.current
+    val colors = LocalColors.current
     val scrollState = rememberScrollState()
     val isKeyboardVisible by rememberUpdatedState(WindowInsets.isImeVisible)
     val animationDuration = 300
@@ -55,7 +57,9 @@ internal fun ScrollingContentView(
     val exitTransition = slideOutVertically(tween(animationDuration)) { abs(it) } +
         fadeOut(tween(animationDuration))
 
-    Surface {
+    Surface(
+        color = colors.surface,
+    ) {
         Box(
             modifier = modifier,
         ) {
@@ -106,42 +110,40 @@ internal fun ScrollingContentView(
 @Composable
 private fun ScrollingContentViewPreview() {
     MaterialThemePreview {
-        Surface {
-            ScrollingContentView(
-                title = "Preview",
-                onClick = {},
-                header = {
-                    Box(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .background(Color.Gray)
-                            .height(50.dp),
-                    )
-                },
+        ScrollingContentView(
+            title = "Preview",
+            onClick = {},
+            header = {
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .background(Color.Gray)
+                        .height(50.dp),
+                )
+            },
+        ) {
+            Box(
+                modifier = Modifier
+                    .height(300.dp)
+                    .fillMaxWidth()
+                    .background(Color.Blue),
             ) {
-                Box(
-                    modifier = Modifier
-                        .height(300.dp)
-                        .fillMaxWidth()
-                        .background(Color.Blue),
-                ) {
-                }
+            }
 
-                Box(
-                    modifier = Modifier
-                        .height(300.dp)
-                        .fillMaxWidth()
-                        .background(Color.Yellow),
-                ) {
-                }
+            Box(
+                modifier = Modifier
+                    .height(300.dp)
+                    .fillMaxWidth()
+                    .background(Color.Yellow),
+            ) {
+            }
 
-                Box(
-                    modifier = Modifier
-                        .height(300.dp)
-                        .fillMaxWidth()
-                        .background(Color.Red),
-                ) {
-                }
+            Box(
+                modifier = Modifier
+                    .height(300.dp)
+                    .fillMaxWidth()
+                    .background(Color.Red),
+            ) {
             }
         }
     }

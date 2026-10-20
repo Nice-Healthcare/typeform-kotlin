@@ -67,8 +67,8 @@ fun ResponsesView(
 fun ChoiceView(
     choice: Choice,
 ) {
-    Row(
-        horizontalArrangement = Arrangement.spacedBy(10.dp),
+    Column(
+        verticalArrangement = Arrangement.spacedBy(5.dp),
     ) {
         Text(text = choice.label)
         Text(text = choice.id)
@@ -88,16 +88,14 @@ fun ChoicesByReferenceView(
         verticalArrangement = Arrangement.spacedBy(5.dp),
     ) {
         choices.forEach { (key, list) ->
-            Row {
-                Text(
-                    text = key,
-                    modifier = Modifier.widthIn(max = 100.dp),
-                    overflow = TextOverflow.Ellipsis,
-                    maxLines = 1,
-                )
-                list.forEach { choice ->
-                    Text(text = "✔️${choice.label}")
-                }
+            Text(
+                text = key,
+                modifier = Modifier.widthIn(max = 100.dp),
+                overflow = TextOverflow.Ellipsis,
+                maxLines = 1,
+            )
+            list.forEach { choice ->
+                Text(text = "✔️${choice.label}")
             }
         }
     }
