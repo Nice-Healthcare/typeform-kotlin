@@ -30,7 +30,7 @@ internal fun ContentContainerView(
         description?.let {
             TextView(
                 text = it,
-                script = Script.TITLE,
+                script = Script.BODY,
             )
         }
 
