@@ -32,11 +32,3 @@ publishing {
         }
     }
 }
-
-tasks.withType<PublishToMavenLocal> {
-    dependsOn(":typeform:bundleReleaseAar")
-}
-
-tasks.withType<PublishToMavenRepository> {
-    dependsOn(":typeform:bundleReleaseAar")
-}
