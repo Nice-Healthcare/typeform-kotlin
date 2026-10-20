@@ -32,3 +32,10 @@ publishing {
         }
     }
 }
+
+// JitPack uses the 'Maven Local' publishing option.
+// Our GitHub publishing workflow calls 'assemble' before 'publish', whereas
+// this step needs to be performed on JitPack.
+tasks.withType<PublishToMavenLocal> {
+    dependsOn(":typeform:assemble")
+}
