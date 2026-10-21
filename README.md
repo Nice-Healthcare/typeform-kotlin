@@ -197,31 +197,31 @@ Your app manifest should include the following to support uploading:
 
 Every app is unique, so the ability to customize the look and feel of the questions presentation was built in to the library from the start.
 
-### Settings
+There are four distinct areas of customization:
 
-The [`Settings`](typeform/src/androidMain/kotlin/com/typeform/ui/models/Settings.kt) structure allows for the customization of several aspects of the libraries interface presentation & localization.
+### `LocalizationConfiguration`
 
-### MaterialTheme
+These are string values used in various parts of the form. You can provide your own values, or values appropriate to the device language.
 
-Most other aspects use `MaterialTheme` to customize the appearance.
+### `TypographyConfiguration`
 
-* **Title** style (`Screen.title`, `Field.title`)
-  * `textStyle`: `MaterialTheme.typography.h5`
-* **Subtitle** style (Applied to navigational buttons)
-  * `textStyle`: `MaterialTheme.typography.subtitle1`
-* **Body** style (Applied to any other text element.)
-  * `textStyle`: `MaterialTheme.typography.body1`
-* **Prompt** style (Applied to supplemental text blocks, like Date toggle.)
-  * `textStyle`: `MaterialTheme.typography.body2`
-* **Caption** style (`Field.properties.description`)
-  * `textStyle`: `MaterialTheme.typography.caption`
+There are 5 `TextStyle`s used in the library. These map to the M3 Typography names:
 
-The 'Exit' confirmation dialog _by default_ uses the `subtitle1` and `body1` styles for the title & text.
-The dialog buttons use style `body1` but have color overrides applied:
+* display
+* headline
+* title
+* body
+* label
 
-* Cancel (return to form): `MaterialTheme.colors.primary`
-* Exit (leave form): `MaterialTheme.colors.error`
+### `PresentationConfiguration`
 
+These configuration values control the general padding and spacing of containers and elements.
+
+### `ColorConfiguration`
+
+How Material Design uses color, change be challenging to design for. By default the configuration uses `Color.Unspecified` to let the `MaterialTheme` apply defaults.
+
+There are examples and helper constructors, but this may be a trial & error process. Suggestions and feedback are welcome!
 
 ### Headers & Footers
 
