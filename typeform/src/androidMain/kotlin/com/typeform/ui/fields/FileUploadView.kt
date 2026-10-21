@@ -89,7 +89,7 @@ internal fun FileUploadView(
                         color = colors.outlinedButton.selectedStrokeColor,
                     ),
                     colors = colors.outlinedButtonColors(true),
-                    contentPadding = presentation.elementPadding,
+                    contentPadding = presentation.outlinedButtonContentPadding,
                 ) {
                     TextView(
                         text = localization.uploadAction,

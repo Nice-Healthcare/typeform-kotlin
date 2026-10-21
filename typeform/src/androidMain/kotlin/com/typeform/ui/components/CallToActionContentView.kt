@@ -25,7 +25,7 @@ internal fun CallToActionContentView(
         enabled = enabled,
         shape = presentation.buttonShape,
         colors = colors.buttonColors,
-        contentPadding = presentation.elementPadding,
+        contentPadding = presentation.buttonContentPadding,
     ) {
         TextView(
             text = title,

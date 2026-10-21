@@ -27,7 +27,7 @@ internal fun CallToActionContainerView(content: @Composable ColumnScope.() -> Un
         )
 
         Column(
-            modifier = Modifier.padding(presentation.topBarPadding),
+            modifier = Modifier.padding(presentation.contentPadding),
         ) {
             content()
         }

@@ -37,7 +37,7 @@ internal fun IntermittentChoiceButton(
             width = if (selected) 2.dp else 1.dp,
             color = if (selected) colors.outlinedButton.selectedStrokeColor else colors.outlinedButton.unselectedStrokeColor,
         ),
-        contentPadding = presentation.elementPadding,
+        contentPadding = presentation.outlinedButtonContentPadding,
     ) {
         if (allowMultiple) {
             Checkbox(

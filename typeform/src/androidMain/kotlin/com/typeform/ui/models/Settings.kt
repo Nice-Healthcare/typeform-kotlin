@@ -168,6 +168,8 @@ data class Settings(
             headlineContainerSpacing = presentation.titleDescriptionVerticalSpacing,
             contentContainerSpacing = presentation.descriptionContentVerticalSpacing,
             elementSpacing = presentation.contentHorizontalSpacing,
+            buttonContentPadding = callToAction.containerPadding,
+            outlinedButtonContentPadding = outlinedButton.contentPadding,
         )
 
     val colorConfiguration: ColorConfiguration
