@@ -35,6 +35,7 @@ import com.typeform.ui.fields.NumberView
 import com.typeform.ui.fields.OpinionScaleView
 import com.typeform.ui.fields.RatingView
 import com.typeform.ui.fields.ShortTextView
+import com.typeform.ui.fields.StatementView
 import com.typeform.ui.fields.YesNoView
 import com.typeform.ui.models.Conclusion
 import com.typeform.ui.models.NavigationAction
@@ -230,7 +231,9 @@ internal fun FieldView(
                     }
                 }
                 is FieldProperties.StatementProperties -> {
-                    // No additional content
+                    StatementView(
+                        properties = field.properties.properties,
+                    )
                 }
                 is FieldProperties.YesNoProperties -> {
                     YesNoView(
